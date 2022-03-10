@@ -44,7 +44,7 @@ a {
 .ticketing_con {
   position: relative;
   width: 1200px;
-  height: 700px;
+  height: 750px;
   border: 1px solid #000;
 }
 
@@ -143,7 +143,7 @@ a {
   height: 40px;
 }
 .article_cinema .cinema_select_wrap ul li {
-  width: 100px;
+  width: 200px;
   height: 100%;
   margin-left: 10px;
   line-height: 40px;
@@ -152,7 +152,143 @@ a {
 
   background-color: #fff;
 }
+.article_cinema .cinema_select_wrap ul li.active {
+  background: #fff url(./img/check.png) no-repeat 170px center;
+}
+
 /* end article_cinema */
+
+/* start article_date */
+.article_date {
+  width: 700px;
+  height: 115px;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+}
+
+.owl-item {
+  position: relative;
+  float: left;
+  display: block;
+  min-height: 1px;
+}
+
+.date_select_wrap {
+  height: 75px;
+  margin: 22px 20px 10px;
+}
+
+.date_select_wrap .owl-stage {
+  display: flex;
+  justify-content: center;
+  transform: translate3d(0px, 0px, 0px);
+  transition: all 0s ease 0s;
+  width: 660px;
+  height: 100%;
+  text-align: center;
+}
+
+.date_select_wrap .owl-item {
+  display: none;
+}
+.date_select_wrap .owl-item.active {
+  display: block;
+}
+
+.date_select_wrap .month {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+}
+
+.date_select_wrap .date {
+  display: block;
+  position: relative;
+  padding-top: 20px;
+}
+
+.date_select_wrap .date label {
+  display: block;
+  cursor: pointer;
+}
+.date_select_wrap .date label input[type="radio"] {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0, 0, 0, 0);
+}
+.date_select_wrap .date label input[type="radio"]:checked + strong {
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+}
+.date_select_wrap .date label strong {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  border-radius: 50%;
+  font-size: 15px;
+  text-align: center;
+}
+
+.date_select_wrap .date label em {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.date_select_wrap .date.sat {
+  color: #233ca3;
+}
+.date_select_wrap .date.sun {
+  color: #f24a6a;
+}
+
+.owl-nav button.owl-prev,
+.owl-nav button.owl-next {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+}
+
+.owl-nav .owl-prev {
+  opacity: 0.6;
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  width: 37px;
+  height: 39px;
+  margin-top: -20px;
+  background: url(./img/arr_lf_11.png) no-repeat center center;
+}
+
+.owl-nav .owl-next {
+  opacity: 0.6;
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  width: 37px;
+  height: 39px;
+  margin-top: -20px;
+  background: url(./img/arr_rg_11.png) no-repeat center center;
+}
+
+.owl-nav [class*="owl-"] span {
+  font-size: 0;
+  text-indent: -9999em;
+}
+
+/* end article_date */
 
 /* start article_movie */
 .article_movie {

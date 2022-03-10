@@ -124,6 +124,9 @@ a {
   font-size: 13px;
   vertical-align: middle;
 }
+.location_select_wrap > ul .depth2 ul li.active {
+  background: #fff url(./img/check.png) no-repeat 130px center;
+}
 
 /* end location_select_wrap */
 

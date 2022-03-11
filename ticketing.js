@@ -1,20 +1,20 @@
 
 
 const activeLocation = function(e){
-    let i, location_content, locations, loc;
-  
-    location_content = document.querySelectorAll(".depth2");
-    for (i = 0; i < location_content.length; i++) {
-      location_content[i].style.display = "none";
+    let i, cinema_content, cinemas, loc;
+    let title;
+
+    cinema_content = document.querySelectorAll(".depth2");
+    for (i = 0; i < cinema_content.length; i++) {
+      cinema_content[i].style.display = "none";
     }
   
-    locations = document.querySelectorAll(".depth1");
-    for (i = 0; i < location_content.length; i++) {
-      locations[i].className = locations[i].className.replace(" active", "");
+    cinemas = document.querySelectorAll(".depth1");
+    for (i = 0; i < cinema_content.length; i++) {
+      cinemas[i].classList.remove("active");
     }
-  
-    
-    e.currentTarget.className += " active";
+
+    e.currentTarget.classList.add("active");
     loc = document.querySelector(".depth1.active > .depth2");
     loc.style.display = "block";
 }
@@ -25,38 +25,50 @@ depth1s.forEach((item)=>{
 });
 ////////////////////////////////////////////////////////////////////////////////
 
-const activeArea = function(e){
-    let i,  areas;
+const activeCinema = function(e){
+    let i,  cinemas;
   
-    areas = document.querySelectorAll(".depth2 > ul > li");
-    for (i = 0; i < areas.length; i++) {
-      areas[i].className = areas[i].className.replace("active", "");
+    cinemas = document.querySelectorAll(".depth2 > ul > li");
+    for (i = 0; i < cinemas.length; i++) {
+      cinemas[i].className = cinemas[i].className.replace("active",""); 
     }
 
-    e.currentTarget.className += "active";
-}
-const areas = document.querySelectorAll(".depth2 > ul > li");
-areas.forEach((item)=>{
-    item.addEventListener("click",activeArea);
-});
+    e.currentTarget.className += " active";
 
+    title = document.querySelector(".article.article_cinema .group_top .tit");
+    title.textContent = e.currentTarget.innerText;
+    
+}
+const cinemas = document.querySelectorAll(".depth2 > ul > li");
+cinemas.forEach((item)=>{
+    item.addEventListener("click",activeCinema);
+});
 ////////////////////////////////////////////////////////////////////////////////
-// 영화관 선택
-const activeCinema = function(e){
-  const cinemas = document.querySelectorAll(".cinema_select_wrap ul li");
+// 영화선택
+const activeMovie = function(e){
+  let i,  movies, title, seats;
   
-  for (i = 0; i < cinemas.length; i++) {
-    cinemas[i].classList.remove("active");
+  movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+  for (i = 0; i < movies.length; i++) {
+    movies[i].className = movies[i].className.replace("active",""); 
   }
 
-  e.currentTarget.classList.add("active");
+  e.currentTarget.className += " active";
+  title = document.querySelector(".article.article_movie .group_top .tit");
+  title.textContent = e.currentTarget.innerText;
+
+  // filter 상영날짜 좌석
+  seats = document.querySelectorAll(".tab_wrap.outer > li");
+  for(i=0; i<seats.length; i++)
+  {
+    console.dir(seats[i]);
+  }
 }
-const cinemas = document.querySelectorAll(".cinema_select_wrap ul li");
-cinemas.forEach((item)=>{
-  item.addEventListener("click",activeCinema);
+
+const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+movies.forEach((item)=>{
+  item.addEventListener("click",activeMovie);
 })
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // 날짜 출력
@@ -206,15 +218,18 @@ const prevWeek = function(){
     }
     
   }
-  
 }
 
-const nextWeekBtn = document.querySelector(".owl-next");
-const prevWeekBtn = document.querySelector(".owl-prev");
+const init_calendar = function(){
+  const nextWeekBtn = document.querySelector(".owl-next");
+  const prevWeekBtn = document.querySelector(".owl-prev");
 
-nextWeekBtn.addEventListener("click",()=>{nextWeek()});
-prevWeekBtn.addEventListener("click",()=>{prevWeek()});
+  nextWeekBtn.addEventListener("click",()=>{nextWeek()});
+  prevWeekBtn.addEventListener("click",()=>{prevWeek()});
 
-createCalendar();
+  createCalendar();  
+}
 
+init_calendar();
 ////////////////////////////////////////////////////////////////////////////////
+// 상영 시간 선택

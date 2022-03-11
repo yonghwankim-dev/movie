@@ -1,0 +1,182 @@
+@import "./ticketing.css";
+
+.bx_num {
+  position: relative;
+  width: 105px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.section_step_con .article.article_seat {
+  width: 1200px;
+}
+
+.section_step_con .article.article_seat > .inner {
+  overflow: hidden;
+  height: 815px;
+}
+
+.select_num_people_wrap {
+  overflow: hidden;
+  height: 117px;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+.select_num_people_wrap .movie_infor {
+  position: relative;
+  float: left;
+  width: 270px;
+  padding: 30px 0 0 54px;
+}
+
+.select_num_people_wrap .movie_infor .thm {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 26px;
+  left: 0;
+  width: 46px;
+  height: 65px;
+  border-radius: 4px;
+}
+
+.select_num_people_wrap .movie_infor .thm img {
+  width: 100%;
+}
+
+.select_num_people_wrap .movie_infor .group_infor .bx_tit {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.select_num_people_wrap .movie_infor .group_infor dl {
+  position: relative;
+}
+.select_num_people_wrap .movie_infor .group_infor dl dt {
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.select_num_people_wrap .movie_infor .group_infor dl dd.sub_info1 {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.select_num_people_wrap .count_people {
+  float: right;
+  width: 825px;
+  margin-top: 36px;
+}
+
+.select_num_people_wrap .count_people > ul::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.select_num_people_wrap .count_people > ul > li {
+  float: left;
+  margin-left: 20px;
+}
+.select_num_people_wrap .count_people > ul > li:first-child {
+  margin-left: 0;
+}
+
+.select_num_people_wrap .count_people > ul > li .tit {
+  margin-right: 8px;
+  font-size: 13px;
+  color: #000;
+}
+.select_num_people_wrap .count_people > ul > li .bx_num {
+  display: inline-block;
+  width: 100px;
+}
+
+.bx_num .btn_mins {
+  left: 0;
+  background: url(./img/minus_12.png) no-repeat 50% 50%;
+}
+.bx_num .btn_plus {
+  right: 0;
+  background: url(./img/plus_12.png) no-repeat 50% 50%;
+}
+
+.bx_num .btn_mins,
+.bx_num .btn_plus {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 0 none;
+  padding: 0 15px;
+  text-indent: -9999em;
+  font: 0 auto;
+}
+
+.bx_num .txt_num {
+  padding: 11px 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  vertical-align: middle;
+}
+/******************************************************/
+
+.select_seat_wrap {
+  overflow: hidden;
+  height: 638px;
+  color: #fff;
+  background-color: #000;
+}
+
+.select_seat_wrap .title_screen1 {
+  display: block;
+  padding: 5px 0 5px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 15px;
+  margin: 0 0 30px;
+  background-color: #6e6e6e;
+}
+
+.select_seat_wrap .showMap {
+  width: 100%;
+  height: 500px;
+}
+
+.select_seat_wrap .showMap table {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+.select_seat_wrap .showMap td:first-child {
+  color: white;
+  background-color: transparent;
+}
+.select_seat_wrap .showMap td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #cfe2f3;
+  color: black;
+}
+
+.select_seat_wrap .showMap td.active {
+  background-color: red;
+  color: white;
+}
+.select_seat_wrap .showMap td a {
+  display: inline-block;
+  width: 50px;
+  line-height: 50px;
+}

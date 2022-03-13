@@ -1,5 +1,6 @@
 @import "./ticketing.css";
 
+/* 인원수 선택 */
 .bx_num {
   position: relative;
   width: 105px;
@@ -15,7 +16,7 @@
 
 .section_step_con .article.article_seat > .inner {
   overflow: hidden;
-  height: 815px;
+  height: 875px;
 }
 
 .select_num_people_wrap {
@@ -131,6 +132,7 @@
 }
 /******************************************************/
 
+/* 좌석 */
 .select_seat_wrap {
   overflow: hidden;
   height: 638px;
@@ -170,6 +172,13 @@
   background-color: #cfe2f3;
   color: black;
 }
+.select_seat_wrap .showMap td.reserved {
+  background-color: #747474;
+}
+.select_seat_wrap .showMap td.no_select {
+  background: url(./img/ic_seat_type4.png) no-repeat;
+  background-size: 50px 50px;
+}
 
 .select_seat_wrap .showMap td.active {
   background-color: red;
@@ -179,4 +188,67 @@
   display: inline-block;
   width: 50px;
   line-height: 50px;
+}
+/* 좌석 타입 */
+.seat_btm_box {
+  height: 50px;
+  background-color: #000;
+  color: white;
+}
+
+.seat_btm_box .seat_type_box .top_info span {
+  padding-left: 17px;
+  margin-left: 6px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type1 {
+  background: url(./img/ic_seat_type1.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type2 {
+  background: url(./img/ic_seat_type2.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type3 {
+  background: url(./img/ic_seat_type3.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type4 {
+  background: url(./img/ic_seat_type4.png) no-repeat 0 4px;
+}
+
+/* 좌석 선택 결과 */
+.select_seat_result {
+  display: flex;
+  justify-content: space-between;
+}
+.select_seat_result .group_left {
+  width: 100%;
+  background-color: #444;
+  color: white;
+  font-size: 25px;
+  line-height: 25px;
+  padding: 20px 15px;
+}
+.select_seat_result .group_left dl.total_price {
+  display: flex;
+}
+.select_seat_result .group_left dl.total_price dt {
+  margin-right: 10px;
+}
+
+.select_seat_result .group_right {
+  display: flex;
+}
+
+.select_seat_result .group_right a {
+  width: 100px;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.select_seat_result .group_right a.back {
+  background-color: #444;
+}
+
+.select_seat_result .group_right a.pay {
+  background-color: red;
 }

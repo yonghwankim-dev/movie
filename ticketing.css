@@ -121,7 +121,11 @@ a {
   background: #fff url(./img/check.png) no-repeat 130px center;
 }
 
-.cinema_select_wrap > ul > li.depth1.active .depth2 {
+.cinema_select_wrap > ul > li.dpeth1 .depth2 {
+  display: none;
+}
+
+.cinema_select_wrap > ul > li.depth1.active .depth2.active {
   display: block;
 }
 
@@ -280,6 +284,7 @@ a {
   float: left;
   display: block;
   min-height: 1px;
+  width: 52.5px;
 }
 
 .date_select_wrap .owl-item {
@@ -436,6 +441,13 @@ a {
 
 .tab_wrap.outer {
   padding: 0 20px;
+}
+.tab_wrap.outer li .tab_con {
+  display: none;
+}
+
+.tab_wrap.outer li .tab_con.active {
+  display: block;
 }
 
 .time_select_wrap ul.list_time li:nth-child(4n + 1) {

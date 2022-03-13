@@ -1,235 +1,156 @@
+import init_calendar from "./calendar.js"
 
 
+// 지역 선택
 const activeLocation = function(e){
-    let i, cinema_content, cinemas, loc;
-    let title;
 
-    cinema_content = document.querySelectorAll(".depth2");
-    for (i = 0; i < cinema_content.length; i++) {
-      cinema_content[i].style.display = "none";
-    }
-  
-    cinemas = document.querySelectorAll(".depth1");
-    for (i = 0; i < cinema_content.length; i++) {
-      cinemas[i].classList.remove("active");
+    const step1 = ()=>{
+      return new Promise((resolve, reject)=>{
+        const depth2 = document.querySelectorAll(".depth2");
+
+        // 모든 구 선택 해제
+        depth2.forEach((d)=>{d.classList.remove("active")});
+        resolve();
+      });
     }
 
-    e.currentTarget.classList.add("active");
-    loc = document.querySelector(".depth1.active > .depth2");
-    loc.style.display = "block";
+    const step2 = ()=>{
+      return new Promise((resolve, reject)=>{
+        const depth1 = document.querySelectorAll(".depth1");
+
+        // 모든 지역 선택 해제
+        depth1.forEach((d)=>{d.classList.remove("active")});
+        resolve();
+      });
+      
+    }
+
+    const step3 = ()=>{
+      return new Promise((resolve, reject)=>{
+        const selectedLocation = e.currentTarget;
+
+        // 선택된 지역 선택 활성화
+        selectedLocation.classList.add("active");
+        resolve();
+      });
+    }
+
+    const step4 = ()=>{
+      return new Promise((resolve, reject)=>{
+        const activatedDepth2 = document.querySelector(".depth1.active > .depth2");
+
+        // 선택된 지역에 존재하는 영화관 활성화
+        activatedDepth2.classList.add("active");
+        resolve();
+      });
+    }
+
+    step1().then(step2)
+           .then(step3)
+           .then(step4);
 }
-// 지역(서울, 대전 등) 버튼들의 active 활성화
-const depth1s = document.querySelectorAll(".depth1");
-depth1s.forEach((item)=>{
-    item.addEventListener("click",activeLocation); 
-});
-////////////////////////////////////////////////////////////////////////////////
-
+// 영화관 선택
 const activeCinema = function(e){
-    let i,  cinemas;
+  const step1 = ()=>{
+    return new Promise((resolve, reject)=>{
+      const cinemas = document.querySelectorAll(".depth2 > ul > li");
+      
+      // 모든 영화관 선택 해제
+      cinemas.forEach((cinema)=>{cinema.classList.remove("active")});
+      resolve();
+    });
+  }
+
+  const step2 = ()=>{
+    return new Promise((resolve, reject)=>{
+      const selectedMovie = e.currentTarget;
+
+      // 선택된 영화관 선택 활성화
+      selectedMovie.classList.add("active");
+      resolve();
+    });
+  }
+
+  const step3 = ()=>{
+    return new Promise((resolve, reject)=>{
+      const title = document.querySelector(".article.article_cinema .group_top .tit");
+
+      // 영화관 제목에 선택된 영화제목 출력
+      title.textContent = e.currentTarget.innerText;
+      resolve();
+    });
+  }
   
-    cinemas = document.querySelectorAll(".depth2 > ul > li");
-    for (i = 0; i < cinemas.length; i++) {
-      cinemas[i].className = cinemas[i].className.replace("active",""); 
-    }
-
-    e.currentTarget.className += " active";
-
-    title = document.querySelector(".article.article_cinema .group_top .tit");
-    title.textContent = e.currentTarget.innerText;
-    
+  step1().then(step2)
+         .then(step3);
 }
-const cinemas = document.querySelectorAll(".depth2 > ul > li");
-cinemas.forEach((item)=>{
-    item.addEventListener("click",activeCinema);
-});
-////////////////////////////////////////////////////////////////////////////////
+
 // 영화선택
-const activeMovie = function(e){
-  let i,  movies, title, seats;
-  
-  movies = document.querySelectorAll(".movie_select_wrap.list ul li");
-  for (i = 0; i < movies.length; i++) {
-    movies[i].className = movies[i].className.replace("active",""); 
-  }
+const activeMovie = function(e, movieName){
+  const title = document.querySelector(".article.article_movie .group_top .tit");
+  const selectedMovie = e.currentTarget;
+  const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+  const times = document.querySelectorAll(".tab_wrap.outer li .tab_con");
 
-  e.currentTarget.className += " active";
-  title = document.querySelector(".article.article_movie .group_top .tit");
-  title.textContent = e.currentTarget.innerText;
+  // 모든 영화 선택 해제
+  const step1 = ()=>{
+    return new Promise((resolve, reject)=>{
+      movies.forEach((movie)=>{movie.classList.remove("active")});
+      resolve();
+    });
+  };
 
-  // filter 상영날짜 좌석
-  seats = document.querySelectorAll(".tab_wrap.outer > li");
-  for(i=0; i<seats.length; i++)
-  {
-    console.dir(seats[i]);
-  }
+  // 클릭한 영화 선택 활성화
+  const step2 = ()=>{
+    return new Promise((resolve, reject)=>{
+      selectedMovie.classList.add("active");    
+      resolve();
+    });
+  };
+
+  // 선택한 영화를 제목에 출력
+  const step3 = ()=>{
+    return new Promise((resolve, reject)=>{
+      title.textContent = selectedMovie.innerText;    
+      resolve();
+    });
+  };
+
+  // 영화에 맞는 상영날짜 활성화
+  const step4 = ()=>{
+    return new Promise((resolve, reject)=>{
+      times.forEach((time)=>{
+        if(time.id===movieName)
+        {
+          time.classList.add("active");
+        }
+        else
+        {
+          time.classList.remove("active");
+        }
+      });    
+      resolve();
+    });
+  };
+
+  step1().then(step2)
+         .then(step3)
+         .then(step4);
 }
 
-const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
-movies.forEach((item)=>{
-  item.addEventListener("click",activeMovie);
-})
+// 초기화
+const init = ()=>{
+  // 지역 버튼 클릭시 해당 지역의 영화관 리스트 활성화 이벤트 등록
+  const depth1 = document.querySelectorAll(".depth1");
+  depth1.forEach((d)=>{d.addEventListener("click",activeLocation);});
 
-////////////////////////////////////////////////////////////////////////////////
-// 날짜 출력
+  // 영화관 클릭 이벤트 등록
+  const cinemas = document.querySelectorAll(".depth2 > ul > li");
+  cinemas.forEach((cinema)=>{cinema.addEventListener("click",activeCinema);});
 
-const init={
-  monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-  dayList: ['일', '월', '화', '수', '목', '금', '토'],
-  today : new Date()
+  // 영화 선택 이벤트 등록
+  const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+  movies.forEach((movie)=>{movie.addEventListener("click",(e)=>{activeMovie(e,e.currentTarget.textContent.trim());});});
 };
-
-const createDate = function(mon, date, day){
-  const owl_item = document.createElement("div");
-  const li = document.createElement("li");
-  const span = document.createElement("span");
-  const label = document.createElement("label");
-  const input = document.createElement("input");
-  const strong = document.createElement("strong");
-  const em = document.createElement("em");
-
-  span.appendChild(label);
-  label.appendChild(input);
-  label.appendChild(strong);
-  label.appendChild(em);
-  owl_item.appendChild(li);
-
-  owl_item.className = "owl-item"
-  li.className = "item";
-  span.className = "date";
-  input.type = "radio";
-  input.name = "radioDate1";
-  strong.textContent = date;
-  em.textContent = init.dayList[day];
-  owl_item.style.width = "52.5px";
-
-  // 오늘 일자에 월과 오늘 표시
-  if(init.today.getDate()===date)
-  {
-    em.textContent = "오늘";
-    const month = document.createElement("strong");
-    month.textContent = (init.today.getMonth()+1) + "월";
-    month.className += " month";
-    li.appendChild(month);
-  }
-  else if(init.today.getMonth()!==mon && date==1)
-  {
-    const month = document.createElement("strong");
-    month.textContent = (mon+1) + "월";
-    month.className += " month";
-    li.appendChild(month);
-  }
-  li.appendChild(span);
-  
-
-  // 주말에 색상 설정
-  if(init.dayList[day]==="토")
-  {
-    span.className += " sat";
-  }
-  else if(init.dayList[day]==="일")
-  {
-    span.className += " sun";
-  }
-
-  return owl_item;
-}
-
-const createCalendar = function(){
-  const owl_stage = document.querySelector(".owl-stage");
-
-  let date = new Date();
-  // 오늘 일자를 기준으로 한달후까지 출력
-  for(let i=0;i<30;i++)
-  {
-    owl_stage.appendChild(createDate(date.getMonth(),date.getDate(),date.getDay()));
-    date.setDate(date.getDate()+1);
-  }
-
-  const owl_items = document.querySelectorAll(".owl-item");
-  for(let i=0;i<8;i++)
-  {
-    owl_items[i].className += " active";
-  }
-}
-
-const nextWeek = function(){
-  const items = document.querySelectorAll(".owl-item");
-  let first = 0;
-  let last = 7;
-
-  // active class가 처음 시작된 일자를 탐색
-  for(let i=0;i<items.length;i++)
-  {
-    if(items[i].classList.contains("active"))
-    {
-      first = i;
-      break;
-    }
-  }
-
-  if(first===items.length-8)
-  {
-    return;
-  }
-
-  // 다음주의 일자들의 class에 active를 추가
-  last = first + 7;
-  console.log("first : " + first + " last : " + last);
-  for(let i=first;i<=last;i++)
-  {
-    if(i+8<items.length)
-    {
-      items[i].classList.remove("active");
-      items[i+8].classList.add("active");      
-    }
-  }
-}
-
-const prevWeek = function(){
-  const items = document.querySelectorAll(".owl-item");
-  let first = 0;
-  let last = 7;
-  // active class가 처음 시작된 일자를 탐색
-  for(let i=0;i<items.length;i++)
-  {
-    if(items[i].classList.contains("active"))
-    {
-      first = i;
-      break;
-    }
-  }
-  
-  if(first==0)
-  {
-    return;
-  }
-  else
-  {
-    last = first+7;
-    console.log("first : " + first + " last : " + last);
-    for(let i=first;i<=last;i++)
-    {
-      if(i-8>=0)
-      {
-        items[i].classList.remove("active");
-        items[i-8].classList.add("active");
-      }
-    }
-    
-  }
-}
-
-const init_calendar = function(){
-  const nextWeekBtn = document.querySelector(".owl-next");
-  const prevWeekBtn = document.querySelector(".owl-prev");
-
-  nextWeekBtn.addEventListener("click",()=>{nextWeek()});
-  prevWeekBtn.addEventListener("click",()=>{prevWeek()});
-
-  createCalendar();  
-}
-
+init();
 init_calendar();
-////////////////////////////////////////////////////////////////////////////////
-// 상영 시간 선택

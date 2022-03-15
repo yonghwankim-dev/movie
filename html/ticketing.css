@@ -27,12 +27,18 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
 /* start wrap_reserve */
 .wrap_reserve {
   overflow: hidden;
   position: relative;
   width: 1280px;
-  height: 870px;
+  height: 950px;
   margin: 0 auto;
   background-color: #fff;
 }

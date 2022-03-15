@@ -89,7 +89,7 @@ const activeCinema = function(e){
 const activeMovie = function(e, movieName){
   const title = document.querySelector(".article.article_movie .group_top .tit");
   const selectedMovie = e.currentTarget;
-  const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+  const movies = document.querySelectorAll(".movie_select_wrap ul li");
   const times = document.querySelectorAll(".tab_wrap.outer li .tab_con");
 
   // 모든 영화 선택 해제
@@ -149,7 +149,7 @@ const init = ()=>{
   cinemas.forEach((cinema)=>{cinema.addEventListener("click",activeCinema);});
 
   // 영화 선택 이벤트 등록
-  const movies = document.querySelectorAll(".movie_select_wrap.list ul li");
+  const movies = document.querySelectorAll(".movie_select_wrap ul li");
   movies.forEach((movie)=>{movie.addEventListener("click",(e)=>{activeMovie(e,e.currentTarget.textContent.trim());});});
 };
 init();

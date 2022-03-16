@@ -4315,7 +4315,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/hyb93JA2P+o="
 							},
-							"name": "상품재고수량",
+							"name": "상품재고개수",
 							"length": 0
 						}
 					]
@@ -4383,7 +4383,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/hymtKpCHxSs="
 							},
-							"name": "예매수량",
+							"name": "예매개수",
 							"length": 0
 						},
 						{
@@ -4392,7 +4392,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/hymtKpCHxSs="
 							},
-							"name": "예매가격",
+							"name": "예매금액",
 							"length": 0
 						},
 						{
@@ -5805,7 +5805,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/i4cciqfR7TQ="
 							},
-							"name": "상영관명",
+							"name": "상영관이름",
 							"documentation": "상영관명\n- 1관, 2관 등등",
 							"length": 0
 						},
@@ -5928,7 +5928,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/i8pJVKrBPwo="
 							},
-							"name": "수량",
+							"name": "개수",
 							"length": 0
 						}
 					]

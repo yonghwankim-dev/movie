@@ -80,6 +80,8 @@ const activeCinema = function(e){
       resolve();
     });
   }
+
+
   
   step1().then(step2)
          .then(step3);

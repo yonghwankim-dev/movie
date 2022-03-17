@@ -7,6 +7,7 @@
 	<!-- 지역 맵-->
 	<resultMap class="locationVo" id="locationMap">
 		<result property="location_name" column="CINEMA_LOCATION"/>
+		<result property="cinema_count" column="CINEMA_COUNT"/>
 	</resultMap>
 	
 	<!-- 영화관 맵 -->
@@ -15,11 +16,20 @@
 		<result property="cinema_name" column="CINEMA_NAME"/>
 		<result property="cinema_location" column="CINEMA_LOCATION"/>
 	</resultMap>
-		
+	
+	<!-- 영화 맵 -->
+	<resultMap class="movieVo" id="movieMap">
+		<result property="movie_code" column="MOVIE_CODE"/>
+		<result property="movie_title" column="MOVIE_TITLE"/>
+		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
+	</resultMap>
+	
+			
 	<!-- 지역 리스트 반환 -->
 	<select id="getLocationList" resultMap="locationMap">
-		SELECT DISTINCT CINEMA_LOCATION
+		SELECT DISTINCT CINEMA_LOCATION, COUNT(*) AS CINEMA_COUNT
 		FROM   CINEMA
+		GROUP BY CINEMA_LOCATION
 		ORDER BY CINEMA_LOCATION
 	</select>
 	
@@ -30,6 +40,25 @@
 			,  CINEMA_LOCATION
 		FROM   CINEMA
 		ORDER BY CINEMA_LOCATION, CINEMA_NAME
+	</select>
+	
+	<!-- 모든 영화 리스트 반환 -->
+	<select id="getAllMovieList" resultMap="movieMap">
+		SELECT MOVIE_CODE
+			,  MOVIE_TITLE
+			,  MOVIE_SPECTATOR
+		FROM MOVIE
+		ORDER BY MOVIE_TITLE
+	</select>
+	
+	<!-- 영화관 지점에 상영하는 영화 리스트 반환 -->
+	<select id="findMovieListByCinemaName" parameterClass="String" resultMap="movieMap">		
+		SELECT DISTINCT m.movie_title, m.movie_code, m.movie_spectator
+		FROM screen s 
+        	INNER JOIN theater th ON s.theater_code = th.theater_code
+        	INNER JOIN cinema c ON th.cinema_code = c.cinema_code
+        	INNER JOIN movie m ON s.movie_code = m.movie_code
+		WHERE c.cinema_name = #cinema_name#
 	</select>
 	
 </sqlMap>			

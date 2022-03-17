@@ -1,3 +1,4 @@
+@charset "utf-8";
 @import url('./layout.css');
 @import url('./board.css');
 
@@ -394,6 +395,21 @@
   white-space: nowrap;
 }
 
+.wrap_reserve .ic_grade.gr_0 {
+  background-color: #5BC77E;
+}
+.wrap_reserve .ic_grade.gr_0::before {
+  content: "전체";
+}
+
+.wrap_reserve .ic_grade.gr_7 {
+  background-color: #F7C500;
+}
+.wrap_reserve .ic_grade.gr_7::before {
+  content: "7";
+}
+
+
 .wrap_reserve .ic_grade.gr_12 {
   background-color: #4dd6ff;
 }
@@ -407,6 +423,14 @@
 
 .wrap_reserve .ic_grade.gr_15::before {
   content: "15";
+}
+
+.wrap_reserve .ic_grade.gr_19 {
+  background-color: #ED4C6B;
+}
+
+.wrap_reserve .ic_grade.gr_19::before {
+  content: "19";
 }
 /* end wrap_reserve */
 
@@ -465,6 +489,7 @@
   color: black;
   cursor: pointer;
   font-size: 13px;
+  width:158px;
 }
 
 .article.article_cinema .cinema_select_wrap .depth2 .cinema_item {
@@ -503,14 +528,14 @@
   cursor: pointer;
 }
 
-.movie_select_wrap ul > li .group_infor .bx_tit .ic_grade {
+.movie_select_wrap ul > li .ic_grade {
   position: absolute;
   left: 20px;
   top: 12px;
   margin-right: 5px;
 }
 
-.movie_select_wrap ul > li .group_infor .bx_tit .tit {
+.movie_select_wrap ul > li .tit {
   display: block;
   overflow: hidden;
   width: 250px;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+			
+<sqlMap namespace="join">
+	<resultMap class="memberVO" id="joinMap">
+		<result property="mem_code" column="MEM_CODE"/>
+		<result property="mem_name" column="MEM_NAME"/>
+		<result property="mem_sex" column="MEM_SEX"/>
+		<result property="mem_birth" column="MEM_BIRTH"/>
+		<result property="mem_phone" column="MEM_PHONE"/>
+		<result property="mem_addr" column="MEM_ADDR"/>
+		<result property="mem_email" column="MEM_EMAIL"/>
+		<result property="mem_id" column="MEM_ID"/>
+		<result property="mem_pwd" column="MEM_PWD"/>
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<!--
+	<insert id="insertMember" parameterClass="kr.or.ddit.lottecgvbox.vo.JoinVO">
+	
+	<selectKey keyProperty="num" resultClass="int">
+		SELECT MEMBER_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO MEMBER (
+		MEM_CD,
+		MEM_NM,
+		MEM_NUM,
+		MEM_ID,
+		MEM_PW,
+		MEM_NIC,
+		MEM_GD,
+		MEM_BIR,
+		MEM_ADD,
+		MEM_ZIP,
+		MEM_EM)
+		VALUES(
+		member_num_seq.nextval,
+		#name#,
+		#tel#,
+		#id#,
+		#pw#,
+		#nickName#,
+		#gender#,
+		TO_DATE(#bir#, 'YYYY/MM/DD'),
+		#add#,
+		#zip#,
+		#email#)
+	</insert>
+	-->
+
+	<!-- ID 중복조회 -->
+	<select id="checkMember" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_ID = #id#
+	</select>
+
+	<!-- 닉네임 중복조회 -->
+	<select id="checkNick" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_ID = #nickName#
+	</select>
+	
+	<!-- 로그인아이디 비밀번호 체크 -->
+	<select id="checkLogin" resultClass="int" parameterClass="map">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_ID = #id#
+		AND MEM_PWD = #pw#
+	</select>
+
+	<select id="getName" resultClass="String" parameterClass="map">
+		SELECT MEM_NAME
+		FROM MEMBER
+		WHERE MEM_ID = #id#
+		AND MEM_PWD = #pw#	
+	</select>
+	
+	<select id="getMemCode" parameterClass="String" resultClass="String">
+		SELECT MEM_CODE
+		FROM   MEMBER
+		WHERE  MEM_ID = #id#
+	</select>
+	
+	<delete id="deleteMember" parameterClass="String">
+		DELETE FROM MEMBER
+		WHERE MEM_PWD = #pw#
+	</delete>
+	
+	<select id="searchLoginId" resultClass="String" parameterClass="map">
+		SELECT MEM_ID
+		FROM MEMBER
+		WHERE MEM_NM = #searchName#
+		AND MEM_NUM = #searchTel#
+	</select>
+</sqlMap>

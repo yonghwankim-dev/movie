@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="movie">
+
+	<resultMap class="movieVO" id="MovieMainMap">
+		<result property="movie_code" column="movie_code"/>
+		<result property="movie_title" column="movie_title"/>
+		<result property="movie_spectator" column="movie_spectator"/>
+	</resultMap>
+	
+	<!--
+	<resultMap class="movieVO" id="searchMovieMap">
+		<result property="movCd" column="mov_cd"/>
+		<result property="movNm" column="mov_nm"/>
+		<result property="movPd" column="mov_pd"/>
+		<result property="movPt" column="mov_pt"/>
+		<result property="movPr" column="mov_pr"/>
+	</resultMap>
+	-->
+	
+	<select id="getMovieMain" resultMap="MovieMainMap">
+		SELECT MOVIE_CODE
+		    ,  MOVIE_TITLE
+		    ,  MOVIE_SPECTATOR
+		FROM   MOVIE
+		ORDER BY MOVIE_CODE
+	</select>
+	
+	<!--
+	<select id="searchMovieList" resultMap="searchMovieMap">
+	
+		SELECT MOV_CD
+		    ,  MOV_NM
+		    ,  MOV_PD
+		    ,  MOV_PT
+		    ,  MOV_PR
+		FROM   MOVIE
+		WHERE  MOV_NM LIKE '%' || #movNm# || '%'
+		ORDER BY MOV_CD
+	
+	</select>
+	-->
+</sqlMap>			
+
+
+
+
+

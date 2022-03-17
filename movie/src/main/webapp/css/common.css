@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+@import url('./webfonts/SCDream/fonts.css');
+@import url('./webfonts/XEIcon/xeicon.min.css');
+@import url('./plugins/bootstrap.min.css');
+
+html {
+	font-size: 20px;
+}
+body {
+	line-height: 1.3;
+	font-family: 'SCDream';
+	font-weight: 400;
+	color: #1e1e1e;
+	background-color: #fbfbfb;
+	word-break: keep-all;
+	word-wrap: break-word;
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	color: #ed3124;
+}
+
+a:focus,
+a:hover {
+	color: #d30f00;
+}
+
+button {
+	display: inline-block;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 슬라이드 공용 */
+.slick-slider {transition:all ease-in-out .3s; 	box-sizing:border-box; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;  user-select:none; -webkit-touch-callout:none; -khtml-user-select:none; -ms-touch-action:pan-y; touch-action:pan-y; -webkit-tap-highlight-color:transparent;}
+.slick-slide {display:none; height:100%; min-height:1px; vertical-align:middle;}
+.slick-list {overflow:hidden; height:100%;}
+.slick-list.dragging {cursor:pointer;}
+.slick-initialized .slick-slide {display:inline-block;}
+.slick-arrow.slick-hidden {display:none;}
+.slick-current {opacity:1; display:block;}
+.slick-track {height:100%;}

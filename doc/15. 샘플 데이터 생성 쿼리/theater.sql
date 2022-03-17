@@ -1,4 +1,3 @@
-
 DECLARE
 /* theater_code_num : theater_code column의 정수부분*/
 theater_code_num NUMBER := 1;

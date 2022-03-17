@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ticketing">
+
+	<!-- 지역 맵-->
+	<resultMap class="locationVo" id="locationMap">
+		<result property="location_name" column="CINEMA_LOCATION"/>
+	</resultMap>
+	
+	<!-- 영화관 맵 -->
+	<resultMap class="cinemaVo" id="cinemaMap">
+		<result property="cinema_code" column="CINEMA_CODE"/>
+		<result property="cinema_name" column="CINEMA_NAME"/>
+		<result property="cinema_location" column="CINEMA_LOCATION"/>
+	</resultMap>
+		
+	<!-- 지역 리스트 반환 -->
+	<select id="getLocationList" resultMap="locationMap">
+		SELECT DISTINCT CINEMA_LOCATION
+		FROM   CINEMA
+		ORDER BY CINEMA_LOCATION
+	</select>
+	
+	<!-- 영화관 리스트 반환 -->
+	<select id="getCinemaList" resultMap="cinemaMap">
+		SELECT CINEMA_CODE
+			,  CINEMA_NAME
+			,  CINEMA_LOCATION
+		FROM   CINEMA
+		ORDER BY CINEMA_LOCATION, CINEMA_NAME
+	</select>
+	
+</sqlMap>			
+
+
+
+
+

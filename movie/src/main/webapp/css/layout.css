@@ -1,0 +1,224 @@
+@import url('./common.css');
+
+/* header */
+body.scrollDown #header {
+    transform: translateY(calc(-60px - 1px));
+}
+
+#header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 60px;
+	border-bottom: 1px solid #b2b2b2;
+	background-color: rgba(0,0,0,0.7);
+	transition: all 0.3s;
+}
+
+#header > [class^="container"] {
+	position: relative;
+	height: 100%;
+	padding: 0 30px;
+}
+
+/* logo */
+#logo {
+	float: left;
+    position: relative;
+    z-index: 1;
+    margin: 11px 0 0 30px;
+}
+
+#logo a {
+	display: block;
+}
+
+#logo a img {
+	vertical-align: top;
+}
+
+/* 로그인 메시지 */
+.loginMsg {
+	float: left;
+	position: relative;
+	z-index: 1;
+	margin: 20px 0 0 40px;
+	color: #f3f1f1;
+}
+
+/* util */
+#util {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	z-index: 2;
+}
+
+#util ul {
+	overflow: hidden;
+}
+
+#util li {
+	float: left;
+	position: relative;
+}
+
+#util li + li {
+	margin-left: 15px;
+	padding-left: 15px;
+}
+
+#util li + li:before {
+	content: "";
+	position: absolute;
+	top: 6px;
+	left: 0;
+	width: 1px;
+	height: 12px;
+	background-color: #ccc;
+}
+
+#util li a {
+	display: block;
+	font-size: 15px;
+	color: #fff;
+}
+
+/* menu */
+#menu {
+	overflow: hidden;
+	position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+#menu .blind {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0,0,0,0.9);
+}
+
+/** 1차 메뉴 **/
+#menu .depth1 {
+	font-size: 0;
+	text-align: center;
+}
+
+#menu .depth1 > li {
+	display: inline-block;
+	position: relative;
+	width: 160px;
+	vertical-align: top;
+}
+
+#menu .depth1 >li:before,
+#menu .depth1 >li:last-child:after {
+	content: "";
+	position: absolute;
+	top: 60px;
+	width: 1px;
+	height: 100vh;
+	background-color: rgba(255,255,255,0.3);
+}
+
+#menu .depth1 >li:before {
+	left: 0;
+}
+
+#menu .depth1 >li:last-child:after {
+	right: 0;
+}
+
+#menu .depth1 > li > a {
+	display: block;
+	font-size: 18px;
+	line-height: 60px;
+	color: #fff;
+}
+
+/** 2차 메뉴 **/
+#menu .depth2 {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	padding: 10px 0;
+}
+
+#menu .depth2.on {
+	background-color: #242424;
+}
+
+#menu .depth2 > li > a {
+	display: block;
+	position: relative;
+	padding: 10px;
+	font-size: 15px;
+	color: #fff;
+}
+
+#menu .depth2 > li.child > a {
+	padding-right: 15px;
+}
+
+#menu .depth2 > li.child > a:before {
+	content: "\e941";
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	font-family: "xeicon";
+	font-size: 12px;
+	color: #fff;
+}
+
+#menu .depth2 > li.child.on > a:before {
+	content: "\e944";
+}
+
+/** 3차 메뉴 **/
+#menu .depth3 {
+	display: none;
+	background-color: #4b4b4b;
+}
+
+#menu .depth3 > li > a {
+	display: block;
+	padding: 8px;
+	font-size: 14px;
+	color: #fff;
+}
+
+/* footer */
+#footer {
+	padding: 20px;
+	background-color: #e8e7e7;
+}
+
+#footer .copyright {
+	margin: 0;
+	font-size: 13px;
+	color: #737373;
+	text-align: center;
+}
+
+/* 반응형 */
+@media (max-width: 1800px) {
+	
+	/* menu */
+	#menu {
+		left: 0;
+		transform: none;
+		padding-left: 160px;
+	}
+}
+
+@media (max-width: 1400px) {
+	
+	
+}

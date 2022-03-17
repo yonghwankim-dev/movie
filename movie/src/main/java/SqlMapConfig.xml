@@ -20,9 +20,10 @@
 	표시하기 위해서 alias를 지정할 수 있다.
 	형식) <typeAlias alias="alias명" type="클래스의 풀네임"/>
 	 -->
-	 <!--
-	<typeAlias alias="movieVo" type="kr.or.ddit.lottecgvbox.vo.MovieVO"/>
-	-->
+	<typeAlias alias="movieVo" type="kr.com.yh.lottecgvbox.vo.MovieVO"/>
+	<typeAlias alias="memberVo" type="kr.com.yh.lottecgvbox.vo.MemberVO"/>
+	<typeAlias alias="locationVo" type="kr.com.yh.lottecgvbox.vo.LocationVO"/>
+	<typeAlias alias="cinemaVo" type="kr.com.yh.lottecgvbox.vo.CinemaVO"/>
 
 	<!--
 	DB와의 연결을 처리하는 부분
@@ -61,8 +62,8 @@
 	그 xml문서와 아래와 같이 연결하여 사용한다.
 	형식) <sqlMap resource="경로명/파일명.xml"/>
 	-->
-	<!--
 	<sqlMap resource="sqlmap/movie.xml"/>
-	-->
+	<sqlMap resource="sqlmap/join.xml"/>
+	<sqlMap resource="sqlmap/ticketing.xml"/>
 </sqlMapConfig>
 

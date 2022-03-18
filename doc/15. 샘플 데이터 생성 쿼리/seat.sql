@@ -11,7 +11,7 @@ BEGIN
             
         FOR seat IN 1..156
         LOOP
-            insert into seat values('seat_'||seat_code, CHR(ASCII('A')+seat_row), seat_col, '선택가능', 'theater_'||Theater);
+            insert into seat values('seat_'||seat_code, CHR(ASCII('A')+seat_row), seat_col, 'theater_'||Theater);
             seat_code := seat_code + 1;
             seat_row := seat_row + 1;
             seat_col := seat_col + 1;

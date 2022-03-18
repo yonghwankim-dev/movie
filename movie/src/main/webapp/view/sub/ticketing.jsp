@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  <!-- 페이지 타이틀 -->
 <h2 class="pageTitle"> 예매 </h2>
 <!-- //페이지 타이틀 -->
@@ -74,328 +74,50 @@
                     </div>
                 </div>
                 <ul class="tab_wrap outer">
-                    <li>
-                        <div id="더 배트맨" class="tab_con ty5 active">
-                            <div class="group_time_select">
-                                <div class="time_select_tit">
-                                    <span class="ic_grade gr_15">
-                                    </span>
-                                    <strong>더 배트맨</strong>
-                                </div>
-                                <div class="time_select_wrap timeSelect">
-                                    <ul class="list_hall">
-                                        <li>2D</li>
-                                    </ul>
-                                    <ul class="list_time">
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>11:50</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>140</strong>
-                                                        <span>/180</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">6관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>12:55</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>185</strong>
-                                                        <span>/282</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">10관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>14:05</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>138</strong>
-                                                        <span>/180</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">3관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div id="이상한 나라의 수학자" class="tab_con ty5 active">
-                            <div class="group_time_select">
-                                <div class="time_select_tit">
-                                    <span class="ic_grade gr_12">
-                                    </span>
-                                    <strong>이상한 나라의 수학자</strong>
-                                </div>
-                                <div class="time_select_wrap timeSelect">
-                                    <ul class="list_hall">
-                                        <li>2D</li>
-                                    </ul>
-                                    <ul class="list_time">
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>13:30</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>예약마감</strong>
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">2관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>14:50</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>106</strong>
-                                                        <span>/164</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">1관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>15:50</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>96</strong>
-                                                        <span>/42</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">2관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>17:15</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>109</strong>
-                                                        <span>/164</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">1관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>18:10</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>96</strong>
-                                                        <span>/142</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">2관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>19:40</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>103</strong>
-                                                        <span>/164</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">1관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>20:30</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>94</strong>
-                                                        <span>/142</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">2관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div id="메리 미" class="tab_con ty5 active">
-                            <div class="group_time_select">
-                                <div class="time_select_tit">
-                                    <span class="ic_grade gr_15">
-                                    </span>
-                                    <strong>메리 미</strong>
-                                </div>
-                                <div class="time_select_wrap timeSelect">
-                                    <ul class="list_hall">
-                                        <li>2D</li>
-                                    </ul>
-                                    <ul class="list_time">
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>12:30</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>150</strong>
-                                                        <span>/218</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">4관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>17:10</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>150</strong>
-                                                        <span>/218</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">4관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div id="블랙 라이트" class="tab_con ty5 active">
-                            <div class="group_time_select">
-                                <div class="time_select_tit">
-                                    <span class="ic_grade gr_15">
-                                    </span>
-                                    <strong>블랙 라이트</strong>
-                                </div>
-                                <div class="time_select_wrap timeSelect">
-                                    <ul class="list_hall">
-                                        <li>2D</li>
-                                    </ul>
-                                    <ul class="list_time">
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>10:55</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>123</strong>
-                                                        <span>/184</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">6관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="./person_seat.html">
-                                                <dl>
-                                                    <dt>상영시간</dt>
-                                                    <dd class="time">
-                                                        <strong>17:00</strong>
-                                                    </dd>
-                                                    <dt>잔여석</dt>
-                                                    <dd class="seat">
-                                                        <strong>96</strong>
-                                                        <span>/142</span>
-                                                        
-                                                    </dd>
-                                                    <dt>상영관</dt>
-                                                    <dd class="hall">2관</dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                	<c:forEach var="movie" items="${movies}" varStatus="status">
+                		<li>
+                			<div id="${movie.movie_title}" class="tab_con ty5 active">
+                				<div class="group_time_select">
+                					<div class="time_select_tit">
+                						<span class="ic_grade gr_${movie.movie_spectator}"></span>
+                						<strong>${movie.movie_title }</strong>
+                					</div>
+                				</div>
+                				<div class="timeSelect">
+                					<ul class="list_hall">
+                						<li>2D</li>
+                					</ul>
+                					
+                					<ul class="list_time">
+                						<c:forEach var="screen" items="${screens}" varStatus="s_status">
+                							<c:if test="${screen.movie_title eq movie.movie_title}">
+                								<li>
+		                                            <a href="./person_seat.html">
+		                                                <dl>
+		                                                    <dt>상영시간</dt>
+		                                                    <dd class="time">
+		                                                        <strong>
+		                                                        	<fmt:formatDate value="${screen.screen_time}" pattern="HH:MM"/>
+		                                                        </strong>
+		                                                    </dd>
+		                                                    <dt>잔여석</dt>
+		                                                    <dd class="seat">
+		                                                        <strong>${screen.cur_seat}</strong>
+		                                                        <span>/${screen.theater_seat_num}</span>
+		                                                        
+		                                                    </dd>
+		                                                    <dt>상영관</dt>
+		                                                    <dd class="hall">${screen.theater_name}</dd>
+		                                                </dl>
+		                                            </a>
+                                        		</li>
+                							</c:if>							
+                						</c:forEach>
+                					</ul>
+                				</div>
+                			</div>
+                		</li>	
+                	</c:forEach>	                
                 </ul>
             </div>
             

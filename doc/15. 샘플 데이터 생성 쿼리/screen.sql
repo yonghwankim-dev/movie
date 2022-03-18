@@ -1,2 +1,0 @@
-insert into screen values('screen_1','2022-03-20',to_date('202203201310','YYYYMMDDHH24MI'),'movie_1');
-insert into screen values('screen_2','2022-03-20',to_date('202203201630','YYYYMMDDHH24MI'),'movie_1');

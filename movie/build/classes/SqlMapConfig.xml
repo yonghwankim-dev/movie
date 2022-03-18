@@ -24,6 +24,7 @@
 	<typeAlias alias="memberVo" type="kr.com.yh.lottecgvbox.vo.MemberVO"/>
 	<typeAlias alias="locationVo" type="kr.com.yh.lottecgvbox.vo.LocationVO"/>
 	<typeAlias alias="cinemaVo" type="kr.com.yh.lottecgvbox.vo.CinemaVO"/>
+	<typeAlias alias="screenVo" type="kr.com.yh.lottecgvbox.vo.ScreenVO"/>
 
 	<!--
 	DB와의 연결을 처리하는 부분

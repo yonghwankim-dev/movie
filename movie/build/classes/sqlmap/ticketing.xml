@@ -24,6 +24,18 @@
 		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
 	</resultMap>
 	
+	<!-- 상영일정 맵 -->
+	<resultMap class="screenVo" id="screenMap">
+		<result property="screen_code" column="SCREEN_CODE"/>
+		<result property="movie_title" column="MOVIE_TITLE"/>
+		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
+		<result property="screen_date" column="SCREEN_DATE"/>
+		<result property="screen_time" column="SCREEN_TIME"/>
+		<result property="theater_seat_num" column="THEATER_SEAT_NUM"/>
+		<result property="theater_name" column="THEATER_NAME"/>
+		<result property="cur_seat" column="CUR_SEAT"/>	
+	</resultMap>
+	
 			
 	<!-- 지역 리스트 반환 -->
 	<select id="getLocationList" resultMap="locationMap">
@@ -59,6 +71,22 @@
         	INNER JOIN cinema c ON th.cinema_code = c.cinema_code
         	INNER JOIN movie m ON s.movie_code = m.movie_code
 		WHERE c.cinema_name = #cinema_name#
+	</select>
+	
+	<!-- 영화관 지점의 상영시간 리스트 반환 -->
+	<select id="findAllScreenListByCinemaName" parameterClass="String" resultMap="screenMap">
+		SELECT sc.screen_code, m.movie_title, m.movie_spectator, sc.screen_date, sc.screen_time, th.theater_seat_num, th.theater_name,
+		    (
+		      SELECT count(*)
+		      FROM screen s INNER JOIN movie_ticket mt ON s.screen_code = mt.screen_code 
+		      WHERE mt.mt_status = '선택가능' AND s.screen_code = sc.screen_code
+		     ) cur_seat    
+		FROM screen sc 
+		              INNER JOIN theater th ON sc.theater_code = th.theater_code
+		              INNER JOIN cinema c ON th.cinema_code = c.cinema_code
+		              INNER JOIN movie m on sc.movie_code = m.movie_code
+		WHERE c.cinema_name = #cinema_name#
+		ORDER BY m.movie_title		
 	</select>
 	
 </sqlMap>			

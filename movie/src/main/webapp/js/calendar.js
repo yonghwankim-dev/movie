@@ -34,9 +34,9 @@ const date_info={
         }
         return weekend;
     }
-
+	
     const owl_item = document.createElement("div");
-    const today = date_info.today.getDate() === date ? "오늘" : date;
+    const today = date_info.today.getDate() === date ? "오늘" : date_info.dayList[day];
     const checked = date_info.today.getDate() === date ? "checked" : "";
     const month = getMonth();
     const weekend = getWeekend();

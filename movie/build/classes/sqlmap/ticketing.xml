@@ -74,7 +74,7 @@
 	</select>
 	
 	<!-- 영화관 지점의 상영시간 리스트 반환 -->
-	<select id="findAllScreenListByCinemaName" parameterClass="String" resultMap="screenMap">
+	<select id="findAllScreenListByCinemaName" resultMap="screenMap">
 		SELECT sc.screen_code, m.movie_title, m.movie_spectator, sc.screen_date, sc.screen_time, th.theater_seat_num, th.theater_name,
 		    (
 		      SELECT count(*)

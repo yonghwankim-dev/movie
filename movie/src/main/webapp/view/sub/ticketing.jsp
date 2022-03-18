@@ -62,8 +62,12 @@
             </div>
             <div class="time_select_wrap">
                 <div class="date_select_wrap">
-                    <div class="owl-stage">
-                    </div>
+                	<form id="change_screen_date" action="/movie/ticketing.do">
+                		<input class="hidden" name="cinema_name" value="${cinema_name}"/>
+                		<input class="hidden" name="movie_title" value="${movie_title}"/>
+	                    <div class="owl-stage">
+	                    </div>
+                    </form>
                     <div class="owl-nav">
                         <button type="button" class="owl-prev disabled" >
                             <span aria-label="Previous"> ‹ </span>

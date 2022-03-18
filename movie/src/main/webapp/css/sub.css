@@ -666,7 +666,7 @@
   width: 37px;
   height: 39px;
   margin-top: -20px;
-  background: url(./img/arr_lf_11.png) no-repeat center center;
+  background: url(./../images/sub/arr_lf_11.png) no-repeat center center;
 }
 
 .owl-nav .owl-next {
@@ -677,7 +677,7 @@
   width: 37px;
   height: 39px;
   margin-top: -20px;
-  background: url(./img/arr_rg_11.png) no-repeat center center;
+  background: url(./../images/sub/arr_rg_11.png) no-repeat center center;
 }
 
 .owl-nav [class*="owl-"] span {
@@ -1512,6 +1512,7 @@
   height: 1px;
   clip: rect(1px, 1px, 1px, 1px);
 }
+
 
 .article.article_sum_infor .sum_infor_wrap .dlist_infor:after {
   content: "";

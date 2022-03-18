@@ -5,17 +5,17 @@ const date_info={
     today : new Date()
   };
 
-  const createDate = (mon,date,day)=>{
+  const createDate = (date)=>{
     // 월 표시 설정
     const getMonth = ()=>{
         let month = "";
-        if(date_info.today.getDate() === date)
+        if(date_info.today.getDate() === date.getDate())
         {
             month = "<strong class='month'>3월</strong>";
         }
-        else if(date_info.today.getMonth()!==mon && date==1)
+        else if(date_info.today.getMonth()!==date.getMonth() && date.getDate()==1)
         {
-            month = "<strong class='month'>"+(mon+1)+"월</strong>";
+            month = "<strong class='month'>"+(date.getMonth()+1)+"월</strong>";
         }
         return month;
     }
@@ -24,11 +24,11 @@ const date_info={
     const getWeekend = ()=>{
         let weekend = "";
         
-        if(date_info.dayList[day]==="토")
+        if(date_info.dayList[date.getDay()]==="토")
         {
             weekend = " sat";
         }
-        else if(date_info.dayList[day]==="일")
+        else if(date_info.dayList[date.getDay()]==="일")
         {
             weekend = " sun";
         }
@@ -36,16 +36,17 @@ const date_info={
     }
 	
     const owl_item = document.createElement("div");
-    const today = date_info.today.getDate() === date ? "오늘" : date_info.dayList[day];
-    const checked = date_info.today.getDate() === date ? "checked" : "";
+    const today = date_info.today.getDate() === date.getDate() ? "오늘" : date_info.dayList[date.getDay()];
+    const checked = date_info.today.getDate() === date.getDate() ? "checked" : "";
     const month = getMonth();
     const weekend = getWeekend();
+	const screen_date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
     const dateItem = "<li class='item'>" +
                         month +
                         "<span class='date"+ weekend +"'>" +
                         "<label>" +
-                            "<input type='radio' name='radioDate1'"+checked+">" +
-                            "<strong>"+date+"</strong>" +
+                            "<input type='radio' class='screen_date' name='screen_date' value='"+screen_date+"'"+checked+">" +
+                            "<strong>"+date.getDate()+"</strong>" +
                             "<em>"+today+"</em>" +
                         "</label>" +
                         "</span>" +
@@ -63,7 +64,7 @@ const date_info={
     // 오늘 일자를 기준으로 한달후까지 출력
     for(let i=0;i<30;i++)
     {
-      owl_stage.appendChild(createDate(date.getMonth(),date.getDate(),date.getDay()));
+      owl_stage.appendChild(createDate(date));
       date.setDate(date.getDate()+1);
     }
   
@@ -141,15 +142,48 @@ const date_info={
       
     }
   }
+
+  // 날짜 라디오 버튼 클릭
+  const change_screen_date = (e)=>{
+	//document.querySelector("#change_screen_date").submit();
+  };
+
   
   const init_calendar = function(){
+	
     const nextWeekBtn = document.querySelector(".owl-next");
     const prevWeekBtn = document.querySelector(".owl-prev");
+
+	const step1 = ()=>{
+		return new Promise((resolve, reject)=>{
+			nextWeekBtn.addEventListener("click",()=>{nextWeek()});
+    		prevWeekBtn.addEventListener("click",()=>{prevWeek()});
+			resolve();
+		});
+	};
+	
+	const step2 = ()=>{
+		return new Promise((resolve, reject)=>{
+			create30Calendar();
+			resolve();
+		});
+	};
   
-    nextWeekBtn.addEventListener("click",()=>{nextWeek()});
-    prevWeekBtn.addEventListener("click",()=>{prevWeek()});
-  
-    create30Calendar();  
+  	const step3 = ()=>{
+		return new Promise((resolve, reject)=>{
+			// 날짜 라디오 버튼 클릭 이벤트 등록
+			const screens_dates = document.querySelectorAll(".screen_date");
+			screens_dates.forEach((screen_date)=>{
+				screen_date.addEventListener("click",(e)=>{
+					change_screen_date(e);
+				});
+			 });
+			resolve();			
+		});
+	};  
+	
+	step1().then(step2)
+		   .then(step3);	  
   }
 
 export default init_calendar;

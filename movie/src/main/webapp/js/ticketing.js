@@ -140,6 +140,7 @@ const activeMovie = function(e, movieName){
          .then(step4);
 }
 
+
 // 초기화
 const init = ()=>{
   // 지역 버튼 클릭시 해당 지역의 영화관 리스트 활성화 이벤트 등록
@@ -153,6 +154,7 @@ const init = ()=>{
   // 영화 선택 이벤트 등록
   const movies = document.querySelectorAll(".movie_select_wrap ul li");
   movies.forEach((movie)=>{movie.addEventListener("click",(e)=>{activeMovie(e,e.currentTarget.textContent.trim());});});
+
 };
 init();
 init_calendar();

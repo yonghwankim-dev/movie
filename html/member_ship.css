@@ -118,12 +118,13 @@
   font-size: 18px;
 }
 
-.ship_content .mypage_box .my_info .name strong {
+/* start 포인트 및 제휴사 회원의 정보 */
+.my_info .name strong {
   vertical-align: middle;
   margin-right: 5px;
 }
 
-.ship_content .mypage_box .my_info .name [class*="txt_rank"] {
+.my_info .name [class*="txt_rank"] {
   margin-top: 1px;
   padding: 0 10px;
   display: inline-block;
@@ -137,17 +138,26 @@
   border-radius: 25px;
   border: 1px solid #fff;
 }
-.ship_content .mypage_box .my_info .name .txt_rank_common {
+
+.my_info .name .txt_rank_bronze {
   background-color: #cd7f32;
 }
+.my_info .name .txt_rank_gold {
+  background-color: #ffd700;
+}
+.my_info .name .txt_rank_diamonde {
+  background-color: #70d1f4;
+}
 
-.ship_content .mypage_box .my_info .cur_point {
+.my_info .cur_point {
   position: relative;
   min-height: 25px;
   line-height: 25px;
   padding: 10px 0;
   text-align: center;
 }
+
+/* start 포인트 및 제휴사 회원의 정보 */
 
 .ship_content .mypage_box .my_info .cur_point em {
   margin-left: 4px;
@@ -264,4 +274,71 @@
   cursor: pointer;
 }
 /* end contents_point */
+
+/*****************************************************/
+
+/* start 제휴사 상품할인 */
+
+.affi_infor_box .my_info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.affi_infor_box .product_img {
+  position: relative;
+  height: 260px;
+  margin-bottom: 5px;
+}
+
+.affi_infor_box .product_img img {
+  height: 260px;
+}
+
+.affi_infor_box .product {
+  display: inline-block;
+  width: 33%;
+  min-height: 320px;
+  margin-bottom: 35px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.product .product_content .product_content_title {
+  text-align: center;
+}
+
+.product .product_content .product_content_title h4 {
+  margin: 5px 0;
+  font-size: 17px;
+}
+
+.product .product_content .product_content_title p {
+  height: 25px;
+  line-height: 1.2;
+  font-size: 11px;
+  color: #999;
+  overflow: hidden;
+}
+
+.product .product_content .product_content_price .before_price {
+  text-decoration: line-through;
+  margin-right: 5px;
+}
+
+.product .product_content .product_content_price .after_price {
+  font-weight: bold;
+  color: red;
+}
+
+.product .product_content .product_content_pay .pay_btn {
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+/* end 제휴사 상품할인 */
+
 /* end ship_content */

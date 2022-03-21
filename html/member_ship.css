@@ -1,0 +1,267 @@
+/* start ship_content */
+.ship_content {
+  width: 980px;
+  margin-top: 120px !important;
+  margin: 120px auto 0 auto;
+  padding: 50px 0 0 0;
+}
+
+.ship_content .ship_tit {
+  padding: 20px 0 10px 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.ship_content .tab_wrap {
+  position: relative;
+  padding-bottom: 20px !important;
+}
+
+.ship_content .tab_list {
+  position: relative;
+  padding-top: 80px;
+  list-style: none;
+}
+
+/* start tab(point, vip) 버튼 */
+.ship_content .tab_item .tab_btn {
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  top: 0;
+  line-height: 50px;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 15px;
+}
+
+.ship_content .tab_item .tab_btn.tab_point {
+  left: 0%;
+}
+
+.ship_content .tab_item .tab_btn.tab_vip {
+  left: 50%;
+}
+
+.ship_content .tab_item.active .tab_btn {
+  border-bottom: 2px solid #111;
+}
+
+.ship_content .tab_item .tab_con {
+  display: none;
+}
+
+.ship_content .tab_item.active .tab_con {
+  display: block;
+}
+
+/* end tab(point, vip) 버튼*/
+
+/* start contents_point */
+.ship_content .contents_point::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -200%;
+  right: -200%;
+  height: 280px;
+  background: #fff3c9 url(./img/bg_contents_friends.jpg) 50% 50% no-repeat;
+}
+
+/* start point_title */
+.ship_content .contents_point .point_title {
+  position: relative;
+  height: 130px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.ship_content .contents_point .point_title span {
+  position: absolute;
+  top: 40px;
+  right: 135px;
+}
+/* end point_title */
+
+/* start point_infor */
+.ship_content .contents_point .point_infor {
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+  background-color: #fff;
+}
+/* start point_infor */
+
+/* start mypage_box */
+.ship_content .mypage_box {
+  position: relative;
+  float: none;
+  padding: 0 162px;
+  width: auto;
+  height: auto;
+  min-height: inherit;
+  margin-bottom: 40px;
+}
+
+.ship_content .mypage_box .my_info {
+  position: relative;
+  padding: 37px 0 0 0;
+}
+
+.ship_content .mypage_box .my_info .name {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.ship_content .mypage_box .my_info .name strong {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.ship_content .mypage_box .my_info .name [class*="txt_rank"] {
+  margin-top: 1px;
+  padding: 0 10px;
+  display: inline-block;
+  min-width: 48px;
+  height: 22px;
+  color: #fff;
+  line-height: 22px;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid #fff;
+}
+.ship_content .mypage_box .my_info .name .txt_rank_common {
+  background-color: #cd7f32;
+}
+
+.ship_content .mypage_box .my_info .cur_point {
+  position: relative;
+  min-height: 25px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.ship_content .mypage_box .my_info .cur_point em {
+  margin-left: 4px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ship_content .mypage_box .bx_grade {
+  position: relative;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.ship_content .mypage_box .bx_grade .area_gauge {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.ship_content .mypage_box .bx_grade .area_gauge::after {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 100%;
+  height: 1px;
+  background-color: #666;
+}
+/* end mypage_box */
+
+/* start area_gauge */
+.ship_content .area_gauge .gauge {
+  width: 0%;
+  background-color: #f53b3c;
+  position: relative;
+  height: 2px;
+  z-index: 1;
+}
+
+.ship_content .area_gauge .infograde {
+  position: relative;
+}
+
+.ship_content .area_gauge .infograde li {
+  position: absolute;
+  top: 8px;
+  font-size: 13px;
+  list-style: none;
+}
+
+.ship_content .area_gauge .infograde li strong {
+  position: absolute;
+  top: -30px;
+  width: 200px;
+}
+
+.ship_content .area_gauge .infograde li > * {
+  display: inline-block;
+}
+
+.ship_content .area_gauge .infograde li em {
+  font-size: 13px;
+  color: #000;
+}
+
+.ship_content .area_gauge .infograde li:first-child {
+  left: 0;
+}
+
+.ship_content .area_gauge .infograde li:first-child strong {
+  left: 0;
+  color: #666666;
+  text-align: left;
+}
+
+.ship_content .area_gauge .infograde li:nth-of-type(2) {
+  left: 29%;
+}
+
+.ship_content .area_gauge .infograde li:nth-of-type(3) {
+  left: 62%;
+}
+
+.ship_content .area_gauge .infograde li:last-child {
+  left: auto;
+  right: 0;
+}
+
+/* end area_gauge */
+
+.ship_content .point_infor .mypage_btn {
+  text-align: center !important;
+  margin-bottom: 25px !important;
+  margin-top: 30px !important;
+}
+
+.ship_content .point_infor .mypage_btn a {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #707070;
+  font-size: 14px;
+  color: #fff !important;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #000;
+
+  border-radius: 52px;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 40px !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* end contents_point */
+/* end ship_content */

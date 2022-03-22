@@ -64,7 +64,7 @@
 	</select>
 	
 	<!-- 영화관 지점에 상영하는 영화 리스트 반환 -->
-	<select id="findMovieListByCinemaName" parameterClass="String" resultMap="movieMap">		
+	<select id="findMovieListByCinemaName" parameterClass="String" resultMap="movieMap">
 		SELECT DISTINCT m.movie_title, m.movie_code, m.movie_spectator
 		FROM screen s 
         	INNER JOIN theater th ON s.theater_code = th.theater_code

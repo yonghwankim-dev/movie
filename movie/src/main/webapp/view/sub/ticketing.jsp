@@ -63,8 +63,8 @@
             <div class="time_select_wrap">
                 <div class="date_select_wrap">
                 	<form id="change_screen_date" action="/movie/ticketing.do">
-                		<input class="hidden" name="cinema_name" value="${cinema_name}"/>
-                		<input class="hidden" name="movie_title" value="${movie_title}"/>
+                		<input class="hidden input_cinema_name" name="cinema_name" value="${cinema_name}"/>
+                		<input class="hidden input_movie_title" name="movie_title" value="${movie_title}"/>
 	                    <div class="owl-stage">
 	                    </div>
                     </form>

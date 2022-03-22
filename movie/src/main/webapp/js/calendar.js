@@ -145,7 +145,7 @@ const date_info={
 
   // 날짜 라디오 버튼 클릭
   const change_screen_date = (e)=>{
-	//document.querySelector("#change_screen_date").submit();
+	document.querySelector("#change_screen_date").submit();
   };
 
   

@@ -20,7 +20,7 @@
   </form>
  
   <ul class="list_st1 text-left">
-    <li><a href="<%=request.getContextPath()%>/searchLoginId.do">아이디를 잊어버리셨나요?</a></li>
+    <li><a href="/movie/searchLoginId.do">아이디를 잊어버리셨나요?</a></li>
     <li><a href="#">비밀번호를 잊어버리셨나요?</a></li>
   </ul>
 </div>

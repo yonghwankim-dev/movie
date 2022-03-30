@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./../../../css/sub/admin/admin.css">
+    <title>관리자 - 상영관리</title>
+</head>
+<body>
+<!-- 페이지 타이틀 -->
+<h2 class="pageTitle"> 영화관리 </h2>
+<!-- //페이지 타이틀 -->
+
+<!-- 페이지 내용 -->
+<div class="admin_container">
+    <div class="admin_column admin_menu">
+        <ul>
+            <li>
+                <a href="#">상영관리</a>
+            </li>
+        </ul>
+    </div>
+    <div class="admin_column admin_content">
+        <div class="content_container">
+            <form action="" method="post">
+                <div class="screen_date_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>구분</td>
+                                <td>상영코드</td>
+                                <td>영화제목</td>
+                                <td>상영관이름</td>
+                                <td>상영일자</td>
+                                <td>상영시간</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="screen_date"/>
+                                </td>
+                                <td>
+                                    <span>SCREEN_1</span>
+                                </td>
+                                <td>
+                                    <span>더 배트맨</span>
+                                </td>
+                                <td>
+                                    <span>1관</span>
+                                </td>
+                                <td>
+                                    <span>2022-03-23</span>
+                                </td>
+                                <td>
+                                    <span>13:10</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="screen_date_control">
+                    <input type="submit" value="추가">
+                    <input type="submit" value="제거">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- //페이지 내용 -->    
+</body>
+</html>

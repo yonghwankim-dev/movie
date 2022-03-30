@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="admin">
+	
+	<resultMap class="screenVO" id="ScreenDateMap">
+		<result property="screen_code" column="screen_code"/>
+		<result property="movie_title" column="movie_title"/>
+		<result property="theater_name" column="theater_name"/>
+		<result property="screen_date" column="screen_date"/>
+		<result property="screen_time" column="screen_time"/>		
+	</resultMap>
+	
+	<select id="getAllScreenDate" resultMap="ScreenDateMap">
+		SELECT S.SCREEN_CODE
+			,  M.MOVIE_TITLE
+			,  TH.THEATER_NAME
+			,  S.SCREEN_DATE
+			,  S.SCREEN_TIME
+		FROM   SCREEN S
+			   INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
+			   INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
+		ORDER BY LENGTH(S.SCREEN_CODE), S.SCREEN_CODE
+	</select>
+	
+	<select id="getMovieCodeByMovieTitle" parameterClass="String" resultClass="String">
+		SELECT MOVIE_CODE
+		FROM MOVIE
+		WHERE MOVIE_TITLE = #movie_title#
+	</select>
+	
+	<select id="getTheaterCodeByTheaterName" parameterClass="map" resultClass="String">
+		SELECT THEATER_CODE
+		FROM THEATER TH INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
+		WHERE TH.THEATER_NAME = #theater_name# and C.CINEMA_NAME = #cinema_name#  
+	</select>
+	
+	<insert id="insertScreen" parameterClass="ScreenDateVO">
+		<selectKey keyProperty="screen_code" resultClass="integer">
+			SELECT SCREEN_CODE_SEQ.NEXTVAL AS SCREEN_CODE FROM DUAL
+		</selectKey>
+			
+		INSERT INTO SCREEN(SCREEN_CODE, MOVIE_CODE, THEATER_CODE, SCREEN_DATE, SCREEN_TIME)
+		VALUES('screen_' || SCREEN_CODE_SEQ.NEXTVAL, #movie_code#, #theater_code#, #screen_date#, #screen_time#)
+	</insert>
+	
+	<delete id="deleteScreen" parameterClass="java.util.List">
+		DELETE FROM SCREEN
+		WHERE SCREEN_CODE 
+			<iterate prepend="IN" property="scList" open="(" close=")" conjunction=",">
+				#scList[]#
+			</iterate>
+	</delete>
+</sqlMap>			
+
+
+
+
+

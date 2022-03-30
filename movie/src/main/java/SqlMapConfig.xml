@@ -25,6 +25,7 @@
 	<typeAlias alias="locationVo" type="kr.com.yh.lottecgvbox.vo.LocationVO"/>
 	<typeAlias alias="cinemaVo" type="kr.com.yh.lottecgvbox.vo.CinemaVO"/>
 	<typeAlias alias="screenVo" type="kr.com.yh.lottecgvbox.vo.ScreenVO"/>
+	<typeAlias alias="screenDateVo" type="kr.com.yh.lottecgvbox.vo.ScreenDateVO"/>
 
 	<!--
 	DB와의 연결을 처리하는 부분
@@ -63,6 +64,7 @@
 	그 xml문서와 아래와 같이 연결하여 사용한다.
 	형식) <sqlMap resource="경로명/파일명.xml"/>
 	-->
+	<sqlMap resource="sqlmap/admin.xml"/>
 	<sqlMap resource="sqlmap/movie.xml"/>
 	<sqlMap resource="sqlmap/join.xml"/>
 	<sqlMap resource="sqlmap/ticketing.xml"/>

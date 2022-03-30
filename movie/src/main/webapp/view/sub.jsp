@@ -7,13 +7,19 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="<%=request.getContextPath() %>/images/common/favicon.ico">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sub.css">
-<script src="<%=request.getContextPath() %>/js/plugins/jquery-3.6.0.min.js"></script>
-<script src="<%=request.getContextPath() %>/js/plugins/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath() %>/js/plugins/slick.min.js"></script>
-<script src="<%=request.getContextPath() %>/js/common.js"></script>
-<script src="<%=request.getContextPath() %>/js/sub.js"></script>
+<link rel="shortcut icon" href="/movie/images/common/favicon.ico">
+
+<link rel="stylesheet" href="/movie/css/sub/admin/admin.css">
+<link rel="stylesheet" href="/movie/css/sub/admin/screen_add.css">
+
+<link rel="stylesheet" href="/movie/css/sub.css">
+<script src="/movie/js/plugins/jquery-3.6.0.min.js"></script>
+<script src="/movie/js/plugins/bootstrap.min.js"></script>
+<script src="/movie/js/plugins/slick.min.js"></script>
+<script src="/movie/js/common.js"></script>
+<script src="/movie/js/sub.js"></script>
+
+<script src="/movie/js/admin/screen_add.js"></script>
 </head>
 <body>
 
@@ -25,7 +31,7 @@
 	<div id="container">
 		<!-- 서브 비주얼 -->
 		<div class="subVisual">
-			<img src="<%=request.getContextPath() %>/images/sub/sub_visual01.jpg" alt="">
+			<img src="/movie/images/sub/sub_visual01.jpg" alt="">
 		</div>
 		<!-- //서브 비주얼 -->
 	

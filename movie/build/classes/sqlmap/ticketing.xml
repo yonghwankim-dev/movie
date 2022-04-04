@@ -77,7 +77,7 @@
 	<select id="findAllScreenListByCinemaName" resultMap="screenMap">
 		SELECT sc.screen_code, m.movie_title, m.movie_spectator, sc.screen_date, sc.screen_time, th.theater_seat_num, th.theater_name,
 		    (
-		      SELECT count(*)
+		      SELECT 156 - count(*)
 		      FROM screen s INNER JOIN movie_ticket mt ON s.screen_code = mt.screen_code 
 		      WHERE mt.mt_status = '선택가능' AND s.screen_code = sc.screen_code
 		     ) cur_seat    

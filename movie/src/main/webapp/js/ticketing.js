@@ -94,24 +94,8 @@ const activeMovie = function(e, movieName){
   const movies = document.querySelectorAll(".movie_select_wrap ul li");
   const times = document.querySelectorAll(".tab_wrap.outer li .tab_con");
 
-  // 모든 영화 선택 해제
-  const step1 = ()=>{
-    return new Promise((resolve, reject)=>{
-      movies.forEach((movie)=>{movie.classList.remove("active")});
-      resolve();
-    });
-  };
-
-  // 클릭한 영화 선택 활성화
-  const step2 = ()=>{
-    return new Promise((resolve, reject)=>{
-      selectedMovie.classList.add("active");    
-      resolve();
-    });
-  };
-
   // 선택한 영화를 제목에 출력
-  const step3 = ()=>{
+  const step1 = ()=>{
     return new Promise((resolve, reject)=>{
       title.textContent = selectedMovie.innerText;    
       resolve();
@@ -119,7 +103,7 @@ const activeMovie = function(e, movieName){
   };
 
   // 영화에 맞는 상영날짜 활성화
-  const step4 = ()=>{
+  const step2 = ()=>{
     return new Promise((resolve, reject)=>{
       times.forEach((time)=>{
         if(time.id===movieName)
@@ -135,9 +119,7 @@ const activeMovie = function(e, movieName){
     });
   };
 
-  step1().then(step2)
-         .then(step3)
-         .then(step4);
+  step1().then(step2);
 }
 
 

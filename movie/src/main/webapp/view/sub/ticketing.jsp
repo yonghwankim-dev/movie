@@ -46,8 +46,13 @@
             <div class="movie_select_wrap">
                 <ul class="movie_list">
                 	<c:forEach var="movie" items="${movies}" varStatus="status">
+                		<!-- 영화 선택시 체크 표시 활성화 -->
                 		<c:if test="${movie.movie_title eq movie_title}">
                 			<c:set var="isActive" value="active"/>
+                		</c:if>
+                		<!-- 다른 영화들은 체크 표시 비활성화 -->
+                		<c:if test="${movie.movie_title ne movie_title}">
+                			<c:set var="isActive" value=""/>
                 		</c:if>
                 		
                 		<li class="movie_item ${isActive}">    

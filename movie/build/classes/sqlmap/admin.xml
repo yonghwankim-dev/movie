@@ -46,11 +46,10 @@
 	</insert>
 	
 	<delete id="deleteScreen" parameterClass="java.util.List">
-		DELETE FROM SCREEN
-		WHERE SCREEN_CODE 
-			<iterate prepend="IN" property="scList" open="(" close=")" conjunction=",">
-				#scList[]#
-			</iterate>
+		DELETE FROM SCREEN 
+		<iterate prepend="WHERE SCREEN_CODE IN" open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
 	</delete>
 </sqlMap>			
 

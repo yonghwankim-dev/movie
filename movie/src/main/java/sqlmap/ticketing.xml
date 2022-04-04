@@ -85,7 +85,7 @@
 		              INNER JOIN theater th ON sc.theater_code = th.theater_code
 		              INNER JOIN cinema c ON th.cinema_code = c.cinema_code
 		              INNER JOIN movie m on sc.movie_code = m.movie_code
-		WHERE c.cinema_name = #cinema_name#
+		WHERE c.cinema_name = #cinema_name# and sc.screen_date = #screen_date#
 		ORDER BY m.movie_title		
 	</select>
 	

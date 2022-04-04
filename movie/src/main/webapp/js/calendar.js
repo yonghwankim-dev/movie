@@ -5,7 +5,7 @@ const date_info={
     today : new Date()
   };
 
-  const createDate = (date)=>{
+  const createDate = (date, checked)=>{
     // 월 표시 설정
     const getMonth = ()=>{
         let month = "";
@@ -37,15 +37,14 @@ const date_info={
 	
     const owl_item = document.createElement("div");
     const today = date_info.today.getDate() === date.getDate() ? "오늘" : date_info.dayList[date.getDay()];
-    const checked = date_info.today.getDate() === date.getDate() ? "checked" : "";
-    const month = getMonth();
+    const month = getMonth();	
     const weekend = getWeekend();
 	const screen_date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
     const dateItem = "<li class='item'>" +
                         month +
                         "<span class='date"+ weekend +"'>" +
                         "<label>" +
-                            "<input type='radio' class='screen_date' name='screen_date' value='"+screen_date+"'"+checked+">" +
+                       		"<input type='radio' class='screen_date' name='screen_date' value='"+screen_date+"'"+checked+">" +
                             "<strong>"+date.getDate()+"</strong>" +
                             "<em>"+today+"</em>" +
                         "</label>" +
@@ -57,14 +56,26 @@ const date_info={
     return owl_item;
   };
     
-  // 오늘을 기준으로 30일 달력 생성
-  const create30Calendar = function(){
+  // 오늘을 기준으로 14일 달력 생성
+  const create14Calendar = function(){
     const owl_stage = document.querySelector(".owl-stage");
     const date = new Date();
-    // 오늘 일자를 기준으로 한달후까지 출력
-    for(let i=0;i<30;i++)
+	const input_selected_date = document.querySelector(".input_selected_date");	// 선택한 라디오 버튼
+	const selected_date = new Date(input_selected_date.value);
+	let checked = "";
+		
+    // 오늘 일자를 기준으로 2주후까지 출력
+    for(let i=0;i<14;i++)
     {
-      owl_stage.appendChild(createDate(date));
+	  if(selected_date.getDate()==date.getDate())
+	  {
+		checked = "checked";	
+	  }	  
+	  else
+	  {
+		checked = "";
+	  }
+      owl_stage.appendChild(createDate(date, checked));
       date.setDate(date.getDate()+1);
     }
   
@@ -164,7 +175,7 @@ const date_info={
 	
 	const step2 = ()=>{
 		return new Promise((resolve, reject)=>{
-			create30Calendar();
+			create14Calendar();
 			resolve();
 		});
 	};

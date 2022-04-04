@@ -46,8 +46,12 @@
             <div class="movie_select_wrap">
                 <ul class="movie_list">
                 	<c:forEach var="movie" items="${movies}" varStatus="status">
-                		<li class="movie_item">    
-	                        <a class="movie" href="#none">
+                		<c:if test="${movie.movie_title eq movie_title}">
+                			<c:set var="isActive" value="active"/>
+                		</c:if>
+                		
+                		<li class="movie_item ${isActive}">    
+	                        <a class="movie" href="/movie/ticketing.do?cinema_name=${cinema_name}&movie_title=${movie.movie_title}">
 								<span class="ic_grade gr_${movie.movie_spectator}"></span>
 								<strong class="tit">${movie.movie_title}</strong>
 	                        </a>
@@ -63,11 +67,15 @@
             </div>
             <div class="time_select_wrap">
                 <div class="date_select_wrap">
+                	<input class="hidden input_selected_date" name="selected_date" value="${screen_date}"/>
                 	<form id="change_screen_date" action="/movie/ticketing.do">
                 		<input class="hidden input_cinema_name" name="cinema_name" value="${cinema_name}"/>
                 		<input class="hidden input_movie_title" name="movie_title" value="${movie_title}"/>
+	
+                		<!-- 일자 출력 부분 -->
 	                    <div class="owl-stage">
 	                    </div>
+	                    
                     </form>
                     <div class="owl-nav">
                         <button type="button" class="owl-prev disabled" >
@@ -85,7 +93,7 @@
                 				<div class="group_time_select">
                 					<div class="time_select_tit">
                 						<span class="ic_grade gr_${movie.movie_spectator}"></span>
-                						<strong>${movie.movie_title }</strong>
+                						<strong>${movie.movie_title}</strong>
                 					</div>
                 				</div>
                 				<div class="timeSelect">
@@ -102,7 +110,7 @@
 		                                                    <dt>상영시간</dt>
 		                                                    <dd class="time">
 		                                                        <strong>
-		                                                        	<fmt:formatDate value="${screen.screen_time}" pattern="HH:MM"/>
+		                                                        	<fmt:formatDate value="${screen.screen_time}" pattern="HH:mm"/>
 		                                                        </strong>
 		                                                    </dd>
 		                                                    <dt>잔여석</dt>
@@ -128,5 +136,5 @@
             
         </div>
     </div>    
-    <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js"></script>
+    <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

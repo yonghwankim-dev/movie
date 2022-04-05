@@ -16,14 +16,16 @@ const createSeatMap = function(){
         for(let j=1;j<=17;j++)
         {
             const td = document.createElement("td");
-            const a = document.createElement("a");
+            const input = document.createElement("input");
 
             td.className = "seat";
 
-            a.href = "#seat/"+seat_row[i]+j;
-            a.textContent = j;
-
-            td.appendChild(a);
+			input.type = "text";
+			input.readOnly = "true";
+			input.value = seat_row[i]+j;
+			input.textContent = j;
+            
+            td.appendChild(input);
             tr.appendChild(td);    
         }
 
@@ -34,22 +36,48 @@ const createSeatMap = function(){
 // 선택 완료
 const completeSelect = function(){
     const seats = document.querySelectorAll("#showMapTableBody tr td.seat");
+	const actived_seat_input = document.querySelectorAll("#showMapTableBody tr td.seat.active input");
     const person_10_num = document.querySelector("#person_10 .txt_num");    // 청소년 인원 * 10,000
     const person_20_num = document.querySelector("#person_20 .txt_num");    // 성인 인원 * 14,000
     const person_12_num = document.querySelector("#person_12 .txt_num");    // 노약자 인원 * 7,000
     const total_price = document.querySelector(".total_price dd strong");
+	const input_price = document.querySelector("#input_price");
+	const input_seat =document.querySelector("#input_seat");
+		
     let sum = 0;
 
-    seats.forEach((seat)=>{
-        if(!seat.classList.contains("active"))
-        {
-            seat.classList.add("no_select");
-        }
-    });
+	const step1 = ()=>{
+		return new Promise((resolve, reject)=>{
+			seats.forEach((seat)=>{
+		        if(!seat.classList.contains("active"))
+		        {
+		            seat.classList.add("no_select");
+		        }
+		    });	
+			resolve();		
+		});
+	};
 
+	const step2 = ()=>{
+		return new Promise((resolve, reject)=>{
+			actived_seat_input.forEach((input)=>{
+				input_seat.value += (input.value+" ");
+			});
+			input_seat.value = input_seat.value.trim();
+			resolve();		
+		});
+	};    
+	
+	step1().then(step2);
+	
     // 영화 요금 합계
-    sum = Number(person_10_num.textContent)*10000 + Number(person_20_num.textContent)*14000 + Number(person_12_num.textContent)*7000;
+    sum = Number(person_10_num.value)*10000 
+		+ Number(person_20_num.value)*14000
+		+ Number(person_12_num.value)*7000;
+		
     total_price.textContent = sum;
+	input_price.value = sum;
+	input_price.textContent = sum;
 }
 
 // 선택 완료 해제
@@ -109,59 +137,72 @@ seats.forEach((item)=>{
 // 청소년 +/-버튼 클릭
 const person10_plus_click = function(){
     const txt_num = document.querySelector("#person_10 .txt_num");
-    const plus_num = Number(txt_num.textContent) + 1;
+	const input_person_10 = document.querySelector("#input_person_10");
+    const plus_num = Number(txt_num.value) + 1;
 
     current_person += 1;
-    txt_num.textContent = plus_num;
+    txt_num.value = plus_num;
+	input_person_10.value = plus_num;
 }
 const person10_mins_click = function(){
+	const input_person_10 = document.querySelector("#input_person_10");
     const txt_num = document.querySelector("#person_10 .txt_num");
-    if(txt_num.textContent==='0')
+
+    if(txt_num.value==='0')
     {
         return;
     }
-    const mins_num = Number(txt_num.textContent) -1;
+    const mins_num = Number(txt_num.value) -1;
     current_person -= 1;
-    txt_num.textContent = mins_num;
+    txt_num.value = mins_num;
+	input_person_10.value = mins_num;
 }
 
 // 성인 +/- 버튼 클릭
 const person20_plus_click = function(){
+	const input_person_20 = document.querySelector("#input_person_20");
     const txt_num = document.querySelector("#person_20 .txt_num");
-    const plus_num = Number(txt_num.textContent) + 1;
+    const plus_num = Number(txt_num.value) + 1;
 
     current_person += 1;
-    txt_num.textContent = plus_num;
+    txt_num.value= plus_num;
+	input_person_20.value = plus_num;
 }
 const person20_mins_click = function(){
+	const input_person_20 = document.querySelector("#input_person_20");
     const txt_num = document.querySelector("#person_20 .txt_num");
-    if(txt_num.textContent==='0')
+    if(txt_num.value==='0')
     {
         return;
     }
 
-    const minus_num = Number(txt_num.textContent) - 1;
+    const minus_num = Number(txt_num.value) - 1;
     current_person -= 1;
-    txt_num.textContent = minus_num;
+    txt_num.value = minus_num;
+	input_person_20.value = minus_num;
 }
 
 // 시니어 +/- 버튼 클릭
 const person12_plus_click = function(){
+	const input_person_12 = document.querySelector("#input_person_12");
     const txt_num = document.querySelector("#person_12 .txt_num");
-    const plus_num = Number(txt_num.textContent) + 1;
+    const plus_num = Number(txt_num.value) + 1;
 
     current_person += 1;
-    txt_num.textContent = plus_num;
+    txt_num.value = plus_num;
+	input_person_12.value = plus_num;
 }
 const person12_mins_click = function(){
+	const input_person_12 = document.querySelector("#input_person_12");
     const txt_num = document.querySelector("#person_12 .txt_num");
-    if(txt_num.textContent==='0')
+    if(txt_num.value==='0')
     {
         return;
     }
-    const minus_num = Number(txt_num.textContent) - 1;
+    const minus_num = Number(txt_num.value) - 1;
     current_person -= 1;
-    txt_num.textContent = minus_num;
+    txt_num.value= minus_num;
+	input_person_12.value = minus_num;
 }
 
 const person10_plus = document.querySelector("#person_10 .btn_plus");

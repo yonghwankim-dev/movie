@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/movie/css/sub/admin/admin.css">
 <link rel="stylesheet" href="/movie/css/sub/admin/screen_add.css">
 
-<link rel="stylesheet" href="/movie/css/sub.css">
+<link rel="stylesheet" href="/movie/css/sub.css?v=<%=System.currentTimeMillis() %>">
 <script src="/movie/js/plugins/jquery-3.6.0.min.js"></script>
 <script src="/movie/js/plugins/bootstrap.min.js"></script>
 <script src="/movie/js/plugins/slick.min.js"></script>

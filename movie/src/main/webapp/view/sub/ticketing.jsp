@@ -110,7 +110,7 @@
                 						<c:forEach var="screen" items="${screens}" varStatus="s_status">
                 							<c:if test="${screen.movie_title eq movie.movie_title}">
                 								<li>
-		                                            <a href="./person_seat.html">
+		                                            <a href="/movie/personSeat.do?screen_code=${screen.screen_code}">
 		                                                <dl>
 		                                                    <dt>상영시간</dt>
 		                                                    <dd class="time">

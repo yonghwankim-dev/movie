@@ -36,6 +36,17 @@
 		<result property="cur_seat" column="CUR_SEAT"/>	
 	</resultMap>
 	
+	<!-- 영화정보 맵 -->
+	<resultMap class="movieInfoVo" id="movieInfoMap">
+		<result property="movie_title" column="MOVIE_TITLE"/>
+		<result property="screen_date" column="SCREEN_DATE"/>
+		<result property="screen_time" column="SCREEN_TIME"/>
+		<result property="end_time" column="END_TIME"/>
+		<result property="cinema_name" column="CINEMA_NAME"/>
+		<result property="theater_name" column="THEATER_NAME"/>
+		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
+	</resultMap>
+	
 			
 	<!-- 지역 리스트 반환 -->
 	<select id="getLocationList" resultMap="locationMap">
@@ -75,7 +86,13 @@
 	
 	<!-- 영화관 지점의 상영시간 리스트 반환 -->
 	<select id="findAllScreenListByCinemaName" resultMap="screenMap">
-		SELECT sc.screen_code, m.movie_title, m.movie_spectator, sc.screen_date, sc.screen_time, th.theater_seat_num, th.theater_name,
+		SELECT sc.screen_code
+		    ,  m.movie_title
+		    ,  m.movie_spectator
+		    , sc.screen_date
+		    , sc.screen_time
+		    , th.theater_seat_num
+		    , th.theater_name,
 		    (
 		      SELECT 156 - count(*)
 		      FROM screen s INNER JOIN movie_ticket mt ON s.screen_code = mt.screen_code 
@@ -88,7 +105,23 @@
 		WHERE c.cinema_name = #cinema_name# and sc.screen_date = #screen_date#
 		ORDER BY m.movie_title		
 	</select>
-	
+
+	<!-- 선택한 영화의 정보 반환-->
+	<select id="getMovieInfoByScreenCode" parameterClass="String" resultMap="movieInfoMap">
+		SELECT m.movie_title
+			,  s.screen_date
+			,  s.screen_time
+			,  TO_TIMESTAMP(TO_CHAR(screen_time + (.000694 * m.movie_runtime), 'YYYY-MM-DD HH24:MI'),
+                            'YYYY-MM-DD HH24:MI:SS') as END_TIME
+			,  c.cinema_name
+			,  th.theater_name
+			,  m.movie_spectator
+		FROM screen s 
+     		 INNER JOIN movie m ON s.movie_code = m.movie_code
+     		 INNER JOIN theater th ON s.theater_code = th.theater_code
+     		 INNER JOIN cinema c ON th.cinema_code = c.cinema_code
+		WHERE s.screen_code = #screen_code#
+	</select>	
 </sqlMap>			
 
 

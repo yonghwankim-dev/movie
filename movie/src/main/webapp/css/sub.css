@@ -376,7 +376,7 @@
   color: #fff;
 }
 
-.wrap_reserve .ic_grade {
+.ic_grade {
   display: inline-block;
   width: 22px;
   height: 22px;
@@ -387,7 +387,7 @@
   vertical-align: middle;
 }
 
-.wrap_reserve .ic_grade::before {
+.ic_grade::before {
   margin-left: -1px;
   font-size: 13px;
   font-weight: bold;
@@ -395,41 +395,41 @@
   white-space: nowrap;
 }
 
-.wrap_reserve .ic_grade.gr_0 {
+.ic_grade.gr_0 {
   background-color: #5BC77E;
 }
-.wrap_reserve .ic_grade.gr_0::before {
+.ic_grade.gr_0::before {
   content: "전체";
 }
 
-.wrap_reserve .ic_grade.gr_7 {
+.ic_grade.gr_7 {
   background-color: #F7C500;
 }
-.wrap_reserve .ic_grade.gr_7::before {
+.ic_grade.gr_7::before {
   content: "7";
 }
 
 
-.wrap_reserve .ic_grade.gr_12 {
+.ic_grade.gr_12 {
   background-color: #4dd6ff;
 }
-.wrap_reserve .ic_grade.gr_12::before {
+.ic_grade.gr_12::before {
   content: "12";
 }
 
-.wrap_reserve .ic_grade.gr_15 {
+.ic_grade.gr_15 {
   background-color: #ffc134;
 }
 
-.wrap_reserve .ic_grade.gr_15::before {
+.ic_grade.gr_15::before {
   content: "15";
 }
 
-.wrap_reserve .ic_grade.gr_19 {
+.ic_grade.gr_19 {
   background-color: #ED4C6B;
 }
 
-.wrap_reserve .ic_grade.gr_19::before {
+.ic_grade.gr_19::before {
   content: "19";
 }
 /* end wrap_reserve */
@@ -922,6 +922,7 @@
 }
 
 .bx_num .txt_num {
+  width: 100px;
   padding: 11px 0;
   font-size: 15px;
   font-weight: bold;
@@ -975,35 +976,36 @@
   background-color: #cfe2f3;
   color: #1e1e1e;
 }
-.select_seat_wrap .showMap td.reserved {
+
+
+
+.select_seat_wrap .showMap td:not(.active):hover {
+  background-color: #b9d4eb;
+}
+
+.select_seat_wrap .showMap td.reserved input{
   background-color: #747474;
 }
-.select_seat_wrap .showMap td.no_select {
+.select_seat_wrap .showMap td.no_select input{
 /*   background: url(../images/sub/ic_seat_type4.png) no-repeat; */
   background-color : #444;
   background-size: 50px 50px;
 }
 
-.select_seat_wrap .showMap td.active {
+.select_seat_wrap .showMap td.active input {
   background-color: red;
   color: white;
 }
-.select_seat_wrap .showMap td.active a {
-  text-decoration: none;
-}
-.select_seat_wrap .showMap td:not(.active):hover {
-  background-color: #b9d4eb;
-}
-.select_seat_wrap .showMap td a {
+
+.select_seat_wrap .showMap td input {
   display: inline-block;
+  background-color: #cfe2f3;
+  text-align : center;
   width: 50px;
   line-height: 50px;
   color: #337ab7;
 }
-.select_seat_wrap .showMap td a:hover,
-.select_seat_wrap .showMap td a:focus {
-  text-decoration: none;
-}
+
 /* 醫뚯꽍 ���엯 */
 .seat_btm_box {
   height: 50px;
@@ -1057,8 +1059,12 @@
 .select_seat_result .group_right {
   display: flex;
 }
+.select_seat_result .group_right form{
+	display : contents;
+}
 
-.select_seat_result .group_right a {
+.select_seat_result .group_right a,
+.select_seat_result .group_right input {
   width: 100px;
   line-height: 70px;
   font-size: 15px;
@@ -1066,11 +1072,11 @@
   text-align: center;
 }
 
-.select_seat_result .group_right a.back {
+.select_seat_result .group_right .back {
   background-color: #444;
 }
  
-.select_seat_result .group_right a.pay {
+.select_seat_result .group_right .pay {
   background-color: red;
 }
 

@@ -5591,7 +5591,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/kNxW4EmQJjs="
 							},
-							"name": "TICKET_SEQ",
+							"name": "TICKET_NUM",
 							"type": "NUMBER",
 							"length": "10",
 							"primaryKey": true
@@ -5612,7 +5612,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/kNxW4EmQJjs="
 							},
-							"name": "TICKET_NUM",
+							"name": "TICKET_CNT",
 							"type": "NUMBER",
 							"length": "10"
 						},

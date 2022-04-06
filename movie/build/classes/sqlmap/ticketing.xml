@@ -121,7 +121,26 @@
      		 INNER JOIN theater th ON s.theater_code = th.theater_code
      		 INNER JOIN cinema c ON th.cinema_code = c.cinema_code
 		WHERE s.screen_code = #screen_code#
-	</select>	
+	</select>
+	
+	<!-- 선택한 영화 예매-->
+	<insert id="insertTickting" parameterClass="ticketingVo">
+		<selectKey keyProperty="ticket_num" resultClass="int">
+			SELECT TICKET_NUM_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO TICKETING(TICKET_NUM
+							, TICKET_DATE
+							, TICKET_CNT
+							, TICKET_PRICE
+							, MEM_CODE
+							, SCREEN_CODE)
+        VALUES(TICKET_NUM_SEQ.NEXTVAL
+             , #ticket_date#
+             , #ticket_cnt#
+             , #ticket_price#
+             , #mem_code#
+             , #screen_code#)
+	</insert>
 </sqlMap>			
 
 

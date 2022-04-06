@@ -27,6 +27,7 @@
 	<typeAlias alias="screenVo" type="kr.com.yh.lottecgvbox.vo.ScreenVO"/>
 	<typeAlias alias="screenDateVo" type="kr.com.yh.lottecgvbox.vo.ScreenDateVO"/>
 	<typeAlias alias="movieInfoVo" type="kr.com.yh.lottecgvbox.vo.MovieInfoVO"/>
+	<typeAlias alias="ticketingVo" type="kr.com.yh.lottecgvbox.vo.TicketingVO"/>
 
 	<!--
 	DB와의 연결을 처리하는 부분

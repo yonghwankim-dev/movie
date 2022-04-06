@@ -111,9 +111,9 @@
                         
                     </div>
                     <div class="group_right">
-	                    <form action="/movie/pay.do" method="post">
+	                    <form id="payFrm" action="/movie/pay.do" method="post">
 			        		<!-- 예매일자 -->
-			        		<input class="hidden" name="ticketing_date" value="${movieInfo.screen_date}"/>
+			        		<input class="hidden" name="ticket_date" value="${movieInfo.screen_date}"/>
 			        		<!-- 회원코드 -->
 			        		<input class="hidden" name="mem_code" value="${memCd}"/>
 			        		<!-- 상영코드 -->
@@ -130,14 +130,35 @@
 							<input id="input_seat" class="hidden" name="seat" value=""/>
 								        		
 	                        <a href="/movie/ticketing.do" class="back">뒤로가기</a>
-	                        <input type="submit" class="pay" value="결재하기"/>
+	                        <button type="button" id="payBtn" class="pay">결재하기</button>
 	                    </form>
                     </div>
                 </div>
             </div>
-       		
         </div>
     </div>
 </div>
+<script>
+$('#payBtn').on('click', function() {
+	$.ajax({
+			url : '/movie/pay.do',
+			type : 'post',
+			data : $('#payFrm').serialize(),
+			success : function(data){
+				if (data.code === 'ok') {
+					alert('예매가 성공했습니다.');	
+				}else if(data.code === 'no'){
+					alert("예매에 실패했습니다.");
+				}
+				location.href = '/movie/ticketing.do';
+			}
+			,
+			error : function(xhr) {
+				alert(xhr.status);
+			},
+			dataType : 'json'
+	});
+});
+</script>
 <script src="<%=request.getContextPath() %>/js/personSeat.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

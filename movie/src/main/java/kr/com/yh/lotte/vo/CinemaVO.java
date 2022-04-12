@@ -6,7 +6,7 @@ package kr.com.yh.lotte.vo;
  * 
  * @author 김용환
  * @version 1.0.0
- * @date 2022-03-17
+ * @date 2022-04-12
  */
 public class CinemaVO {
 	private String cinema_code;		// 영화관 코드

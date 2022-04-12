@@ -1,4 +1,4 @@
-<%@page import="kr.com.yh.lottecgvbox.vo.MovieVO"%>
+<%@page import="kr.com.yh.lotte.vo.MovieVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

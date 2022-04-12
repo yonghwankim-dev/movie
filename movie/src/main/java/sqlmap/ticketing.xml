@@ -141,6 +141,11 @@
              , #mem_code#
              , #screen_code#)
 	</insert>
+	
+	<!-- 영화표 생성 -->
+	<insert id="insertMovieTicket" parameterClass="ticketingVo">
+			
+	</insert>
 </sqlMap>			
 
 

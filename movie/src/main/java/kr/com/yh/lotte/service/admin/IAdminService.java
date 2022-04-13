@@ -1,9 +1,10 @@
 package kr.com.yh.lotte.service.admin;
 
 import java.util.List;
+
 import java.util.Map;
 
-import kr.com.yh.lotte.vo.ScreenDateVO;
+
 import kr.com.yh.lotte.vo.ScreenVO;
 
 public interface IAdminService {
@@ -19,7 +20,7 @@ public interface IAdminService {
 	 * @return 상영 일정 추가행 개수
 	 * 		   1 : 성공, 0 : 실패
 	 */
-	public int insertScreen(ScreenDateVO screen);
+	public int insertScreen(ScreenVO screen);
 	
 	/**
 	 * 영화제목의 영화코드 반환
@@ -27,14 +28,13 @@ public interface IAdminService {
 	 * @return 영화코드
 	 */
 	public String getMovieCodeByMovieTitle(String movie_title);
-	
+
 	/**
-	 * 상영관의 상영관코드 바환
-	 * @param theater_name 상영관
-	 * @return 상영관코드
+	 * 상영관이름을 통한 상영 코드 반환
+	 * @param map 영화관지점, 상영관이름 key-value로 저장
+	 * @return
 	 */
 	public String getTheaterCodeByTheaterName(Map<String,String> map);
-	
 	
 	/**
 	 * 상영일정들을 제거

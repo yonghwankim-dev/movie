@@ -9,11 +9,11 @@ import java.util.Map;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.LocationVO;
-import kr.com.yh.lotte.vo.MovieInfoVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
+import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
+import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
 public class TicketingDaoImpl implements ITicketingDao{
@@ -33,8 +33,8 @@ public class TicketingDaoImpl implements ITicketingDao{
 	}
 	
 	@Override
-	public List<LocationVO> getLocationList() {
-		List<LocationVO> list = new ArrayList<LocationVO>();
+	public List<CinemaLocationVO> getLocationList() {
+		List<CinemaLocationVO> list = new ArrayList<CinemaLocationVO>();
 		
 		try {
 			list = smc.queryForList("ticketing.getLocationList");
@@ -57,13 +57,13 @@ public class TicketingDaoImpl implements ITicketingDao{
 		
 		return list;
 	}
-
+	
 	@Override
-	public List<MovieVO> getAllMovieList() {
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		
 		try {
-			list = smc.queryForList("ticketing.getAllMovieList");
+			list = smc.queryForList("ticketing.getMoviesByCinemaName");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,21 +72,8 @@ public class TicketingDaoImpl implements ITicketingDao{
 	}
 
 	@Override
-	public List<MovieVO> findMovieListByCinemaName(String cinema_name) {
-		List<MovieVO> list = new ArrayList<MovieVO>();
-		
-		try {
-			list = smc.queryForList("ticketing.findMovieListByCinemaName",cinema_name);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-
-	@Override
-	public List<ScreenVO> findAllScreenListByCinemaName(String cinema_name, String screen_date) {
-		List<ScreenVO> list = new ArrayList<ScreenVO>();
+	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String screen_date) {
+		List<ScreenDateVO> list = new ArrayList<ScreenDateVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cinema_name", cinema_name);
 		map.put("screen_date", screen_date);
@@ -99,18 +86,18 @@ public class TicketingDaoImpl implements ITicketingDao{
 		return list;
 	}
 
-	@Override
-	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-		MovieInfoVO movieInfo = null;
-		
-		try {
-			movieInfo = (MovieInfoVO) smc.queryForObject("ticketing.getMovieInfoByScreenCode", screen_code);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return movieInfo;
-	}
+//	@Override
+//	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
+//		MovieInfoVO movieInfo = null;
+//		
+//		try {
+//			movieInfo = (MovieInfoVO) smc.queryForObject("ticketing.getMovieInfoByScreenCode", screen_code);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return movieInfo;
+//	}
 
 	@Override
 	public int insertTickting(TicketingVO ticketing) {

@@ -12,7 +12,7 @@
 				<ul class="depth2">
 					<li><a href="/movie/searchMovie.do">영화검색</a></li>
 					<li><a href="/movie/location.do">극장 위치 찾기</a></li>
-					<li><a href="/movie/ticketing.do">회원 예매</a></li>
+					<li><a href="/movie/ticketing/ticketing.do">회원 예매</a></li>
 					<li><a href="/movie/nonMember.do">비회원 예매</a></li>
 					<li><a href="/movie/card.do">카드사 조회</a></li>
 				</ul>

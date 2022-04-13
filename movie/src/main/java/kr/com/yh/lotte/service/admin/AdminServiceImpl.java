@@ -1,11 +1,11 @@
 package kr.com.yh.lotte.service.admin;
 
+
 import java.util.List;
 import java.util.Map;
 
 import kr.com.yh.lotte.dao.admin.AdminDaoImpl;
 import kr.com.yh.lotte.dao.admin.IAdminDao;
-import kr.com.yh.lotte.vo.ScreenDateVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 
 
@@ -32,7 +32,7 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public int insertScreen(ScreenDateVO screen) {
+	public int insertScreen(ScreenVO screen) {
 		return adminDao.insertScreen(screen);
 	}
 

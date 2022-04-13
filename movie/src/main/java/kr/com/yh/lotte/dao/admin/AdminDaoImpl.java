@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
-
-import kr.com.yh.lotte.vo.ScreenDateVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
@@ -40,7 +38,7 @@ public class AdminDaoImpl implements IAdminDao{
 	}
 
 	@Override
-	public int insertScreen(ScreenDateVO screen) {
+	public int insertScreen(ScreenVO screen) {
 		int cnt = 0;
 		try {
 			cnt = smc.update("admin.insertScreen",screen);

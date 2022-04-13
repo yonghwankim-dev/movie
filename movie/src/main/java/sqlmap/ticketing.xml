@@ -3,89 +3,59 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ticketing">
-
-	<!-- 지역 맵-->
-	<resultMap class="locationVo" id="locationMap">
-		<result property="location_name" column="CINEMA_LOCATION"/>
-		<result property="cinema_count" column="CINEMA_COUNT"/>
+	
+	<!-- 지역 맵 -->
+	<resultMap class="cinemalocationVo" id="LocationMap">
+		<result property="cinemaVO.cinema_location" column="cinema_location"/>
+		<result property="cinema_cnt" column="cinema_cnt"/>
 	</resultMap>
 	
-	<!-- 영화관 맵 -->
-	<resultMap class="cinemaVo" id="cinemaMap">
-		<result property="cinema_code" column="CINEMA_CODE"/>
-		<result property="cinema_name" column="CINEMA_NAME"/>
-		<result property="cinema_location" column="CINEMA_LOCATION"/>
-	</resultMap>
+	<!-- 상영 일자 맵-->
+	<resultMap class="screenDateVo" id="ScreenDateMap">
+		<result property="screen.screen_code" 		column="screen_code"/>
+		<result property="screen.screen_date" 		column="screen_date"/>
+		<result property="screen.screen_time" 		column="screen_time"/>
+		<result property="movie.movie_title" 		column="movie_title"/>
+		<result property="movie.movie_spectator" 	column="movie_spectator"/>
+		<result property="theater.theater_seat_num" column="theater_seat_num"/>
+		<result property="theater.theater_name" 	column="theater_name"/>
+		<result property="cur_seat" 				column="cur_seat"/>	
+	</resultMap>	
 	
-	<!-- 영화 맵 -->
-	<resultMap class="movieVo" id="movieMap">
-		<result property="movie_code" column="MOVIE_CODE"/>
-		<result property="movie_title" column="MOVIE_TITLE"/>
-		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
-	</resultMap>
-	
-	<!-- 상영일정 맵 -->
-	<resultMap class="screenVo" id="screenMap">
-		<result property="screen_code" column="SCREEN_CODE"/>
-		<result property="movie_title" column="MOVIE_TITLE"/>
-		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
-		<result property="screen_date" column="SCREEN_DATE"/>
-		<result property="screen_time" column="SCREEN_TIME"/>
-		<result property="theater_seat_num" column="THEATER_SEAT_NUM"/>
-		<result property="theater_name" column="THEATER_NAME"/>
-		<result property="cur_seat" column="CUR_SEAT"/>	
-	</resultMap>
-	
-	<!-- 영화정보 맵 -->
-	<resultMap class="movieInfoVo" id="movieInfoMap">
-		<result property="movie_title" column="MOVIE_TITLE"/>
-		<result property="screen_date" column="SCREEN_DATE"/>
-		<result property="screen_time" column="SCREEN_TIME"/>
-		<result property="end_time" column="END_TIME"/>
-		<result property="cinema_name" column="CINEMA_NAME"/>
-		<result property="theater_name" column="THEATER_NAME"/>
-		<result property="movie_spectator" column="MOVIE_SPECTATOR"/>
-	</resultMap>
-	
-			
 	<!-- 지역 리스트 반환 -->
-	<select id="getLocationList" resultMap="locationMap">
-		SELECT DISTINCT CINEMA_LOCATION, COUNT(*) AS CINEMA_COUNT
+	<select id="getLocationList" resultMap="LocationMap">
+		SELECT CINEMA_LOCATION
+			 , COUNT(*) AS CINEMA_CNT
 		FROM   CINEMA
-		GROUP BY CINEMA_LOCATION
-		ORDER BY CINEMA_LOCATION
+        GROUP BY CINEMA_LOCATION
+        ORDER BY CINEMA_LOCATION
 	</select>
-	
+			
 	<!-- 영화관 리스트 반환 -->
-	<select id="getCinemaList" resultMap="cinemaMap">
+	<select id="getCinemaList" resultClass="cinemaVo">
 		SELECT CINEMA_CODE
-			,  CINEMA_NAME
-			,  CINEMA_LOCATION
+			 , CINEMA_NAME
+			 , CINEMA_LOCATION
 		FROM   CINEMA
 		ORDER BY CINEMA_LOCATION, CINEMA_NAME
 	</select>
 	
-	<!-- 모든 영화 리스트 반환 -->
-	<select id="getAllMovieList" resultMap="movieMap">
-		SELECT MOVIE_CODE
-			,  MOVIE_TITLE
-			,  MOVIE_SPECTATOR
-		FROM MOVIE
-		ORDER BY MOVIE_TITLE
-	</select>
-	
-	<!-- 영화관 지점에 상영하는 영화 리스트 반환 -->
-	<select id="findMovieListByCinemaName" parameterClass="String" resultMap="movieMap">
-		SELECT DISTINCT m.movie_title, m.movie_code, m.movie_spectator
-		FROM screen s 
-        	INNER JOIN theater th ON s.theater_code = th.theater_code
-        	INNER JOIN cinema c ON th.cinema_code = c.cinema_code
-        	INNER JOIN movie m ON s.movie_code = m.movie_code
-		WHERE c.cinema_name = #cinema_name#
+	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
+	<select id="getMoviesByCinemaName" parameterClass="String" resultClass="movieVo">
+		SELECT DISTINCT M.MOVIE_TITLE, M.MOVIE_CODE, M.MOVIE_SPECTATOR
+		FROM SCREEN S
+        	INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
+        	INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
+        	INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
+        <dynamic prepend="WHERE">
+			<isNotNull prepend="AND" property="cinema_name">
+				C.CINEMA_NAME = #cinema_name#
+			</isNotNull>
+        </dynamic>
 	</select>
 	
 	<!-- 영화관 지점의 상영시간 리스트 반환 -->
-	<select id="findAllScreenListByCinemaName" resultMap="screenMap">
+	<select id="findAllScreenListByCinemaName" parameterClass="Map" resultMap="ScreenDateMap">
 		SELECT sc.screen_code
 		    ,  m.movie_title
 		    ,  m.movie_spectator
@@ -102,11 +72,19 @@
 		              INNER JOIN theater th ON sc.theater_code = th.theater_code
 		              INNER JOIN cinema c ON th.cinema_code = c.cinema_code
 		              INNER JOIN movie m on sc.movie_code = m.movie_code
-		WHERE c.cinema_name = #cinema_name# and sc.screen_date = #screen_date#
+        <dynamic prepend="WHERE">
+			<isNotNull prepend="AND" property="cinema_name">
+				C.CINEMA_NAME = #cinema_name#
+			</isNotNull>
+			<isNotNull prepend="AND" property="screen_date">
+				SC.SCREEN_DATE = #screen_date#
+			</isNotNull>
+        </dynamic>
 		ORDER BY m.movie_title		
 	</select>
-
+	
 	<!-- 선택한 영화의 정보 반환-->
+	<!--
 	<select id="getMovieInfoByScreenCode" parameterClass="String" resultMap="movieInfoMap">
 		SELECT m.movie_title
 			,  s.screen_date
@@ -122,8 +100,10 @@
      		 INNER JOIN cinema c ON th.cinema_code = c.cinema_code
 		WHERE s.screen_code = #screen_code#
 	</select>
+	-->
 	
 	<!-- 선택한 영화 예매-->
+	<!--
 	<insert id="insertTickting" parameterClass="ticketingVo">
 		<selectKey keyProperty="ticket_num" resultClass="int">
 			SELECT TICKET_NUM_SEQ.NEXTVAL FROM DUAL
@@ -141,11 +121,14 @@
              , #mem_code#
              , #screen_code#)
 	</insert>
-	
+	-->
+		
 	<!-- 영화표 생성 -->
+	<!--
 	<insert id="insertMovieTicket" parameterClass="ticketingVo">
 			
 	</insert>
+	-->
 </sqlMap>			
 
 

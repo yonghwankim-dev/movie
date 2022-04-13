@@ -32,28 +32,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach var="screen" items="${screens}" varStatus="status">
+                        	<c:forEach var="s" items="${screens}" varStatus="status">
                         		<tr>
                         			<td>
-                        				<input type="checkbox" name="screen_code" value="${screen.screen_code}"/>	
+                        				<input type="checkbox" name="screen_code" value="${s.screen.screen_code}"/>	
                         			</td>
                         			<td>
-                                    	<span>${screen.screen_code}</span>
+                                    	<span>${s.screen.screen_code}</span>
 	                                </td>
 	                                <td>
-	                                    <span>${screen.movie_title}</span>
+	                                    <span>${s.movie.movie_title}</span>
 	                                </td>
 	                                <td>
-	                                    <span>${screen.theater_name}</span>
+	                                    <span>${s.theater.theater_name}</span>
 	                                </td>
 	                                <td>
 	                                    <span>
-	                                    	<fmt:formatDate value="${screen.screen_date}" pattern="YYYY-MM-dd" type="date"/>
+	                                    	<fmt:formatDate value="${s.screen.screen_date}" pattern="YYYY-MM-dd" type="date"/>
 	                                    </span>
 	                                </td>
 	                                <td>
 	                                    <span>
-	                                    	<fmt:formatDate value="${screen.screen_time}" pattern="HH:MM" type="time"/>
+	                                    	<fmt:formatDate value="${s.screen.screen_time}" pattern="HH:MM" type="time"/>
 	                                    </span>
 	                                </td>
                         		</tr>

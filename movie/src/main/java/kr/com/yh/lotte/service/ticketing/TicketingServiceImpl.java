@@ -1,15 +1,16 @@
 package kr.com.yh.lotte.service.ticketing;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.com.yh.lotte.dao.ticketing.ITicketingDao;
 import kr.com.yh.lotte.dao.ticketing.TicketingDaoImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.LocationVO;
-import kr.com.yh.lotte.vo.MovieInfoVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
+import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
+import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 
 public class TicketingServiceImpl implements ITicketingService{
 
@@ -29,7 +30,7 @@ public class TicketingServiceImpl implements ITicketingService{
 	}
 	
 	@Override
-	public List<LocationVO> getLocationList() {
+	public List<CinemaLocationVO> getLocationList() {
 		return ticketingDao.getLocationList();
 	}
 
@@ -37,26 +38,21 @@ public class TicketingServiceImpl implements ITicketingService{
 	public List<CinemaVO> getCinemaList() {
 		return ticketingDao.getCinemaList();
 	}
-
+	
 	@Override
-	public List<MovieVO> getAllMovieList() {
-		return ticketingDao.getAllMovieList();
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name) {
+		return ticketingDao.getMoviesByCinemaName(cinema_name);
 	}
 
 	@Override
-	public List<MovieVO> findMovieListByCinemaName(String cinema_name) {
-		return ticketingDao.findMovieListByCinemaName(cinema_name);
-	}
-
-	@Override
-	public List<ScreenVO> findAllScreenListByCinemaName(String cinema_name, String screen_date) {
+	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String screen_date) {
 		return ticketingDao.findAllScreenListByCinemaName(cinema_name, screen_date);
 	}
 
-	@Override
-	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-		return ticketingDao.getMovieInfoByScreenCode(screen_code);
-	}
+//	@Override
+//	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
+//		return ticketingDao.getMovieInfoByScreenCode(screen_code);
+//	}
 
 	@Override
 	public int insertTickting(TicketingVO ticketing) {

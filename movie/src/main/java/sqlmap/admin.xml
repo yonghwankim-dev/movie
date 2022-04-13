@@ -4,12 +4,12 @@
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="admin">
 	
-	<resultMap class="screenVO" id="ScreenDateMap">
-		<result property="screen_code" column="screen_code"/>
-		<result property="movie_title" column="movie_title"/>
-		<result property="theater_name" column="theater_name"/>
-		<result property="screen_date" column="screen_date"/>
-		<result property="screen_time" column="screen_time"/>		
+	<resultMap class="screenDateVo" id="ScreenDateMap">
+		<result property="screen.screen_code" 	column="screen_code"/>
+		<result property="screen.screen_date" 	column="screen_date"/>
+		<result property="screen.screen_time" 	column="screen_time"/>
+		<result property="movie.movie_title" 	column="movie_title"/>
+		<result property="theater.theater_name" column="theater_name"/>
 	</resultMap>
 	
 	<select id="getAllScreenDate" resultMap="ScreenDateMap">
@@ -30,13 +30,13 @@
 		WHERE MOVIE_TITLE = #movie_title#
 	</select>
 	
-	<select id="getTheaterCodeByTheaterName" parameterClass="map" resultClass="String">
+	<select id="getTheaterCodeByTheaterName" parameterClass="Map" resultClass="String">
 		SELECT THEATER_CODE
 		FROM THEATER TH INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
 		WHERE TH.THEATER_NAME = #theater_name# and C.CINEMA_NAME = #cinema_name#  
 	</select>
 	
-	<insert id="insertScreen" parameterClass="ScreenDateVO">
+	<insert id="insertScreen" parameterClass="screenVo">
 		<selectKey keyProperty="screen_code" resultClass="integer">
 			SELECT SCREEN_CODE_SEQ.NEXTVAL AS SCREEN_CODE FROM DUAL
 		</selectKey>
@@ -44,7 +44,7 @@
 		INSERT INTO SCREEN(SCREEN_CODE, MOVIE_CODE, THEATER_CODE, SCREEN_DATE, SCREEN_TIME)
 		VALUES('screen_' || SCREEN_CODE_SEQ.NEXTVAL, #movie_code#, #theater_code#, #screen_date#, #screen_time#)
 	</insert>
-	
+
 	<delete id="deleteScreen" parameterClass="java.util.List">
 		DELETE FROM SCREEN 
 		<iterate prepend="WHERE SCREEN_CODE IN" open="(" close=")" conjunction=",">

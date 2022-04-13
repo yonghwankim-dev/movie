@@ -3,7 +3,6 @@ package kr.com.yh.lotte.dao.admin;
 import java.util.List;
 import java.util.Map;
 
-import kr.com.yh.lotte.vo.ScreenDateVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 
 public interface IAdminDao {
@@ -19,7 +18,7 @@ public interface IAdminDao {
 	 * @return 상영 일정 추가행 개수
 	 * 		   1 : 성공, 0 : 실패
 	 */
-	public int insertScreen(ScreenDateVO screen);
+	public int insertScreen(ScreenVO screen);
 
 
 	/**
@@ -30,9 +29,10 @@ public interface IAdminDao {
 	public String getMovieCodeByMovieTitle(String movie_title);
 	
 	/**
-	 * 상영관의 상영관코드 바환
-	 * @param theater_name 상영관
-	 * @return 상영관코드
+	 * 상영관의 상영코드 반환
+	 * @param cinema_name	영화관지점
+	 * @param theater_name	상영관이름
+	 * @return	상영코드
 	 */
 	public String getTheaterCodeByTheaterName(Map<String,String> map);
 

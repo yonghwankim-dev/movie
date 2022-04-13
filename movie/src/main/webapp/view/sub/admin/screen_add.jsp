@@ -1,6 +1,7 @@
 <!-- 팝업 내용 -->
 <div id="screen_add_form" class="form_popup">
     <form id="screenFrm" action="/movie/admin/screen/add.do" method="post" class="form_container">
+    
         <h1>상영일정</h1>
 
         <div class="form_row">
@@ -26,6 +27,8 @@
                 <option value="2관">2관</option>
             </select>
         </div>
+        
+
 
         <div class="form_row">
             <label for="movie_title"><b>영화제목</b></label>

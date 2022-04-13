@@ -1,4 +1,3 @@
-<%@page import="kr.com.yh.lotte.LocationVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,14 +17,14 @@
                 <ul class="depth1_list">
                 	<c:forEach var="location" items="${locations}" varStatus="status">
                 		<li class="depth1 ${status.index eq 0 ? 'active' : ''}">
-                        	<a class="location" href="#none">${location.location_name}<span>(${location.cinema_count})</span></a>
+                        	<a class="location" href="#none">${location.cinemaVO.cinema_location}<span>(${location.cinema_cnt})</span></a>
                         
 	                        <div class="depth2 ${status.index eq 0 ? 'active' : ''}">
 	                            <ul class="cinema_list">
 		                        	<c:forEach var="cinema" items="${cinemas}" varStatus="status">
-			                        	<c:if test="${location.location_name eq cinema.cinema_location}">
+			                        	<c:if test="${location.cinemaVO.cinema_location eq cinema.cinema_location}">
 			                        		<li class="cinema_item ${cinema.cinema_name eq cinema_name ? 'active' : ''}">
-			                                    <a class="cinema" href="/movie/ticketing.do?cinema_name=${cinema.cinema_name}">
+			                                    <a class="cinema" href="/movie/ticketing/ticketing.do?cinema_name=${cinema.cinema_name}">
 			                                    	${cinema.cinema_name}
 			                                    </a>
 			                                </li>
@@ -56,7 +55,7 @@
                 		</c:if>
                 		
                 		<li class="movie_item ${isActive}">    
-	                        <a class="movie" href="/movie/ticketing.do?cinema_name=${cinema_name}&movie_title=${movie.movie_title}">
+	                        <a class="movie" href="/movie/ticketing/ticketing.do?cinema_name=${cinema_name}&movie_title=${movie.movie_title}">
 								<span class="ic_grade gr_${movie.movie_spectator}"></span>
 								<strong class="tit">${movie.movie_title}</strong>
 	                        </a>
@@ -73,7 +72,7 @@
             <div class="time_select_wrap">
                 <div class="date_select_wrap">
                 	<input class="hidden input_selected_date" name="selected_date" value="${screen_date}"/>
-                	<form id="change_screen_date" action="/movie/ticketing.do">
+                	<form id="change_screen_date" action="/movie/ticketing/ticketing.do">
                 		<input class="hidden input_cinema_name" name="cinema_name" value="${cinema_name}"/>
                 		<input class="hidden input_movie_title" name="movie_title" value="${movie_title}"/>
 	
@@ -107,25 +106,25 @@
                 					</ul>
                 					
                 					<ul class="list_time">
-                						<c:forEach var="screen" items="${screens}" varStatus="s_status">
-                							<c:if test="${screen.movie_title eq movie.movie_title}">
+                						<c:forEach var="s" items="${screens}" varStatus="s_status">
+                							<c:if test="${s.movie.movie_title eq movie.movie_title}">
                 								<li>
-		                                            <a href="/movie/personSeat.do?screen_code=${screen.screen_code}">
+		                                            <a href="/movie/personSeat.do?screen_code=${s.screen.screen_code}">
 		                                                <dl>
 		                                                    <dt>상영시간</dt>
 		                                                    <dd class="time">
 		                                                        <strong>
-		                                                        	<fmt:formatDate value="${screen.screen_time}" pattern="HH:mm"/>
+		                                                        	<fmt:formatDate value="${s.screen.screen_time}" pattern="HH:mm"/>
 		                                                        </strong>
 		                                                    </dd>
 		                                                    <dt>잔여석</dt>
 		                                                    <dd class="seat">
-		                                                        <strong>${screen.cur_seat}</strong>
-		                                                        <span>/${screen.theater_seat_num}</span>
+		                                                        <strong>${s.cur_seat}</strong>
+		                                                        <span>/${s.theater.theater_seat_num}</span>
 		                                                        
 		                                                    </dd>
 		                                                    <dt>상영관</dt>
-		                                                    <dd class="hall">${screen.theater_name}</dd>
+		                                                    <dd class="hall">${s.theater.theater_name}</dd>
 		                                                </dl>
 		                                            </a>
                                         		</li>

@@ -1,6 +1,7 @@
 package kr.com.yh.lotte.controller.ticketing;
 
 import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -15,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import kr.com.yh.lotte.service.ticketing.ITicketingService;
 import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.LocationVO;
-import kr.com.yh.lotte.vo.MovieInfoVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 
@@ -36,10 +35,10 @@ public class PersonSeatController extends HttpServlet {
 		String screen_code = req.getParameter("screen_code");
 		
 		// 상영코드에 대한 영화정보 가져오기
-		MovieInfoVO movieInfo = ticketingService.getMovieInfoByScreenCode(screen_code);
+//		MovieInfoVO movieInfo = ticketingService.getMovieInfoByScreenCode(screen_code);
 		
 		req.setAttribute("screen_code", screen_code);
-		req.setAttribute("movieInfo", movieInfo);
+//		req.setAttribute("movieInfo", movieInfo);
 		req.setAttribute("fileNm", fileNm);
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);
 	}

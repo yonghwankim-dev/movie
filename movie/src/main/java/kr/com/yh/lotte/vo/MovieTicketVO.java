@@ -8,15 +8,15 @@ package kr.com.yh.lotte.vo;
  * @version 1.0.0
  * @date 2022-04-12
  */
-public class MovieTicket {
+public class MovieTicketVO {
 	private String screen_code;	// 상영코드
 	private String seat_code;	// 좌석코드
 	private String mt_status;	// 영화표상태
 	
-	public MovieTicket() {
+	public MovieTicketVO() {
 		
 	}
-	public MovieTicket(String screen_code, String seat_code, String mt_status) {
+	public MovieTicketVO(String screen_code, String seat_code, String mt_status) {
 		this.screen_code = screen_code;
 		this.seat_code = seat_code;
 		this.mt_status = mt_status;

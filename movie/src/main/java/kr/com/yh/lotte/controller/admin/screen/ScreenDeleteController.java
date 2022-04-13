@@ -24,7 +24,6 @@ import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenDateVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 
 @WebServlet("/admin/screen/delete.do")
@@ -40,8 +39,7 @@ public class ScreenDeleteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 상영코드
-		String[] screen_codes = req.getParameterValues("screen_code");
-		List<String> screen_code_list = Arrays.asList(screen_codes);
+		List<String> screen_codes = Arrays.asList(req.getParameterValues("screen_code"));
 		
 		// 삽입 결과
 		int cnt = 0;
@@ -51,7 +49,7 @@ public class ScreenDeleteController extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 				
 		// 상영코드 삭제 수행
-		cnt = adminService.deleteScreen(screen_code_list);
+		cnt = adminService.deleteScreen(screen_codes);
 		
 		if(cnt>0)	// 삭제 성공
 		{

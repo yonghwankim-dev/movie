@@ -7,15 +7,15 @@
 			
 <sqlMap namespace="join">
 	<resultMap class="memberVO" id="joinMap">
-		<result property="mem_code" column="MEM_CODE"/>
-		<result property="mem_name" column="MEM_NAME"/>
-		<result property="mem_sex" column="MEM_SEX"/>
-		<result property="mem_birth" column="MEM_BIRTH"/>
-		<result property="mem_phone" column="MEM_PHONE"/>
-		<result property="mem_addr" column="MEM_ADDR"/>
-		<result property="mem_email" column="MEM_EMAIL"/>
-		<result property="mem_id" column="MEM_ID"/>
-		<result property="mem_pwd" column="MEM_PWD"/>
+		<result property="mem_code" 	column="MEM_CODE"/>
+		<result property="mem_name" 	column="MEM_NAME"/>
+		<result property="mem_sex" 		column="MEM_SEX"/>
+		<result property="mem_birth" 	column="MEM_BIRTH"/>
+		<result property="mem_phone" 	column="MEM_PHONE"/>
+		<result property="mem_addr" 	column="MEM_ADDR"/>
+		<result property="mem_email" 	column="MEM_EMAIL"/>
+		<result property="mem_id" 		column="MEM_ID"/>
+		<result property="mem_pwd" 		column="MEM_PWD"/>
 	</resultMap>
 
 	<!-- 회원가입 -->

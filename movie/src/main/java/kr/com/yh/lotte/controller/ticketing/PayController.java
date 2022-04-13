@@ -1,6 +1,7 @@
 package kr.com.yh.lotte.controller.ticketing;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -21,8 +22,6 @@ import com.google.gson.Gson;
 import kr.com.yh.lotte.service.ticketing.ITicketingService;
 import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.LocationVO;
-import kr.com.yh.lotte.vo.MovieInfoVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
@@ -61,15 +60,15 @@ public class PayController extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		
 		
-		TicketingVO ticketing = new TicketingVO(ticket_num
-											  , ticket_date
-											  , ticket_cnt
-											  , ticket_price
-											  , mem_code
-											  , screen_code
-											  , seat);
-		
-		cnt = ticketingService.insertTickting(ticketing);
+//		TicketingVO ticketing = new TicketingVO(ticket_num
+//											  , ticket_date
+//											  , ticket_cnt
+//											  , ticket_price
+//											  , mem_code
+//											  , screen_code
+//											  , seat);
+//		
+//		cnt = ticketingService.insertTickting(ticketing);
 		
 		if(cnt>0)
 		{

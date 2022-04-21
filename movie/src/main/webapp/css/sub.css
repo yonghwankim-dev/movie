@@ -1079,6 +1079,7 @@
 .select_seat_result .group_right .pay {
   background-color: red;
   border : none;
+  color : white;
 }
 
 /**********************************************************/

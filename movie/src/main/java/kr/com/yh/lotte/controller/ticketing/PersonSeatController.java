@@ -18,6 +18,7 @@ import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
 
 @WebServlet("/personSeat.do")
 public class PersonSeatController extends HttpServlet {
@@ -35,10 +36,11 @@ public class PersonSeatController extends HttpServlet {
 		String screen_code = req.getParameter("screen_code");
 		
 		// 상영코드에 대한 영화정보 가져오기
-//		MovieInfoVO movieInfo = ticketingService.getMovieInfoByScreenCode(screen_code);
+		MovieInfoVO movieInfo = ticketingService.getMovieInfoByScreenCode(screen_code);
 		
+		System.out.println(movieInfo);
 		req.setAttribute("screen_code", screen_code);
-//		req.setAttribute("movieInfo", movieInfo);
+		req.setAttribute("movieInfo", movieInfo);
 		req.setAttribute("fileNm", fileNm);
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);
 	}

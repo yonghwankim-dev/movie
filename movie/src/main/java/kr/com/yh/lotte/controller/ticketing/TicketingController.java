@@ -18,7 +18,6 @@ import kr.com.yh.lotte.service.ticketing.ITicketingService;
 import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
 import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 

@@ -21,23 +21,28 @@
                     <div class="movie_infor">
                         <div class="group_infor">
                             <div class="bx_tit">
-                                <span class="ic_grade gr_${movieInfo.movie_spectator}"></span>
-                                <strong>${movieInfo.movie_title}</strong>
+                            	<!-- 영화관람가 -->
+                                <span class="ic_grade gr_${movieInfo.movie.movie_spectator}"></span>
+                                <!-- 영화제목 -->
+                                <strong>${movieInfo.movie.movie_title}</strong>
                             </div>
                             <dl>
                                 <dt>일시</dt>
                                 <dd class="sub_info1">
+                                	<!-- 상영일자 -->
                                 	<span>
-                                		<fmt:formatDate value="${movieInfo.screen_date}" pattern="yy.MM.dd(E)"/>
+                                		<fmt:formatDate value="${movieInfo.screen.screen_date}" pattern="yy.MM.dd(E)"/>
                                 	</span>
+                                	<!-- 상영 시작/종료 시간 -->
                                     <span class="time">
-	                                    <fmt:formatDate value="${movieInfo.screen_time}" pattern="HH:mm"/>
+	                                    <fmt:formatDate value="${movieInfo.screen.screen_time}" pattern="HH:mm"/>
 	                                    ~ 
 	                                    <fmt:formatDate value="${movieInfo.end_time}" pattern="HH:mm"/>
                                     </span>
                                 </dd>
                                 <dt>영화관</dt>
-                                <dd class="sub_info1">${movieInfo.cinema_name}.${movieInfo.theater_name}</dd>
+                                <!-- 영화관이름/상영관이름 -->
+                                <dd class="sub_info1">${movieInfo.cinema.cinema_name}.${movieInfo.theater.theater_name}</dd>
                             </dl>
                         </div>
                     </div>
@@ -113,7 +118,7 @@
                     <div class="group_right">
 	                    <form id="payFrm" action="/movie/pay.do" method="post">
 			        		<!-- 예매일자 -->
-			        		<input class="hidden" name="ticket_date" value="${movieInfo.screen_date}"/>
+			        		<input class="hidden" name="ticket_date" value="${movieInfo.screen.screen_date}"/>
 			        		<!-- 회원코드 -->
 			        		<input class="hidden" name="mem_code" value="${memCd}"/>
 			        		<!-- 상영코드 -->

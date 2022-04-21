@@ -36,5 +36,11 @@ public class TheaterVO {
 		return cinema_code;
 	}
 	
+	@Override
+	public String toString() {
+		return "TheaterVO [theater_code=" + theater_code + ", theater_name=" + theater_name + ", theater_seat_num="
+				+ theater_seat_num + ", cinema_code=" + cinema_code + "]";
+	}
+	
 	
 }

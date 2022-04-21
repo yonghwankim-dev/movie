@@ -10,6 +10,7 @@ import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
 import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
+import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
 import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 
 public class TicketingServiceImpl implements ITicketingService{
@@ -49,10 +50,10 @@ public class TicketingServiceImpl implements ITicketingService{
 		return ticketingDao.findAllScreenListByCinemaName(cinema_name, movie_title, screen_date);
 	}
 
-//	@Override
-//	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-//		return ticketingDao.getMovieInfoByScreenCode(screen_code);
-//	}
+	@Override
+	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
+		return ticketingDao.getMovieInfoByScreenCode(screen_code);
+	}
 
 	@Override
 	public int insertTickting(TicketingVO ticketing) {

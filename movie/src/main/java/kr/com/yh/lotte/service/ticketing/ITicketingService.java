@@ -8,6 +8,7 @@ import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
 import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
+import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
 import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 
 /**
@@ -51,7 +52,7 @@ public interface ITicketingService {
 	 * @param screen_code 선택한 상영 일정
 	 * @return 영화정보 객체
 	 */
-//	public MovieInfoVO getMovieInfoByScreenCode(String screen_code);
+	public MovieInfoVO getMovieInfoByScreenCode(String screen_code);
 
 	/**
 	 * 선택한 영화 예매

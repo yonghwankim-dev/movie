@@ -10,9 +10,9 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TicketingVO;
 import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
+import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
 import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
@@ -91,18 +91,18 @@ public class TicketingDaoImpl implements ITicketingDao{
 		return list;
 	}
 
-//	@Override
-//	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-//		MovieInfoVO movieInfo = null;
-//		
-//		try {
-//			movieInfo = (MovieInfoVO) smc.queryForObject("ticketing.getMovieInfoByScreenCode", screen_code);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return movieInfo;
-//	}
+	@Override
+	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
+		MovieInfoVO movieInfo = null;
+		
+		try {
+			movieInfo = (MovieInfoVO) smc.queryForObject("ticketing.getMovieInfoByScreenCode", screen_code);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return movieInfo;
+	}
 
 	@Override
 	public int insertTickting(TicketingVO ticketing) {

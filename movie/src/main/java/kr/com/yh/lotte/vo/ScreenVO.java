@@ -32,6 +32,7 @@ public class ScreenVO {
 		this.theater_code = theater_code;
 	}
 
+
 	public String getScreen_code() {
 		return screen_code;
 	}
@@ -50,6 +51,12 @@ public class ScreenVO {
 
 	public String getTheater_code() {
 		return theater_code;
+	}
+
+	@Override
+	public String toString() {
+		return "ScreenVO [screen_code=" + screen_code + ", screen_date=" + screen_date + ", screen_time=" + screen_time
+				+ ", movie_code=" + movie_code + ", theater_code=" + theater_code + "]";
 	}
 	
 	

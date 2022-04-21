@@ -36,6 +36,7 @@
 
 	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.wrapper.CinemaLocationVO"/>
 	<typeAlias alias="screenDateVo" 	type="kr.com.yh.lotte.vo.wrapper.ScreenDateVO"/>
+	<typeAlias alias="movieInfoVo" 		type="kr.com.yh.lotte.vo.wrapper.MovieInfoVO"/>
 
 	<!--
 		DB와의 연결을 처리하는 부분

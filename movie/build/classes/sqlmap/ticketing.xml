@@ -41,7 +41,7 @@
 	</select>
 	
 	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
-	<select id="getMoviesByCinemaName" parameterClass="String" resultClass="movieVo">
+	<select id="getMoviesByCinemaNameAndMovieTitle" parameterClass="Map" resultClass="movieVo">
 		SELECT DISTINCT M.MOVIE_TITLE, M.MOVIE_CODE, M.MOVIE_SPECTATOR
 		FROM SCREEN S
         	INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
@@ -50,6 +50,9 @@
         <dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
 				C.CINEMA_NAME = #cinema_name#
+			</isNotNull>
+			<isNotNull prepend="AND" property="movie_title">
+				M.MOVIE_TITLE = #movie_title#
 			</isNotNull>
         </dynamic>
 	</select>
@@ -75,6 +78,9 @@
         <dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
 				C.CINEMA_NAME = #cinema_name#
+			</isNotNull>
+			<isNotNull prepend="AND" property="movie_title">
+				M.MOVIE_TITLE = #movie_title#
 			</isNotNull>
 			<isNotNull prepend="AND" property="screen_date">
 				SC.SCREEN_DATE = #screen_date#

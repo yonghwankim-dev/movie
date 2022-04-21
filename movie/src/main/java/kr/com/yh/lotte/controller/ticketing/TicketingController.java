@@ -44,9 +44,10 @@ public class TicketingController extends HttpServlet {
 		
 		List<CinemaLocationVO> locations = ticketingService.getLocationList();		
 		List<CinemaVO> cinemas = ticketingService.getCinemaList();		
-		List<MovieVO> movies = ticketingService.getMoviesByCinemaName(cinema_name);
+		List<MovieVO> movies = ticketingService.getMoviesByCinemaNameAndMovieTitle(cinema_name, movie_title);
+		
 		// 선택한 영화관에 모든 영화 상영일정 리스트 반환
-		List<ScreenDateVO> screens = ticketingService.findAllScreenListByCinemaName(cinema_name, screen_date);	
+		List<ScreenDateVO> screens = ticketingService.findAllScreenListByCinemaName(cinema_name, movie_title, screen_date);	
 		
 		req.setAttribute("locations", locations);
 		req.setAttribute("cinemas", cinemas);

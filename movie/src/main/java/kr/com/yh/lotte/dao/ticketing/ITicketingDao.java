@@ -29,7 +29,7 @@ public interface ITicketingDao {
 	 * @param cinema_name 영화관 이름
 	 * @return 영화 리스트
 	 */
-	public List<MovieVO> getMoviesByCinemaName(String cinema_name);
+	public List<MovieVO> getMoviesByCinemaNameAndMovieTitle(String cinema_name, String movie_title);
 		
 	/**
 	 * 특정 영화관 지점에서 상영하는 영화들의 상영시간 리스트 반환
@@ -38,7 +38,7 @@ public interface ITicketingDao {
 	 * key-value : "screen_date"-screen_date
 	 * @return
 	 */
-	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String screen_date);
+	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String movie_title, String screen_date);
 	
 	/**
 	 * 선택한 영화 상영 일정에 대한 영화정보 객체 반환

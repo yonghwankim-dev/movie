@@ -59,11 +59,14 @@ public class TicketingDaoImpl implements ITicketingDao{
 	}
 	
 	@Override
-	public List<MovieVO> getMoviesByCinemaName(String cinema_name) {
+	public List<MovieVO> getMoviesByCinemaNameAndMovieTitle(String cinema_name, String movie_title) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cinema_name", cinema_name);
+		map.put("movie_title", movie_title);
 		
 		try {
-			list = smc.queryForList("ticketing.getMoviesByCinemaName");
+			list = smc.queryForList("ticketing.getMoviesByCinemaNameAndMovieTitle", map);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,14 +75,16 @@ public class TicketingDaoImpl implements ITicketingDao{
 	}
 
 	@Override
-	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String screen_date) {
+	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String movie_title, String screen_date) {
 		List<ScreenDateVO> list = new ArrayList<ScreenDateVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cinema_name", cinema_name);
+		map.put("movie_title", movie_title);
 		map.put("screen_date", screen_date);
 		
 		try {
-			list = smc.queryForList("ticketing.findAllScreenListByCinemaName", map);
+			list = cinema_name != null ? smc.queryForList("ticketing.findAllScreenListByCinemaName", map)
+									   : null;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

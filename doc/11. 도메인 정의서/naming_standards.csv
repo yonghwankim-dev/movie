@@ -4,7 +4,7 @@
 좌석상태,seat_status,seat_status,X,X,X,X
 생년월일,birthday,birthday,X,X,X,X
 성별,gender,gender,X,X,X,X
-상영시간,screen_time,screen_time,X,X,X,X
+상영시간,runtime,runtime,X,X,X,X
 시작시간,start_time,start_time,X,X,X,X
 종료시간,end_time,end_time,X,X,X,X
 아이디,id,id,X,X,X,X
@@ -38,4 +38,4 @@
 상영,screen,screen,X,X,X,X
 상영관,theater,theater,X,X,X,X
 영화,movie,movie,X,X,X,X
-영화관,theater,theater,X,X,X,X
+영화관,cinema,cinema,X,X,X,X

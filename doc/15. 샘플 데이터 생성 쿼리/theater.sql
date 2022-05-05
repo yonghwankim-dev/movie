@@ -7,7 +7,7 @@ BEGIN
     LOOP
         FOR Theater IN 1..7
         LOOP
-            insert into theater values('theater_'||theater_code_num, Theater||'관', 156, 'cinema_'||Cinema);
+            insert into theater values('TH'||theater_code_num, Theater||'관', 'CINEMA'||Cinema);
             theater_code_num := theater_code_num + 1;
         END LOOP;
     END LOOP;

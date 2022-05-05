@@ -1,31 +1,6 @@
-MOVIE_CODE,MOVIE_TITLE,MOVIE_SPECTATOR
-movie_1,더 배트맨,15
-movie_2,이상한 나라의 수학자,12
-movie_3,메리 미,12
-movie_4,블랙 라이트,15
-movie_5,문폴,12
-movie_6,안테벨룸,15
-movie_7,스펜서,12
-movie_8,극장판 주술회전 0,15
-movie_9,드라이브 마이 카,15
-movie_10,나의 히어로 아카데미아 더 무비: 월드 히어로즈,12
-movie_11,유어 러브 송,12
-movie_12,가무악칠채,0
-movie_13,우리가 사랑이라고 믿는 것,12
-movie_14,극장판 바다 탐험태 옥토넛 : 해저동굴 대탈출,0
-movie_15,스파이더맨: 노 웨이 홈,12
-movie_16,언차티드,12
-movie_17,고양이들의 아파트,0
-movie_18,레벤느망,15
-movie_19,아망떼,15
-movie_20,나이트메어 앨리,15
-movie_21,리디밍 러브,15
-movie_22,도어맨,15
-movie_23,피그,12
-movie_24,그 남자는 타이타닉을 보고 싶지 않았다,12
-movie_25,극장판 안녕 자두야: 제주도의 비밀,0
-movie_26,인민을 위해 복무하라,19
-movie_27,매미소리,15
-movie_28,소피의 세계,12
-movie_29,나의 촛불,0
-movie_30,아이돌레시피,15
+movie_code,name,audi_rating,runtime
+MOVIE1,더 배트맨,15,176
+MOVIE2,이상한 나라의 수학자,12,117
+MOVIE3,메리 미,12,112
+MOVIE4,블랙 라이트,15,108
+MOVIE5,문폴,12,120

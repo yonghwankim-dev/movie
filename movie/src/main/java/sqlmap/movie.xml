@@ -4,16 +4,16 @@
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="movie">
 
-	<resultMap class="movieVO" id="MovieMainMap">
+	<resultMap class="movieVo" id="MovieMainMap">
 		<result property="movie_code" column="movie_code"/>
-		<result property="movie_title" column="movie_title"/>
-		<result property="movie_spectator" column="movie_spectator"/>
+		<result property="name" column="name"/>
+		<result property="audi_rating" column="audi_rating"/>
 	</resultMap>
 	
 	<select id="getMovieMain" resultMap="MovieMainMap">
 		SELECT MOVIE_CODE
-		    ,  MOVIE_TITLE
-		    ,  MOVIE_SPECTATOR
+		    ,  NAME
+		    ,  AUDI_RATING
 		FROM   MOVIE
 		ORDER BY LENGTH(MOVIE_CODE), MOVIE_CODE
 	</select>

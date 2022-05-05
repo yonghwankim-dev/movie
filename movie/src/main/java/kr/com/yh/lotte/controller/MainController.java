@@ -24,7 +24,7 @@ public class MainController extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<MovieVO> movieList = movieService.getMovieMain();
 		req.setAttribute("movieList", movieList);
 		req.getRequestDispatcher("/view/main.jsp").forward(req, resp);

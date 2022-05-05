@@ -10,60 +10,29 @@ package kr.com.yh.lotte.vo;
  */
 public class CinemaVO {
 	private String cinema_code;		// 영화관 코드
-	private String cinema_name;		// 영화관 이름
-	private String cinema_location;	// 영화관 지역
+	private String name;		// 영화관 이름
+	private String loc;	// 영화관 지역
 	
 	public CinemaVO() {
 		
 	}
 
-	public CinemaVO(Builder builder) {
-		this.cinema_code = builder.cinema_code;
-		this.cinema_name = builder.cinema_name;
-		this.cinema_location = builder.cinema_location;
+	public CinemaVO(String cinema_code, String name, String loc) {
+		this.cinema_code = cinema_code;
+		this.name = name;
+		this.loc = loc;
 	}
-	
-	public static class Builder{
-		private String cinema_code;		// 영화관 코드
-		private String cinema_name;		// 영화관 이름
-		private String cinema_location;	// 영화관 지역
-		
-		public Builder(String cinema_code) {
-			this.cinema_code = cinema_code;
-		}
-		
-		public Builder cinema_name(String cinema_name) {
-			this.cinema_name = cinema_name;
-			return this;
-		}
-		
-		public Builder cinema_location(String cinema_location) {
-			this.cinema_location = cinema_location;
-			return this;
-		}
-		
-		public CinemaVO build() {
-			return new CinemaVO(this);
-		}
-	}
-	
+
 	public String getCinema_code() {
 		return cinema_code;
 	}
 
-	public String getCinema_name() {
-		return cinema_name;
+	public String getName() {
+		return name;
 	}
 
-	public String getCinema_location() {
-		return cinema_location;
+	public String getLoc() {
+		return loc;
 	}
-
-	@Override
-	public String toString() {
-		return "CinemaVO [cinema_code=" + cinema_code + ", cinema_name=" + cinema_name + ", cinema_location="
-				+ cinema_location + "]";
-	}
-	
-	
+		
 }

@@ -27,12 +27,15 @@
 	 -->
 	<typeAlias alias="cinemaVo" 		type="kr.com.yh.lotte.vo.CinemaVO"/>
 	<typeAlias alias="memberVo" 		type="kr.com.yh.lotte.vo.MemberVO"/>
-	<typeAlias alias="movieticketVo"	type="kr.com.yh.lotte.vo.MovieTicketVO"/>
 	<typeAlias alias="movieVo" 			type="kr.com.yh.lotte.vo.MovieVO"/>
 	<typeAlias alias="screenVo" 		type="kr.com.yh.lotte.vo.ScreenVO"/>
 	<typeAlias alias="seatVo" 			type="kr.com.yh.lotte.vo.SeatVO"/>
 	<typeAlias alias="theaterVo" 		type="kr.com.yh.lotte.vo.TheaterVO"/>
-	<typeAlias alias="ticketingVo" 		type="kr.com.yh.lotte.vo.TicketingVO"/>
+	<typeAlias alias="bookseatVo" 		type="kr.com.yh.lotte.vo.BookSeatVO"/>
+	<typeAlias alias="bookVo" 			type="kr.com.yh.lotte.vo.BookVO"/>
+	<typeAlias alias="screenschseatVo" 	type="kr.com.yh.lotte.vo.ScreenSchSeatVO"/>
+	<typeAlias alias="screenschVo" 		type="kr.com.yh.lotte.vo.ScreenSchVO"/>
+	
 
 	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.wrapper.CinemaLocationVO"/>
 	<typeAlias alias="screenDateVo" 	type="kr.com.yh.lotte.vo.wrapper.ScreenDateVO"/>

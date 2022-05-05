@@ -77,15 +77,7 @@
 	  	<div class="msg" id="checkPw"></div>
 	  </div>
 	</div>
-	
-	<div class="form-group">
-	  <label class="col-sm-3 control-label" for="joinNic">별명</label>
-	  <div class="col-sm-9">
-	    <input type="text" class="form-control" id="joinNic" required name="nickName">
-	  	<div class="msg" id="checkNick"></div>
-	  </div>
-	</div>
-	
+		
 	<div class="form-group">
 	  <label class="col-sm-3 control-label" for="option1">성별</label>
 	  <div class="col-sm-9">
@@ -156,28 +148,6 @@ $('#joinId').on('keyup', function() {
 				$('#checkId').html("아이디를 입력해주세요.").css('color', 'orange');
 			} else {
 				$('#checkId').html(a.msg).css('color', 'red');
-			}
-		},
-		error : function(xhr) {
-			alert(xhr.status);
-		},
-		dataType : 'json'
-	});
-});
-
-$('#joinNic').on('keyup', function() {
-	$.ajax({
-		url : '<%=request.getContextPath() %>/checkNick.do',
-		type : 'post',
-		data : {'nickName' : $('#joinNic').val()},
-		success : function(a) {
-			if(a.code == 'ok' && $('#joinNic').val() != "") {
-				$('#checkNick').html(a.msg).css('color', 'green');
-			} else if($('#joinNic').val() == "") {
-				$('#checkNick').html("별명을 입력해주세요.").css('color', 'orange');
-			} 
-			else {
-				$('#checkNick').html(a.msg).css('color', 'red');
 			}
 		},
 		error : function(xhr) {

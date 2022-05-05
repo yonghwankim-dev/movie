@@ -31,7 +31,6 @@ public class JoinDaoImpl implements IJoinDao {
 		try {
 			cnt = smc.update("join.insertMember", vo);
 		} catch (SQLException e) {
-//			throw new RuntimeException("회원가입중 예외 발생");
 			e.printStackTrace();
 		}
 		return cnt;
@@ -53,6 +52,25 @@ public class JoinDaoImpl implements IJoinDao {
 		} catch (SQLException e) {
 			throw new RuntimeException("ID 중복체크중 예외 발생");
 		}
+		return chk;
+	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		boolean chk = false;
+		
+		int cnt = 0;
+
+		try {
+			cnt = (int) smc.queryForObject("join.checkEmail", email);
+			
+			if(cnt > 0){
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return chk;
 	}
 

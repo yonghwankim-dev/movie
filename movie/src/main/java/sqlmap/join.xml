@@ -4,98 +4,101 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 			
-			
 <sqlMap namespace="join">
-	<resultMap class="memberVO" id="joinMap">
+	
+	<resultMap class="memberVo" id="joinMap">
 		<result property="mem_code" 	column="MEM_CODE"/>
-		<result property="mem_name" 	column="MEM_NAME"/>
-		<result property="mem_sex" 		column="MEM_SEX"/>
-		<result property="mem_birth" 	column="MEM_BIRTH"/>
-		<result property="mem_phone" 	column="MEM_PHONE"/>
-		<result property="mem_addr" 	column="MEM_ADDR"/>
-		<result property="mem_email" 	column="MEM_EMAIL"/>
-		<result property="mem_id" 		column="MEM_ID"/>
-		<result property="mem_pwd" 		column="MEM_PWD"/>
+		<result property="name" 		column="NAME"/>
+		<result property="birthday" 	column="BIRTHDAY"/>
+		<result property="contact" 		column="CONTACT"/>
+		<result property="addr" 		column="ADDR"/>
+		<result property="email" 		column="EMAIL"/>
+		<result property="id" 			column="ID"/>
+		<result property="pwd" 			column="PWD"/>
+		<result property="gender" 		column="GENDER"/>
 	</resultMap>
-
+	
 	<!-- 회원가입 -->
-	<!--
-	<insert id="insertMember" parameterClass="kr.or.ddit.lottecgvbox.vo.JoinVO">
+	<insert id="insertMember" parameterClass="memberVo">
 	
 	<selectKey keyProperty="num" resultClass="int">
-		SELECT MEMBER_NUM_SEQ.NEXTVAL FROM DUAL
+		SELECT MEM_CODE_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
-		INSERT INTO MEMBER (
-		MEM_CD,
-		MEM_NM,
-		MEM_NUM,
-		MEM_ID,
-		MEM_PW,
-		MEM_NIC,
-		MEM_GD,
-		MEM_BIR,
-		MEM_ADD,
-		MEM_ZIP,
-		MEM_EM)
+		INSERT INTO MEM (
+		MEM_CODE,
+		NAME,
+		BIRTHDAY,
+		CONTACT,
+		ADDR,
+		EMAIL,
+		ID,
+		PWD,
+		GENDER
+		)
 		VALUES(
-		member_num_seq.nextval,
+		'MEM' || mem_code_seq.nextval,
 		#name#,
-		#tel#,
+		#birthday#,
+		#contact#,
+		#addr#,
+		#email#,
 		#id#,
-		#pw#,
-		#nickName#,
-		#gender#,
-		TO_DATE(#bir#, 'YYYY/MM/DD'),
-		#add#,
-		#zip#,
-		#email#)
+		#pwd#,
+		#gender#
+		)
 	</insert>
-	-->
 
 	<!-- ID 중복조회 -->
 	<select id="checkMember" resultClass="int" parameterClass="string">
 		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE MEM_ID = #id#
+		FROM MEM
+		WHERE ID = #id#
 	</select>
+	
+	<!-- Email 중복조회 -->
+	<select id="checkEmail" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE EMAIL = #email#
+	</select>	
 
 	<!-- 닉네임 중복조회 -->
 	<select id="checkNick" resultClass="int" parameterClass="string">
 		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE MEM_ID = #nickName#
+		FROM MEM
+		WHERE ID = #nickName#
 	</select>
 	
 	<!-- 로그인아이디 비밀번호 체크 -->
 	<select id="checkLogin" resultClass="int" parameterClass="map">
 		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE MEM_ID = #id#
-		AND MEM_PWD = #pw#
+		FROM MEM
+		WHERE ID = #id#
+		AND PWD = #pw#
 	</select>
 
 	<select id="getName" resultClass="String" parameterClass="map">
-		SELECT MEM_NAME
-		FROM MEMBER
-		WHERE MEM_ID = #id#
-		AND MEM_PWD = #pw#	
+		SELECT NAME
+		FROM MEM
+		WHERE ID = #id#
+		AND PWD = #pw#	
 	</select>
 	
 	<select id="getMemCode" parameterClass="String" resultClass="String">
 		SELECT MEM_CODE
-		FROM   MEMBER
-		WHERE  MEM_ID = #id#
+		FROM   MEM
+		WHERE  ID = #id#
 	</select>
 	
 	<delete id="deleteMember" parameterClass="String">
-		DELETE FROM MEMBER
-		WHERE MEM_PWD = #pw#
+		DELETE FROM MEM
+		WHERE PWD = #pw#
 	</delete>
 	
 	<select id="searchLoginId" resultClass="String" parameterClass="map">
 		SELECT MEM_ID
-		FROM MEMBER
-		WHERE MEM_NM = #searchName#
-		AND MEM_NUM = #searchTel#
+		FROM MEM
+		WHERE NAME = #searchName#
+		AND CONTACT = #searchTel#
 	</select>
 </sqlMap>

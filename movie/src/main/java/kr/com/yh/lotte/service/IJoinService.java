@@ -13,6 +13,9 @@ public interface IJoinService {
 	
 	// 중복ID 조회
 	public boolean checkMember(String id);
+
+	// 중복Email 조회
+	public boolean checkEmail(String email);
 	
 	// 중복 닉네임 조회
 	public boolean checkNickName(String nickName);
@@ -26,7 +29,9 @@ public interface IJoinService {
 	// 회원코드 조회
 	public String getMemCd(String id);
 	
+	// 회원 삭제
 	public int deleteMember(String pw);
-	
+
+	// 로그인 아이디 탐색
 	public String searchLoginId(Map<String, Object> map);
 }

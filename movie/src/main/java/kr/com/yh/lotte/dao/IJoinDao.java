@@ -13,6 +13,9 @@ public interface IJoinDao {
 	
 	// 중복ID 조회
 	public boolean checkMember(String id);
+
+	// 중복 Email 조회
+	public boolean checkEmail(String email);
 	
 	// 중복 닉네임 조회
 	public boolean checkNickName(String nickName);
@@ -30,4 +33,6 @@ public interface IJoinDao {
 	public int deleteMember(String pw);
 	
 	public String searchLoginId(Map<String, Object> map);
+
+	
 }

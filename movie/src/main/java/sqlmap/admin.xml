@@ -3,7 +3,7 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="admin">
-	
+	<!--
 	<resultMap class="screenDateVo" id="ScreenDateMap">
 		<result property="screen.screen_code" 	column="screen_code"/>
 		<result property="screen.screen_date" 	column="screen_date"/>
@@ -51,6 +51,7 @@
 			#[]#
 		</iterate>
 	</delete>
+	-->
 </sqlMap>			
 
 

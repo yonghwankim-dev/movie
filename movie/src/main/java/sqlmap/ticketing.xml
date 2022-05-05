@@ -5,12 +5,14 @@
 <sqlMap namespace="ticketing">
 	
 	<!-- 지역 맵 -->
+	<!--
 	<resultMap class="cinemalocationVo" id="LocationMap">
 		<result property="cinemaVO.cinema_location" column="cinema_location"/>
 		<result property="cinema_cnt" column="cinema_cnt"/>
 	</resultMap>
-	
+	-->
 	<!-- 상영 일자 맵-->
+	<!--
 	<resultMap class="screenDateVo" id="ScreenDateMap">
 		<result property="screen.screen_code" 		column="screen_code"/>
 		<result property="screen.screen_date" 		column="screen_date"/>
@@ -21,8 +23,9 @@
 		<result property="theater.theater_name" 	column="theater_name"/>
 		<result property="cur_seat" 				column="cur_seat"/>	
 	</resultMap>
-	
+	-->
 	<!-- 영화 정보 맵 -->
+	<!--
 	<resultMap class="movieInfoVo" id="movieInfoMap">
 		<result property="movie.movie_title" 		column="movie_title"/>
 		<result property="movie.movie_spectator" 	column="movie_spectator"/>
@@ -32,8 +35,10 @@
 		<result property="cinema.cinema_name" 		column="cinema_name"/>
 		<result property="theater.theater_name" 	column="theater_name"/>
 	</resultMap>	
+	-->
 	
 	<!-- 지역 리스트 반환 -->
+	<!--
 	<select id="getLocationList" resultMap="LocationMap">
 		SELECT CINEMA_LOCATION
 			 , COUNT(*) AS CINEMA_CNT
@@ -41,8 +46,10 @@
         GROUP BY CINEMA_LOCATION
         ORDER BY CINEMA_LOCATION
 	</select>
+	-->
 			
 	<!-- 영화관 리스트 반환 -->
+	<!--
 	<select id="getCinemaList" resultClass="cinemaVo">
 		SELECT CINEMA_CODE
 			 , CINEMA_NAME
@@ -50,8 +57,10 @@
 		FROM   CINEMA
 		ORDER BY CINEMA_LOCATION, CINEMA_NAME
 	</select>
+	-->
 	
 	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
+	<!--
 	<select id="getMoviesByCinemaNameAndMovieTitle" parameterClass="Map" resultClass="movieVo">
 		SELECT DISTINCT M.MOVIE_TITLE, M.MOVIE_CODE, M.MOVIE_SPECTATOR
 		FROM SCREEN S
@@ -67,8 +76,10 @@
 			</isNotNull>
         </dynamic>
 	</select>
+	-->
 	
 	<!-- 영화관 지점의 상영시간 리스트 반환 -->
+	<!--
 	<select id="findAllScreenListByCinemaName" parameterClass="Map" resultMap="ScreenDateMap">
 		SELECT sc.screen_code
 		    ,  m.movie_title
@@ -99,8 +110,9 @@
         </dynamic>
 		ORDER BY m.movie_title		
 	</select>
-	
+	-->
 	<!-- 선택한 영화의 정보 반환-->
+	<!--
 	<select id="getMovieInfoByScreenCode" parameterClass="String" resultMap="movieInfoMap">
 		SELECT m.movie_title
 			,  s.screen_date
@@ -116,6 +128,7 @@
      		 INNER JOIN cinema c ON th.cinema_code = c.cinema_code
 		WHERE s.screen_code = #screen_code#
 	</select>
+	-->
 	
 	<!-- 선택한 영화 예매-->
 	<!--

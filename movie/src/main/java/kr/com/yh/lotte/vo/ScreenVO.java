@@ -11,6 +11,7 @@ import java.sql.Date;
  * @date 2022-05-05
  */
 public class ScreenVO {
+	private String screen_code;		// 상영코드
 	private String movie_code;		// 영화코드
 	private String theater_code;	// 상영관코드
 	private Date start_date;		// 시작일자
@@ -19,12 +20,17 @@ public class ScreenVO {
 	public ScreenVO() {
 		
 	}
-	
-	public ScreenVO(String movie_code, String theater_code, Date start_date, Date end_date) {
+
+	public ScreenVO(String screen_code, String movie_code, String theater_code, Date start_date, Date end_date) {
+		this.screen_code = screen_code;
 		this.movie_code = movie_code;
 		this.theater_code = theater_code;
 		this.start_date = start_date;
 		this.end_date = end_date;
+	}
+	
+	public String getScreen_code() {
+		return screen_code;
 	}
 
 	public String getMovie_code() {
@@ -45,7 +51,9 @@ public class ScreenVO {
 
 	@Override
 	public String toString() {
-		return "ScreenVO [movie_code=" + movie_code + ", theater_code=" + theater_code + ", start_date=" + start_date
-				+ ", end_date=" + end_date + "]";
-	}	
+		return "ScreenVO [screen_code=" + screen_code + ", movie_code=" + movie_code + ", theater_code=" + theater_code
+				+ ", start_date=" + start_date + ", end_date=" + end_date + "]";
+	}
+	
+		
 }

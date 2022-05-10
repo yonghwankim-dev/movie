@@ -12,7 +12,7 @@
     <div class="admin_column admin_menu">
         <ul>
             <li>
-                <a href="#">상영관리</a>
+                <a href="/movie/admin/admin.do">상영관리</a>
             </li>
         </ul>
     </div>
@@ -24,37 +24,49 @@
                         <thead>
                             <tr>
                                 <td>구분</td>
-                                <td>상영코드</td>
+                                <td>영화코드</td>
                                 <td>영화제목</td>
+                                <td>지역</td>
+                                <td>지점명</td>
+                                <td>상영관코드</td>
                                 <td>상영관이름</td>
-                                <td>상영일자</td>
-                                <td>상영시간</td>
+                                <td>상영시작일자</td>
+                                <td>상영종료일자</td>
                             </tr>
                         </thead>
                         <tbody>
-                        	<c:forEach var="s" items="${screens}" varStatus="status">
+                        	<c:forEach var="s" items="${screenAdmin}" varStatus="status">
                         		<tr>
                         			<td>
                         				<input type="checkbox" name="screen_code" value="${s.screen.screen_code}"/>	
                         			</td>
                         			<td>
-                                    	<span>${s.screen.screen_code}</span>
+                                    	<span>${s.movie.movie_code}</span>
 	                                </td>
 	                                <td>
-	                                    <span>${s.movie.movie_title}</span>
+                                    	<span>${s.movie.name}</span>
 	                                </td>
 	                                <td>
-	                                    <span>${s.theater.theater_name}</span>
+                                    	<span>${s.cinema.loc}</span>
 	                                </td>
 	                                <td>
-	                                    <span>
-	                                    	<fmt:formatDate value="${s.screen.screen_date}" pattern="YYYY-MM-dd" type="date"/>
-	                                    </span>
+                                    	<span>${s.cinema.name}</span>
 	                                </td>
 	                                <td>
-	                                    <span>
-	                                    	<fmt:formatDate value="${s.screen.screen_time}" pattern="HH:MM" type="time"/>
-	                                    </span>
+                                    	<span>${s.theater.theater_code}</span>
+	                                </td>
+	                                <td>
+                                    	<span>${s.theater.name}</span>
+	                                </td>
+	                                <td>
+                                    	<span>
+                                    		<fmt:formatDate value="${s.screen.start_date}" pattern="YYYY-MM-dd" type="date"/>
+                                    	</span>
+	                                </td>
+	                                <td>	                                
+                                    	<span>
+                                    		<fmt:formatDate value="${s.screen.end_date}" pattern="YYYY-MM-dd" type="date"/>
+                                    	</span>
 	                                </td>
                         		</tr>
                         	</c:forEach>
@@ -96,7 +108,7 @@ $('#screenDeleteBtn').on('click', function() {
 
 
 <!-- 상영일정 추가 팝업 내용 -->
-<jsp:include page="./screen_add.jsp" />
+<jsp:include page="./screenAdd.jsp" />
 <!-- //상영일정 추가 팝업 내용 -->
 
 

@@ -3,55 +3,65 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="admin">
-	<!--
-	<resultMap class="screenDateVo" id="ScreenDateMap">
+	
+	<resultMap class="screenAdminVo" id="screenAdminMap">
 		<result property="screen.screen_code" 	column="screen_code"/>
-		<result property="screen.screen_date" 	column="screen_date"/>
-		<result property="screen.screen_time" 	column="screen_time"/>
-		<result property="movie.movie_title" 	column="movie_title"/>
-		<result property="theater.theater_name" column="theater_name"/>
+		<result property="movie.movie_code" 	column="movie_code"/>
+		<result property="movie.name" 	        column="movie_name"/>
+		<result property="cinema.loc" 	        column="loc"/>
+		<result property="cinema.name" 	        column="cinema_name"/>
+		<result property="theater.theater_code" column="theater_code"/>
+		<result property="theater.name" 		column="th_name"/>
+		<result property="screen.start_date" 	column="start_date"/>
+		<result property="screen.end_date" 		column="end_date"/>
 	</resultMap>
 	
-	<select id="getAllScreenDate" resultMap="ScreenDateMap">
+	<select id="getAllScreenAdmin" resultMap="screenAdminMap">
 		SELECT S.SCREEN_CODE
-			,  M.MOVIE_TITLE
-			,  TH.THEATER_NAME
-			,  S.SCREEN_DATE
-			,  S.SCREEN_TIME
+			,  M.MOVIE_CODE
+            ,  M.NAME MOVIE_NAME
+            ,  C.LOC
+            ,  C.NAME CINEMA_NAME
+            ,  TH.THEATER_CODE
+			,  TH.NAME TH_NAME
+			,  S.START_DATE
+			,  S.END_DATE
 		FROM   SCREEN S
 			   INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
 			   INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
-		ORDER BY LENGTH(S.SCREEN_CODE), S.SCREEN_CODE
+               INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE     
+		ORDER BY M.NAME, TH.NAME
 	</select>
 	
-	<select id="getMovieCodeByMovieTitle" parameterClass="String" resultClass="String">
+	
+	<select id="getMovieCodeByMovieName" parameterClass="String" resultClass="String">
 		SELECT MOVIE_CODE
 		FROM MOVIE
-		WHERE MOVIE_TITLE = #movie_title#
+		WHERE NAME = #movie_title#
 	</select>
 	
-	<select id="getTheaterCodeByTheaterName" parameterClass="Map" resultClass="String">
+	<select id="getTheaterCodeByCinemaNameAndTheaterName" parameterClass="Map" resultClass="String">
 		SELECT THEATER_CODE
 		FROM THEATER TH INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
-		WHERE TH.THEATER_NAME = #theater_name# and C.CINEMA_NAME = #cinema_name#  
+		WHERE TH.NAME = #theater_name# and C.NAME = #cinema_name#  
 	</select>
 	
+
 	<insert id="insertScreen" parameterClass="screenVo">
 		<selectKey keyProperty="screen_code" resultClass="integer">
 			SELECT SCREEN_CODE_SEQ.NEXTVAL AS SCREEN_CODE FROM DUAL
 		</selectKey>
 			
-		INSERT INTO SCREEN(SCREEN_CODE, MOVIE_CODE, THEATER_CODE, SCREEN_DATE, SCREEN_TIME)
-		VALUES('screen_' || SCREEN_CODE_SEQ.NEXTVAL, #movie_code#, #theater_code#, #screen_date#, #screen_time#)
+		INSERT INTO SCREEN(SCREEN_CODE, MOVIE_CODE, THEATER_CODE, START_DATE, END_DATE)
+		VALUES('SCREEN' || SCREEN_CODE_SEQ.NEXTVAL, #movie_code#, #theater_code#, #start_date#, #end_date#)
 	</insert>
-
+	
 	<delete id="deleteScreen" parameterClass="java.util.List">
 		DELETE FROM SCREEN 
 		<iterate prepend="WHERE SCREEN_CODE IN" open="(" close=")" conjunction=",">
 			#[]#
 		</iterate>
 	</delete>
-	-->
 </sqlMap>			
 
 

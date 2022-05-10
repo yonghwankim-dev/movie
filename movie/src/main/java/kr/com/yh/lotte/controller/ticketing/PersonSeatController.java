@@ -18,7 +18,7 @@ import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
+import kr.com.yh.lotte.vo.component.MovieInfoVO;
 
 @WebServlet("/personSeat.do")
 public class PersonSeatController extends HttpServlet {

@@ -6,13 +6,23 @@ import java.util.Map;
 
 
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 
 public interface IAdminService {
 	/**
-	 * 관리자가 상영일정을 관리하기 위해서 모든 상영일정을 가져옴
-	 * @return 모든 상영일정이 담긴 리스트
+	 * 관리자가 관리하는 상영일정 정보를 가져옴
+	 * - 영화코드
+	 * - 영화제목
+	 * - 지역
+	 * - 영화관 이름
+	 * - 상영관 코드
+	 * - 상영관 이름
+	 * - 상영시작 일자
+	 * - 상영종료 일자
+	 * @param cinema_name 영화관 지점
+	 * @return 모든 상영일정 정보가 담긴 리스트
 	 */
-	public List<ScreenVO> getAllScreenDate();
+	public List<ScreenAdminVO> getAllScreenAdmin();
 	
 	/**
 	 * 관리자가 상영일정을 추가함
@@ -24,17 +34,17 @@ public interface IAdminService {
 	
 	/**
 	 * 영화제목의 영화코드 반환
-	 * @param movie_title 영화제목
+	 * @param movie_name 영화제목
 	 * @return 영화코드
 	 */
-	public String getMovieCodeByMovieTitle(String movie_title);
+	public String getMovieCodeByMovieName(String movie_name);
 
 	/**
 	 * 상영관이름을 통한 상영 코드 반환
 	 * @param map 영화관지점, 상영관이름 key-value로 저장
 	 * @return
 	 */
-	public String getTheaterCodeByTheaterName(Map<String,String> map);
+	public String getTheaterCodeByCinemaNameAndTheaterName(Map<String,String> map);
 	
 	/**
 	 * 상영일정들을 제거

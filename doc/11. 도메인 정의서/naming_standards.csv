@@ -39,3 +39,4 @@
 상영관,theater,theater,X,X,X,X
 영화,movie,movie,X,X,X,X
 영화관,cinema,cinema,X,X,X,X
+상영코드,screen_code,screen_code,X,X,X,X

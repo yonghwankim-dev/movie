@@ -7,7 +7,7 @@
 
 <!-- 여기부터 페이지 내용 -->
 <div class="join-form form-horizontal">
-  <form action="join.do" method="post">
+  <form action="join.do" method="post" id="joinFrm">
   	<div class="form-group">
   	  <label class="col-sm-3 control-label" for="joinNm">이름</label>
   	  <div class="col-sm-9">
@@ -131,7 +131,7 @@
 	  </div>
 	</div>
 	
-	<input type="submit" value="회원가입" class="btn btn-danger submit-join">
+	<input type="submit" value="회원가입" id="joinBtn" class="btn btn-danger submit-join">
   </form>
 </div>
 <script>
@@ -165,6 +165,28 @@ $('#joinPwCheck, #joinPw').on('keyup', function() {
 	} else {
 		$('#checkPw').html("비밀번호를 다시한번 확인해주세요.").css('color', 'red');
 	}
+});
+
+$('#joinBtn').on('click', function() {
+	$.ajax({
+		url : '<%=request.getContextPath() %>/join.do',
+		type : 'post',
+		data : $('#joinFrm').serialize(),
+		success : function(data) {
+			if(data.code == 'ok'){
+				alert("회원가입에 성공하셨습니다.");
+				location.href = '<%= request.getContextPath() %>/successJoin.do'; 
+			}
+			else{
+				alert("회원가입에 실패하셨습니다.");
+				location.href = '<%= request.getContextPath() %>/join.do';
+			}
+		},
+		error : function(xhr) {
+			alert(xhr.status);
+		},
+		dataType : 'json'
+	});
 });
 
 function findAddr() {

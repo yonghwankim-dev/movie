@@ -37,9 +37,10 @@
 	<typeAlias alias="screenschVo" 		type="kr.com.yh.lotte.vo.ScreenSchVO"/>
 	
 
-	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.wrapper.CinemaLocationVO"/>
-	<typeAlias alias="screenDateVo" 	type="kr.com.yh.lotte.vo.wrapper.ScreenDateVO"/>
-	<typeAlias alias="movieInfoVo" 		type="kr.com.yh.lotte.vo.wrapper.MovieInfoVO"/>
+	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.component.CinemaLocationVO"/>
+	<typeAlias alias="screenAdminVo" 	type="kr.com.yh.lotte.vo.component.ScreenAdminVO"/>
+	<typeAlias alias="movieInfoVo" 		type="kr.com.yh.lotte.vo.component.MovieInfoVO"/>
+	<typeAlias alias="movieScreenSchVo" type="kr.com.yh.lotte.vo.component.MovieScreenSchVO"/>
 
 	<!--
 		DB와의 연결을 처리하는 부분
@@ -83,6 +84,7 @@
 	-->
 	<sqlMap resource="sqlmap/admin.xml"/>
 	<sqlMap resource="sqlmap/movie.xml"/>
+	<sqlMap resource="sqlmap/cinema.xml"/>
 	<sqlMap resource="sqlmap/join.xml"/>
 	<sqlMap resource="sqlmap/ticketing.xml"/>
 </sqlMapConfig>

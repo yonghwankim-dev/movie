@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
 import kr.com.yh.lotte.vo.MemberVO;
+import kr.com.yh.util.UpdateResult;
 
 
 
@@ -36,25 +37,21 @@ public class CheckIdController extends HttpServlet {
 		
 		boolean checkId = joinService.checkMember(id);
 		
-		Gson gson = new Gson();
-		String jsonData = null;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		UpdateResult result = new UpdateResult(resp);
 		
 		if (checkId) {
-			map.put("code", "no");
-			map.put("id", id);
-			map.put("msg", "이미 존재하는 아이디입니다.");
+			result.addToResMap("code", "no");
+			result.addToResMap("id", id);
+			result.addToResMap("msg", "이미 존재하는 아이디입니다.");
 		} else {
-			map.put("code", "ok");
-			map.put("id", id);
-			map.put("msg", "사용 가능한 아이디입니다.");
+			result.addToResMap("code", "ok");
+			result.addToResMap("id", id);
+			result.addToResMap("msg", "사용 가능한 아이디입니다.");
 		}
 		
-		jsonData = gson.toJson(map);
-		PrintWriter out = resp.getWriter();
-		out.write(jsonData);
-		out.flush();
+		result.write();
+		
 	}
 	
 	

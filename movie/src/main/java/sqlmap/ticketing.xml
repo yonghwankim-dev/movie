@@ -4,26 +4,24 @@
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ticketing">
 	
-	<!-- 지역 맵 -->
-	<!--
-	<resultMap class="cinemalocationVo" id="LocationMap">
-		<result property="cinemaVO.cinema_location" column="cinema_location"/>
-		<result property="cinema_cnt" column="cinema_cnt"/>
-	</resultMap>
-	-->
+
 	<!-- 상영 일자 맵-->
-	<!--
-	<resultMap class="screenDateVo" id="ScreenDateMap">
-		<result property="screen.screen_code" 		column="screen_code"/>
-		<result property="screen.screen_date" 		column="screen_date"/>
-		<result property="screen.screen_time" 		column="screen_time"/>
-		<result property="movie.movie_title" 		column="movie_title"/>
-		<result property="movie.movie_spectator" 	column="movie_spectator"/>
-		<result property="theater.theater_seat_num" column="theater_seat_num"/>
-		<result property="theater.theater_name" 	column="theater_name"/>
-		<result property="cur_seat" 				column="cur_seat"/>	
+	<resultMap class="movieScreenSchVo" id="movieScreenSchMap">
+		<result property="screenSch.screen_sch_code" 		column="screen_sch_code"/>
+		<result property="screenSch.screen_date" 			column="screen_date"/>
+		<result property="screenSch.start_time" 			column="start_time"/>
+		<result property="screenSch.end_time" 				column="end_time"/>
+		<result property="screenSch.screen_num" 			column="screen_num"/>
+		<result property="screenSch.movie_code" 			column="movie_code"/>
+		<result property="screenSch.theater_code" 			column="theater_code"/>
+		<result property="screenSch.screen_code" 			column="screen_code"/>
+		<result property="theater.name" 					column="theater_name"/>
+		<result property="theater_seat_cnt" 				column="theater_seat_cnt"/>
+		<result property="book_seat_cnt" 					column="book_seat_cnt"/>
+		<result property="movie.name" 						column="movie_name"/>
+		<result property="movie.audi_rating" 				column="audi_rating"/> 	
 	</resultMap>
-	-->
+	
 	<!-- 영화 정보 맵 -->
 	<!--
 	<resultMap class="movieInfoVo" id="movieInfoMap">
@@ -37,80 +35,68 @@
 	</resultMap>	
 	-->
 	
-	<!-- 지역 리스트 반환 -->
-	<!--
-	<select id="getLocationList" resultMap="LocationMap">
-		SELECT CINEMA_LOCATION
-			 , COUNT(*) AS CINEMA_CNT
-		FROM   CINEMA
-        GROUP BY CINEMA_LOCATION
-        ORDER BY CINEMA_LOCATION
-	</select>
-	-->
-			
-	<!-- 영화관 리스트 반환 -->
-	<!--
-	<select id="getCinemaList" resultClass="cinemaVo">
-		SELECT CINEMA_CODE
-			 , CINEMA_NAME
-			 , CINEMA_LOCATION
-		FROM   CINEMA
-		ORDER BY CINEMA_LOCATION, CINEMA_NAME
-	</select>
-	-->
-	
 	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
-	<!--
-	<select id="getMoviesByCinemaNameAndMovieTitle" parameterClass="Map" resultClass="movieVo">
-		SELECT DISTINCT M.MOVIE_TITLE, M.MOVIE_CODE, M.MOVIE_SPECTATOR
+	<select id="getMoviesByCinemaNameAndMovieName" parameterClass="Map" resultClass="movieVo">
+		SELECT DISTINCT M.NAME, M.MOVIE_CODE, M.AUDI_RATING
 		FROM SCREEN S
         	INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
         	INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
         	INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
         <dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
-				C.CINEMA_NAME = #cinema_name#
+				C.NAME = #cinema_name#
 			</isNotNull>
-			<isNotNull prepend="AND" property="movie_title">
-				M.MOVIE_TITLE = #movie_title#
+			<isNotNull prepend="AND" property="movie_name">
+				M.NAME = #movie_name#
 			</isNotNull>
         </dynamic>
 	</select>
-	-->
 	
 	<!-- 영화관 지점의 상영시간 리스트 반환 -->
-	<!--
-	<select id="findAllScreenListByCinemaName" parameterClass="Map" resultMap="ScreenDateMap">
-		SELECT sc.screen_code
-		    ,  m.movie_title
-		    ,  m.movie_spectator
-		    , sc.screen_date
-		    , sc.screen_time
-		    , th.theater_seat_num
-		    , th.theater_name,
-		    (
-		      SELECT 156 - count(*)
-		      FROM screen s INNER JOIN movie_ticket mt ON s.screen_code = mt.screen_code 
-		      WHERE mt.mt_status = '선택가능' AND s.screen_code = sc.screen_code
-		     ) cur_seat    
-		FROM screen sc 
-		              INNER JOIN theater th ON sc.theater_code = th.theater_code
-		              INNER JOIN cinema c ON th.cinema_code = c.cinema_code
-		              INNER JOIN movie m on sc.movie_code = m.movie_code
+	<select id="findAllMovieScreenSchList" parameterClass="Map" resultMap="movieScreenSchMap">
+		SELECT SS.SCREEN_SCH_CODE
+		     , SS.SCREEN_DATE
+		     , SS.START_TIME
+		     , SS.END_TIME
+		     , SS.SCREEN_NUM
+		     , SS.MOVIE_CODE
+		     , SS.THEATER_CODE
+		     , SS.SCREEN_CODE
+		     , TH.NAME THEATER_NAME
+		     , (SELECT COUNT(*) THEATER_SEAT_CNT
+		        FROM THEATER TH
+		            INNER JOIN SEAT SE ON SE.THEATER_CODE = TH.THEATER_CODE
+		        WHERE TH.THEATER_CODE = 'TH1') THEATER_SEAT_CNT
+		     , (SELECT COUNT(*)
+		        FROM SCREEN_SCH SS
+		            INNER JOIN SCREEN_SCH_SEAT SSS ON SS.SCREEN_SCH_CODE = SSS.SCREEN_SCH_CODE
+		        WHERE SS.SCREEN_SCH_CODE = 'SS1' AND SSS.SEAT_STATUS = 'R') BOOK_SEAT_CNT
+		     , M.NAME MOVIE_NAME
+		     , M.AUDI_RATING
+		     
+		FROM SCREEN_SCH SS
+		    INNER JOIN SCREEN S ON SS.SCREEN_CODE = S.SCREEN_CODE
+		                        AND SS.MOVIE_CODE = S.MOVIE_CODE
+		                        AND SS.THEATER_CODE = S.THEATER_CODE
+		    INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
+		    INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
+		    INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
+
         <dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
-				C.CINEMA_NAME = #cinema_name#
+				C.NAME = #cinema_name#
 			</isNotNull>
-			<isNotNull prepend="AND" property="movie_title">
-				M.MOVIE_TITLE = #movie_title#
+			<isNotNull prepend="AND" property="movie_name">
+				M.NAME = #movie_name#
 			</isNotNull>
 			<isNotNull prepend="AND" property="screen_date">
-				SC.SCREEN_DATE = #screen_date#
+				SS.SCREEN_DATE = #screen_date#
 			</isNotNull>
         </dynamic>
-		ORDER BY m.movie_title		
+        
+        ORDER BY M.NAME
 	</select>
-	-->
+	
 	<!-- 선택한 영화의 정보 반환-->
 	<!--
 	<select id="getMovieInfoByScreenCode" parameterClass="String" resultMap="movieInfoMap">

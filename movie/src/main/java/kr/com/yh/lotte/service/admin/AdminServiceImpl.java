@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.com.yh.lotte.dao.admin.AdminDaoImpl;
 import kr.com.yh.lotte.dao.admin.IAdminDao;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 
 
 public class AdminServiceImpl implements IAdminService{
@@ -27,8 +28,8 @@ public class AdminServiceImpl implements IAdminService{
 	}
 	
 	@Override
-	public List<ScreenVO> getAllScreenDate() {
-		return adminDao.getAllScreenDate();
+	public List<ScreenAdminVO> getAllScreenAdmin(){
+		return adminDao.getAllScreenAdmin();
 	}
 
 	@Override
@@ -37,13 +38,13 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public String getMovieCodeByMovieTitle(String movie_title) {
-		return adminDao.getMovieCodeByMovieTitle(movie_title);
+	public String getMovieCodeByMovieName(String movie_name) {
+		return adminDao.getMovieCodeByMovieName(movie_name);
 	}
 
 	@Override
-	public String getTheaterCodeByTheaterName(Map<String,String> map) {
-		return adminDao.getTheaterCodeByTheaterName(map);
+	public String getTheaterCodeByCinemaNameAndTheaterName(Map<String,String> map) {
+		return adminDao.getTheaterCodeByCinemaNameAndTheaterName(map);
 	}
 
 	@Override

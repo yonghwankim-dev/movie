@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
+import kr.com.yh.util.UpdateResult;
 
 
 
@@ -43,17 +44,16 @@ public class LoginController extends HttpServlet {
 		String pw = req.getParameter("pw");
 		String adminLogin = req.getParameter("adminLogin");
 		
-		Map<String, Object> resMap = new HashMap<String, Object>();
-		Gson gson = new Gson();
-		String jsonData = null;
-		PrintWriter out = resp.getWriter();
+
+		UpdateResult result = new UpdateResult(resp);
+		
 		
 		// 관리자 로그인
 		if(adminLogin != null && id.equals("admin") && pw.equals("admin")) {
 			session.setAttribute("name", "관리자");
 			session.setAttribute("loginId", id);
 			session.setAttribute("loginPw", pw);
-			resMap.put("code", "ok");
+			result.addToResMap("code", "ok");
 		} else {
 			// 회원 로그인
 			Map<String, Object> memMap = new HashMap<String, Object>();
@@ -71,13 +71,12 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("memCd", memCd);
 				session.setAttribute("loginId", id);
 				session.setAttribute("loginPw", pw);
-				resMap.put("code", "ok");
+				result.addToResMap("code", "ok");
 			} else {
-				resMap.put("code", "no");
+				result.addToResMap("code", "no");
 			}
 		}
-		jsonData = gson.toJson(resMap);
-		out.write(jsonData);
-		out.flush();
+		
+		result.write();
 	}
 }

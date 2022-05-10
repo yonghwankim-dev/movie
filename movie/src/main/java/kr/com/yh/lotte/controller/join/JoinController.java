@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
 import kr.com.yh.lotte.vo.MemberVO;
+import kr.com.yh.util.UpdateResult;
 
 
 
@@ -68,21 +69,19 @@ public class JoinController extends HttpServlet {
 		
 		MemberVO mem = new MemberVO("", name, birthday, contact, addr, email, id, pw, gender);
 		
+		UpdateResult result = new UpdateResult(resp);
 		int cnt = 0;
 		
 		if(!joinService.checkEmail(mem.getEmail())){
 			cnt = joinService.insertMember(mem);
 		}
 		
-		String msg ="";
-		
 		if(cnt > 0) {
-			msg = "회원가입 성공";
-			resp.sendRedirect(req.getContextPath() + "/successJoin.do");
+			result.addToResMap("code", "ok");
 		} else {
-			msg = "회원가입 실패";
-			resp.sendRedirect(req.getContextPath() + "/join.do");
+			result.addToResMap("code", "no");
 		}
 		
+		result.write();
 	}
 }

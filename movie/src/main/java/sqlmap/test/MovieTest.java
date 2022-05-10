@@ -17,7 +17,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
-class movieTest {
+class MovieTest {
 
 	
 	private SqlMapClient smc;
@@ -39,5 +39,6 @@ class movieTest {
 		
 		Assert.assertNotNull(list);
 	}
+
 
 }

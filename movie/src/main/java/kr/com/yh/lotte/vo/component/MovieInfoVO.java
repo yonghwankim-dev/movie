@@ -1,4 +1,4 @@
-package kr.com.yh.lotte.vo.wrapper;
+package kr.com.yh.lotte.vo.component;
 
 import java.sql.Timestamp;
 

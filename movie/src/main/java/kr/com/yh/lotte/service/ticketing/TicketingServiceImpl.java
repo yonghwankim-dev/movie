@@ -1,17 +1,11 @@
 package kr.com.yh.lotte.service.ticketing;
 
 import java.util.List;
-import java.util.Map;
-
 import kr.com.yh.lotte.dao.ticketing.ITicketingDao;
 import kr.com.yh.lotte.dao.ticketing.TicketingDaoImpl;
-import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.TicketingVO;
-import kr.com.yh.lotte.vo.wrapper.CinemaLocationVO;
-import kr.com.yh.lotte.vo.wrapper.MovieInfoVO;
-import kr.com.yh.lotte.vo.wrapper.ScreenDateVO;
+import kr.com.yh.lotte.vo.component.MovieInfoVO;
+import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
 
 public class TicketingServiceImpl implements ITicketingService{
 
@@ -31,23 +25,13 @@ public class TicketingServiceImpl implements ITicketingService{
 	}
 	
 	@Override
-	public List<CinemaLocationVO> getLocationList() {
-		return ticketingDao.getLocationList();
+	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name) {
+		return ticketingDao.getMoviesByCinemaNameAndMovieName(cinema_name, movie_name);
 	}
 
 	@Override
-	public List<CinemaVO> getCinemaList() {
-		return ticketingDao.getCinemaList();
-	}
-	
-	@Override
-	public List<MovieVO> getMoviesByCinemaNameAndMovieTitle(String cinema_name, String movie_title) {
-		return ticketingDao.getMoviesByCinemaNameAndMovieTitle(cinema_name, movie_title);
-	}
-
-	@Override
-	public List<ScreenDateVO> findAllScreenListByCinemaName(String cinema_name, String movie_title, String screen_date) {
-		return ticketingDao.findAllScreenListByCinemaName(cinema_name, movie_title, screen_date);
+	public List<MovieScreenSchVO> findAllMovieScreenSchList(String cinema_name, String movie_name, String screen_date) {
+		return ticketingDao.findAllMovieScreenSchList(cinema_name, movie_name, screen_date);
 	}
 
 	@Override
@@ -55,13 +39,13 @@ public class TicketingServiceImpl implements ITicketingService{
 		return ticketingDao.getMovieInfoByScreenCode(screen_code);
 	}
 
-	@Override
-	public int insertTickting(TicketingVO ticketing) {
-		return ticketingDao.insertTickting(ticketing);
-	}
-
-	@Override
-	public int insertMovieTicket(TicketingVO ticketing) {
-		return ticketingDao.insertMovieTicket(ticketing);
-	}	
+//	@Override
+//	public int insertTickting(TicketingVO ticketing) {
+//		return ticketingDao.insertTickting(ticketing);
+//	}
+//
+//	@Override
+//	public int insertMovieTicket(TicketingVO ticketing) {
+//		return ticketingDao.insertMovieTicket(ticketing);
+//	}	
 }

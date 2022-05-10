@@ -25,6 +25,7 @@ import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.util.UpdateResult;
 
 @WebServlet("/admin/screen/delete.do")
 public class ScreenDeleteController extends HttpServlet {
@@ -42,30 +43,20 @@ public class ScreenDeleteController extends HttpServlet {
 		List<String> screen_codes = Arrays.asList(req.getParameterValues("screen_code"));
 		
 		// 삽입 결과
-		int cnt = 0;
-		Map<String, Object> resMap = new HashMap<String, Object>();
-		Gson gson = new Gson();
-		String jsonData = null;
-		PrintWriter out = resp.getWriter();
+		UpdateResult result = new UpdateResult(resp);
 				
 		// 상영코드 삭제 수행
-		cnt = adminService.deleteScreen(screen_codes);
+		int cnt = adminService.deleteScreen(screen_codes);
 		
 		if(cnt>0)	// 삭제 성공
 		{
-			resMap.put("code", "ok");
+			result.addToResMap("code", "ok");
 		}
-		else		// 삭젯 ㅣㄹ패
+		else		// 삭젯 실패
 		{
-			resMap.put("code", "no");
+			result.addToResMap("code", "no");
 		}
 		
-		jsonData = gson.toJson(resMap);
-		out.write(jsonData);
-		out.flush();
-		
-		
-		
-		
+		result.write();
 	}
 }

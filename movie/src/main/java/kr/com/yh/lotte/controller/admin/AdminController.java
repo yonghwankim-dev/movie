@@ -11,29 +11,39 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
+import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
+import kr.com.yh.lotte.service.cinema.ICinemaService;
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
+import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.component.ScreenAdminVO;
+import kr.com.yh.util.UpdateResult;
 
 @WebServlet("/admin/admin.do")
 public class AdminController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private IAdminService adminService;
+	private ICinemaService cinemaService;
 	
 	public AdminController() {
 		adminService = AdminServiceImpl.getInstance();
+		cinemaService = CinemaServiceImpl.getInstance();
 	}
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileNm = "admin/admin"; // 매칭되는 jsp 파일명(확장자 제외)
-
-		List<ScreenVO> screens = adminService.getAllScreenDate(); 
+		String fileNm = "admin/screenAdmin"; // 매칭되는 jsp 파일명(확장자 제외)
 		
-		req.setAttribute("screens", screens);
+		List<ScreenAdminVO> screenAdmin = adminService.getAllScreenAdmin(); 
+		List<CinemaVO> cinemas = cinemaService.getCinemaList();
+				
+		req.setAttribute("screenAdmin", screenAdmin);
+		req.setAttribute("cinemas", cinemas);
 		req.setAttribute("fileNm", fileNm);
+		
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);
 	}
 }

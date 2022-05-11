@@ -40,3 +40,4 @@
 영화,movie,movie,X,X,X,X
 영화관,cinema,cinema,X,X,X,X
 상영코드,screen_code,screen_code,X,X,X,X
+예약일자,book_date,book_date,X,X,X,X

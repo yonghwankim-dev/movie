@@ -42,9 +42,26 @@ public class TicketingDaoImpl implements ITicketingDao{
 		
 		return list;
 	}
+	
+	
 
 	@Override
-	public List<MovieScreenSchVO> findAllMovieScreenSchList(String cinema_name, String movie_name, String screen_date) {
+	public MovieScreenSchVO findAllMovieScreenSch(String screen_sch_code) {
+		MovieScreenSchVO screenSch = null;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("screen_sch_code", screen_sch_code);
+		
+		try {
+			screenSch = (MovieScreenSchVO) smc.queryForObject("ticketing.findAllMovieScreenSch", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return screenSch;
+	}
+
+	@Override
+	public List<MovieScreenSchVO> findAllMovieScreenSch(String cinema_name, String movie_name, String screen_date) {
 		List<MovieScreenSchVO> list = new ArrayList<MovieScreenSchVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cinema_name", cinema_name);
@@ -52,25 +69,12 @@ public class TicketingDaoImpl implements ITicketingDao{
 		map.put("screen_date", screen_date);
 		
 		try {
-			list = cinema_name != null ? smc.queryForList("ticketing.findAllMovieScreenSchList", map)
+			list = cinema_name != null ? smc.queryForList("ticketing.findAllMovieScreenSch", map)
 									   : null;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
-	}
-
-	@Override
-	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-		MovieInfoVO movieInfo = null;
-		
-		try {
-			movieInfo = (MovieInfoVO) smc.queryForObject("ticketing.getMovieInfoByScreenCode", screen_code);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return movieInfo;
 	}
 
 //	@Override

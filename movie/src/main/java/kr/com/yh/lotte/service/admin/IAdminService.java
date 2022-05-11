@@ -4,7 +4,7 @@ import java.util.List;
 
 import java.util.Map;
 
-
+import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 
@@ -52,4 +52,11 @@ public interface IAdminService {
 	 * @return 삭제한 상영일정 개수
 	 */
 	public int deleteScreen(List<String> screen_codes);
+
+	/**
+	 * 상영코드에 따른 상영일정 정보를 참조 
+	 * @param screen_code 상영코드
+	 * @return 상영일정 리스트
+	 */
+	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code);
 }

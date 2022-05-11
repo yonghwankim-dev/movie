@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+
+import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 import kr.com.yh.util.SqlMapClientFactory;
@@ -85,6 +87,18 @@ public class AdminDaoImpl implements IAdminDao{
 		}
 		
 		return cnt;
+	}
+
+	@Override
+	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code) {
+		List<ScreenSchVO> list = null;
+		
+		try {
+			list = smc.queryForList("admin.getScreenSchByScreenCode", screen_code);
+		} catch (SQLException e) {
+			System.out.println("getScreenSchByScreenCode 쿼리 에러" + e);
+		}
+		return list;
 	}
 	
 	

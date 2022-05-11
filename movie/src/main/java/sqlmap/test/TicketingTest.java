@@ -53,11 +53,27 @@ class TicketingTest {
 		map.put("screen_date", screen_date);
 		
 		try {
-			list = smc.queryForList("ticketing.findAllMovieScreenSchList", map);
+			list = smc.queryForList("ticketing.findAllMovieScreenSch", map);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		System.out.println(list);
 		Assert.assertNotNull(list);
+	}
+	
+	@Test
+	void findAllMovieScreenSchListByScreenSchCodeTest() {
+		MovieScreenSchVO movieScreenSch = new MovieScreenSchVO();
+		String screen_sch_code = "SS1";
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("screen_sch_code", screen_sch_code);
+		
+		try {
+			movieScreenSch = (MovieScreenSchVO) smc.queryForObject("ticketing.findAllMovieScreenSch", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(movieScreenSch);
 	}
 }

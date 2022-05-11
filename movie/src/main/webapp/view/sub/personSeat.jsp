@@ -22,27 +22,27 @@
                         <div class="group_infor">
                             <div class="bx_tit">
                             	<!-- 영화관람가 -->
-                                <span class="ic_grade gr_${movieInfo.movie.movie_spectator}"></span>
+                                <span class="ic_grade gr_${screenSch.movie.audi_rating}"></span>
                                 <!-- 영화제목 -->
-                                <strong>${movieInfo.movie.movie_title}</strong>
+                                <strong>${screenSch.movie.name}</strong>
                             </div>
                             <dl>
                                 <dt>일시</dt>
                                 <dd class="sub_info1">
                                 	<!-- 상영일자 -->
                                 	<span>
-                                		<fmt:formatDate value="${movieInfo.screen.screen_date}" pattern="yy.MM.dd(E)"/>
+                                		<fmt:formatDate value="${screenSch.screenSch.screen_date}" pattern="yy.MM.dd(E)"/>
                                 	</span>
                                 	<!-- 상영 시작/종료 시간 -->
                                     <span class="time">
-	                                    <fmt:formatDate value="${movieInfo.screen.screen_time}" pattern="HH:mm"/>
+                                    	${screenSch.screenSch.start_time}
 	                                    ~ 
-	                                    <fmt:formatDate value="${movieInfo.end_time}" pattern="HH:mm"/>
+                                    	${screenSch.screenSch.end_time}
                                     </span>
                                 </dd>
                                 <dt>영화관</dt>
                                 <!-- 영화관이름/상영관이름 -->
-                                <dd class="sub_info1">${movieInfo.cinema.cinema_name}.${movieInfo.theater.theater_name}</dd>
+                                <dd class="sub_info1">${screenSch.cinema.name}.${screenSch.theater.name}</dd>
                             </dl>
                         </div>
                     </div>
@@ -118,11 +118,13 @@
                     <div class="group_right">
 	                    <form id="payFrm" action="/movie/pay.do" method="post">
 			        		<!-- 예매일자 -->
-			        		<input class="hidden" name="ticket_date" value="${movieInfo.screen.screen_date}"/>
+			        		<input class="hidden" name="book_date" value="${screenSch.screenSch.screen_date}"/>
+			        		<!-- 상영관코드 -->
+			        		<input class="hidden" name="theater_code" value="${screenSch.theater.theater_code}"/>
 			        		<!-- 회원코드 -->
-			        		<input class="hidden" name="mem_code" value="${memCd}"/>
+			        		<input class="hidden" name="mem_code" value="${mem_code}"/>
 			        		<!-- 상영코드 -->
-			        		<input class="hidden" name="screen_code" value="${screen_code}"/>
+			        		<input class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
 			        		<!-- 청년 인원수 -->
 			        		<input id="input_person_10" class="hidden" name="person_10" value="0"/>
 			        		<!-- 성인 인원수 -->
@@ -135,7 +137,7 @@
 							<input id="input_seat" class="hidden" name="seat" value=""/>
 								        		
 	                        <a href="/movie/ticketing.do" class="back">뒤로가기</a>
-	                        <button type="button" id="payBtn" class="pay">결재하기</button>
+	                        <button type="button" id="bookSeatBtn" class="bookSeat">결재하기</button>
 	                    </form>
                     </div>
                 </div>
@@ -144,9 +146,9 @@
     </div>
 </div>
 <script>
-$('#payBtn').on('click', function() {
+$('#bookSeatBtn').on('click', function() {
 	$.ajax({
-			url : '/movie/pay.do',
+			url : '<%=request.getContextPath() %>/bookSeat.do',
 			type : 'post',
 			data : $('#payFrm').serialize(),
 			success : function(data){
@@ -155,7 +157,7 @@ $('#payBtn').on('click', function() {
 				}else if(data.code === 'no'){
 					alert("예매에 실패했습니다.");
 				}
-				location.href = '/movie/ticketing.do';
+				location.href = '<%=request.getContextPath() %>/main.do';
 			}
 			,
 			error : function(xhr) {

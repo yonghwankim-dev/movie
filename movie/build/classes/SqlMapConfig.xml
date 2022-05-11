@@ -33,14 +33,14 @@
 	<typeAlias alias="theaterVo" 		type="kr.com.yh.lotte.vo.TheaterVO"/>
 	<typeAlias alias="bookseatVo" 		type="kr.com.yh.lotte.vo.BookSeatVO"/>
 	<typeAlias alias="bookVo" 			type="kr.com.yh.lotte.vo.BookVO"/>
-	<typeAlias alias="screenschseatVo" 	type="kr.com.yh.lotte.vo.ScreenSchSeatVO"/>
+	<typeAlias alias="screenSchSeatVo" 	type="kr.com.yh.lotte.vo.ScreenSchSeatVO"/>
 	<typeAlias alias="screenschVo" 		type="kr.com.yh.lotte.vo.ScreenSchVO"/>
 	
 
 	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.component.CinemaLocationVO"/>
 	<typeAlias alias="screenAdminVo" 	type="kr.com.yh.lotte.vo.component.ScreenAdminVO"/>
 	<typeAlias alias="movieInfoVo" 		type="kr.com.yh.lotte.vo.component.MovieInfoVO"/>
-	<typeAlias alias="movieScreenSchVo" type="kr.com.yh.lotte.vo.component.MovieScreenSchVO"/>
+	<typeAlias alias="movieScreenSchVo" type="kr.com.yh.lotte.vo.component.MovieScreenSchVO"></typeAlias>
 
 	<!--
 		DB와의 연결을 처리하는 부분
@@ -85,6 +85,8 @@
 	<sqlMap resource="sqlmap/admin.xml"/>
 	<sqlMap resource="sqlmap/movie.xml"/>
 	<sqlMap resource="sqlmap/cinema.xml"/>
+	<sqlMap resource="sqlmap/book.xml"/>
+	<sqlMap resource="sqlmap/seat.xml"/>
 	<sqlMap resource="sqlmap/join.xml"/>
 	<sqlMap resource="sqlmap/ticketing.xml"/>
 </sqlMapConfig>

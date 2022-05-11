@@ -46,6 +46,18 @@
 		WHERE TH.NAME = #theater_name# and C.NAME = #cinema_name#  
 	</select>
 	
+	<select id="getScreenSchByScreenCode" parameterClass="String" resultClass="screenschVo">
+		SELECT SCREEN_SCH_CODE
+			 , SCREEN_DATE
+			 , START_TIME
+			 , END_TIME
+			 , SCREEN_NUM
+			 , MOVIE_CODE
+			 , THEATER_CODE
+		FROM SCREEN_SCH
+		WHERE SCREEN_CODE = #screen_code# 
+	</select>
+	
 
 	<insert id="insertScreen" parameterClass="screenVo">
 		<selectKey keyProperty="screen_code" resultClass="integer">

@@ -34,5 +34,10 @@ public class CinemaVO {
 	public String getLoc() {
 		return loc;
 	}
+
+	@Override
+	public String toString() {
+		return "CinemaVO [cinema_code=" + cinema_code + ", name=" + name + ", loc=" + loc + "]";
+	}
 		
 }

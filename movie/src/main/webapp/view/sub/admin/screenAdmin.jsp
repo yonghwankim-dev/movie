@@ -4,26 +4,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!-- 페이지 타이틀 -->
-<h2 class="pageTitle"> 영화관리 </h2>
+<h2 class="pageTitle"> 상영관리 </h2>
 <!-- //페이지 타이틀 -->
 
 <!-- 페이지 내용 -->
 <div class="admin_container">
-    <div class="admin_column admin_menu">
-        <ul>
-            <li>
-                <a href="/movie/admin/admin.do">상영관리</a>
-            </li>
-        </ul>
-    </div>
+	<jsp:include page="./layout/sideMenu.jsp" />
+	    
     <div class="admin_column admin_content">
         <div class="content_container">
             <form id="screenListFrm" action="/movie/admin/screen/delete.do" method="post">
                 <div class="screen_date_table">
-                    <table>
+                    <table id="screenTable">
                         <thead>
                             <tr>
                                 <td>구분</td>
+                                <td>상영코드</td>
                                 <td>영화코드</td>
                                 <td>영화제목</td>
                                 <td>지역</td>
@@ -40,6 +36,9 @@
                         			<td>
                         				<input type="checkbox" name="screen_code" value="${s.screen.screen_code}"/>	
                         			</td>
+                        			<td>
+                                    	<span>${s.screen.screen_code}</span>
+	                                </td>
                         			<td>
                                     	<span>${s.movie.movie_code}</span>
 	                                </td>
@@ -81,7 +80,23 @@
         </div>
     </div>
 </div>
+
 <script>
+$('#screenTable tbody tr').hover(function(){
+	$('#screenTable tbody tr').css('background', '#eee');
+}, function(){
+	$('#screenTable tbody tr').css('background', '#fff');
+});
+
+$('#screenTable tbody tr').on('click', function(){
+	const tr = $(this);
+	const td = tr.children();
+	const screen_code = $.trim(td.eq(1).text());
+	
+	$(location).attr('href'
+				   , '/movie/admin/screenSch/admin.do?screen_code='+screen_code); 
+});
+
 $('#screenDeleteBtn').on('click', function() {
 	$.ajax({
 			url : '/movie/admin/screen/delete.do',

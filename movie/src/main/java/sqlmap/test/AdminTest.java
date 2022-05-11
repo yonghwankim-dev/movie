@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 import kr.com.yh.util.SqlMapClientFactory;
@@ -103,5 +104,18 @@ class AdminTest {
 		}
 		
 		Assert.assertEquals(1, cnt);
+	}
+	
+	@Test
+	void getScreenSchByScreenCodeTest() {
+		String screen_code = "SCREEN4";
+		List<ScreenSchVO> list = null;
+		
+		try {
+			list = smc.queryForList("admin.getScreenSchByScreenCode", screen_code);
+		} catch (SQLException e) {
+			System.out.println("getScreenSchByScreenCodeTest SQL 에러" + e);
+		}
+		System.out.println(list);		
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import kr.com.yh.lotte.dao.admin.AdminDaoImpl;
 import kr.com.yh.lotte.dao.admin.IAdminDao;
+import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 
@@ -50,6 +51,11 @@ public class AdminServiceImpl implements IAdminService{
 	@Override
 	public int deleteScreen(List<String> screen_codes) {
 		return adminDao.deleteScreen(screen_codes);
+	}
+
+	@Override
+	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code) {
+		return adminDao.getScreenSchByScreenCode(screen_code);
 	}
 	
 	

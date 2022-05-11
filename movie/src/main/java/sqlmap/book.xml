@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="book">
+	<!-- 현재 BOOK CODE의 다음 번호를 참조함 -->
+
+	<select id="getNextBookCode" resultClass="String">		
+		SELECT 'BOOK' || BOOK_CODE_SEQ.NEXTVAL NextBookCode 
+		FROM DUAL
+	</select>
+	
+	<insert id="insertBook" parameterClass="bookVo">
+		INSERT INTO BOOK(
+			BOOK_CODE,
+			TOTAL_PRICE,
+			TEENAGER,
+			ADULT,
+			SENIOR,
+			BOOK_DATE,
+			SCREEN_SCH_CODE,
+			MEM_CODE
+		)
+		VALUES(
+			#book_code#,
+			#total_price#,
+			#teenager#,
+			#adult#,
+			#senior#,
+			#book_date#,
+			#screen_sch_code#,
+			#mem_code#	
+		)
+	</insert>
+	
+	<insert id="insertBookSeat" parameterClass="bookseatVo">
+		INSERT INTO BOOK_SEAT(
+			BOOK_CODE,
+			SEAT_CODE
+		)
+		VALUES(
+			#book_code#,
+			#seat_code#
+		)
+	</insert>
+	
+	<update id="updateScreenSchSeatToBook" parameterClass="screenSchSeatVo">
+		UPDATE SCREEN_SCH_SEAT
+		SET SEAT_STATUS = #seat_status#
+		WHERE 
+			SCREEN_SCH_CODE = #screen_sch_code# AND
+			SEAT_CODE = #seat_code#
+	</update>
+</sqlMap>			
+
+
+
+
+

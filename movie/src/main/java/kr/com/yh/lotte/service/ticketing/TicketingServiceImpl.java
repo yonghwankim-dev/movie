@@ -28,15 +28,15 @@ public class TicketingServiceImpl implements ITicketingService{
 	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name) {
 		return ticketingDao.getMoviesByCinemaNameAndMovieName(cinema_name, movie_name);
 	}
-
+	
 	@Override
-	public List<MovieScreenSchVO> findAllMovieScreenSchList(String cinema_name, String movie_name, String screen_date) {
-		return ticketingDao.findAllMovieScreenSchList(cinema_name, movie_name, screen_date);
+	public MovieScreenSchVO findAllMovieScreenSch(String screen_sch_code) {
+		return ticketingDao.findAllMovieScreenSch(screen_sch_code);
 	}
 
 	@Override
-	public MovieInfoVO getMovieInfoByScreenCode(String screen_code) {
-		return ticketingDao.getMovieInfoByScreenCode(screen_code);
+	public List<MovieScreenSchVO> findAllMovieScreenSch(String cinema_name, String movie_name, String screen_date) {
+		return ticketingDao.findAllMovieScreenSch(cinema_name, movie_name, screen_date);
 	}
 
 //	@Override

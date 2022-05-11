@@ -18,21 +18,21 @@ public interface ITicketingDao {
 	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name);
 		
 	/**
+	 * 특정 상영일정코드에 대한 영화상영정보를 반환
+	 * @param screen_sch_code 상영일정코드
+	 * @return 상영일정객체
+	 */
+	public MovieScreenSchVO findAllMovieScreenSch(String screen_sch_code);
+	
+	/**
 	 * 특정 영화관 지점에서 상영하는 영화들의 상영시간 리스트 반환
 	 * @param map 
 	 * key-value : "cinema_name"-cinema_name
 	 * key-value : "screen_date"-screen_date
 	 * @return
 	 */
-	public List<MovieScreenSchVO> findAllMovieScreenSchList(String cinema_name, String movie_name, String screen_date);
-	
-	/**
-	 * 선택한 영화 상영 일정에 대한 영화정보 객체 반환
-	 * @param screen_code 선택한 상영 일정
-	 * @return 영화정보 객체
-	 */
-	public MovieInfoVO getMovieInfoByScreenCode(String screen_code);
-	
+	public List<MovieScreenSchVO> findAllMovieScreenSch(String cinema_name, String movie_name, String screen_date);
+		
 	/**
 	 * 선택한 영화 예매
 	 * @param ticketing 예매 정보를 담은 객체

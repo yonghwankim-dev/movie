@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/webapp/css/sub.css=UTF-8
 encoding//src/main/webapp/view/sub/admin/screenAdd.jsp=UTF-8
 encoding//src/main/webapp/view/sub/admin/screenAdmin.jsp=UTF-8
+encoding//src/main/webapp/view/sub/admin/screenSchAdd.jsp=UTF-8
 encoding/<project>=UTF-8

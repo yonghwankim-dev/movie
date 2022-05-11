@@ -1076,7 +1076,7 @@
   background-color: #444;
 }
  
-.select_seat_result .group_right .pay {
+.select_seat_result .group_right .bookSeat {
   background-color: red;
   border : none;
   color : white;

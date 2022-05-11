@@ -19,7 +19,8 @@
 		<result property="theater_seat_cnt" 				column="theater_seat_cnt"/>
 		<result property="book_seat_cnt" 					column="book_seat_cnt"/>
 		<result property="movie.name" 						column="movie_name"/>
-		<result property="movie.audi_rating" 				column="audi_rating"/> 	
+		<result property="movie.audi_rating" 				column="audi_rating"/>
+		<result property="cinema.name" 						column="cinema_name"/> 	
 	</resultMap>
 	
 	<!-- 영화 정보 맵 -->
@@ -32,7 +33,7 @@
 		<result property="end_time" 				column="end_time"/>
 		<result property="cinema.cinema_name" 		column="cinema_name"/>
 		<result property="theater.theater_name" 	column="theater_name"/>
-	</resultMap>	
+	</resultMap>
 	-->
 	
 	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
@@ -52,8 +53,8 @@
         </dynamic>
 	</select>
 	
-	<!-- 영화관 지점의 상영시간 리스트 반환 -->
-	<select id="findAllMovieScreenSchList" parameterClass="Map" resultMap="movieScreenSchMap">
+	<!-- 영화 상영일정을 가져옴 -->
+	<sql id="MovieScreenSch">
 		SELECT SS.SCREEN_SCH_CODE
 		     , SS.SCREEN_DATE
 		     , SS.START_TIME
@@ -73,16 +74,18 @@
 		        WHERE SS.SCREEN_SCH_CODE = 'SS1' AND SSS.SEAT_STATUS = 'R') BOOK_SEAT_CNT
 		     , M.NAME MOVIE_NAME
 		     , M.AUDI_RATING
-		     
+		     , C.NAME CINEMA_NAME
 		FROM SCREEN_SCH SS
 		    INNER JOIN SCREEN S ON SS.SCREEN_CODE = S.SCREEN_CODE
 		                        AND SS.MOVIE_CODE = S.MOVIE_CODE
 		                        AND SS.THEATER_CODE = S.THEATER_CODE
 		    INNER JOIN MOVIE M ON S.MOVIE_CODE = M.MOVIE_CODE
 		    INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
-		    INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE
-
-        <dynamic prepend="WHERE">
+		    INNER JOIN CINEMA C ON TH.CINEMA_CODE = C.CINEMA_CODE	
+	</sql>
+	
+	<sql id="MovieScreenSch_Condition_ScreenSchCodeIsNull">
+		<dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
 				C.NAME = #cinema_name#
 			</isNotNull>
@@ -92,14 +95,37 @@
 			<isNotNull prepend="AND" property="screen_date">
 				SS.SCREEN_DATE = #screen_date#
 			</isNotNull>
-        </dynamic>
-        
+		</dynamic>
+	</sql>
+	<sql id="MovieScreenSch_Condition_ScreenSchCodeIsNotNull">
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="AND" property="screen_sch_code">
+				SS.SCREEN_SCH_CODE = #screen_sch_code#
+			</isNotNull>
+		</dynamic>	
+	</sql>
+
+	
+	<!-- 영화관 지점의 상영시간 리스트 반환 -->
+	<select id="findAllMovieScreenSch" parameterClass="Map" resultMap="movieScreenSchMap">
+		<include refid="MovieScreenSch"/>
+		
+		<!-- 영화관이름 or 영화제목, 상영일자를 통한 필터링-->
+		<isNull property="screen_sch_code">
+			<include refid="MovieScreenSch_Condition_ScreenSchCodeIsNull"/>	
+		</isNull>
+		
+		<!-- 상영일정코드를 통한 필터링-->
+		<isNotNull property="screen_sch_code">
+			<include refid="MovieScreenSch_Condition_ScreenSchCodeIsNotNull"/>	
+		</isNotNull>
+			
         ORDER BY M.NAME
 	</select>
 	
 	<!-- 선택한 영화의 정보 반환-->
 	<!--
-	<select id="getMovieInfoByScreenCode" parameterClass="String" resultMap="movieInfoMap">
+	<select id="getMovieInfoByScreenSchCode" parameterClass="String" resultMap="movieInfoMap">
 		SELECT m.movie_title
 			,  s.screen_date
 			,  s.screen_time
@@ -115,7 +141,6 @@
 		WHERE s.screen_code = #screen_code#
 	</select>
 	-->
-	
 	<!-- 선택한 영화 예매-->
 	<!--
 	<insert id="insertTickting" parameterClass="ticketingVo">

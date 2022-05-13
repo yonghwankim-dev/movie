@@ -6,8 +6,5 @@
 		<li>
 			<a href="/movie/admin/admin.do">상영관리</a>
 		</li>
-		<li>
-			<a href="/movie/admin/screenSchAdmin.do">상영일정관리</a>
-		</li>
 	</ul>
 </div>

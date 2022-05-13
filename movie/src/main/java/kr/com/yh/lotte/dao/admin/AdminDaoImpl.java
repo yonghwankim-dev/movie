@@ -75,15 +75,70 @@ public class AdminDaoImpl implements IAdminDao{
 		}
 		return cnt;
 	}
+	
+	@Override
+	public int insertScreenSch(ScreenSchVO screenSch) {
+		int cnt = 0;
+		
+		try {
+			smc.startTransaction();
+			cnt = smc.update("admin.insertScreenSch", screenSch);
+			smc.commitTransaction();
+		} catch (SQLException e) {
+			System.out.println("insertScreenSch SQL 에러 " + e);
+			cnt = 0;
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
 
 	@Override
 	public int deleteScreen(List<String> screen_codes) {
 		int cnt = 0;
 		
 		try {
+			smc.startTransaction();
 			cnt = smc.delete("admin.deleteScreen", screen_codes);
+			smc.commitTransaction();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			cnt = 0;
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+	}
+	
+	
+
+	@Override
+	public int deleteScreenSch(List<String> screen_sch_codes) {
+		int cnt = 0;
+		
+		try {
+			smc.startTransaction();
+			cnt = smc.delete("admin.deleteScreenSch", screen_sch_codes);
+			smc.commitTransaction();
+		} catch (SQLException e) {
+			System.out.println("deleteScreenSch SQL 에러 " + e);
+			cnt = 0;
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return cnt;

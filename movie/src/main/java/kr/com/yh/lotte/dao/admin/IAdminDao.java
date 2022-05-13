@@ -62,4 +62,19 @@ public interface IAdminDao {
 	 * @return 상영일정 리스트
 	 */
 	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code);
+
+	/**
+	 * 관리자가 한 상영에 대하여 상영일정을 추가함
+	 * @param screenSch 상영일정 객체
+	 * @return 상영 일정 개수 레코드
+	 */
+	public int insertScreenSch(ScreenSchVO screenSch);
+
+
+	/**
+	 * 상영일정들 삭제
+	 * @param screen_sch_codes 상영일정코드 리스트
+	 * @return 삭제된 상영일정 개수
+	 */
+	public int deleteScreenSch(List<String> screen_sch_codes);
 }

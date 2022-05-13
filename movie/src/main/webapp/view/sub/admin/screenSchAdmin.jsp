@@ -12,7 +12,15 @@
 	<jsp:include page="./layout/sideMenu.jsp" />
     <div class="admin_column admin_content">
         <div class="content_container">
-            <form id="screenListFrm" action="/movie/admin/screen/delete.do" method="post">
+            <form id="screenSchListFrm">
+				
+				<!-- 상영관코드 -->
+				<input type="text" class="hidden" name="theater_code" value="${theater_code}" readonly>
+				<!-- 영화코드 -->
+				<input type="text" class="hidden" name="movie_code" value="${movie_code}" readonly>
+				<!-- 상영코드 -->
+				<input type="text" class="hidden" name="screen_code" value="${screen_code}" readonly>				
+            	
                 <div class="screen_date_table">
                     <table>
                         <thead>
@@ -61,7 +69,7 @@
                 </div>
                 <div class="screen_date_control">
                     <button type="button" onclick="openScreenSchAddForm()">추가</button>
-                    <button type="button" id="screenDeleteBtn">제거</button>
+                    <button type="button" id="screenSchDeleteBtn">제거</button>
                 </div>
             </form>
         </div>
@@ -69,18 +77,20 @@
 </div>
 
 <script>
-$('#screenDeleteBtn').on('click', function() {
+$('#screenSchDeleteBtn').on('click', function() {
 	$.ajax({
-			url : '/movie/admin/screen/delete.do',
+			url : '/movie/admin/screenSch/delete.do',
 			type : 'post',
-			data : $('#screenListFrm').serialize(),
+			data : $('#screenSchListFrm').serialize(),
 			success : function(data){
 				if (data.code === 'ok') {
 					alert('상영일정이 제거되었습니다.');	
 				}else if(data.code === 'no'){
 					alert("상영일정 제거가 실패되었습니다.");
 				}
-				location.href = '/movie/admin/admin.do';
+				location.href = '/movie/admin/screenSch/admin.do?theater_code=' + data.theater_code
+			     		 	  + '&movie_code=' + data.movie_code
+			                  + '&screen_code=' + data.screen_code;
 			}
 			,
 			error : function(xhr) {

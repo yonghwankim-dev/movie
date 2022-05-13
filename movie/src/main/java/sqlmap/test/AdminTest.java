@@ -118,4 +118,55 @@ class AdminTest {
 		}
 		System.out.println(list);		
 	}
+	
+	@Test
+	void insertScreenSchTest() {
+		ScreenSchVO screenSch = new ScreenSchVO(null
+											  , Date.valueOf("2022-05-13")
+											  , "13:00"
+											  , "15:00"
+											  , 3
+											  , "MOVIE3"
+											  , "TH1"
+											  , "SCREEN4");
+		int cnt = 0;
+		
+		try {
+			smc.startTransaction();
+			cnt = smc.update("admin.insertScreenSch", screenSch);
+		} catch (SQLException e) {
+			System.out.println("insertScreenSchTest SQL 에러" + e);
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		Assert.assertEquals(1, cnt);
+	}
+	
+	@Test
+	void deleteScreenSchTest() {
+		List<String> screen_sch_codes = new ArrayList<String>();
+		screen_sch_codes.add("SS9");
+		screen_sch_codes.add("SS7");
+		int cnt = 0;
+		
+		try {
+			smc.startTransaction();
+			cnt = smc.delete("admin.deleteScreenSch", screen_sch_codes);
+		} catch (SQLException e) {
+			System.out.println("deleteScreenSchTest SQL 에러 " + e);
+			cnt = 0;
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		Assert.assertEquals(2, cnt);
+	}
 }

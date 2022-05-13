@@ -33,6 +33,13 @@ public interface IAdminService {
 	public int insertScreen(ScreenVO screen);
 	
 	/**
+	 * 관리자가 한 상영에 대하여 상영일정을 추가함
+	 * @param screenSch 상영일정 객체
+	 * @return 상영 일정 개수 레코드
+	 */
+	public int insertScreenSch(ScreenSchVO screenSch);
+	
+	/**
 	 * 영화제목의 영화코드 반환
 	 * @param movie_name 영화제목
 	 * @return 영화코드
@@ -47,16 +54,26 @@ public interface IAdminService {
 	public String getTheaterCodeByCinemaNameAndTheaterName(Map<String,String> map);
 	
 	/**
-	 * 상영일정들을 제거
+	 * 영화 상영들을 제거
 	 * @param screen_codes 상영코드들을 담은 리스트
-	 * @return 삭제한 상영일정 개수
+	 * @return 삭제한 상영 개수
 	 */
 	public int deleteScreen(List<String> screen_codes);
 
+	/**
+	 * 상영일정들 삭제
+	 * @param screen_sch_codes 상영일정코드 리스트
+	 * @return 삭제된 상영일정 개수
+	 */
+	public int deleteScreenSch(List<String> screen_sch_codes);
+	
 	/**
 	 * 상영코드에 따른 상영일정 정보를 참조 
 	 * @param screen_code 상영코드
 	 * @return 상영일정 리스트
 	 */
 	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code);
+	
+	
+	
 }

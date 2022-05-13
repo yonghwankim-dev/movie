@@ -91,10 +91,14 @@ $('#screenTable tbody tr').hover(function(){
 $('#screenTable tbody tr').on('click', function(){
 	const tr = $(this);
 	const td = tr.children();
+	
+	const theater_code = $.trim(td.eq(6).text());
+	const movie_code = $.trim(td.eq(2).text());
 	const screen_code = $.trim(td.eq(1).text());
 	
+
 	$(location).attr('href'
-				   , '/movie/admin/screenSch/admin.do?screen_code='+screen_code); 
+				   , '/movie/admin/screenSch/admin.do?theater_code='+theater_code+'&movie_code='+movie_code+'&screen_code='+screen_code); 
 });
 
 $('#screenDeleteBtn').on('click', function() {

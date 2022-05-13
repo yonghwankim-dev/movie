@@ -20,6 +20,7 @@
 <script src="/movie/js/sub.js"></script>
 
 <script src="/movie/js/admin/screen_add.js"></script>
+<script src="/movie/js/admin/screenSch_add.js"></script>
 </head>
 <body>
 

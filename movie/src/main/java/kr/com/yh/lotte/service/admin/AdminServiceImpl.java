@@ -37,6 +37,11 @@ public class AdminServiceImpl implements IAdminService{
 	public int insertScreen(ScreenVO screen) {
 		return adminDao.insertScreen(screen);
 	}
+	
+	@Override
+	public int insertScreenSch(ScreenSchVO screenSch) {
+		return adminDao.insertScreenSch(screenSch);
+	}
 
 	@Override
 	public String getMovieCodeByMovieName(String movie_name) {
@@ -51,6 +56,11 @@ public class AdminServiceImpl implements IAdminService{
 	@Override
 	public int deleteScreen(List<String> screen_codes) {
 		return adminDao.deleteScreen(screen_codes);
+	}
+	
+	@Override
+	public int deleteScreenSch(List<String> screen_sch_codes) {
+		return adminDao.deleteScreenSch(screen_sch_codes);
 	}
 
 	@Override

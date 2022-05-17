@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
 import kr.com.yh.lotte.service.cinema.ICinemaService;
+import kr.com.yh.lotte.service.screensch.IScreenSchService;
+import kr.com.yh.lotte.service.screensch.ScreenSchServiceImpl;
 import kr.com.yh.lotte.service.ticketing.ITicketingService;
 import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
@@ -25,10 +27,12 @@ public class TicketingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ITicketingService ticketingService;
 	private ICinemaService cinemaService;
+	private IScreenSchService screenSchService;
 	
 	public TicketingController() {
 		ticketingService = TicketingServiceImpl.getInstance();
 		cinemaService = CinemaServiceImpl.getInstance();
+		screenSchService = ScreenSchServiceImpl.getInstance();
 	}
 
 	@Override
@@ -46,7 +50,8 @@ public class TicketingController extends HttpServlet {
 		List<MovieVO> movies = ticketingService.getMoviesByCinemaNameAndMovieName(cinema_name, movie_name);
 		
 		// 선택한 영화관에 모든 영화 상영일정 리스트 반환
-		List<MovieScreenSchVO> screenSchs = ticketingService.findAllMovieScreenSch(cinema_name, movie_name, screen_date);	
+		List<MovieScreenSchVO> screenSchs = ticketingService.findAllMovieScreenSch(cinema_name, movie_name, screen_date);
+		screenSchs = screenSchService.findBookSeatCnt(screenSchs);
 		
 		req.setAttribute("locations", locations);
 		req.setAttribute("cinemas", cinemas);

@@ -50,62 +50,66 @@ public class BookDaoImpl implements IBookDao{
 	}
 
 	@Override
-	public int insertBook(BookVO book) {
-		int cnt = 0;
-		
+	public int insertBook(BookVO book){
 		try {
-			smc.startTransaction();
-			cnt = smc.update("book.insertBook", book);
-			smc.commitTransaction();
+			return smc.update("book.insertBook", book);
 		} catch (SQLException e) {
-			System.out.println("예약정보 입력 실패 (insertBook)");
-			cnt = 0;
-		}finally {
-			try {
-				smc.endTransaction();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return cnt;
+			System.out.println("insertBook 수행 실패" + e);
+		};
+		return 0;
 	}
 
 	@Override
 	public int insertBookSeat(List<BookSeatVO> bookSeatList) {
 		int cnt = 0;
-		
 		try {
-			smc.startTransaction();
 			for(BookSeatVO bookSeat : bookSeatList) {
 				cnt += smc.update("book.insertBookSeat", bookSeat);
 			}
-			smc.commitTransaction();
-		} catch (SQLException e) {
-			System.out.println("예약좌석 정보 입력 실패 (insertBookSeat)" + e);
+		}catch(SQLException e) {
+			System.out.println("insertBookSeat 수행중 실패" + e);
 			cnt = 0;
-		}finally {
-			try {
-				smc.endTransaction();
-			} catch (SQLException e) {
-				System.out.println("sqlMapClient 트랜잭션 종료 실패" + e);
-			}
 		}
-		
 		return cnt;
 	}
 
 	@Override
 	public int updateScreenSchSeatToBook(List<ScreenSchSeatVO> screenSchSeatList) {
 		int cnt = 0;
-
+		
 		try {
-			smc.startTransaction();
 			for(ScreenSchSeatVO screenSchSeat : screenSchSeatList) {
 				cnt += smc.update("book.updateScreenSchSeatToBook", screenSchSeat);	
 			}
+		}catch(SQLException e) {
+			System.out.println("updateScreenSchSeatToBook 수행중 실패" + e);
+			cnt = 0;
+		}
+		
+		return cnt;
+	}
+
+	@Override
+	public int bookSeat(BookVO book, List<BookSeatVO> bookSeatList, List<ScreenSchSeatVO> screenSchSeatList){
+		int cnt = 0;
+		
+		try {
+			smc.startTransaction();
+			cnt = insertBook(book);
+			if(cnt == 0) {
+				return cnt;
+			}
+			cnt = insertBookSeat(bookSeatList);
+			if(cnt == 0) {
+				return cnt;
+			}
+			cnt = updateScreenSchSeatToBook(screenSchSeatList);
+			if(cnt == 0) {
+				return cnt;
+			}
 			smc.commitTransaction();
 		} catch (SQLException e) {
-			System.out.println("상영일정좌석을 예약으로 변경중 실패" + e);
+			System.out.println("bookSeat 수행중 실패 " + e);
 			cnt = 0;
 		}finally {
 			try {
@@ -114,6 +118,9 @@ public class BookDaoImpl implements IBookDao{
 				System.out.println("sqlMapClient 트랜잭션 종료 실패" + e);
 			}
 		}
+		
 		return cnt;
-	}	
+	}
+	
+	
 }

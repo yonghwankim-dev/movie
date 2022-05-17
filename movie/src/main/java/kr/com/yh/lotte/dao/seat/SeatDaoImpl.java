@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
 public class SeatDaoImpl implements ISeatDao{
@@ -34,7 +35,6 @@ public class SeatDaoImpl implements ISeatDao{
 		
 		map.put("seatList", seatList);
 		map.put("theater_code", theater_code);
-		
 		try {
 			seatCodes = smc.queryForList("seat.getSeatCodesBySeatNumAndTheaterCode", map);
 		} catch (SQLException e) {
@@ -43,5 +43,19 @@ public class SeatDaoImpl implements ISeatDao{
 		
 		return seatCodes;
 	}
+
+	@Override
+	public List<MovieScreenSchSeatVO> findAllMovieScreenSchSeat(String screen_sch_code) {
+		List<MovieScreenSchSeatVO> seats = null;
+		
+		try {
+			seats = smc.queryForList("seat.findAllMovieScreenSchSeat", screen_sch_code);
+		} catch (SQLException e) {
+			System.out.println("findAllMovieScreenSchSeat SQL 에러 " + e);
+		}
+		return seats;
+	}
+	
+	
 
 }

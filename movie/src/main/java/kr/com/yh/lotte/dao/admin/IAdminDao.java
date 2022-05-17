@@ -64,12 +64,27 @@ public interface IAdminDao {
 	public List<ScreenSchVO> getScreenSchByScreenCode(String screen_code);
 
 	/**
+	 * 관리자가 상영일정 및 상영일정 좌석 정보를 추가함
+	 * @param screenSchVO 상영일정 객체
+	 * @param seat_codes 좌석 코드 리스트
+	 * @return 상영 일정 및 상영일정 좌석 개수 레코드
+	 */
+	public int insertScreenSchAndSeat(ScreenSchVO screenSchVO, List<String> seat_codes);
+	
+	/**
 	 * 관리자가 한 상영에 대하여 상영일정을 추가함
 	 * @param screenSch 상영일정 객체
 	 * @return 상영 일정 개수 레코드
 	 */
 	public int insertScreenSch(ScreenSchVO screenSch);
 
+	/**
+	 * 관리자가 한 상영일정에 대한 좌석 데이터를 추가함
+	 * @param screenSch 상영일정 객체
+	 * @param seat_codes 좌석 코드 리스트
+	 * @return 상영 일정 좌석 개수 레코드
+	 */
+	public int insertScreenSchSeat(ScreenSchVO screenSch, List<String> seat_codes);
 
 	/**
 	 * 상영일정들 삭제

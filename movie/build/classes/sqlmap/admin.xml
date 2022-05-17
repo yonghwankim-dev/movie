@@ -69,11 +69,7 @@
 		VALUES('SCREEN' || SCREEN_CODE_SEQ.NEXTVAL, #movie_code#, #theater_code#, #start_date#, #end_date#)
 	</insert>
 	
-	<insert id="insertScreenSch" parameterClass="screenschVo">
-		<selectKey keyProperty="screen_sch_code" resultClass="integer">
-			SELECT SCREEN_SCH_SEQ.NEXTVAL AS SCREEN_SCH_CODE FROM DUAL
-		</selectKey>
-			
+	<insert id="insertScreenSch" parameterClass="screenschVo">			
 		INSERT INTO SCREEN_SCH(SCREEN_SCH_CODE
 							 , SCREEN_DATE
 							 , START_TIME
@@ -82,7 +78,7 @@
 							 , MOVIE_CODE
 							 , THEATER_CODE
 							 , SCREEN_CODE)
-		VALUES('SS' || screen_sch_seq.nextval
+		VALUES(#screen_sch_code#
 		     , #screen_date#
 		     , #start_time#
 		     , #end_time#
@@ -90,8 +86,16 @@
 		     , #movie_code#
 		     , #theater_code#
 		     , #screen_code#) 
-	</insert>	
+	</insert>
 	
+	<insert id="insertScreenSchSeat" parameterClass="Map">
+		INSERT INTO SCREEN_SCH_SEAT(SCREEN_SCH_CODE
+								  , SEAT_CODE
+								  , SEAT_STATUS)
+		VALUES(#screen_sch_code#
+		     , #seat_code#
+		     , 'A')
+	</insert>
 	
 	<delete id="deleteScreen" parameterClass="java.util.List">
 		DELETE FROM SCREEN 
@@ -101,7 +105,7 @@
 	</delete>
 	
 	<delete id="deleteScreenSch" parameterClass="java.util.List">
-		DELETE FROM SCREEN_SCH
+		DELETE FROM SCREEN_SCH ON 
 		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
 			#[]#
 		</iterate>

@@ -39,12 +39,10 @@ import kr.com.yh.util.UpdateResult;
 public class BookController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ITicketingService ticketingService;
 	private ISeatService seatService;
 	private IBookService bookService;
 	
 	public BookController() {
-		ticketingService = TicketingServiceImpl.getInstance();
 		seatService = SeatServiceImpl.getInstance();
 		bookService = BookServiceImpl.getInstance();
 	}
@@ -57,7 +55,7 @@ public class BookController extends HttpServlet {
 		int    adult           = Integer.parseInt(req.getParameter("person_20"));	// 성인 인원수
 		int    senior          = Integer.parseInt(req.getParameter("person_12"));	// 노약자 인원수
 		int    total_price     = Integer.parseInt(req.getParameter("price"));		// 예매가격
-		String mem_code 	   = req.getParameter("mem_code");						// 회원코드
+		String mem_code 	   = (String) req.getSession().getAttribute("memCd");	// 회원코드
 		String screen_sch_code = req.getParameter("screen_sch_code");				// 상영코드
 		String theater_code    = req.getParameter("theater_code");					// 상영관코드
 		String[] seats         = req.getParameter("seat").split(" ");			    // 예매 좌석들
@@ -69,7 +67,7 @@ public class BookController extends HttpServlet {
 		// 실행 결과
 		UpdateResult result = new UpdateResult(resp);
 		int cnt = 0;
-		
+				
 		// 좌석코드 참조
 		seatCodes = seatService.getSeatCodesBySeatNumAndTheaterCode(seatList, theater_code); 
 		// 예약코드 생성
@@ -83,23 +81,23 @@ public class BookController extends HttpServlet {
 							   , book_date
 							   , screen_sch_code
 							   , mem_code);
-
+		
 		for(String seat_code : seatCodes) {
 			bookSeatList.add(new BookSeatVO(book_code, seat_code));
 			screenSchSeatList.add(new ScreenSchSeatVO(screen_sch_code, seat_code, "R"));
 		}
 		
 		cnt = bookService.bookSeat(book, bookSeatList, screenSchSeatList);
-//		
-//		if(cnt>0)
-//		{
-//			result.addToResMap("code", "ok");
-//		}
-//		else
-//		{
-//			result.addToResMap("code", "no");
-//		}
-//		
-//		result.write();
+		
+		if(cnt>0)
+		{
+			result.addToResMap("code", "ok");
+		}
+		else
+		{
+			result.addToResMap("code", "no");
+		}
+		
+		result.write();
 	}
 }

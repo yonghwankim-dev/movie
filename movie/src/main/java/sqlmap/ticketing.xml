@@ -17,7 +17,6 @@
 		<result property="screenSch.screen_code" 			column="screen_code"/>
 		<result property="theater.name" 					column="theater_name"/>
 		<result property="theater_seat_cnt" 				column="theater_seat_cnt"/>
-		<result property="book_seat_cnt" 					column="book_seat_cnt"/>
 		<result property="movie.name" 						column="movie_name"/>
 		<result property="movie.audi_rating" 				column="audi_rating"/>
 		<result property="cinema.name" 						column="cinema_name"/> 	
@@ -68,10 +67,6 @@
 		        FROM THEATER TH
 		            INNER JOIN SEAT SE ON SE.THEATER_CODE = TH.THEATER_CODE
 		        WHERE TH.THEATER_CODE = 'TH1') THEATER_SEAT_CNT
-		     , (SELECT COUNT(*)
-		        FROM SCREEN_SCH SS
-		            INNER JOIN SCREEN_SCH_SEAT SSS ON SS.SCREEN_SCH_CODE = SSS.SCREEN_SCH_CODE
-		        WHERE SS.SCREEN_SCH_CODE = 'SS1' AND SSS.SEAT_STATUS = 'R') BOOK_SEAT_CNT
 		     , M.NAME MOVIE_NAME
 		     , M.AUDI_RATING
 		     , C.NAME CINEMA_NAME

@@ -1,5 +1,7 @@
 package sqlmap.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+import kr.com.yh.lotte.service.seat.ISeatService;
+import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
@@ -121,7 +125,7 @@ class AdminTest {
 	
 	@Test
 	void insertScreenSchTest() {
-		ScreenSchVO screenSch = new ScreenSchVO(null
+		ScreenSchVO screenSch = new ScreenSchVO("SS24"
 											  , Date.valueOf("2022-05-13")
 											  , "13:00"
 											  , "15:00"
@@ -145,6 +149,37 @@ class AdminTest {
 		}
 
 		Assert.assertEquals(1, cnt);
+	}
+	
+	@Test
+	void insertScreenSchSeatTest() {
+		ISeatService seatService = SeatServiceImpl.getInstance();
+		int cnt = 0;
+		Map<String, String> map = new HashMap<String, String>();
+		String screen_sch_code = "SS21";
+		String theater_code = "TH1";
+		List<String> seat_codes = seatService.getSeatCodesBySeatNumAndTheaterCode(null, theater_code);
+		
+		map.put("screen_sch_code", screen_sch_code);
+		
+		try {
+			smc.startTransaction();
+			for(String seat_code : seat_codes) {
+				map.put("seat_code", seat_code);
+				cnt += smc.update("admin.insertScreenSchSeat", map);
+			}
+		} catch (SQLException e) {
+			System.out.println("insertScreenSchSeatTest 수행중 오류" + e);
+			cnt = 0;
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		assertEquals(156, cnt);
 	}
 	
 	@Test

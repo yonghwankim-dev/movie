@@ -2,6 +2,7 @@ package kr.com.yh.lotte.dao.admin;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,12 +78,22 @@ public class AdminDaoImpl implements IAdminDao{
 	}
 	
 	@Override
-	public int insertScreenSch(ScreenSchVO screenSch) {
+	public int insertScreenSchAndSeat(ScreenSchVO screenSchVO, List<String> seat_codes) {
 		int cnt = 0;
 		
 		try {
 			smc.startTransaction();
-			cnt = smc.update("admin.insertScreenSch", screenSch);
+			
+			cnt = insertScreenSch(screenSchVO); 
+			if(cnt == 0) {
+				return cnt;
+			}
+			
+			cnt = insertScreenSchSeat(screenSchVO, seat_codes);
+			if(cnt == 0) {
+				return cnt;
+			}
+			
 			smc.commitTransaction();
 		} catch (SQLException e) {
 			System.out.println("insertScreenSch SQL 에러 " + e);
@@ -95,6 +106,38 @@ public class AdminDaoImpl implements IAdminDao{
 			}
 		}
 		
+		return cnt;
+	}
+	
+	@Override
+	public int insertScreenSch(ScreenSchVO screenSch) {
+		int cnt = 0;
+	
+		try {
+			cnt = smc.update("admin.insertScreenSch", screenSch);
+		} catch (SQLException e) {
+			System.out.println("insertScreenSch 수행 실패 " + e);
+		}
+		return cnt;
+	}
+	
+	@Override
+	public int insertScreenSchSeat(ScreenSchVO screenSch, List<String> seat_codes) {
+		int cnt = 0;
+		Map<String, String> map = new HashMap<String, String>();
+		String screen_sch_code = screenSch.getScreen_sch_code();
+		
+		map.put("screen_sch_code", screen_sch_code);
+		
+		try {
+			for(String seat_code : seat_codes) {
+				map.put("seat_code", seat_code);
+				cnt += smc.update("admin.insertScreenSchSeat", map);
+			}
+		} catch (SQLException e) {
+			System.out.println("insertScreenSchSeat 수행중 오류" + e);
+			cnt = 0;
+		}
 		return cnt;
 	}
 

@@ -87,6 +87,7 @@
                         <div class="table_container">
                             <table id="showMapTable">
                                 <tbody id="showMapTableBody">
+                                
                                 </tbody>
                             </table>
                         </div>
@@ -116,13 +117,13 @@
                         
                     </div>
                     <div class="group_right">
-	                    <form id="payFrm" action="/movie/pay.do" method="post">
+	                    <form id="payFrm" action="/movie/bookSeat.do" method="post">
 			        		<!-- 예매일자 -->
 			        		<input class="hidden" name="book_date" value="${screenSch.screenSch.screen_date}"/>
 			        		<!-- 상영관코드 -->
-			        		<input class="hidden" name="theater_code" value="${screenSch.theater.theater_code}"/>
+			        		<input class="hidden" name="theater_code" value="${screenSch.screenSch.theater_code}"/>
 			        		<!-- 회원코드 -->
-			        		<input class="hidden" name="mem_code" value="${mem_code}"/>
+			        		<input class="hidden" name="mem_code" value="${memCd}"/>
 			        		<!-- 상영코드 -->
 			        		<input class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
 			        		<!-- 청년 인원수 -->

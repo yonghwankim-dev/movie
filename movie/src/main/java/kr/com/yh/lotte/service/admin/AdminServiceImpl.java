@@ -39,8 +39,8 @@ public class AdminServiceImpl implements IAdminService{
 	}
 	
 	@Override
-	public int insertScreenSch(ScreenSchVO screenSch) {
-		return adminDao.insertScreenSch(screenSch);
+	public int insertScreenSchAndSeat(ScreenSchVO screenSchVO, List<String> seat_codes) {
+		return adminDao.insertScreenSchAndSeat(screenSchVO, seat_codes);
 	}
 
 	@Override

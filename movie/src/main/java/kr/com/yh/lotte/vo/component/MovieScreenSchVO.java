@@ -50,6 +50,10 @@ public class MovieScreenSchVO {
 	public int getBook_seat_cnt() {
 		return book_seat_cnt;
 	}
+	
+	public void setBook_seat_cnt(int book_seat_cnt) {
+		this.book_seat_cnt = book_seat_cnt;
+	}
 
 	@Override
 	public String toString() {

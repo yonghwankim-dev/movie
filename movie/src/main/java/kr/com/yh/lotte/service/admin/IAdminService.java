@@ -33,11 +33,12 @@ public interface IAdminService {
 	public int insertScreen(ScreenVO screen);
 	
 	/**
-	 * 관리자가 한 상영에 대하여 상영일정을 추가함
-	 * @param screenSch 상영일정 객체
-	 * @return 상영 일정 개수 레코드
+	 * 관리자가 상영일정 및 상영일정 좌석 정보를 추가함
+	 * @param screenSchVO 상영일정 객체
+	 * @param seat_codes 좌석코드 리스트
+	 * @return 상영 일정 및 상영일정 좌석 개수 레코드
 	 */
-	public int insertScreenSch(ScreenSchVO screenSch);
+	public int insertScreenSchAndSeat(ScreenSchVO screenSchVO, List<String> seat_codes);
 	
 	/**
 	 * 영화제목의 영화코드 반환

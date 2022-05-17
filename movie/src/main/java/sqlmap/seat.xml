@@ -3,13 +3,41 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="seat">
+	<resultMap class="movieScreenSchSeatVo" id="seatMap">
+		<result property="seat.seat_row" column="seat_row"/>
+		<result property="seat.seat_col" column="seat_col"/>
+		<result property="seat.theater_code" column="theater_code"/>
+		<result property="screenSchSeat.screen_sch_code" column="screen_sch_code"/>
+		<result property="screenSchSeat.seat_code" column="seat_code"/>
+		<result property="screenSchSeat.seat_status" column="seat_status"/>
+	</resultMap>
+
 	<select id="getSeatCodesBySeatNumAndTheaterCode" parameterClass="Map" resultClass="String">
 		SELECT SEAT_CODE
 		FROM SEAT 
-		<iterate property="seatList" prepend="WHERE SEAT_ROW || SEAT_COL IN" open="(" close=")" conjunction=",">
-			#seatList[]#
-		</iterate>
-		AND THEATER_CODE = #theater_code# 	
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="AND" property="seatList">
+				<iterate property="seatList" prepend="SEAT_ROW || SEAT_COL IN" open="(" close=")" conjunction=",">
+					#seatList[]#
+				</iterate>
+			</isNotNull>
+			
+			<isNotNull prepend="AND" property="theater_code">
+				THEATER_CODE = #theater_code#
+			</isNotNull>
+		</dynamic> 	
+	</select>
+	
+	<select id="findAllMovieScreenSchSeat" parameterClass="String" resultMap="seatMap">
+		SELECT S.SEAT_ROW
+	         , S.SEAT_COL
+	         , S.THEATER_CODE
+	         , SSS.SCREEN_SCH_CODE
+	         , SSS.SEAT_CODE
+	         , SSS.SEAT_STATUS  
+		FROM SEAT S INNER JOIN SCREEN_SCH_SEAT SSS ON S.SEAT_CODE = SSS.SEAT_CODE
+		WHERE SSS.SCREEN_SCH_CODE = #screen_sch_code#
+		ORDER BY S.SEAT_ROW, S.SEAT_COL
 	</select>
 </sqlMap>			
 

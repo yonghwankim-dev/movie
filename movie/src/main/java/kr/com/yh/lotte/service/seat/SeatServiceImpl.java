@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.com.yh.lotte.dao.seat.ISeatDao;
 import kr.com.yh.lotte.dao.seat.SeatDaoImpl;
+import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
 
 public class SeatServiceImpl implements ISeatService{
 
@@ -27,4 +28,11 @@ public class SeatServiceImpl implements ISeatService{
 		return seatDao.getSeatCodesBySeatNumAndTheaterCode(seatList, theater_code);
 	}
 
+	@Override
+	public List<MovieScreenSchSeatVO> findAllMovieScreenSchSeat(String screen_sch_code) {
+		return seatDao.findAllMovieScreenSchSeat(screen_sch_code);
+	}
+
+	
+	
 }

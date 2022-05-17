@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="screensch">
+	<!-- 다음 상영일정코드를 참조 -->
+	<select id="getNextScreenSchCode" resultClass="String">		
+		SELECT 'SS' || SCREEN_SCH_SEQ.NEXTVAL NextScreenSchCode 
+		FROM DUAL
+	</select>
+	
+	<!-- 현재 예약좌석수를 참조 -->
+	<select id="findBookSeatCnt" parameterClass="movieScreenSchVo" resultClass="Integer">
+		SELECT COUNT(*)
+		FROM SCREEN_SCH SS
+				INNER JOIN SCREEN_SCH_SEAT SSS ON SS.SCREEN_SCH_CODE = SSS.SCREEN_SCH_CODE 
+		WHERE SS.SCREEN_SCH_CODE = #screenSch.screen_sch_code# AND SSS.SEAT_STATUS = 'R' 
+	</select>
+</sqlMap>			
+
+
+
+
+

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
-
+import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
 class SeatTest {
@@ -48,6 +48,19 @@ class SeatTest {
 		
 		Assert.assertEquals("SEAT91", seat_codes.get(0));
 		Assert.assertEquals("SEAT109", seat_codes.get(1));
+	}
+	
+	@Test
+	void findAllMovieScreenSchSeatTest() {
+		List<MovieScreenSchSeatVO> seats = null;
+		String screen_sch_code = "SS24";
+		try {
+			seats = smc.queryForList("seat.findAllMovieScreenSchSeat", screen_sch_code);
+		} catch (SQLException e) {
+			System.out.println("findAllMovieScreenSchSeatTest SQL 에러 " + e);
+		}
+		
+		assertEquals(156, seats.size());
 	}
 
 }

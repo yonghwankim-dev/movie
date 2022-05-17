@@ -32,27 +32,7 @@ public class BookServiceImpl implements IBookService{
 
 	@Override
 	public int bookSeat(BookVO book, List<BookSeatVO> bookSeatList, List<ScreenSchSeatVO> screenSchSeatList) {
-		int cnt = 0;
-		
-		// 1. 예약정보 입력
-		cnt = bookDao.insertBook(book);
-		if(cnt == 0) {
-			return 0;
-		}
-		
-		// 2. 예약정보를 기반으로 예약좌석 정보 입력
-		cnt = bookDao.insertBookSeat(bookSeatList);
-		if(cnt == 0) {
-			return 0;
-		}
-		
-		// 3. 상영일정 좌석의 상태를 에약상태로 변경
-		cnt = bookDao.updateScreenSchSeatToBook(screenSchSeatList);
-		if(cnt == 0) {
-			return 0;
-		}
-		
-		return cnt;
+		return bookDao.bookSeat(book, bookSeatList, screenSchSeatList);
 	}
 	
 	

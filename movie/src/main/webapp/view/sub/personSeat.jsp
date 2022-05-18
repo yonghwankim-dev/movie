@@ -87,7 +87,24 @@
                         <div class="table_container">
                             <table id="showMapTable">
                                 <tbody id="showMapTableBody">
-                                
+                                	<c:set var="index" value="0" />
+                                		
+                                	
+									<c:forEach var="i" begin="1" end="9">
+										<tr>
+											<td>${seats[index].seat.seat_row}</td>
+											<c:forEach var="j" begin="1" end="17">
+												<td class="seat">
+													<input type="text"
+													name="seat" 
+													value="${seats[index].seat.seat_row}${seats[index].seat.seat_col}"
+													readonly/>
+												</td>
+												<c:set var="index" value="${index+1}"/>
+											</c:forEach>
+										</tr>
+									
+									</c:forEach>
                                 </tbody>
                             </table>
                         </div>

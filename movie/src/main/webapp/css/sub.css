@@ -815,7 +815,7 @@
 
 .section_step_con .article.article_seat > .inner {
   overflow: hidden;
-  height: 875px;
+  height: 900px;
 }
 
 .select_num_people_wrap {
@@ -938,8 +938,8 @@
 /* 醫뚯꽍 */
 .select_seat_wrap {
   overflow: hidden;
-  height: 638px;
   color: #fff;
+  height: 670px;
   background-color: #000;
 }
 

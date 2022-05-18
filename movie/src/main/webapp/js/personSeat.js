@@ -1,38 +1,6 @@
 let current_person = 0;
 let activated_seat = 0;
 
-// 좌석 생성
-const createSeatMap = function(){
-    const seat_row = [null,"A","B","C","D","E","F","G","I"];
-    const tbody = document.querySelector("#showMapTableBody");
-
-    for(let i=1;i<=8;i++)
-    {
-        const tr = document.createElement("tr");
-
-        const alpabat = document.createElement("td");
-        alpabat.textContent = seat_row[i];
-        tr.appendChild(alpabat);
-        for(let j=1;j<=17;j++)
-        {
-            const td = document.createElement("td");
-            const input = document.createElement("input");
-
-            td.className = "seat";
-
-			input.type = "text";
-			input.readOnly = "true";
-			input.value = seat_row[i]+j;
-			input.textContent = j;
-            
-            td.appendChild(input);
-            tr.appendChild(td);    
-        }
-
-        tbody.appendChild(tr);
-    }
-}
-
 // 선택 완료
 const completeSelect = function(){
     const seats = document.querySelectorAll("#showMapTableBody tr td.seat");
@@ -121,8 +89,6 @@ const activeSeat = function(e){
         }
     }
 };
-
-createSeatMap();
 
 const seats = document.querySelectorAll("#showMapTableBody td");
 seats.forEach((item)=>{

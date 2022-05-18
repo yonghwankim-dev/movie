@@ -53,14 +53,14 @@ class SeatTest {
 	@Test
 	void findAllMovieScreenSchSeatTest() {
 		List<MovieScreenSchSeatVO> seats = null;
-		String screen_sch_code = "SS24";
+		String screen_sch_code = "SS26";
 		try {
 			seats = smc.queryForList("seat.findAllMovieScreenSchSeat", screen_sch_code);
 		} catch (SQLException e) {
 			System.out.println("findAllMovieScreenSchSeatTest SQL 에러 " + e);
 		}
 		
-		assertEquals(156, seats.size());
+		assertEquals(153, seats.size());
 	}
 
 }

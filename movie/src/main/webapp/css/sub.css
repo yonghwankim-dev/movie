@@ -986,8 +986,8 @@
 .select_seat_wrap .showMap td.reserved input{
   background-color: #747474;
 }
+
 .select_seat_wrap .showMap td.no_select input{
-/*   background: url(../images/sub/ic_seat_type4.png) no-repeat; */
   background-color : #444;
   background-size: 50px 50px;
 }

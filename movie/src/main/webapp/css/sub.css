@@ -988,8 +988,9 @@
 }
 
 .select_seat_wrap .showMap td.no_select input{
-  background-color : #444;
+  background: #e8e8e8 url(../images/sub/ic_seat_type4.png) no-repeat;
   background-size: 50px 50px;
+  color: #fff;
 }
 
 .select_seat_wrap .showMap td.active input {
@@ -999,11 +1000,11 @@
 
 .select_seat_wrap .showMap td input {
   display: inline-block;
-  background-color: #cfe2f3;
+  background-color: #fff;
   text-align : center;
   width: 50px;
   line-height: 50px;
-  color: #337ab7;
+  color: #000;
 }
 
 /* 醫뚯꽍 ���엯 */

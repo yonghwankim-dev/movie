@@ -54,7 +54,7 @@
   
 </a>
 
-![Architecture](data/architecture.png)  
+![Architecture](images/Architecture.png)  
 
 **기술 스택**
 * Java + Javascript

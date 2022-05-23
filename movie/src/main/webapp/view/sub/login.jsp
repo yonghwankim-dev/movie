@@ -25,7 +25,20 @@
   </ul>
 </div>
 <script>
-$('#btn').on('click', function() {
+const isId = function(asValue){
+	const regExp = /^[a-z]+[a-z0-9]{4,19}$/g;
+	 
+	return regExp.test(asValue);
+};
+
+const isPwd = function(asValue){
+	// 최소 4 자, 하나 이상의 문자와 하나의 숫자
+	var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/g;
+	 
+	return regExp.test(asValue);
+}
+
+const login = function(){
 	$.ajax({
 		url : '<%=request.getContextPath() %>/login.do',
 		type : 'post',
@@ -59,7 +72,20 @@ $('#btn').on('click', function() {
 		},
 		dataType : 'json'
 	});
+};
+
+$('#btn').on('click', function() {
+	if(!isId($('#id').val())){
+		alert("ID 형식이 잘못되었습니다. (영문자로 시작하는 영문자 또는 숫자 4~20자 )");
+	}
+	else if(!isPwd($('#pw').val())){
+		alert("PASSWORD 형식이 잘못되었습니다. (최소 4 자, 하나 이상의 문자와 하나의 숫자)");	
+	}
+	else{
+		login();
+	}
 });
+
 if($('#adminLogin').is(':checked')) {
 	if($('#id').val().equals("admin") && $('#pw').val().equals("admin")){
 	}

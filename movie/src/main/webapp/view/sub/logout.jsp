@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%
 	if(request.isRequestedSessionIdValid()) {
 		session.invalidate();
 	}
 %>
-
-
 <div class="logout-div">
 	<h2>로그아웃이 완료되었습니다.</h2>
 	<div class="btns">

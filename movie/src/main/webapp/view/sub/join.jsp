@@ -34,7 +34,12 @@
           <div class="col-xs-3">
             <input class="form-control" type="text" placeholder="0000" id="lastPh" required pattern="[0-9]{4}" maxlength="4" name="lastTel" title="전화번호 마지막 자리">
           </div>
+          
+          <div class="col-xs-3">
+			  <input type="button" class="btn" id="checkPhoneBtn" value="중복확인"/>
+	  	  </div>
         </div>
+       	<div class="msg" id="checkPhone"></div>
       </div>
   	</div>
 	
@@ -51,7 +56,11 @@
 	  	    <div class="col-xs-6">
 	  	      <input type="text" class="form-control" placeholder="Server" id="server" required name="userServer" title="이메일 뒷자리">
 	  	    </div>
+	  	    <div class="col-xs-2">
+			  <input type="button" class="btn" id="checkEmailBtn" value="중복확인"/>
+	  	    </div>
   	    </div>
+  	    <div class="msg" id="checkEmail"></div>
   	  </div>
 	</div>
   	
@@ -134,78 +143,6 @@
 	<input type="submit" value="회원가입" id="joinBtn" class="btn btn-danger submit-join">
   </form>
 </div>
-<script>
-
-$('#joinId').on('keyup', function() {
-	$.ajax({
-		url : '<%=request.getContextPath() %>/check.do',
-		type : 'post',
-		data : {'id' : $('#joinId').val()},
-		success : function(a) {
-			if(a.code == 'ok' && $('#joinId').val() != "") {
-				$('#checkId').html(a.msg).css('color', 'green');
-			} else if($('#joinId').val() == "") {
-				$('#checkId').html("아이디를 입력해주세요.").css('color', 'orange');
-			} else {
-				$('#checkId').html(a.msg).css('color', 'red');
-			}
-		},
-		error : function(xhr) {
-			alert(xhr.status);
-		},
-		dataType : 'json'
-	});
-});
-
-$('#joinPwCheck, #joinPw').on('keyup', function() {
-	if(($('#joinPw').val() != "" && $('#joinPwCheck').val() != "") && $('#joinPw').val() == $('#joinPwCheck').val()) {
-		$('#checkPw').html("사용 가능한 비밀번호입니다.").css('color', 'green');
-	} else if($('#joinPw').val() == "" && $('#joinPwCheck').val() == "") {
-		$('#checkPw').html("비밀번호를 입력해주세요.").css('color', 'orange');
-	} else {
-		$('#checkPw').html("비밀번호를 다시한번 확인해주세요.").css('color', 'red');
-	}
-});
-
-$('#joinBtn').on('click', function() {
-	$.ajax({
-		url : '<%=request.getContextPath() %>/join.do',
-		type : 'post',
-		data : $('#joinFrm').serialize(),
-		success : function(data) {
-			if(data.code == 'ok'){
-				alert("회원가입에 성공하셨습니다.");
-				location.href = '<%= request.getContextPath() %>/successJoin.do'; 
-			}
-			else{
-				alert("회원가입에 실패하셨습니다.");
-				location.href = '<%= request.getContextPath() %>/join.do';
-			}
-		},
-		error : function(xhr) {
-			alert(xhr.status);
-		},
-		dataType : 'json'
-	});
-});
-
-function findAddr() {
-	new daum.Postcode({
-		oncomplete: function(data) {
-			console.log(data);
-			
-			var roadAddr = data.roadAddress;
-			var jibunAddr = data.jibunAddress;
-			
-			document.getElementById('post').value = data.zonecode;
-			if(roadAddr != ''){
-				document.getElementById('addr').value = roadAddr;
-			} else if(jibunAddr != '') {
-				document.getElementById('addr').value = jibunAddr;
-			}
-		}
-	}).open();
-};
-</script>
+<script src="<%= request.getContextPath()%>/js/mem/join/join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- //여기까지 페이지 내용 -->

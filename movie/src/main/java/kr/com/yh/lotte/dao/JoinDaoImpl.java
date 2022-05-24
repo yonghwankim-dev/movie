@@ -55,6 +55,26 @@ public class JoinDaoImpl implements IJoinDao {
 		return chk;
 	}
 	
+	
+	
+	@Override
+	public boolean checkPhone(String phone) {
+		boolean chk = false;
+		
+		int cnt = 0;
+		
+		try {
+			cnt = (int) smc.queryForObject("join.checkPhone", phone);
+			
+			if(cnt > 0) {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("Phone 중복체크중 예외 발생");
+		}
+		return chk;
+	}
+
 	@Override
 	public boolean checkEmail(String email) {
 		boolean chk = false;

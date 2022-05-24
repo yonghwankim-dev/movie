@@ -14,6 +14,9 @@ public interface IJoinDao {
 	// 중복ID 조회
 	public boolean checkMember(String id);
 
+	// 중복 연락처 조회
+	public boolean checkPhone(String phone);
+	
 	// 중복 Email 조회
 	public boolean checkEmail(String email);
 	
@@ -33,6 +36,8 @@ public interface IJoinDao {
 	public int deleteMember(String pw);
 	
 	public String searchLoginId(Map<String, Object> map);
+
+	
 
 	
 }

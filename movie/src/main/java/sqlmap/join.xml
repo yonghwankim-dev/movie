@@ -54,6 +54,12 @@
 		FROM MEM
 		WHERE ID = #id#
 	</select>
+
+	<select id="checkPhone" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE CONTACT = #phone#
+	</select>
 	
 	<!-- Email 중복조회 -->
 	<select id="checkEmail" resultClass="int" parameterClass="string">

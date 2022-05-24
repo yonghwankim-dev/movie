@@ -35,6 +35,11 @@ public class JoinServiceImpl implements IJoinService {
 		
 		return joinDao.checkMember(id);
 	}
+	
+	@Override
+	public boolean checkPhone(String phone) {
+		return joinDao.checkPhone(phone);
+	}
 
 	@Override
 	public boolean checkEmail(String email) {

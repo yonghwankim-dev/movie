@@ -40,8 +40,8 @@ public class LoginController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 
-		String id = req.getParameter("id");
-		String pw = req.getParameter("pw");
+		String id = req.getParameter("loginId");
+		String pw = req.getParameter("loginPwd");
 		String adminLogin = req.getParameter("adminLogin");
 		
 

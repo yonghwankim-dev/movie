@@ -39,6 +39,19 @@ class MovieTest {
 		
 		Assert.assertNotNull(list);
 	}
+	
+	@Test
+	void getMovieTest() {
+		List<MovieVO> list = new ArrayList<MovieVO>();
+		
+		try {
+			list = smc.queryForList("movie.getMovie");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
+	}
 
 
 }

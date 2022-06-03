@@ -12,7 +12,7 @@
   <form action="login.do" method="post" id="loginFrm">
     <input type="text" class="form-control login-field" placeholder="아이디" title="아이디" name="loginId" id="loginId">
 	<input type="password" class="form-control login-field" placeholder="비밀번호" title="비밀번호" name="loginPwd" id="loginPwd">
-	<input type="button" value="로그인" class="btn btn-submit" id="loginBtn">
+	<input type="button" value="로그인" class="btn btn-light btn-block" id="loginBtn">
 	
  	<div class="checkbox text-left">
  		<label for="adminLogin">

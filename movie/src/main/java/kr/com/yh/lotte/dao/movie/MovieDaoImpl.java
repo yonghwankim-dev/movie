@@ -49,4 +49,19 @@ public class MovieDaoImpl implements IMovieDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<MovieVO> getMovie() {
+		List<MovieVO> list = new ArrayList<MovieVO>();
+		
+		try {
+			list = smc.queryForList("movie.getMovie");
+		} catch (SQLException e) {
+			System.out.println("getMovie 수행중 오류" + e);
+		}
+		
+		return list;
+	}
+	
+	
 }

@@ -13,12 +13,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="/movie/images/common/favicon.ico">
-<link rel="stylesheet" href="/movie/css/main.css">
-<script src="/movie/js/plugins/jquery-3.6.0.min.js"></script>
-<script src="/movie/js/plugins/bootstrap.min.js"></script>
-<script src="/movie/js/plugins/slick.min.js"></script>
-<script src="/movie/js/common.js"></script>
-<script src="/movie/js/main.js"></script>
+<link rel="stylesheet" href="/movie/css/main.css?v=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="/movie/css/layout.css?v=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="/movie/css/common.css?v=<%=System.currentTimeMillis() %>">
+
+
+<!-- jQuery --> 
+<script src="/movie/js/plugins/jquery-3.6/jquery-3.6.0.min.js"></script>
+<script src="/movie/js/plugins/jquery-3.6/slick.min.js"></script>
+<!-- jQuery -->
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="/movie/css/plugins/bootstrap-4.6/bootstrap.min.css">
+<script src="/movie/js/plugins/bootstrap-4.6/bootstrap.min.js"></script>
+<!-- //bootstrap -->
+
+<script src="/movie/js/common.js?v=<%=System.currentTimeMillis() %>"></script>
+<script src="/movie/js/main.js?v=<%=System.currentTimeMillis() %>"></script>
 
 </head>
 <body>
@@ -77,7 +88,7 @@
 							<div class="item">
 								<a href="javascript:void(0);">
 									<span class="img">
-										<img src="/movie/images/common/movie0${i}.jpg" alt="">
+										<img src="/movie/images/common/MOVIE${i}.jpg" alt="">
 									</span>
 								</a>
 							</div>

@@ -33,4 +33,11 @@ public class MovieServiceImpl implements IMovieService {
 	public List<MovieVO> serchMovieList(String movNm) {
 		return movieDao.serchMovieList(movNm);
 	}
+
+	@Override
+	public List<MovieVO> getMovie() {
+		return movieDao.getMovie();
+	}
+	
+	
 }

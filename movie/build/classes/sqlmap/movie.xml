@@ -17,6 +17,11 @@
 		FROM   MOVIE
 		ORDER BY LENGTH(MOVIE_CODE), MOVIE_CODE
 	</select>
+	
+	<select id="getMovie" resultClass="movieVo">
+		SELECT MOVIE_CODE, NAME, AUDI_RATING
+		FROM   MOVIE
+	</select>
 </sqlMap>			
 
 

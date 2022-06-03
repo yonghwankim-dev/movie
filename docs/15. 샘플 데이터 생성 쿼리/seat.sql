@@ -1,7 +1,7 @@
 DECLARE
 seat_code Number := 1;
 BEGIN
-    FOR theater_code IN 1..9
+    FOR theater_code IN 1..1001
     LOOP
         FOR seat_row IN 0..8
         LOOP

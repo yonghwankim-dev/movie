@@ -18,6 +18,7 @@ import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.component.CinemaLocationVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
 import kr.com.yh.util.UpdateResult;
 
@@ -27,10 +28,12 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IAdminService adminService;
 	private ICinemaService cinemaService;
+	private IMovieService movieService;
 	
 	public AdminController() {
 		adminService = AdminServiceImpl.getInstance();
 		cinemaService = CinemaServiceImpl.getInstance();
+		movieService = MovieServiceImpl.getInstance();
 	}
 	
 	@Override
@@ -39,9 +42,13 @@ public class AdminController extends HttpServlet {
 		
 		List<ScreenAdminVO> screenAdmin = adminService.getAllScreenAdmin(); 
 		List<CinemaVO> cinemas = cinemaService.getCinemaList();
-				
+		List<MovieVO> movies = movieService.getMovie();
+		List<CinemaLocationVO> locs = cinemaService.getLocationList();
+		
 		req.setAttribute("screenAdmin", screenAdmin);
 		req.setAttribute("cinemas", cinemas);
+		req.setAttribute("movies", movies);
+		req.setAttribute("locs", locs);
 		req.setAttribute("fileNm", fileNm);
 		
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);

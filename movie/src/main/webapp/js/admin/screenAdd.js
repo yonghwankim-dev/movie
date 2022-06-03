@@ -1,4 +1,5 @@
 // 상영 일정 추가 폼양식 열기
+/*
 const openScreenAddForm = ()=>{
     document.querySelector("#screen_add_form").style.display = "block";
 }
@@ -6,3 +7,4 @@ const openScreenAddForm = ()=>{
 const closeScreenAddForm = ()=>{
     document.querySelector("#screen_add_form").style.display = "none";
 }
+*/

@@ -3,7 +3,7 @@ DECLARE
 theater_code_num NUMBER := 1;
 
 BEGIN
-    FOR Cinema IN 1..33
+    FOR Cinema IN 1..143
     LOOP
         FOR Theater IN 1..7
         LOOP

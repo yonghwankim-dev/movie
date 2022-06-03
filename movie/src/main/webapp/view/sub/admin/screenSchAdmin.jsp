@@ -10,10 +10,9 @@
 <!-- 페이지 내용 -->
 <div class="admin_container">
 	<jsp:include page="./layout/sideMenu.jsp" />
-    <div class="admin_column admin_content">
-        <div class="content_container">
-            <form id="screenSchListFrm">
-				
+	
+    <div class="container">
+		<form id="screenSchListFrm">				
 				<!-- 상영관코드 -->
 				<input type="text" class="hidden" name="theater_code" value="${theater_code}" readonly>
 				<!-- 영화코드 -->
@@ -21,8 +20,7 @@
 				<!-- 상영코드 -->
 				<input type="text" class="hidden" name="screen_code" value="${screen_code}" readonly>				
             	
-                <div class="screen_date_table">
-                    <table>
+                <table class="table table-hover table-striped">
                         <thead>
                             <tr>
                                 <td>구분</td>
@@ -66,13 +64,10 @@
                         	</c:forEach>
                         </tbody>
                     </table>
-                </div>
-                <div class="screen_date_control">
-                    <button type="button" onclick="openScreenSchAddForm()">추가</button>
-                    <button type="button" id="screenSchDeleteBtn">제거</button>
-                </div>
+
+				<button type="button" onclick="openScreenSchAddForm()" class="btn btn-primary">추가</button>
+				<button type="button" id="screenSchDeleteBtn" class="btn btn-danger">제거</button>
             </form>
-        </div>
     </div>
 </div>
 

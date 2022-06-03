@@ -8,19 +8,32 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="/movie/images/common/favicon.ico">
-
-<link rel="stylesheet" href="/movie/css/sub/admin/admin.css">
-<link rel="stylesheet" href="/movie/css/sub/admin/screen_add.css">
-
 <link rel="stylesheet" href="/movie/css/sub.css?v=<%=System.currentTimeMillis() %>">
-<script src="/movie/js/plugins/jquery-3.6.0.min.js"></script>
-<script src="/movie/js/plugins/bootstrap.min.js"></script>
-<script src="/movie/js/plugins/slick.min.js"></script>
-<script src="/movie/js/common.js"></script>
-<script src="/movie/js/sub.js"></script>
+<link rel="stylesheet" href="/movie/css/layout.css?v=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="/movie/css/common.css?v=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="/movie/css/board.css?v=<%=System.currentTimeMillis() %>">
 
-<script src="/movie/js/admin/screen_add.js"></script>
-<script src="/movie/js/admin/screenSch_add.js"></script>
+<!-- jQuery --> 
+<script src="/movie/js/plugins/jquery-3.6/jquery-3.6.0.min.js"></script>
+<script src="/movie/js/plugins/jquery-3.6/slick.min.js"></script>
+<!-- jQuery -->
+
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="/movie/css/plugins/bootstrap-4.6/bootstrap.min.css">
+<script src="/movie/js/plugins/bootstrap-4.6/bootstrap.min.js"></script>
+<!-- //bootstrap -->
+
+
+<script src="/movie/js/common.js?v=<%=System.currentTimeMillis() %>"></script>
+<script src="/movie/js/sub.js?v=<%=System.currentTimeMillis() %>"></script>
+
+<!-- sub/admin 영화 상영 관리 -->
+<link rel="stylesheet" href="/movie/css/sub/admin/screenAdd.css?v=<%=System.currentTimeMillis() %>">
+<script src="/movie/js/admin/screenAdd.js"></script>
+<script src="/movie/js/admin/screenSchAdd.js"></script>
+
+<!-- //sub/admin 영화 상영 관리 -->
 </head>
 <body>
 

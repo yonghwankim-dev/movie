@@ -102,6 +102,11 @@
 							name="theater_name" class="form-control form-control-sm">
 							<option value="1관">1관</option>
 							<option value="2관">2관</option>
+							<option value="3관">3관</option>
+							<option value="4관">4관</option>
+							<option value="5관">5관</option>
+							<option value="6관">6관</option>
+							<option value="7관">7관</option>
 						</select>
 					</div>
 
@@ -148,6 +153,9 @@ const changeCinemaByLoc = function(){
 $('#locSelect').ready(changeCinemaByLoc);
 
 $('#locSelect').on('change', changeCinemaByLoc);
+
+$('#cinemaSelect').on('change', function(){	
+});
 </script>
 <!-- //영화 상영추가 Modal -->
 

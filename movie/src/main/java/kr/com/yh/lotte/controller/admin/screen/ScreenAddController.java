@@ -23,7 +23,7 @@ public class ScreenAddController extends HttpServlet {
 	public ScreenAddController() {
 		adminService = AdminServiceImpl.getInstance();
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String movie_code		= null;											// 영화코드

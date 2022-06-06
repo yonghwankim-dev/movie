@@ -5,6 +5,7 @@ import java.util.List;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.component.CinemaLocationVO;
+import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
 
 public interface ICinemaService {
 	/**

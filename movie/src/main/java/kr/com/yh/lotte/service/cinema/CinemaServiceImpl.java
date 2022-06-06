@@ -6,6 +6,7 @@ import kr.com.yh.lotte.dao.cinema.CinemaDaoImpl;
 import kr.com.yh.lotte.dao.cinema.ICinemaDao;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.component.CinemaLocationVO;
+import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
 
 
 public class CinemaServiceImpl implements ICinemaService {

@@ -49,7 +49,7 @@
 				</tbody>
 			</table>
 
-			<button type="button" id="screenAddBtn" class="btn btn-primary"
+			<button type="button" class="btn btn-primary"
 				data-toggle="modal" data-target="#screenAddModel">추가</button>
 			<button type="button" id="screenDeleteBtn" class="btn btn-danger">제거</button>
 		</form>
@@ -70,36 +70,32 @@
 			<div class="modal-body">
 				<form id="screenFrm">
 					<div class="form-group">
-						<label for="movie_name">영화제목</label> <select name="movie_name"
-							class="form-control form-control-sm">
+						<label for="movie_name">영화제목</label> 
+						<select name="movie_name" class="form-control form-control-sm">
 							<c:forEach var="movie" items="${movies}">
 								<option value="${movie.name}">${movie.name}</option>
 							</c:forEach>
 						</select>
-					</div>
-
-					<div class="form-group">
+						<br>
+						
 						<label for="loc">지역</label> 
 						<select id="locSelect" name="loc" class="form-control form-control-sm">
 							<c:forEach var="loc" items="${locs}">
 								<option value="${loc.cinemaVO.loc}">${loc.cinemaVO.loc}</option>
 							</c:forEach>
 						</select>
-					</div>
-
-					<div class="form-group">
-						<!-- 지역에 따른 지점 필터 기능 추가 필요 -->
-						<label for="cinema_name">지점명</label> 
+						<br>
+						
+						<label for="cinemaSelect">지점명</label> 
 						<select id="cinemaSelect" name="cinema_name" class="form-control form-control-sm">
 							<c:forEach var="cinema" items="${cinemas}">
 								<option data-loc="${cinema.loc}" value="${cinema.name}">${cinema.name}</option>
 							</c:forEach>						
 						</select>
-					</div>
-
-					<div class="form-group">
-						<label for="theater_name">상영관이름</label> <select
-							name="theater_name" class="form-control form-control-sm">
+						<br>
+						
+						<label for="theater_name">상영관이름</label> 
+						<select id="theaterName" name="theater_name" class="form-control form-control-sm">
 							<option value="1관">1관</option>
 							<option value="2관">2관</option>
 							<option value="3관">3관</option>
@@ -108,16 +104,15 @@
 							<option value="6관">6관</option>
 							<option value="7관">7관</option>
 						</select>
-					</div>
-
-					<div class="form-group">
-						<label for="start_date">상영시작일자</label> <input type="date"
-							class="form-control" name="start_date" required>
-					</div>
-
-					<div class="form-group">
-						<label for="end_date">상영종료일자</label> <input type="date"
-							class="form-control" name="end_date" required>
+						<br>
+						
+						<label for="start_date">상영시작일자</label> 
+						<input type="date" class="form-control" name="start_date" required>
+						<br>
+							
+						<label for="end_date">상영종료일자</label> 
+						<input type="date" class="form-control" name="end_date" required>
+						<br>
 					</div>
 				</form>
 			</div>
@@ -154,7 +149,24 @@ $('#locSelect').ready(changeCinemaByLoc);
 
 $('#locSelect').on('change', changeCinemaByLoc);
 
-$('#cinemaSelect').on('change', function(){	
+$('#screenAddBtn').on('click', function(){
+	$.ajax({
+		url : '/movie/admin/screen/add.do',
+		type : 'post',
+		data : $('#screenFrm').serialize(),
+		success : function(data) {
+			if (data.code === 'ok') {
+				alert('영화 상영이 추가되었습니다.');
+			} else if (data.code === 'no') {
+				alert("영화 상영 추가가 실패하였습니다.");
+			}
+			location.href = '/movie/admin/admin.do';
+		},
+		error : function(xhr) {
+			alert(xhr.status);
+		},
+		dataType : 'json'
+	});	
 });
 </script>
 <!-- //영화 상영추가 Modal -->

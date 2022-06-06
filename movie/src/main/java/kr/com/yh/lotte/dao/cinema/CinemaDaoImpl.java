@@ -13,6 +13,7 @@ import kr.com.yh.lotte.dao.ticketing.TicketingDaoImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.component.CinemaLocationVO;
+import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
 

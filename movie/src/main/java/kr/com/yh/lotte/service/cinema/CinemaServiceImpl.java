@@ -32,7 +32,7 @@ public class CinemaServiceImpl implements ICinemaService {
 	}
 
 	@Override
-	public List<CinemaVO> getCinemaList() {
-		return cinemaDao.getCinemaList();
+	public List<CinemaVO> getCinemaList(String loc) {
+		return cinemaDao.getCinemaList(loc);
 	}
 }

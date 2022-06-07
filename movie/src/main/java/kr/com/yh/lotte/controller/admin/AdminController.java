@@ -42,7 +42,7 @@ public class AdminController extends HttpServlet {
 		String fileNm = "admin/screenAdmin"; // 매칭되는 jsp 파일명(확장자 제외)
 		
 		List<ScreenAdminVO> screenAdmin = adminService.getAllScreenAdmin(); 
-		List<CinemaVO> cinemas = cinemaService.getCinemaList();
+		List<CinemaVO> cinemas = cinemaService.getCinemaList(null);
 		List<MovieVO> movies = movieService.getMovie();
 		List<CinemaLocationVO> locs = cinemaService.getLocationList();
 		

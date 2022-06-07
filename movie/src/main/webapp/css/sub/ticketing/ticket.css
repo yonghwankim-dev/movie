@@ -1,0 +1,69 @@
+.locations .list-group-item.active,
+#movies .list-group-item.active{
+	border : #fff !important;
+	background-color : #fff !important;
+}
+
+.cinemas .list-group-item.active{
+	background-color : #fff !important;	
+}
+
+.cinemas .list-group::-webkit-scrollbar{
+	width : 5px;	
+}
+
+.cinemas .list-group::-webkit-scrollbar-thumb{
+	background-color : #CCCCCC;	/*스크롤발의 색상 */
+}
+
+.cinemas .list-group::-webkit-scrollbar-track{
+	background-color: #FFFFFF;	/* 스크롤바 트랙 색상 */
+}
+
+.cinemas .list-group-item:hover,
+#movies .list-group-item:hover{
+	background-color : #F8F9FA !important;
+}
+
+#times .page-item.active a{
+	border-radius : 50%;
+	background-color : #000000 !important;
+}
+
+#times{
+	overflow-x : hidden;
+}
+
+.group_top {
+  overflow: hidden;
+  position: relative;
+  height: 55px;
+  line-height: 55px;
+  border-right: 1px solid #222;
+  text-align: center;
+  background-color: #000;
+  font-size : 18px;
+  color : #FFFFFF;
+}
+
+/* movie rating icon */
+.gr_0 {
+  background-color: #5BC77E;
+}
+
+.gr_7 {
+  background-color: #F7C500;
+}
+
+.gr_12 {
+  background-color: #4dd6ff;
+}
+
+.gr_15 {
+  background-color: #ffc134;
+}
+
+.gr_19 {
+  background-color: #ED4C6B;
+}
+/* //movie rating icon */

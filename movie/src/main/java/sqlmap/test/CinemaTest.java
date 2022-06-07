@@ -51,5 +51,17 @@ class CinemaTest {
 		
 		Assert.assertNotNull(list);
 	}
-
+	
+	@Test
+	void getCinemaListByLocTest() {
+		List<CinemaVO> list = new ArrayList<CinemaVO>();
+		String loc = "제주";
+		try {
+			list = smc.queryForList("cinema.getCinemaList", loc);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(list);
+		Assert.assertNotNull(list);
+	}
 }

@@ -19,11 +19,16 @@
 	</select>
 			
 	<!-- 영화관 리스트 반환 -->
-	<select id="getCinemaList" resultClass="cinemaVo">
+	<select id="getCinemaList" parameterClass="string" resultClass="cinemaVo">
 		SELECT CINEMA_CODE
 			 , NAME
 			 , LOC
 		FROM   CINEMA
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="AND">
+				LOC = #loc#
+			</isNotNull>
+        </dynamic>
 		ORDER BY LOC, NAME
 	</select>
 </sqlMap>			

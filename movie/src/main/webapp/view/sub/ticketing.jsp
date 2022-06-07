@@ -1,56 +1,70 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.time.format.TextStyle"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 
- <!-- 페이지 타이틀 -->
+
+<style>
+#container{
+	height : 1400px;
+	background-color : #444444;
+}
+</style>
+
+<!-- 페이지 타이틀 -->
 <h2 class="pageTitle"> 예매 </h2>
 <!-- //페이지 타이틀 -->
 
 <!-- 여기부터 페이지 내용 -->
-<div class="wrap_reserve">
-        <div class="article article_cinema">
+<div class="row bg-white">
+        <div class="col-4 p-0">
             <div class="group_top">
-                <h4 class="tit">영화관</h4>
+                <span>영화관</span>
             </div>
-            <div class="cinema_select_wrap">
-                <ul class="depth1_list">
-                	<c:forEach var="location" items="${locations}" varStatus="status">
-                		<li class="depth1 ${status.index eq 0 ? 'active' : ''}">
-                        	<a class="location" href="#none">${location.cinemaVO.loc}<span>(${location.cinema_cnt})</span></a>
-                        
-	                        <div class="depth2 ${status.index eq 0 ? 'active' : ''}">
-	                            <ul class="cinema_list">
-		                        	<c:forEach var="cinema" items="${cinemas}" varStatus="status">
-			                        	<c:if test="${location.cinemaVO.loc eq cinema.loc}">
-			                        		<li class="cinema_item ${cinema.name eq cinema_name ? 'active' : ''}">
-			                                    <a class="cinema" href="/movie/ticketing/ticketing.do?cinema_name=${cinema.name}">
-			                                    	${cinema.name}
-			                                    </a>
-			                                </li>
-			                        	</c:if>
-			                        </c:forEach>
-	                        	</ul>
-	                        </div>
-						</li>
-					</c:forEach>
-                </ul>
+            <div class="d-flex h-100">
+            	<div class="col-6 p-0">
+            		<div class="locations h-100 bg-light">
+            			<ul class="list-group">
+		                	<c:forEach var="location" items="${locations}" varStatus="status">
+		                		<li class="list-group-item border-0 rounded-0 small text-dark bg-light ${location.cinemaVO.loc eq loc ? 'active' : ''}">
+		                        	<a class="text-dark text-decoration-none" href="/movie/ticketing/ticketing.do?loc=${location.cinemaVO.loc}">${location.cinemaVO.loc}<span>(${location.cinema_cnt})</span><img src="/movie/images/sub/check.png" class="float-right invisible"></a>
+								</li>
+							</c:forEach>
+	                	</ul>
+            		</div>
+            	</div>   
+            	<div class="col-6 p-0">
+            		<div class="cinemas">
+						<ul class="list-group" style="max-height:950px; overflow-y:auto;">
+							<c:forEach var="cinema" items="${cinemas}">
+								<li class="list-group-item border-0 rounded-0 small ${cinema.name eq cinema_name ? 'active' : ''}">
+									<a class="text-dark text-decoration-none" href="/movie/ticketing/ticketing.do?loc=${loc}&cinema_name=${cinema.name}">
+										${cinema.name}
+										<img src="/movie/images/sub/check.png" class="float-right invisible">
+									</a>
+								</li>
+							</c:forEach>
+						</ul>            		
+            		</div>
+            	</div>             
             </div>
         </div>  
 
-        <div class="article article_movie">
+        <div class="col-4 p-0">
             <div class="group_top">
-                <h4 class="tit">
                 	<c:if test="${not empty movie_name}">
-                		${movie_name}
+                		<span>${movie_name}</span>
                 	</c:if>
                 	<c:if test="${empty movie_name}">
-                		영화선택
+                		<span>영화선택</span>
                 	</c:if>
-                </h4>
             </div>
-            <div class="movie_select_wrap">
-                <ul class="movie_list">
+            <div id="movies">
+                <ul class="list-group">
                 	<c:forEach var="movie" items="${movies}" varStatus="status">
                 		<!-- 영화 선택시 체크 표시 활성화 -->
                 		<c:if test="${movie.name eq movie_name}">
@@ -61,42 +75,60 @@
                 			<c:set var="isActive" value=""/>
                 		</c:if>
                 		
-                		<li class="movie_item ${isActive}">    
-	                        <a class="movie" href="/movie/ticketing/ticketing.do?cinema_name=${cinema_name}&movie_name=${movie.name}">
-								<span class="ic_grade gr_${movie.audi_rating}"></span>
-								<strong class="tit">${movie.name}</strong>
+                		<li class="list-group-item d-flex align-items-center justify-content-between ${movie.name eq movie_name ? 'active' : ''}">    
+	                        <a class="movie d-flex align-items-center text-decoration-none text-dark" href="/movie/ticketing/ticketing.do?loc=${loc}&cinema_name=${cinema_name}&movie_name=${movie.name}">
+								<!-- <span class="ic_grade gr_${movie.audi_rating}"></span> -->
+								<span class="badge badge-pill rounded-circle text-white gr_${movie.audi_rating}">15</span>
+								<span class="ml-1">${movie.name}</span>
 	                        </a>
+	                       	<img src="/movie/images/sub/check.png" class="float-right invisible">
                     	</li>	
                 	</c:forEach>
                 </ul>                
             </div>
         </div>
 
-        <div class="article article_time">
+        <div class="col-4 p-0">
             <div class="group_top">
-                <h4 class="tit">상영 날짜 선택</h4>
+                <span>상영 날짜 선택</span>
             </div>
-            <div class="time_select_wrap">
-                <div class="date_select_wrap">
+            <div id="times">
+                <div class="container">
                 	<input class="hidden input_selected_date" name="selected_date" value="${screen_date}"/>
                 	<form id="change_screen_date" action="/movie/ticketing/ticketing.do">
                 		<input class="hidden input_cinema_name" name="cinema_name" value="${cinema_name}"/>
                 		<input class="hidden input_movie_name" name="movie_name" value="${movie_name}"/>
 	
-                		<!-- 일자 출력 부분 -->
+                		<!-- 일자 출력 부분
 	                    <div class="owl-stage">
 	                    </div>
-	                    
+	                    -->
+	                    <ul class="pagination pagination-sm">
+							<li class="page-item disabled">
+								<a href="#" class="page-link border-0"> &#8826; </a>
+							</li>
+							
+							<%
+								LocalDateTime day = LocalDateTime.now();
+							%>
+							
+							<c:forEach var="i" begin="1" end="28">
+								<li class="page-item d-flex justify-content-center align-items-center flex-column ${i eq 1 ? 'active' : ''}">
+									<a href="#" class="page-link border-0">
+										<%=day.getDayOfMonth()%>
+									</a>
+									<span><%=day.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN)%></span>
+								</li>
+								<% day = day.plusDays(1); %>							
+							</c:forEach>
+							
+							<li class="page-item">
+								<a href="#" class="page-link border-0"> &#8827; </a>
+							</li>
+						</ul>
                     </form>
-                    <div class="owl-nav">
-                        <button type="button" class="owl-prev disabled" >
-                            <span aria-label="Previous"> ‹ </span>
-                        </button>
-                        <button type="button" class="owl-next">
-                            <span aria-label="Next">›</span>
-                        </button>
-                    </div>
                 </div>
+                
                 <ul class="tab_wrap outer">
                 	<c:forEach var="movie" items="${movies}" varStatus="status">
                 		<li>
@@ -146,6 +178,12 @@
             </div>
             
         </div>
-    </div>    
-    <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
+</div>
+    
+<script>
+	$('.locations .active img').toggleClass("invisible");
+	$('.cinemas .active img').toggleClass("invisible");
+	$('#movies .active img').toggleClass("invisible");
+</script>
+<script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

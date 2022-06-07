@@ -39,6 +39,7 @@ public class TicketingController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String fileNm 		= "ticketing"; 						// 매칭되는 jsp 파일명(확장자 제외)
+		String loc          = req.getParameter("loc");			// 선택한 지역
 		String cinema_name 	= req.getParameter("cinema_name");	// 선택한 영화관 지점
 		String movie_name 	= req.getParameter("movie_name");	// 선택한 영화
 		String screen_date 	= req.getParameter("screen_date");	// 선택한 일자
@@ -46,16 +47,22 @@ public class TicketingController extends HttpServlet {
 		screen_date = screen_date==null ? LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) 
 										: screen_date;	// 오늘 or 선택한 일자
 		
-		List<CinemaLocationVO> locations = cinemaService.getLocationList();		
-		List<CinemaVO> cinemas = cinemaService.getCinemaList();		
+		List<CinemaLocationVO> locations = cinemaService.getLocationList();
+		
+		// 지역 기본값 설정
+		loc = loc == null ? locations.get(0).getCinemaVO().getLoc() : loc;
+		
+		List<CinemaVO> cinemas = cinemaService.getCinemaList(loc);		
 		List<MovieVO> movies = ticketingService.getMoviesByCinemaNameAndMovieName(cinema_name, movie_name);
 		
 		// 선택한 영화관에 모든 영화 상영일정 리스트 반환
 		List<MovieScreenSchVO> screenSchs = ticketingService.findAllMovieScreenSch(cinema_name, movie_name, screen_date);
 		screenSchs = screenSchService.findBookSeatCnt(screenSchs);
 		
+		
 		req.setAttribute("locations", locations);
 		req.setAttribute("cinemas", cinemas);
+		req.setAttribute("loc", loc);
 		req.setAttribute("movies", movies);
 		req.setAttribute("screenSchs", screenSchs);
 		req.setAttribute("cinema_name", cinema_name);

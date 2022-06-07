@@ -16,9 +16,10 @@ public interface ICinemaDao {
 	
 	/**
 	 * 모든 영화관 지점들의 리스트를 반환
+	 * @param loc 선택한 지역
 	 * @return 영화관 지점 리스트 
 	 */
-	public List<CinemaVO> getCinemaList();
+	public List<CinemaVO> getCinemaList(String loc);
 	
 	
 }

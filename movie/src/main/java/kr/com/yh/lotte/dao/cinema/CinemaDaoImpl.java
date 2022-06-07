@@ -48,11 +48,11 @@ public class CinemaDaoImpl implements ICinemaDao {
 	}
 
 	@Override
-	public List<CinemaVO> getCinemaList() {
+	public List<CinemaVO> getCinemaList(String loc) {
 		List<CinemaVO> list = new ArrayList<CinemaVO>();
 		
 		try {
-			list = smc.queryForList("cinema.getCinemaList");
+			list = smc.queryForList("cinema.getCinemaList", loc);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

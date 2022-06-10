@@ -34,6 +34,111 @@
 	overflow-x : hidden;
 }
 
+#dates .month{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:100%;
+	text-align: center;
+	font-size: 10px;
+}
+
+#dates .date_select_wrap{
+	overflow: hidden;
+	height: 75px;
+	margin: 22px 20px 10px;
+	
+}
+
+
+#dates .slide_wrap{
+	position: relative;
+}
+
+#dates .slide_reserve_date{
+	padding: 0 20px;
+}
+
+#dates .owl-carousel{
+	position : relative;
+	display: block;
+	width: auto;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	z-index: 1;
+}
+
+#dates .owl-loaded{
+	display: block;
+}
+
+#dates .owl-stage-outer{
+	position: relative;
+	overflow: hidden;
+}
+
+#dates .owl-stage{
+	position: relative;
+	transform: translate3d(0px, 0px, 0px);
+	transition : all 0s ease 0s;
+	width : 1470px;
+}
+
+#dates .owl-item{
+	width: 52.5px;
+	position: relative;
+	float: left;
+	display: block;
+	min-height: 1px;
+}
+
+
+#dates .date{
+	display: block;
+	position: relative;
+	padding-top: 20px;
+}
+
+#dates .date label{
+	display: block;
+	cursor: pointer;
+}
+
+#dates .date input[type="radio"]{
+	overflow: hidden;
+	position: absolute;
+	width : 1px;
+	height : 1px;
+	clip : rect(0,0,0,0);
+}
+
+#dates .date input[type="radio"]:checked + strong{
+	font-weight: bold;
+	color : #fff;
+	background : #000;
+}
+
+#dates .date label strong{
+	display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-family: 'Roboto';
+    font-size: 15px;
+    text-align: center;
+}
+
+#dates em{
+	display: block;
+	margin-top: 10px;
+	font-size : 12px;
+	text-align: center;
+}
+
+
 .group_top {
   overflow: hidden;
   position: relative;

@@ -1,12 +1,17 @@
+<%@page import="java.time.temporal.TemporalUnit"%>
+<%@page import="java.time.DayOfWeek"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.time.format.TextStyle"%>
 <%@page import="java.time.LocalDateTime"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="ldt" tagdir="/WEB-INF/tags/localDateTime" %>
 
+<c:set var="now" value="<%=LocalDateTime.now() %>"/>
+<c:set var="date" value="${now}"/>
+<c:set var="today"><ldt:getDayOfMonth value="${now}"/></c:set>
 
 <style>
 #container{
@@ -103,29 +108,47 @@
 	                    <div class="owl-stage">
 	                    </div>
 	                    -->
-	                    <ul class="pagination pagination-sm">
-							<li class="page-item disabled">
-								<a href="#" class="page-link border-0"> &#8826; </a>
-							</li>
-							
-							<%
-								LocalDateTime day = LocalDateTime.now();
-							%>
-							
-							<c:forEach var="i" begin="1" end="28">
-								<li class="page-item d-flex justify-content-center align-items-center flex-column ${i eq 1 ? 'active' : ''}">
-									<a href="#" class="page-link border-0">
-										<%=day.getDayOfMonth()%>
-									</a>
-									<span><%=day.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN)%></span>
-								</li>
-								<% day = day.plusDays(1); %>							
-							</c:forEach>
-							
-							<li class="page-item">
-								<a href="#" class="page-link border-0"> &#8827; </a>
-							</li>
-						</ul>
+						<div id="dates">
+							<div class="date_select_wrap">
+								<div class="slide_wrap slide_reserve_date">
+								    <ul class="owl-carousel owl-loaded">
+								    	<div class="owl-stage-outer">
+										    <div class="owl-stage"> 
+										    	<c:forEach begin="1" end="27">
+											    	<div class="owl-item">
+											    		<c:set var="day"><ldt:getDayOfMonth value="${date}"/></c:set>
+											    		<c:set var="month"><ldt:getMonthValue value="${date}"/></c:set>
+											    		<c:set var="dayOfWeek"><ldt:getDayOfWeek value="${date}"/></c:set>
+												    	<li>  
+												    		<c:if test="${(day == today) || (day == 1)}">
+												    			<strong class="month">${month}월</strong>
+												    		</c:if>
+									                    	<span class="date">
+									                    		<label>
+									                    			<input type="radio" name="radioDate" data-displayyn="Y" data-playdate="2022-06-08" data-isplaydate="Y" data-playweek="오늘">
+									                    			<strong>${day}</strong>
+									                    			<c:choose>
+									                    				<c:when test="${day == today}">
+									                    					<em data-dayOfWeek="${dayOfWeek}">오늘</em>
+									                    				</c:when>
+									                    				<c:otherwise>
+									                    					<em data-dayOfWeek="${dayOfWeek}">${dayOfWeek}</em>
+									                    				</c:otherwise>
+									                    			</c:choose>
+									                    		</label>
+									                    	</span>
+												    	</li>						    	
+											    	</div>
+											    	<c:set var="date"><ldt:plusDays value="${date}" days="1"/></c:set>											    										    	
+										    	</c:forEach>					    
+										    </div>						    	
+								    	</div>
+								    </ul>							
+								</div>							
+							</div>
+
+
+						</div>
                     </form>
                 </div>
                 
@@ -184,6 +207,7 @@
 	$('.locations .active img').toggleClass("invisible");
 	$('.cinemas .active img').toggleClass("invisible");
 	$('#movies .active img').toggleClass("invisible");
+	
 </script>
 <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

@@ -139,4 +139,3 @@ const init = ()=>{
 
 };
 init();
-init_calendar();

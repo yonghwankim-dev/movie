@@ -143,11 +143,13 @@
 										    	</c:forEach>					    
 										    </div>						    	
 								    	</div>
-								    </ul>							
+								    </ul>
+									<div class="owl-nav">
+								    	<button type="button" class="owl-prev bg-transparent border-0"><span aria-label="Previous">&lt;</span></button>
+								    	<button type="button" class="owl-next bg-transparent border-0"><span aria-label="Next">&gt;</span></button>
+								    </div>							
 								</div>							
 							</div>
-
-
 						</div>
                     </form>
                 </div>
@@ -207,6 +209,8 @@
 	$('.locations .active img').toggleClass("invisible");
 	$('.cinemas .active img').toggleClass("invisible");
 	$('#movies .active img').toggleClass("invisible");
+	$(".date em[data-dayOfWeek='토']").parents(".date").css("color", "blue");
+	$(".date em[data-dayOfWeek='일']").parents(".date").css("color", "red");
 	
 </script>
 <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>

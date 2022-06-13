@@ -147,6 +147,57 @@
 	justify-content: space-between;
 }
 
+#movieScreenSchTime .list_time:after{
+	content : '';
+	display: block;
+	clear : both;
+}
+#movieScreenSchTime .list_time li{
+	float : left;
+	width : 30%;
+	margin : 0 0 11px 2%;
+}
+
+#movieScreenSchTime .list_time li:nth-child(3n+1){
+	margin-left: 0;
+}
+
+#movieScreenSchTime .list_time li > a{
+	display: block;
+	position: relative;
+	height : 53px;
+	padding : 8px 14px 5px;
+	border-radius: 4px;
+	border : 1px solid #ddd;
+	cursor : pointer;
+	background : #f8f8f8;
+	text-align: center;	
+}
+
+#movieScreenSchTime a dl dt{
+	overflow: hidden;
+	position: absolute !important;
+	width : 1px;
+	height : 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+#movieScreenSchTime a dl dd.time{
+	margin-bottom : 5px;
+	font-size : 11px;
+}
+#movieScreenSchTime a dl dd.seat{
+	font-size : 11px;
+	color : #666;
+}
+#movieScreenSchTime a dl dd.hall{
+	position : absolute;
+	right : 5px;
+	bottom : -5px;
+	font-size : 11px;
+}
+
+
+
 .group_top {
   overflow: hidden;
   position: relative;

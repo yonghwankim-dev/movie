@@ -1,6 +1,3 @@
-import init_calendar from "./calendar.js"
-
-
 // 지역 선택
 const activeLocation = function(e){
 

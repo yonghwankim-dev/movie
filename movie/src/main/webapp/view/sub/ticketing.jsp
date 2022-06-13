@@ -115,17 +115,18 @@
 								    	<div class="owl-stage-outer">
 										    <div class="owl-stage"> 
 										    	<c:forEach begin="1" end="27">
-											    	<div class="owl-item">
+											    	<div class="owl-item mySlides">
 											    		<c:set var="day"><ldt:getDayOfMonth value="${date}"/></c:set>
 											    		<c:set var="month"><ldt:getMonthValue value="${date}"/></c:set>
 											    		<c:set var="dayOfWeek"><ldt:getDayOfWeek value="${date}"/></c:set>
+											    		
 												    	<li>  
 												    		<c:if test="${(day == today) || (day == 1)}">
 												    			<strong class="month">${month}월</strong>
 												    		</c:if>
 									                    	<span class="date">
 									                    		<label>
-									                    			<input type="radio" name="radioDate" data-displayyn="Y" data-playdate="2022-06-08" data-isplaydate="Y" data-playweek="오늘">
+									                    			<input type="radio" name="radioDate" data-displayyn="Y" data-playdate="2022-06-08" data-isplaydate="Y" data-playweek="${dayOfWeek}">
 									                    			<strong>${day}</strong>
 									                    			<c:choose>
 									                    				<c:when test="${day == today}">
@@ -145,9 +146,9 @@
 								    	</div>
 								    </ul>
 									<div class="owl-nav">
-								    	<button type="button" class="owl-prev bg-transparent border-0"><span aria-label="Previous">&lt;</span></button>
-								    	<button type="button" class="owl-next bg-transparent border-0"><span aria-label="Next">&gt;</span></button>
-								    </div>							
+								    	<button type="button" class="owl-prev bg-transparent border-0" onclick="plusSlides(-5)"><span aria-label="Previous">&lt;</span></button>
+								    	<button type="button" class="owl-next bg-transparent border-0" onclick="plusSlides(5)"><span aria-label="Next">&gt;</span></button>
+								    </div>
 								</div>							
 							</div>
 						</div>
@@ -211,7 +212,35 @@
 	$('#movies .active img').toggleClass("invisible");
 	$(".date em[data-dayOfWeek='토']").parents(".date").css("color", "blue");
 	$(".date em[data-dayOfWeek='일']").parents(".date").css("color", "red");
-	
+	$(".date input[type=radio]").first().attr("checked", true);	
+</script>
+<script>
+let start = 1;
+let end   = 5;
+showSlides(start, end);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(start+=n, end +=n);
+}
+
+function showSlides(start, end) {
+  let i;
+  let slides = document.querySelectorAll(".mySlides");
+  
+  if(start > slides.length || end < 1){
+    return;
+  }
+
+  if (end > slides.length) {end = slides.length}
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for(i = start; i <= end; i++){
+    slides[i-1].style.display = "inline-block";
+  }
+}
 </script>
 <script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

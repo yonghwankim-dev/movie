@@ -36,7 +36,7 @@
 	-->
 	
 	<!-- 영화관 지점에 따른 영화 리스트 반환 -->
-	<select id="getMoviesByCinemaNameAndMovieName" parameterClass="Map" resultClass="movieVo">
+	<select id="getMoviesByCinemaName" parameterClass="Map" resultClass="movieVo">
 		SELECT DISTINCT M.NAME, M.MOVIE_CODE, M.AUDI_RATING
 		FROM SCREEN S
         	INNER JOIN THEATER TH ON S.THEATER_CODE = TH.THEATER_CODE
@@ -45,9 +45,6 @@
         <dynamic prepend="WHERE">
 			<isNotNull prepend="AND" property="cinema_name">
 				C.NAME = #cinema_name#
-			</isNotNull>
-			<isNotNull prepend="AND" property="movie_name">
-				M.NAME = #movie_name#
 			</isNotNull>
         </dynamic>
 	</select>

@@ -1,6 +1,4 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag body-content="empty" pageEncoding="utf-8" %>
-
 <%@ tag import="java.time.format.DateTimeFormatter" %>
 
 <%@ tag trimDirectiveWhitespaces="true" %>

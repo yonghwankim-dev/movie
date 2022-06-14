@@ -25,8 +25,8 @@ public class TicketingServiceImpl implements ITicketingService{
 	}
 	
 	@Override
-	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name) {
-		return ticketingDao.getMoviesByCinemaNameAndMovieName(cinema_name, movie_name);
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name) {
+		return ticketingDao.getMoviesByCinemaName(cinema_name);
 	}
 	
 	@Override

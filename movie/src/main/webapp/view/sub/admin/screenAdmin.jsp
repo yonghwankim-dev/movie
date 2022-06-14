@@ -35,7 +35,10 @@
 								value="${s.screen.screen_code}" /></td>
 							<td>${s.screen.screen_code}</td>
 							<td>${s.movie.movie_code}</td>
-							<td>${s.movie.name}</td>
+							<td><a class="text-decoration-none text-dark" 
+								   href="/movie/admin/screenSch/admin.do?theater_code=${s.theater.theater_code}
+								   		&movie_code=${s.movie.movie_code}&screen_code=${s.screen.screen_code}">
+								   ${s.movie.name}</a></td>
 							<td>${s.cinema.loc}</td>
 							<td>${s.cinema.name}</td>
 							<td>${s.theater.theater_code}</td>
@@ -172,23 +175,6 @@ $('#screenAddBtn').on('click', function(){
 <!-- //영화 상영추가 Modal -->
 
 <script>
-	$('#screenTable tbody tr').on(
-			'click',
-			function() {
-				const tr = $(this);
-				const td = tr.children();
-
-				const theater_code = $.trim(td.eq(6).text());
-				const movie_code = $.trim(td.eq(2).text());
-				const screen_code = $.trim(td.eq(1).text());
-
-				$(location).attr(
-						'href',
-						'/movie/admin/screenSch/admin.do?theater_code='
-								+ theater_code + '&movie_code=' + movie_code
-								+ '&screen_code=' + screen_code);
-			});
-
 	$('#screenDeleteBtn').on('click', function() {
 		$.ajax({
 			url : '/movie/admin/screen/delete.do',

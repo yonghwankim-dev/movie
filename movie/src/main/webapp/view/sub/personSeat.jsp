@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<style>
+#container{
+	height : 1400px;
+	background-color : #444444;
+}
+</style>
+ 
  
  <!-- 페이지 타이틀 -->
 <h2 class="pageTitle">인원/좌석 선택 </h2>
@@ -10,8 +18,9 @@
 <!-- 여기부터 페이지 내용 -->
  <div id="reserveStep02" class="section_step_con step02 active">
     <div class="article article_seat">
-        <div class="group_top">
-            <h4 class="tit">인원/좌석 선택</h4>
+        <div class="group_top d-flex justify-content-center align-items-center">
+            <h4 style="font-size: 18px; color: white;">인원/좌석 선택</h4>
+            <p class="position-absolute" style="font-size: 13px; top:5px; right:30px; color:white;">인원은 최대 8명까지 선택 가능합니다.</p>
         </div>
         <div class="inner">
         	
@@ -20,11 +29,11 @@
                 <div class="select_num_people_wrap">
                     <div class="movie_infor">
                         <div class="group_infor">
-                            <div class="bx_tit">
+                            <div class="bx_tit" style="font-size: 17px;">
                             	<!-- 영화관람가 -->
-                                <span class="ic_grade gr_${screenSch.movie.audi_rating}"></span>
+                                <span class="badge badge-pill rounded-circle text-white gr_${screenSch.movie.audi_rating}">${screenSch.movie.audi_rating}</span>
                                 <!-- 영화제목 -->
-                                <strong>${screenSch.movie.name}</strong>
+                                <strong>${screenSch.movie.name} (2D)</strong>
                             </div>
                             <dl>
                                 <dt>일시</dt>
@@ -77,6 +86,9 @@
                 </div>                    
             </div>
             <div class="select_seat_wrap">
+            	<div class="d-flex justify-content-center align-items-center" style="margin: 15px 0 25px;">
+            		<p id="ticketMessageInfo" class="position-relative inline-block pl-9 text-white m-0" style="font-size: 11px;">- 인원을 선택하세요.</p>
+            	</div>
                 <div id="container" class="seat_wrap">
                     <div class="screen">
                         <span class="title_screen1">

@@ -28,14 +28,13 @@ public class TicketingDaoImpl implements ITicketingDao{
 	}
 		
 	@Override
-	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name) {
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cinema_name", cinema_name);
-		map.put("movie_name", movie_name);
 		
 		try {
-			list = smc.queryForList("ticketing.getMoviesByCinemaNameAndMovieName", map);
+			list = smc.queryForList("ticketing.getMoviesByCinemaName", map);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

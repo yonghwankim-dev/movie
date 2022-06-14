@@ -18,10 +18,9 @@ public interface ITicketingService {
 	/**
 	 * 영화관 지점에서 상영하는 영화 리스트 반환
 	 * @param cinema_name 영화관 이름
-	 * @param movie_name 영화제목
 	 * @return 영화 리스트
 	 */
-	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name);
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name);
 
 	/**
 	 * 특정 상영일정코드에 대한 영화상영정보를 반환

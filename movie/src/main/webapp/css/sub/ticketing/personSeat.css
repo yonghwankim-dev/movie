@@ -1,0 +1,283 @@
+.bx_num {
+  position: relative;
+  width: 105px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.section_step_con .article.article_seat {
+  width: 1200px;
+}
+
+.section_step_con .article.article_seat > .inner {
+  overflow: hidden;
+  height: 900px;
+}
+
+.select_num_people_wrap {
+  position : relative;
+  overflow: hidden;
+  height: 117px;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+.select_num_people_wrap .movie_infor {
+  position: absolute;
+  top : 25px;
+  width: 270px;
+}
+
+.select_num_people_wrap .movie_infor .thm {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 26px;
+  left: 0;
+  width: 46px;
+  height: 65px;
+  border-radius: 4px;
+}
+
+.select_num_people_wrap .movie_infor .thm img {
+  width: 100%;
+}
+
+.select_num_people_wrap .movie_infor .group_infor .bx_tit {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.select_num_people_wrap .movie_infor .group_infor dl {
+  position: relative;
+}
+.select_num_people_wrap .movie_infor .group_infor dl dt {
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.select_num_people_wrap .movie_infor .group_infor dl dd.sub_info1 {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.select_num_people_wrap .count_people {
+  float: right;
+  width: 825px;
+  margin-top: 36px;
+}
+
+.select_num_people_wrap .count_people > ul::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.select_num_people_wrap .count_people > ul > li {
+  float: left;
+  margin-left: 20px;
+}
+.select_num_people_wrap .count_people > ul > li:first-child {
+  margin-left: 0;
+}
+
+.select_num_people_wrap .count_people > ul > li .tit {
+  margin-right: 8px;
+  font-size: 13px;
+  color: #1e1e1e;
+}
+.select_num_people_wrap .count_people > ul > li .bx_num {
+  display: inline-block;
+  width: 100px;
+}
+
+.bx_num .btn_mins {
+  left: 0;
+  background: url(/movie/images/sub/minus_12.png) no-repeat 50% 50%;
+}
+.bx_num .btn_plus {
+  right: 0;
+  background: url(/movie/images/sub/plus_12.png) no-repeat 50% 50%;
+}
+
+.bx_num .btn_mins,
+.bx_num .btn_plus {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 0 none;
+  padding: 0 15px;
+  text-indent: -9999em;
+  font: 0 auto;
+}
+
+.bx_num .txt_num {
+  width: 100px;
+  padding: 11px 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #1e1e1e;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+/**********************************************************/
+
+
+/* 醫뚯꽍 */
+.select_seat_wrap {
+  overflow: hidden;
+  color: #fff;
+  height: 670px;
+  background-color: #000;
+}
+
+.select_seat_wrap .title_screen1 {
+  display: block;
+  padding: 5px 0 5px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 15px;
+  
+  margin: 0 0 30px;
+  background-color: #6e6e6e;
+}
+
+.select_seat_wrap .showMap {
+  width: 100%;
+  height: 550px;
+  background-color: #000;
+}
+
+.select_seat_wrap .showMap table {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+.select_seat_wrap .showMap td:first-child {
+  color: white;
+  background-color: transparent;
+}
+.select_seat_wrap .showMap td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #cfe2f3;
+  color: #1e1e1e;
+}
+
+
+
+.select_seat_wrap .showMap td:not(.active):hover {
+  background-color: #b9d4eb;
+}
+
+.select_seat_wrap .showMap td.reserved input{
+  background-color: #747474;
+}
+
+.select_seat_wrap .showMap td.no_select input{
+  background: #e8e8e8 url(../images/sub/ic_seat_type4.png) no-repeat;
+  background-size: 50px 50px;
+  color: #fff;
+}
+
+.select_seat_wrap .showMap td.active input {
+  background-color: red;
+  color: white;
+}
+
+.select_seat_wrap .showMap td input {
+  display: inline-block;
+  background-color: #fff;
+  text-align : center;
+  width: 50px;
+  line-height: 50px;
+  color: #000;
+}
+
+/* 醫뚯꽍 ���엯 */
+.seat_btm_box {
+  height: 50px;
+  background-color: #000;
+  color: white;
+}
+
+.seat_btm_box .seat_type_box .top_info span {
+  padding-left: 17px;
+  margin-left: 6px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type1 {
+  background: url(/movie/images/sub/ic_seat_type1.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type2 {
+  background: url(/movie/images/sub/ic_seat_type2.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type3 {
+  background: url(/movie/images/sub/ic_seat_type3.png) no-repeat 0 4px;
+}
+.seat_btm_box .seat_type_box .top_info span.seat_type4 {
+  background: url(/movie/images/sub/ic_seat_type4.png) no-repeat 0 4px;
+}
+
+
+/* 醫뚯꽍 �꽑�깮 寃곌낵 */
+.select_seat_result {
+  display: flex;
+  justify-content: space-between;
+}
+.select_seat_result .group_left {
+  width: 100%;
+  background-color: #444;
+  color: white;
+  font-size: 25px;
+  line-height: 25px;
+  padding: 0 15px;
+}
+.select_seat_result .group_left dl.total_price {
+  display: flex;
+  margin-bottom: 0;
+}
+.select_seat_result .group_left dl.total_price dt {
+  line-height: 70px;
+  margin-right: 10px;
+}
+.select_seat_result .group_left dl.total_price dd {
+  line-height: 70px;
+}
+
+.select_seat_result .group_right {
+  display: flex;
+}
+.select_seat_result .group_right form{
+	display : contents;
+}
+
+.select_seat_result .group_right a,
+.select_seat_result .group_right input {
+  width: 100px;
+  line-height: 70px;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+}
+
+.select_seat_result .group_right .back {
+  background-color: #444;
+}
+ 
+.select_seat_result .group_right .bookSeat {
+  background-color: red;
+  border : none;
+  color : white;
+}

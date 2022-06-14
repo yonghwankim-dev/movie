@@ -15,7 +15,7 @@ public interface ITicketingDao {
 	 * @param cinema_name 영화관 이름
 	 * @return 영화 리스트
 	 */
-	public List<MovieVO> getMoviesByCinemaNameAndMovieName(String cinema_name, String movie_name);
+	public List<MovieVO> getMoviesByCinemaName(String cinema_name);
 		
 	/**
 	 * 특정 상영일정코드에 대한 영화상영정보를 반환

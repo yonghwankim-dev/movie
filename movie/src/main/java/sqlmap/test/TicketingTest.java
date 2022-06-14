@@ -43,9 +43,9 @@ class TicketingTest {
 	@Test
 	void findAllMovieScreenSchListTest() {
 		List<MovieScreenSchVO> list = new ArrayList<MovieScreenSchVO>();
-		String cinema_name = "가산디지털";
-		String movie_name = "메리 미";
-		String screen_date = "2022-05-10";
+		String cinema_name = "동해";
+		String movie_name = "이상한 나라의 수학자";
+		String screen_date = "2022-06-15";
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cinema_name", cinema_name);

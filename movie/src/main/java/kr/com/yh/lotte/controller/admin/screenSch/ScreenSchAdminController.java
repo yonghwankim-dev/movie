@@ -39,8 +39,6 @@ public class ScreenSchAdminController extends HttpServlet {
 		String movie_code = req.getParameter("movie_code");
 		String theater_code = req.getParameter("theater_code");
 		String screen_code = req.getParameter("screen_code");
-		
-		
 		List<ScreenSchVO> screenSchs = adminService.getScreenSchByScreenCode(screen_code);
 		
 		req.setAttribute("theater_code", theater_code);

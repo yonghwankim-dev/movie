@@ -24,6 +24,7 @@ import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.MovieInfoVO;
 import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
 import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
+import kr.com.yh.util.UpdateResult;
 
 @WebServlet("/personSeat.do")
 public class PersonSeatController extends HttpServlet {
@@ -45,7 +46,7 @@ public class PersonSeatController extends HttpServlet {
 		// 상영코드에 대한 영화정보 가져오기
 		MovieScreenSchVO screenSch = ticketingService.findAllMovieScreenSch(screen_sch_code);
 		List<MovieScreenSchSeatVO> seats = seatService.findAllMovieScreenSchSeat(screenSch.getScreenSch().getScreen_sch_code());
-		
+				
 		req.setAttribute("screen_sch_code", screen_sch_code);
 		req.setAttribute("screenSch", screenSch);
 		req.setAttribute("seats", seats);

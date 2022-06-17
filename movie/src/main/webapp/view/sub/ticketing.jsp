@@ -172,7 +172,7 @@
 		                						<c:forEach var="s" items="${screenSchs}" varStatus="s_status">
 		                							<c:if test="${s.movie.name eq movie.name}">
 		                								<li>
-				                                            <a class="text-decoration-none text-dark" href="/movie/personSeat.do?screen_sch_code=${s.screenSch.screen_sch_code}">
+				                                            <a class="screenSchBtn text-decoration-none text-dark" href="javascript:void(0)" data-screen_sch_code="${s.screenSch.screen_sch_code}">
 				                                                <dl>
 				                                                    <dt>상영시간</dt>
 				                                                    <dd class="time">
@@ -204,7 +204,7 @@
 				</div>                
 
             </div>
-            
+           
         </div>
 </div>
     
@@ -214,6 +214,16 @@
 	$('#movies .active img').toggleClass("invisible");
 	$(".date em[data-dayOfWeek='토']").parents(".date").css("color", "blue");
 	$(".date em[data-dayOfWeek='일']").parents(".date").css("color", "red");
+	
+	$(".screenSchBtn").on("click", function(){
+		const memCd = "<%=session.getAttribute("memCd")%>"; 
+		if(memCd === null){
+			alert("로그인 후 시도해주세요");
+			return;
+		}	
+		
+		location.href = "<%=request.getContextPath() %>/personSeat.do?screen_sch_code=" + $(this).data('screen_sch_code');
+	});
 </script>
 <script>
 let start = 1;

@@ -56,29 +56,31 @@
                         </div>
                     </div>
                     <div class="count_people">
+                    	<!-- 현재 선택 인원수 -->
+                    	<input id="curSelectedPerson" class="hidden" name="curSelectedPerson" value="0"/>
                         <ul>
-                            <li id="person_10" data-code="10" data-peple="청소년" data-count="0">
+                            <li>
                                 <strong class="tit">청소년</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus|10">감소</button>
-                                     <input type="text" class="txt_num" name="person_10" value="0" readonly/>                                   
-                                     <button class="btn_plus" id="Plus|10">증가</button>
+                                     <button class="btn_mins" id="Minus_10">감소</button>
+                                     <input id="person_10" type="text" class="txt_num" name="person_10" value="0" readonly/>                                   
+                                     <button class="btn_plus" id="Plus_10">증가</button>
                                  </span>
                             </li>
-                            <li id="person_20" data-code="20" data-peple="성인" data-count="0">
+                            <li>
                                 <strong class="tit">성인</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus|20">감소</button>
-                                     <input type="text" class="txt_num" name="person_20" value="0" readonly/>
-                                     <button class="btn_plus" id="Plus|20">증가</button>
+                                     <button class="btn_mins" id="Minus_20">감소</button>
+                                     <input id="person_20" type="text" class="txt_num" name="person_20" value="0" readonly/>
+                                     <button class="btn_plus" id="Plus_20">증가</button>
                                  </span>
                             </li>
-                            <li id="person_12" data-code="12" data-peple="노약자" data-count="0">
+                            <li>
                                 <strong class="tit">노약자</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus|12">감소</button>
-                                     <input type="text" class="txt_num" name="person_12" value="0" readonly/>
-                                     <button class="btn_plus" id="Plus|12">증가</button>
+                                     <button class="btn_mins" id="Minus_12">감소</button>
+                                     <input id="person_12" type="text" class="txt_num" name="person_12" value="0" readonly/>
+                                     <button class="btn_plus" id="Plus_12">증가</button>
                                  </span>
                             </li>
                         </ul>
@@ -89,41 +91,47 @@
             	<div class="d-flex justify-content-center align-items-center" style="margin: 15px 0 25px;">
             		<p id="ticketMessageInfo" class="position-relative inline-block pl-9 text-white m-0" style="font-size: 11px;">- 인원을 선택하세요.</p>
             	</div>
-                <div id="container" class="seat_wrap">
+                <div class="seat_wrap">
                     <div class="screen">
                         <span class="title_screen1">
                             SCREEN
                         </span>
                     </div>
                     <div class="showMap">
-                        <div class="table_container">
-                            <table id="showMapTable">
-                                <tbody id="showMapTableBody">
-                                	<c:set var="index" value="0" />
-                                		            	
-									<c:forEach var="i" begin="1" end="9">
-										<tr>
-											<td>${seats[index].seat.seat_row}</td>
-											<c:forEach var="j" begin="1" end="17">
-												<td class="seat ${seats[index].screenSchSeat.seat_status == 'R' ? 'reserved' : ''}">
-													<input type="text"
-													name="seat" 
-													value="${seats[index].seat.seat_row}${seats[index].seat.seat_col}"
-													readonly/>
-												</td>
-												<c:set var="index" value="${index+1}"/>
-											</c:forEach>
-										</tr>
-									
-									</c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        
+                    	 <div class="floor_bx">
+	                    	 	<div class="seat_area" style="margin-top: 30px; width: 525px; height:275px;">
+	                    	 		<c:set var="top_interval" value="25.4615"/>
+	                    	 		<c:set var="seat_position" value="25.1875"/>
+	                    	 		<c:set var="seat_interval" value="15.75"/>
+	                    	 		<c:set var="seatNumStart" value="1"/>
+	                    	 		<c:set var="seatNumEnd" value="18"/>
+	                    	 		
+	                    	 		<c:forTokens var="row" items="A,B,C,D,E,F,G,H,I" delims="," varStatus="status">
+			                    		<span class="seat_tit" style="left: -30px; top:${status.index * top_interval}px;">${row}</span>
+			                    		<c:set var="left_val" value="0"/>
+			                    			                    			
+			                    		<c:forEach var="i" begin="${seatNumStart}" end="${seatNumEnd}">	
+			                    			<c:choose>
+			                    				<c:when test="${i==5 or i==11 or i==15}">
+			                    					<c:set var="left_val" value="${left_val + seat_position + seat_interval}"/>
+			                    				</c:when>
+			                    				<c:otherwise>
+			                    					<c:set var="left_val" value="${left_val + seat_position}"/>	
+			                    				</c:otherwise>
+			                    			</c:choose>
+				                    		
+					                    	<a href="javascript:void(0)" class="sel" data-seat="${row}${i}" style="left:${21 + left_val}px; top:${status.index * top_interval}px;">
+					                    		<span class="seat" style="top:0px;">${i}</span>
+					                    	</a>
+			                    		</c:forEach>	
+	                    			</c:forTokens>
+	                    		</div>
+								<span class="w_bottom" style="top: 265px; left: 382px;">상영관 출입문입니다.</span>
+                    	</div>
                     </div>
                 </div>
             </div>
-            <div class="seat_btm_box">
+            <div class="seat_btm_box d-flex align-items-center">
                 <div class="seat_type_box">
                     <div class="top_info">
                         <span class="seat_type1">선택 좌석</span>
@@ -135,37 +143,29 @@
             </div>
             <div id="PersonSeatSummery">
                 <div class="select_seat_result">
-                    <div class="group_left">
+                    <div class="group_left col-10">
                         <dl class="total_price">
                             <dt>총 합계</dt>
                             <dd>
-                                <strong>0</strong> 원
+                                <strong id="totalPrice">0</strong> 원
                             </dd>
                         </dl>
                         
                     </div>
-                    <div class="group_right">
-	                    <form id="payFrm" action="/movie/bookSeat.do" method="post">
+                    <div class="group_right col-2">
+	                    <form id="payFrm">
 			        		<!-- 예매일자 -->
-			        		<input class="hidden" name="book_date" value="${screenSch.screenSch.screen_date}"/>
+			        		<input id="book_date" class="hidden" name="book_date" value="${screenSch.screenSch.screen_date}"/>
 			        		<!-- 상영관코드 -->
-			        		<input class="hidden" name="theater_code" value="${screenSch.screenSch.theater_code}"/>
+			        		<input id="theater_code" class="hidden" name="theater_code" value="${screenSch.screenSch.theater_code}"/>
 			        		<!-- 회원코드 -->
-			        		<input class="hidden" name="mem_code" value="${memCd}"/>
+			        		<input id="mem_code" class="hidden" name="mem_code" value="${memCd}"/>
 			        		<!-- 상영코드 -->
-			        		<input class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
-			        		<!-- 청년 인원수 -->
-			        		<input id="input_person_10" class="hidden" name="person_10" value="0"/>
-			        		<!-- 성인 인원수 -->
-			        		<input id="input_person_20" class="hidden" name="person_20" value="0"/>
-			        		<!-- 노약자 인원수 -->
-			        		<input id="input_person_12" class="hidden" name="person_12" value="0"/>
-			        		<!-- 총합계 -->
-			        		<input id="input_price" class="hidden" name="price" value="0"/>
+			        		<input id="screen_sch_code" class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
+			        		
 							<!-- 선택한 좌석 -->
-							<input id="input_seat" class="hidden" name="seat" value=""/>
+							<input id="selectedSeatNames" class="hidden" name="seat" value=""/>
 								        		
-	                        <a href="/movie/ticketing.do" class="back">뒤로가기</a>
 	                        <button type="button" id="bookSeatBtn" class="bookSeat">결재하기</button>
 	                    </form>
                     </div>
@@ -175,26 +175,187 @@
     </div>
 </div>
 <script>
-$('#bookSeatBtn').on('click', function() {
-	$.ajax({
-			url : '<%=request.getContextPath() %>/bookSeat.do',
-			type : 'post',
-			data : $('#payFrm').serialize(),
-			success : function(data){
-				if (data.code === 'ok') {
-					alert('예매가 성공했습니다.');	
-				}else if(data.code === 'no'){
-					alert("예매에 실패했습니다.");
+// 10(청소년):10000원, 20(성인):14000원, 12(노약자):7000
+const age = {
+		10 : 10000,
+		20 : 14000,
+		12 : 7000
+};
+
+// 좌석 선택 완료 여부
+let isCompletedSeatSelected = false;
+
+// target input 태그의 값을 1 증가
+function incrementPerson(target){
+	const cnt = Number(target.val()) + 1;
+	if(cnt <= 8){
+		target.val(cnt);
+	}	
+}
+
+// target input 태그의 값을 1 감소
+function decrementPerson(target){
+	const cnt = Number(target.val()) - 1;
+	if(cnt >= 0){
+		target.val(cnt);
+	}	
+}
+
+// 청소년-성인-노약자의 총 인원수 참조
+function getTotalPerson(){
+	let cnt = 0;
+	
+	Object.keys(age).forEach(function(key){
+		cnt += Number($("input[name='person_"+key+"']").val());
+	});
+	
+	return cnt;
+}
+
+// 현재 선택한 인원수 값을 1 감소
+function decrementCurSelectedPerson(){
+	const target = $("#curSelectedPerson");
+	const cnt = Number(target.val()) - 1;
+	if(cnt >= 0){
+		target.val(cnt);		
+	}
+}
+
+// 현재 선택한 인원수 값을 1 증가
+function incrementCurSelectedPerson(){
+	const target = $("#curSelectedPerson");
+	const cnt = Number(target.val()) + 1;
+	
+	target.val(cnt);
+}
+
+// 현재 선택한 인원수 참조
+function getCurSelectedPerson(){
+	return Number($("#curSelectedPerson").val());
+}
+
+// 현재 선택한 인원수 설정
+function changeCurSelectedPerson(){
+	$("#curSelectedPerson").val($(".sel.on").length);			
+}
+
+// 계산된 영화표 값 게산
+function getTotalPrice(){	
+	let sum = 0;
+	Object.keys(age).forEach(function(key){
+		sum += Number($("input[name='person_"+key+"']").val()) * age[key];
+	});
+	
+	return sum;
+}
+
+// 현재 선택된 좌석 초기화
+function resetCurSelectedSeat(){
+	$(".sel.on").removeClass("on");
+	$(".sel.no_select").removeClass("no_select");
+}
+
+// 좌석 금액 초기화
+function resetTotalPriceSeat(){
+	$("#totalPrice").text(0);
+}
+
+// 좌석 선택 완료
+function completeSeatSelected(){
+	$(".sel").addClass("no_select"); // 선택한 좌석을 제외한 나머지 좌석을 비활성화
+	let selectedSeatNames = "";	
+	$.each($(".sel.on"), function(index, value){
+		selectedSeatNames += ($(value).data("seat") + " ");
+	});
+	$("#selectedSeatNames").val(selectedSeatNames.trim());
+	
+	isCompletedSeatSelected = true;	
+}
+
+// 좌석 선택 완료 리셋
+function resetCompleteSeatSelected(){
+	$(".sel.no_select").removeClass("no_select");
+	isCompletedSeatSelected = false;	
+}
+
+$(function(){	
+	// 청소년/성인/노약자 감소-증가 버튼 이벤트 설정
+	Object.keys(age).forEach(function(key){
+		$("#Minus_"+key).on("click", function(){
+			decrementPerson($("input[name='person_"+key+"']"));
+			resetCurSelectedSeat();
+			resetTotalPriceSeat();
+		});
+		$("#Plus_"+key).on("click", function(){
+			incrementPerson($("input[name='person_"+key+"']"));
+			resetCurSelectedSeat();
+			resetTotalPriceSeat();
+		});
+	});
+	
+	// 좌석 버튼 클릭 이벤트
+	$(".sel").on("click", function(){
+		// 인원수가 0명이면 선택되지 않게 함
+		if(getTotalPerson() === 0){
+			return;
+		}else{
+			$(this).toggleClass("on");
+			
+			// 현재 선택한 인원수 변경
+			changeCurSelectedPerson();	
+		}
+		
+		
+		
+		// 좌석 선택 완료 검사
+		if(getCurSelectedPerson() === getTotalPerson()){
+			$("#totalPrice").text(getTotalPrice());
+			completeSeatSelected();	
+		}else if(isCompletedSeatSelected === true){
+			resetTotalPriceSeat();
+			resetCompleteSeatSelected();
+		}else{
+			resetCompleteSeatSelected();
+		}
+		
+	});
+	
+	// 결제하기 버튼 클릭 이벤트
+	$('#bookSeatBtn').on('click', function() {
+		const data = {
+			"book_date"         : $("#payFrm #book_date").val(),
+			"theater_code"      : $("#payFrm #theater_code").val(),
+			"mem_code"          : $("#payFrm #mem_code").val(),
+			"screen_sch_code"   : $("#payFrm #screen_sch_code").val(),
+			"person_10"         : $("#person_10").val(),
+			"person_20"         : $("#person_20").val(),
+			"person_12"         : $("#person_12").val(),
+			"totalPrice"        : $("#totalPrice").text(),
+			"selectedSeatNames" : $("#selectedSeatNames").val()
+		};
+		
+		$.ajax({
+				url : "<%=request.getContextPath() %>/bookSeat.do",
+				type : 'post',
+				data : data,
+				success : function(data){
+					if (data.code === 'ok') {
+						alert('예매가 성공했습니다.');	
+					}else if(data.code === 'no'){
+						alert("예매에 실패했습니다.");
+					}
+					location.href = '<%=request.getContextPath() %>/main.do';
 				}
-				location.href = '<%=request.getContextPath() %>/main.do';
-			}
-			,
-			error : function(xhr) {
-				alert(xhr.status);
-			},
-			dataType : 'json'
+				,
+				error : function(xhr) {
+					alert(xhr.status);
+				},
+				dataType : 'json'
+		});
 	});
 });
+
+
 </script>
-<script src="<%=request.getContextPath() %>/js/personSeat.js?v=<%=System.currentTimeMillis() %>"></script>
+<!-- <script src="<%=request.getContextPath() %>/js/personSeat.js?v=<%=System.currentTimeMillis() %>"></script> -->
 <!-- //여기까지 페이지 내용 -->

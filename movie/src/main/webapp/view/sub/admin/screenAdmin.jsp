@@ -10,7 +10,7 @@
 <!-- 페이지 내용 -->
 <div>
 	<jsp:include page="./layout/sideMenu.jsp" />
-
+	
 	<div class="container">
 		<form id="screenListFrm">
 			<table id="screenTable" class="table table-hover table-striped">
@@ -35,9 +35,9 @@
 								value="${s.screen.screen_code}" /></td>
 							<td>${s.screen.screen_code}</td>
 							<td>${s.movie.movie_code}</td>
-							<td><a class="text-decoration-none text-dark" 
-								   href="/movie/admin/screenSch/admin.do?theater_code=${s.theater.theater_code}
-								   		&movie_code=${s.movie.movie_code}&screen_code=${s.screen.screen_code}">
+							<td>
+								<a class="text-decoration-none text-dark" 
+								   href="/movie/admin/screenSch/admin.do?theater_code=${s.theater.theater_code}&movie_code=${s.movie.movie_code}&screen_code=${s.screen.screen_code}">
 								   ${s.movie.name}</a></td>
 							<td>${s.cinema.loc}</td>
 							<td>${s.cinema.name}</td>
@@ -126,6 +126,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 const changeCinemaByLoc = function(){
 	// 선택한 지역

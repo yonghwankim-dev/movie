@@ -31,7 +31,7 @@
         
         <div class="form_row hidden">
             <label for="theater_code"><b>상영관코드</b></label>
-			<input type="text" name="theater_code" value='${theater_code}' readonly>            
+			<input type="text" name="theater_code" value="${theater_code}" readonly>            
         </div>
         
         <div class="form_row hidden">

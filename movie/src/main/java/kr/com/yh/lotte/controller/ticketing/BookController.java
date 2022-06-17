@@ -54,11 +54,12 @@ public class BookController extends HttpServlet {
 		int    teenager        = Integer.parseInt(req.getParameter("person_10"));	// 청소년 인원수
 		int    adult           = Integer.parseInt(req.getParameter("person_20"));	// 성인 인원수
 		int    senior          = Integer.parseInt(req.getParameter("person_12"));	// 노약자 인원수
-		int    total_price     = Integer.parseInt(req.getParameter("price"));		// 예매가격
-		String mem_code 	   = (String) req.getSession().getAttribute("memCd");	// 회원코드
+		int    total_price     = Integer.parseInt(req.getParameter("totalPrice"));	// 예매가격
+		String mem_code 	   = (String) req.getParameter("mem_code");				// 회원코드
 		String screen_sch_code = req.getParameter("screen_sch_code");				// 상영코드
 		String theater_code    = req.getParameter("theater_code");					// 상영관코드
-		String[] seats         = req.getParameter("seat").split(" ");			    // 예매 좌석들
+		String[] seats         = req.getParameter("selectedSeatNames").split(" ");	// 예매 좌석들
+		
 		List<String> seatList = Arrays.asList(seats);
 		List<String> seatCodes = null;
 		List<BookSeatVO> bookSeatList = new ArrayList<BookSeatVO>();
@@ -88,7 +89,6 @@ public class BookController extends HttpServlet {
 		}
 		
 		cnt = bookService.bookSeat(book, bookSeatList, screenSchSeatList);
-		
 		if(cnt>0)
 		{
 			result.addToResMap("code", "ok");

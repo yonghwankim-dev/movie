@@ -132,12 +132,10 @@
 
 /**********************************************************/
 
-
-/* 醫뚯꽍 */
 .select_seat_wrap {
   overflow: hidden;
   color: #fff;
-  height: 670px;
+  height: 400px;
   background-color: #000;
 }
 
@@ -153,21 +151,103 @@
   background-color: #6e6e6e;
 }
 
-.select_seat_wrap .showMap {
+.showMap {
   width: 100%;
-  height: 550px;
+  height: 300px;
   background-color: #000;
 }
 
-.select_seat_wrap .showMap table {
+.showMap .floor_bx{
+	position : relative;
+	padding : 0 0 35px;
+	box-sizing: border-box; 
+}
+
+.showMap .seat_tit{
+	position: absolute;
+	display: inline-block;
+	width : 20px;
+	height : 16px;
+	line-height: 16px;
+	text-align: left;
+	font-size: 11px;
+	font-weight: bold;
+	color : #fff;	
+}
+
+.showMap .seat_area{
+	position: relative;
+	margin: 10px auto 0;
+}
+
+.showMap .sel{
+	position: absolute;
+	font-size : 10px;
+	outline-color: white;
+}
+
+.showMap .sel.on span{
+	background-color : red;
+	color : white;	
+}
+
+.showMap .sel.no_select{
+	width  : 21px;
+	height : 16px;
+	background : url("/movie/images/sub/ic_seat_type4.png") no-repeat center center;
+	cursor: inherit;		
+}
+
+.showMap .sel.no_select:not(.disabled):not(.on) span{
+	overflow: hidden;
+	text-indent: -7000000em;
+	font-size : 0;
+	line-height: 0;
+	cursor: inherit;
+	background : url("/movie/images/sub/ic_seat_type4.png") no-repeat center center;
+	background-size: 28px 12px;
+	opacity: 0.5;	
+}
+
+.showMap .w_bottom{
+	position: absolute;
+	bottom : 0;
+	left : 0;
+	background : url("/movie/images/sub/bg_window_bottom.png");
+	background-size : 28px 4.5px;
+	display: block;
+	width : 28px;
+	height : 4.5px;
+	text-indent: -9999em;
+}
+
+.showMap .sel > span{
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width : 21px;
+	height : 16px;
+	line-height : 17px;
+	background : #E8E8E8;
+	color : #000;
+	font-size: 10px;
+	text-align: center;
+	letter-spacing: -0.5px;
+	box-sizing: border-box;
+	border-radius: 7px 7px 2px 0px;
+	font-family: 'Roboto', "Noto Sans KR";
+		
+}
+
+.showMap table {
   border-spacing: 10px;
   border-collapse: separate;
 }
-.select_seat_wrap .showMap td:first-child {
+.showMap td:first-child {
   color: white;
   background-color: transparent;
 }
-.select_seat_wrap .showMap td {
+.showMap td {
   width: 50px;
   height: 50px;
   text-align: center;
@@ -176,39 +256,10 @@
   color: #1e1e1e;
 }
 
-
-
-.select_seat_wrap .showMap td:not(.active):hover {
-  background-color: #b9d4eb;
-}
-
-.select_seat_wrap .showMap td.reserved input{
-  background-color: #747474;
-}
-
-.select_seat_wrap .showMap td.no_select input{
-  background: #e8e8e8 url(../images/sub/ic_seat_type4.png) no-repeat;
-  background-size: 50px 50px;
-  color: #fff;
-}
-
-.select_seat_wrap .showMap td.active input {
-  background-color: red;
-  color: white;
-}
-
-.select_seat_wrap .showMap td input {
-  display: inline-block;
-  background-color: #fff;
-  text-align : center;
-  width: 50px;
-  line-height: 50px;
-  color: #000;
-}
-
 /* 醫뚯꽍 ���엯 */
 .seat_btm_box {
   height: 50px;
+  padding-left : 30px;
   background-color: #000;
   color: white;
 }
@@ -238,15 +289,16 @@
 }
 .select_seat_result .group_left {
   width: 100%;
-  background-color: #444;
+  background-color: #888888;
   color: white;
   font-size: 25px;
   line-height: 25px;
-  padding: 0 15px;
+  padding : 0;
 }
 .select_seat_result .group_left dl.total_price {
   display: flex;
   margin-bottom: 0;
+  margin-left : 30px;
 }
 .select_seat_result .group_left dl.total_price dt {
   line-height: 70px;
@@ -258,6 +310,7 @@
 
 .select_seat_result .group_right {
   display: flex;
+  padding : 0;
 }
 .select_seat_result .group_right form{
 	display : contents;
@@ -280,4 +333,7 @@
   background-color: red;
   border : none;
   color : white;
+  padding : 0;
+  width : 100%;
+  
 }

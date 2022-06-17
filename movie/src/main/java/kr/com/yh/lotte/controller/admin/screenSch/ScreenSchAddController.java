@@ -47,6 +47,7 @@ public class ScreenSchAddController extends HttpServlet {
 		String screen_code = req.getParameter("screen_code");
 		List<String> seat_codes = seatService.getSeatCodesBySeatNumAndTheaterCode(null, theater_code);
 		
+		
 		ScreenSchVO screenSch = new ScreenSchVO(screen_sch_code
 				                              , screen_date
 				                              , start_time

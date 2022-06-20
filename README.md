@@ -73,7 +73,8 @@
 ### 4. 데모영상
   
 </a>
-[![Watch the video](https://i9.ytimg.com/vi/Y2TWfRUFJyc/mq2.jpg?sqp=CMz2v5UG&rs=AOn4CLB6TVcfaG2g14gcJblefjw3pHzQLQ&retry=4)](https://www.youtube.com/watch?v=Y2TWfRUFJyc)
+
+[![MOVIE DEMO](aa)](https://youtu.be/Y2TWfRUFJyc)
 
 [맨 위로 가기](#top)
 </br>

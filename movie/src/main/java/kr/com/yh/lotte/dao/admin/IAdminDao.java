@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.dao.admin;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -92,4 +93,31 @@ public interface IAdminDao {
 	 * @return 삭제된 상영일정 개수
 	 */
 	public int deleteScreenSch(List<String> screen_sch_codes);
+
+
+	/**
+	 * 상영일정좌석 데이터들 삭제
+	 * @param screen_sch_codes 상영일정코드
+	 * @return 삭제된 상영일정좌석 개수
+	 * @throws SQLException 
+	 */
+	public int deleteScreenSchSeat(List<String> screen_sch_codes) throws SQLException;
+
+
+	/**
+	 * 예매좌석 데이터를 삭제
+	 * @param screen_sch_codes 상영일정코드
+	 * @return 삭제된 예매좌석 개수
+	 * @throws SQLException
+	 */
+	public int deleteBookSeat(List<String> screen_sch_codes) throws SQLException;
+
+
+	/**
+	 * 예매 정보 데이터들 삭제
+	 * @param screen_sch_codes 상영일정코드
+	 * @return 삭제한 데이터 개수
+	 * @throws SQLException 
+	 */
+	public int deleteBook(List<String> screen_sch_codes) throws SQLException;
 }

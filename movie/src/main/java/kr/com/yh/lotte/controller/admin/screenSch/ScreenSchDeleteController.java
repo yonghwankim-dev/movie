@@ -59,7 +59,7 @@ public class ScreenSchDeleteController extends HttpServlet {
 		{
 			result.addToResMap("code", "ok");
 		}
-		else		// 삭젯 실패
+		else		// 삭제 실패
 		{
 			result.addToResMap("code", "no");
 		}

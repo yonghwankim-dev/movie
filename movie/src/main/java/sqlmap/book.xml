@@ -10,6 +10,22 @@
 		FROM DUAL
 	</select>
 	
+	<!-- 상영일정코드들에 따른 예약정보를 참조함 -->
+	<select id="selectBookByScreenSchCodes" parameterClass="java.util.List" resultClass="bookVo">
+		SELECT BOOK_CODE,
+			   TOTAL_PRICE,
+			   TEENAGER,
+			   ADULT,
+			   SENIOR,
+			   BOOK_DATE,
+			   SCREEN_SCH_CODE,
+			   MEM_CODE
+		FROM BOOK
+		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+	</select>
+	
 	<insert id="insertBook" parameterClass="bookVo">
 		INSERT INTO BOOK(
 			BOOK_CODE,
@@ -51,6 +67,13 @@
 			SCREEN_SCH_CODE = #screen_sch_code# AND
 			SEAT_CODE = #seat_code#
 	</update>
+	
+	<delete id="deleteBookByScreenSchCodes" parameterClass="java.util.List">
+		DELETE FROM BOOK
+		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+	</delete>
 </sqlMap>			
 
 

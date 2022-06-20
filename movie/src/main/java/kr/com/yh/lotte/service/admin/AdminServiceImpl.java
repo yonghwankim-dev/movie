@@ -60,32 +60,7 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Override
 	public int deleteScreenSch(List<String> screen_sch_codes) {
-		int cnt = 0;
-		// 1. 상영 일정 좌석 데이터 삭제
-//		cnt = adminDao.deleteScreenSchSeat(screen_sch_codes);
-		if(cnt == 0) {
-			return cnt;
-		}
-		
-		// 2. 예매 좌석 데이터 삭제
-//		cnt = adminDao.deleteBookSeat(screen_sch_codes);
-		if(cnt == 0) {
-			return cnt;
-		}
-		
-		// 3. 예매 데이터 삭제
-//		cnt = adminDao.deleteBook(screen_sch_codes);
-		if(cnt == 0) {
-			return cnt;
-		}
-		
-		// 4. 상영 일정 데이터 삭제
-		cnt = adminDao.deleteScreenSch(screen_sch_codes);
-		if(cnt == 0) {
-			return cnt;
-		}
-		
-		return cnt;
+		return adminDao.deleteScreenSch(screen_sch_codes);
 	}
 
 	@Override

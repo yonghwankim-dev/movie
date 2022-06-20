@@ -125,6 +125,7 @@ class BookTest {
 		
 		try {
 			smc.startTransaction();
+			
 			cnt = smc.delete("book.deleteBookByScreenSchCodes", screen_sch_codes);
 		} catch (SQLException e) {
 			System.out.println("예매 정보 삭제 테스트 실패");

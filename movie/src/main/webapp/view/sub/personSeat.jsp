@@ -104,13 +104,15 @@
 	                    	 		<c:set var="seat_position" value="25.1875"/>
 	                    	 		<c:set var="seat_interval" value="15.75"/>
 	                    	 		<c:set var="seatNumStart" value="1"/>
-	                    	 		<c:set var="seatNumEnd" value="18"/>
+	                    	 		<c:set var="seatNumEnd" value="17"/>
+	                    	 		<c:set var="seatIndex" value="0"/>
 	                    	 		
 	                    	 		<c:forTokens var="row" items="A,B,C,D,E,F,G,H,I" delims="," varStatus="status">
 			                    		<span class="seat_tit" style="left: -30px; top:${status.index * top_interval}px;">${row}</span>
 			                    		<c:set var="left_val" value="0"/>
 			                    			                    			
-			                    		<c:forEach var="i" begin="${seatNumStart}" end="${seatNumEnd}">	
+			                    		<c:forEach var="i" begin="${seatNumStart}" end="${seatNumEnd}">
+			                    			<c:set var="s" value="${seats[seatIndex]}"/>
 			                    			<c:choose>
 			                    				<c:when test="${i==5 or i==11 or i==15}">
 			                    					<c:set var="left_val" value="${left_val + seat_position + seat_interval}"/>
@@ -120,9 +122,11 @@
 			                    				</c:otherwise>
 			                    			</c:choose>
 				                    		
-					                    	<a href="javascript:void(0)" class="sel" data-seat="${row}${i}" style="left:${21 + left_val}px; top:${status.index * top_interval}px;">
-					                    		<span class="seat" style="top:0px;">${i}</span>
+					                    	<a href="javascript:void(0)" class="sel ${s.screenSchSeat.seat_status == 'R' ? 'reserved' : ''}" data-seat="${s.seat.seat_row}${s.seat.seat_col}" style="left:${21 + left_val}px; top:${status.index * top_interval}px;">
+					                    		<span class="seat" style="top:0px;">${s.seat.seat_col}</span>
 					                    	</a>
+					                    	
+					                    	<c:set var="seatIndex" value="${seatIndex+1}"/>
 			                    		</c:forEach>	
 	                    			</c:forTokens>
 	                    		</div>
@@ -294,7 +298,7 @@ $(function(){
 	});
 	
 	// 좌석 버튼 클릭 이벤트
-	$(".sel").on("click", function(){
+	$(".sel:not(.reserved)").on("click", function(){
 		// 인원수가 0명이면 선택되지 않게 함
 		if(getTotalPerson() === 0){
 			return;

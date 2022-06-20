@@ -59,7 +59,9 @@ public class TicketingController extends HttpServlet {
 		// 선택한 영화관에 모든 영화 상영일정 리스트 반환
 		List<MovieScreenSchVO> screenSchs = ticketingService.findAllMovieScreenSch(cinema_name, movie_name, screen_date);
 		screenSchs = screenSchService.findBookSeatCnt(screenSchs);
+	
 		
+		System.out.println("screenSchs : " + screenSchs);
 		
 		req.setAttribute("locations", locations);
 		req.setAttribute("cinemas", cinemas);

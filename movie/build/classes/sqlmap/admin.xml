@@ -104,12 +104,14 @@
 		</iterate>
 	</delete>
 	
-	<delete id="deleteScreenSch" parameterClass="java.util.List">
-		DELETE FROM SCREEN_SCH ON 
+	<delete id="deleteScreenSchSeat" parameterClass="java.util.List">
+		DELETE FROM SCREEN_SCH_SEAT
 		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
 			#[]#
-		</iterate>
-	</delete>	
+		</iterate>		
+	</delete>
+		
+	
 	
 </sqlMap>			
 

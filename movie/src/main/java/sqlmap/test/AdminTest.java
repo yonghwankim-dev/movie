@@ -183,6 +183,25 @@ class AdminTest {
 	}
 	
 	@Test
+	void deleteScreenSchSeatTest() {
+		List<String> screen_sch_codes = new ArrayList<String>();
+		screen_sch_codes.add("SS101");
+		screen_sch_codes.add("SS102");
+		int cnt = 0;
+		
+		try{
+			smc.startTransaction();
+			cnt = smc.delete("admin.deleteScreenSchSeat", screen_sch_codes);
+			smc.endTransaction();
+		} catch (SQLException e) {
+			System.out.println("deleteScreenSeatSchTest SQL 에러 " + e);
+			cnt = 0;
+		}
+		
+		assertEquals(306, cnt);
+	}
+	
+	@Test
 	void deleteScreenSchTest() {
 		List<String> screen_sch_codes = new ArrayList<String>();
 		screen_sch_codes.add("SS9");
@@ -204,4 +223,6 @@ class AdminTest {
 		}
 		Assert.assertEquals(2, cnt);
 	}
+	
+	
 }

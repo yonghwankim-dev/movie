@@ -198,6 +198,11 @@
 	cursor: inherit;		
 }
 
+.showMap .sel.reserved span{
+	background-color : #747474;
+	cursor: default;
+}
+
 .showMap .sel.no_select:not(.disabled):not(.on) span{
 	overflow: hidden;
 	text-indent: -7000000em;

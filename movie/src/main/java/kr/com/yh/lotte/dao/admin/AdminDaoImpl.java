@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.ScreenSchVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
@@ -163,7 +164,22 @@ public class AdminDaoImpl implements IAdminDao{
 		return cnt;
 	}
 	
+	@Override
+	public int deleteScreenSchSeat(List<String> screen_sch_codes) throws SQLException {		
+		return smc.delete("admin.deleteScreenSchSeat", screen_sch_codes);
+	}
 	
+	@Override
+	public int deleteBookSeat(List<String> screen_sch_codes) throws SQLException {
+		List<BookVO> books = smc.queryForList("book.selectBookByScreenSchCodes", screen_sch_codes);
+		
+		return smc.delete("bookSeat.deleteBookSeat", books);
+	}
+	
+	@Override
+	public int deleteBook(List<String> screen_sch_codes) throws SQLException {
+		return smc.delete("book.deleteBookByScreenSchCodes", screen_sch_codes);
+	}
 
 	@Override
 	public int deleteScreenSch(List<String> screen_sch_codes) {
@@ -171,7 +187,31 @@ public class AdminDaoImpl implements IAdminDao{
 		
 		try {
 			smc.startTransaction();
-			cnt = smc.delete("admin.deleteScreenSch", screen_sch_codes);
+			
+			// 1. 상영 일정 좌석 데이터 삭제
+			cnt = deleteScreenSchSeat(screen_sch_codes); 
+			if(cnt == 0) {
+				return cnt;
+			}
+			
+			// 2. 예매 좌석 데이터 삭제
+			cnt = deleteBookSeat(screen_sch_codes);
+			if(cnt == 0) {
+				return cnt;
+			}
+			
+			// 3. 예매 데이터 삭제
+			cnt = deleteBook(screen_sch_codes);
+			if(cnt == 0) {
+				return cnt;
+			}
+			
+			// 4. 상영 일정 데이터 삭제
+			cnt = smc.delete("screensch.deleteScreenSch", screen_sch_codes);
+			if(cnt == 0) {
+				return cnt;
+			}
+			
 			smc.commitTransaction();
 		} catch (SQLException e) {
 			System.out.println("deleteScreenSch SQL 에러 " + e);

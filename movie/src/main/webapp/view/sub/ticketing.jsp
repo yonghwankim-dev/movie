@@ -156,7 +156,7 @@
 	                <ul class="list-group">
 	                	<c:forEach var="movie" items="${movies}" varStatus="status">
 	                		<!-- 선택한 영화만 상영일정을 출력 -->
-	                		<c:if test="${movie_name eq movie.name}">
+	                		<c:if test="${(movie_name eq movie.name) or (empty movie_name)}">
 		                		<li class="list-group-item border-0">
 		                			<div id="${movie.name}" class="tab_con ty5 active">
 		                				<div class="group_time_select">
@@ -167,9 +167,9 @@
 		                				</div>
 		                				<div class="timeSelect">
 		                					<h6>2D</h6>
-		                					
 		                					<ul class="list_time">
 		                						<c:forEach var="s" items="${screenSchs}" varStatus="s_status">
+		                							
 		                							<c:if test="${s.movie.name eq movie.name}">
 		                								<li>
 				                                            <a class="screenSchBtn text-decoration-none text-dark" href="javascript:void(0)" data-screen_sch_code="${s.screenSch.screen_sch_code}">

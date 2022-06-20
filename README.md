@@ -74,7 +74,7 @@
   
 </a>
 
-[![MOVIE DEMO](aa)](https://youtu.be/Y2TWfRUFJyc)
+[![MOVIE DEMO](./images/movie_demo_img.jpg)](https://youtu.be/Y2TWfRUFJyc)
 
 [맨 위로 가기](#top)
 </br>

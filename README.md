@@ -74,7 +74,8 @@
   
 </a>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y2TWfRUFJyc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Video Label](http://img.youtube.com/vi/Y2TWfRUFJyc/0.jpg)](https://youtu.be/Y2TWfRUFJyc)
+
 
 [맨 위로 가기](#top)
 </br>

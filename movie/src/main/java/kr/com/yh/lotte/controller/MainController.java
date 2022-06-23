@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
+import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.MovieVO;
 
 @WebServlet("/main.do")
@@ -26,6 +27,9 @@ public class MainController extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<MovieVO> movieList = movieService.getMovieMain();
+		
+		BookVO bookVo = new BookVO();
+		
 		req.setAttribute("movieList", movieList);
 		req.getRequestDispatcher("/view/main.jsp").forward(req, resp);
 	}

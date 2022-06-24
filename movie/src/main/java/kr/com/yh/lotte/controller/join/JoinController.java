@@ -35,7 +35,7 @@ public class JoinController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileNm = "join"; // 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm = "join/join"; // 매칭되는 jsp 파일명(확장자 제외)
 
 		req.setAttribute("fileNm", fileNm);
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);

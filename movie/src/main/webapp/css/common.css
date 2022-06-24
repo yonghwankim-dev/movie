@@ -47,6 +47,62 @@ li {
   display: none;
 }
 
+/* 관람등급 배지 */
+.ic_grade{
+	display : inline-block;
+	width   : 22px;
+	height  : 22px;
+	line-height : 22px;
+	border-radius: 50%;
+	font-size : 0;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ic_grade:before{
+	margin-left: -1px;
+	font-size  : 13px;
+	font-weight : bold;
+	color : #fff;
+	white-space: nowrap;
+}
+
+.ic_grade.gr_0:before{
+	content: "전체";
+}
+.ic_grade.gr_7:before{
+	content: "7";
+}
+.ic_grade.gr_12:before{
+	content: "12";
+}
+.ic_grade.gr_15:before{
+	content: "15";
+}
+.ic_grade.gr_19:before{
+	content: "19";
+}
+
+.gr_0 {
+  background-color: #5BC77E;
+}
+
+.gr_7 {
+  background-color: #F7C500;
+}
+
+.gr_12 {
+  background-color: #4dd6ff;
+}
+
+.gr_15 {
+  background-color: #ffc134;
+}
+
+.gr_19 {
+  background-color: #ED4C6B;
+}
+
 /* 슬라이드 공용 */
 .slick-slider {transition:all ease-in-out .3s; 	box-sizing:border-box; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none;  user-select:none; -webkit-touch-callout:none; -khtml-user-select:none; -ms-touch-action:pan-y; touch-action:pan-y; -webkit-tap-highlight-color:transparent;}
 .slick-slide {display:none; height:100%; min-height:1px; vertical-align:middle;}

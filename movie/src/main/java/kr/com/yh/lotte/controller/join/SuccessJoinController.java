@@ -14,7 +14,7 @@ public class SuccessJoinController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String fileNm = "successJoin"; // 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm = "join/successJoin"; // 매칭되는 jsp 파일명(확장자 제외)
 		
 		req.setAttribute("fileNm", fileNm);
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);

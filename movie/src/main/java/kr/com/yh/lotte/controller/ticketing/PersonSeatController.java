@@ -40,7 +40,7 @@ public class PersonSeatController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileNm = "personSeat"; // 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm = "ticket/personSeat"; // 매칭되는 jsp 파일명(확장자 제외)
 		String screen_sch_code = req.getParameter("screen_sch_code");
 		
 		// 상영코드에 대한 영화정보 가져오기

@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="/movie/images/common/favicon.ico">
+<link rel="stylesheet" href="/movie/css/sub/ticketing/orderSettlement.css?v=<%=System.currentTimeMillis() %>">
 <link rel="stylesheet" href="/movie/css/sub/ticketing/personSeat.css?v=<%=System.currentTimeMillis() %>">
 <link rel="stylesheet" href="/movie/css/sub/ticketing/ticket.css?v=<%=System.currentTimeMillis() %>">
 <link rel="stylesheet" href="/movie/css/sub.css?v=<%=System.currentTimeMillis() %>">

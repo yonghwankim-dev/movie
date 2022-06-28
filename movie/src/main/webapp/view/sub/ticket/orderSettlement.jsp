@@ -128,20 +128,36 @@
         <div style="width:415px; height:510px;">
         
         </div>
-        <div class="price-info bg-secondary">
-			<div>
-				<span>상품금액</span>
-				<span>12,000 원</span>
+        <div class="price-info">
+			<div class="product_price price-info-item">
+				<div class="price_title">
+					<strong>상품금액</strong>
+				</div>
+				<div class="price_content">
+					<strong>12,000 원</strong>
+				</div>
+				
+				
 			</div>
-			<div>
-				<span>할인금액</span>
-				<span>0 원</span>
+			<div class="sale_price price-info-item">
+				<div class="price_title">
+					<strong>할인금액</strong>
+				</div>
+				<div class="price_content">
+					<strong>- 0 원</strong>
+				</div>
 			</div>
-			<div>
-				<span>결제금액</span>
-				<span>총 12,000 원</span>
+			<div class="total_price price-info-item">
+				<div class="price_title">
+					<strong>결제금액</strong>
+				</div>
+				<div class="price_content">
+					<strong>총 12,000 원</strong>
+				</div>
 			</div>        
-			
+			<div class="pay_btn_wrap price-info-item">
+				<button type="button">결제하기</button>
+			</div>
         </div>
 	</div>	
 </div>

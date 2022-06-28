@@ -51,6 +51,17 @@
 	background-repeat: no-repeat;	
 }
 
+.ic_question{
+	display : inline-block;
+	width : 15px;
+	height : 15px;
+	font-size : 0;
+	line-height : 0;
+	border : none;
+	vertical-align : middle;
+	background: url("/movie/images/sub/tooltip_15.png") no-repeat;
+}
+
 /* 예매 정보 */
 .book{
 	background-color : #ffffff;
@@ -206,8 +217,117 @@
 /* //결제 수단 */
 
 /* 결제하기 */
-.save_point-info{
+.payment{
 	width : 415px;
-	height : 815px;
+	height : 815px;	
+}
+
+.save_point-info{
+	height : 85px;
+	padding: 30px;
+}
+
+.save_point-info .tooltip_box{
+	display: flex;
+	margin-left : 10px;
+}
+
+.save_point-info .tooltip_box #ic_question_tooltip{
+	position : absolute;
+	left   : 935px;
+	top    : 505px;
+	width  : 415px;
+	height : 290px; 
+	font-size : 12px;
+	line-height: 13px;
+	font-style: normal;
+	font-weight: 400;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	padding : 20px;
+	border : 1px solid black;	
+}
+
+#ic_question_tooltip li{
+	list-style-type: disc;
+}
+#ic_question_tooltip .btn_close{
+	position: absolute;
+	right : 25px;
+	top : 15px;
+	width : 15px;
+	height : 15px;
+	border : none;
+	text-indent: -9999em;
+	line-height : 0;
+	background: url("/movie/images/sub/close_13.png") no-repeat center center;
+}
+
+
+.save_point-info input[type="checkbox"]{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width : 0px;
+	height : 0px;
+	padding : 0;
+	margin : 0;
+	overflow: hidden;
+	clip : rect(0, 0, 0, 0);
+	vertical-align: middle;
+	border : none 0;
+}
+
+input[type="checkbox"] + label{
+	position: relative;
+	display: inline-block;
+	margin : 0;
+	vertical-align: middle;
+}
+.save_point-info input[type="checkbox"] + label{
+	display: block;
+	float : left;
+	width : auto;
+	font-family: 'Roboto';
+	font-size : 13px;
+}
+
+.save_point-info input[type='checkbox'] + label:before{
+	content : "";
+	display: inline-block;
+	border: 1px solid #DDD;
+	background-color: #fff;
+	width : 18px;
+	height : 18px;
+	margin-right: 5px;
+	vertical-align: -5px;
+	border-radius: 3px;
+}
+
+.save_point-info input[type='checkbox']:checked + label.ty2:before{
+	background-color: #000;
+	background : #000 url("/movie/images/sub/chk_8_3.png") no-repeat center 6px;
+}
+
+.save_point-info input[type='checkbox'] + label.ty2:before{
+	background-color: #BEBEBE;
+	border-radius: 50%;
+	background: #fff url("/movie/images/sub/chk_8_2.png") no-repeat center 6px;
+	vertical-align: -5px;
+}
+
+.save_point-col{
+	display: inline-block;
+}
+
+.save_point-info .radio-box input[type="radio"] + label{
+	font-size: 12px;
+	line-height: 13px;
+	font-weight: 400px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+}
+
+.price-info{
+	height : 220px;
 }
 /* //결제하기 */

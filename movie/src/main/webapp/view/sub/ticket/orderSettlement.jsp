@@ -80,13 +80,81 @@
         </div>
         
 	</div>
-	<div class="p-0">
+	<div class="payment">
 		<div class="group_top">
 			<span>결제하기</span>
         </div>
-        <div class="save_point-info">
-        	<span>적립</span>
+        <div class="save_point-info bottom_bar d-flex align-items-center justify-content-between">
+        	<div class="save_point-col save_point-box d-flex align-items-center">
+        		<div class="saveing_box">
+	        		<input type="checkbox" id="chkSavingPoint" checked/>
+	        		<label for="chkSavingPoint" class="ty2">
+	        			L.POINT 적립
+	        		</label>        		
+        		</div>        		
+        		<div class="tooltip_box">
+        			<button id="ic_question" class="ic_question" type="button"></button>
+        			
+        			<div id="ic_question_tooltip" class="hidden">
+        				<div>
+        					<button type="button" class="btn_close"></button>
+        				</div>
+        				<div>
+        					<strong>L.POINT 적립 안내</strong>
+	        				<ul>
+	        					<li><p>ID적립은 로그인 ID로 자동 적립 됩니다.</p></li>
+	        					<li><p>카드번호적립은 결제 후 LPOINT 카드 번호를 직접 입력하여, 적립이 가능합니다.</p></li>
+	        					<li><p>L.PAY로 결제하시면, L.PAY 가입 시 인증한 L.POINT ID로 적립됩니다.</p></li>
+	        					<li><p>롯데시네마 관람권 구매, 제휴 모바일 쿠폰사용에 대한 건은 포인트가 적립되지 않습니다.</p></li>
+	        					<li><p>포인트별 적립내용은 다음과 같습니다.</p></li>
+	        					<li><p>L.POINT : L.POINT 카드 또는 롯데 신용카드 번호 입력시 회원등급에 따라 차등 적립 됩니다. 단, 미등록 카드번호 입력시 결제금액의 0.1%가 적립됩니다.</p></li>
+	        				</ul>
+        				</div>        				
+        			</div>
+        		</div>
+        	</div>
+        	<div class="save_point-col radio-box">
+        		<span>
+        			<input type="radio" id="idRadio" name="savRadio"/>
+        			<label for="idRadio">ID적립</label>
+        		</span>
+        		<span>
+        			<input type="radio" id="cardRadio" name="savRadio"/>
+        			<label for="cardRadio">카드적립</label>
+        		</span>
+        		
+        	</div>
+        </div>
+        <div style="width:415px; height:510px;">
+        
+        </div>
+        <div class="price-info bg-secondary">
+			<div>
+				<span>상품금액</span>
+				<span>12,000 원</span>
+			</div>
+			<div>
+				<span>할인금액</span>
+				<span>0 원</span>
+			</div>
+			<div>
+				<span>결제금액</span>
+				<span>총 12,000 원</span>
+			</div>        
+			
         </div>
 	</div>	
 </div>
 <!-- //페이지 내용 -->
+
+<script>
+$(function(){
+	$("#ic_question").on("click", function(){
+		$("#ic_question_tooltip").show();
+	});	
+	$("#ic_question_tooltip .btn_close").on("click", function(){
+		$("#ic_question_tooltip").hide();
+	})
+});
+
+</script>

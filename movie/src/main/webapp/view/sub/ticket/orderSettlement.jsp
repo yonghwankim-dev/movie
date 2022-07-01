@@ -15,11 +15,15 @@
 
 <!-- 페이지 내용 -->
 <div class="row bg-white" style="width: 1200px; height : 875px;">
+
+	<!-- 예매 정보 -->
 	<div class="book">
 		<div class="group_top">
 			<span>예매 정보</span>
         </div>
+        <!-- 예매 정보 내용 -->
         <div class="book-info right_bar">
+        	<!-- 영화 예매 정보 -->
         	<div class="movie-info bottom_bar">
         		<span class="movie-info-img">
         			<img src="/movie/images/common/MOVIE1.jpg">
@@ -38,22 +42,30 @@
         		</dl>
         		
         	</div>	
+        	<!-- 좌석 예매 정보 -->
         	<div class="seat-info bottom_bar">
         		<dl>
         			<dt>좌석</dt>
         			<dd>A23</dd>
         		</dl>
         	</div>
+        	
+        	<!-- 추가상품 예매 정보 -->
         	<div class="addProduct-info">
         		<h6>추가상품 구매</h6>
         	</div>
         </div>
 	</div>
+	
+	<!-- 결제 수단 -->
 	<div class="pay_method">
 		<div class="group_top">
 			<span>결제 수단</span>
         </div>
+        
+		<!-- 결제 수단 내용 -->
         <div class="pay_method-info right_bar">
+        	<!-- 할인 및 포인트 정보 -->
         	<div class="discount-info bottom_bar">
         		<h6>할인/포인트</h6>
         		<div class="discount-row l_point d-flex">
@@ -68,6 +80,8 @@
 	        		<button type="button" class="discount-btn">제휴포인트/할인</button>
         		</div>
         	</div>
+        	
+        	<!-- 최종 결제 수단 정보 -->
         	<div class="group_payment-info">
         		<h6>최종 결제수단</h6>
         		<div class="group_payment-row pay_methods">
@@ -170,8 +184,7 @@
 	        		</button>	        		
 	        	</div>
         	</div>
-       
-        
+         
         	<!-- 엘페이 정보 -->
         	<div id="lpay_wrap" class="hidden">
         		<div class="lpay_content">
@@ -225,8 +238,9 @@
         		</div>
         	</div>
         </div>
-        
 	</div>
+	
+	<!-- 결제하기 -->
 	<div class="payment">
 		<div class="group_top">
 			<span>결제하기</span>
@@ -239,6 +253,7 @@
 	        			L.POINT 적립
 	        		</label>        		
         		</div>
+        		<!-- L.POINT 적립 도움말 -->
         		<div class="tooltip_box">
         			<button id="ic_question" class="ic_question" type="button"></button>
         			
@@ -362,85 +377,69 @@ $(function(){
 		$("#ic_question_tooltip").hide();
 	});
 	
-	// 신용카드 버튼 클릭
-	$(".cate1").on("click", function(){
+	// 최종결제수단 버튼 클릭
+	$(".pay-btn").on("click", function(){
 		const cateName = $(this).data("cate");		
 		toggleClassBubble(cateName);
-		$("#cates_wrap").toggleClass("hidden");
-		$("#easyPay_wrap").addClass("hidden");
-		$("#lpay_wrap").addClass("hidden");
-		payment_agency_agreeWrapToggle();				
-	});
-	
-	// 엘페이 버튼 클릭
-	$(".cate2").on("click", function(){
-		const cateName = $(this).data("cate");
-		toggleClassBubble(cateName);
-		$("#cates_wrap").addClass("hidden");
-		$("#easyPay_wrap").addClass("hidden");
-		$("#lpay_wrap").toggleClass("hidden");
-		payment_agency_agreeWrapToggle();
-	});
-	
-	// 간편결제 버튼 클릭
-	$(".cate3").on("click", function(){
-		const cateName = $(this).data("cate");
-		toggleClassBubble(cateName);
-		$("#cates_wrap").addClass("hidden");
-		$("#lpay_wrap").addClass("hidden");
-		$("#easyPay_wrap").toggleClass("hidden");
-		payment_agency_agreeWrapToggle();
-	});
-	
-	// 내통장결제 버튼 클릭
-	$(".cate4").on("click", function(){
-		const cateName = $(this).data("cate");
-		toggleClassBubble(cateName);
-		$("#cates_wrap").addClass("hidden");
-		$("#lpay_wrap").addClass("hidden");
-		$("#easyPay_wrap").addClass("hidden");
-		payment_agency_agreeWrapToggle();
-	});
-	
-	// 휴대폰 버튼 클릭
-	$(".cate5").on("click", function(){
-		const cateName = $(this).data("cate");
-		toggleClassBubble(cateName);
-		$("#cates_wrap").addClass("hidden");
-		$("#lpay_wrap").addClass("hidden");
-		$("#easyPay_wrap").addClass("hidden");
+		
+		if(cateName === "cate1"){
+			$("#cates_wrap").toggleClass("hidden");
+			$("#easyPay_wrap").addClass("hidden");
+			$("#lpay_wrap").addClass("hidden");
+		}else if(cateName === "cate2"){
+			$("#cates_wrap").addClass("hidden");
+			$("#lpay_wrap").toggleClass("hidden");
+			$("#easyPay_wrap").addClass("hidden");
+		}else if(cateName === "cate3"){
+			$("#cates_wrap").addClass("hidden");
+			$("#lpay_wrap").addClass("hidden");
+			$("#easyPay_wrap").toggleClass("hidden");
+		}else{
+			$("#cates_wrap").addClass("hidden");
+			$("#lpay_wrap").addClass("hidden");
+			$("#easyPay_wrap").addClass("hidden");	
+		}
 		payment_agency_agreeWrapToggle();
 	});
 	
 	// 약관보기 버튼 클릭
-	
-	
 	$(".payment_agency_agree_list a").on("click", function(){
 		clickTab($(this).attr("href"));
 		$("#termModal #staticBackdrop").modal();
 	});
+	
+	// 결제 방법 버튼에 버블 효과를 활성화/비활성화
+	function toggleClassBubble(cate){
+		const selected = $(".pay-btn").filter(function(index, item){
+			return $(item).data("cate") === cate;
+		});
+		const other = $(".pay-btn").not(selected); 
+
+		$(selected).toggleClass("bubble"); // 선택환 결제 방법에 버블을 활성화/비활성화	
+		$(other).removeClass("bubble");    // 선택한 결제 방법 버튼을 제외한 다른 버블 효과를 비활성화
+	}
+
+	// 약관동의 창을 활성화/비활성화
+	// cateName : cate-1, cate-2, ... cate-N
+	function payment_agency_agreeWrapToggle(){
+		if($(".pay-btn.bubble").length >= 1){
+			$(".payment_agency_agree-wrap").removeClass("hidden");	
+		}else{
+			$(".payment_agency_agree-wrap").addClass("hidden");
+		}
+	}
+		
+	// 결제대행서비스 약관 동의 체크박스 클릭
+	$("#chkAgreePayAgency").on("click", function(){
+		const sub_chks = $(".payment_agency_agree_list input[type='checkbox']");
+		
+		if($(this).is(":checked")){
+			$(sub_chks).prop("checked", true);
+		}else{
+			$(sub_chks).prop("checked", false);
+		}
+	});
 });
 
-// 결제 방법 버튼에 버블 효과를 활성화/비활성화
-function toggleClassBubble(cate){	
-	$(".pay-btn[data-cate != '" + cate + "']").removeClass("bubble"); // 선택한 결제 방법 버튼을 제외한 다른 버블 효과를 비활성화
-	$(".pay-btn[data-cate = '"+ cate +"']").toggleClass("bubble"); // 선택환 결제 방법에 버블을 활성화/비활성화
-}
-
-// 약관동의 창을 활성화/비활성화
-// cateName : cate-1, cate-2, ... cate-N
-function payment_agency_agreeWrapToggle(){
-	
-	if(isContainBubbleClass()){
-		$(".payment_agency_agree-wrap").removeClass("hidden");	
-	}else{
-		$(".payment_agency_agree-wrap").addClass("hidden");
-	}
-}
-	
-// 결제방법버튼들 중에서 선택한 버튼이 있는지 검사
-function isContainBubbleClass(){
-	return $(".pay-btn.bubble").length >= 1 ? true : false; 	
-}
 
 </script>

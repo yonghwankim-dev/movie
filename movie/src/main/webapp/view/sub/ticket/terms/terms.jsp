@@ -60,24 +60,25 @@
 </div>
 
 <script>
-	function clickTab(tab){
-		const selectTab = ".nav-link[href='"+tab+"']"; 
-		
-		// #tabs-1
-		$(".nav-link").removeClass("active");
-		$(selectTab).addClass("active");
-		
-		$(".tabItem").addClass("hidden"); // 다른 탭의 내용들을 전부 가림
-		$(tab).removeClass("hidden");  // 선택한 탭의 내용을 보여줌		
-	}
 
-	$(".nav-link").on("click", function(){
-		clickTab($(this).attr("href"));
+	$(function(){
+		$(".nav-link").on("click", function(){
+			clickTab($(this).attr("href"));
+		});
 	});
 	
-	$("#termModal button").on("click", function(){
-		$("#termModal").modal("hide");
-	});
-	
-	
+	function clickTab(tab){
+
+		const selected = $(".nav-link").filter(function(idx, item){
+			return $(item).attr("href") === tab;
+		});
+
+		// tab 활성화/비활성화
+		$(".nav-link").removeClass("active");
+		$(selected).addClass("active");
+
+		// tab 내용 활성화/비활성화
+		$(".tabItem").addClass("hidden"); // 다른 탭의 내용들을 전부 가림
+		$(tab).removeClass("hidden");  	  // 선택한 탭의 내용을 보여줌		
+	}
 </script>

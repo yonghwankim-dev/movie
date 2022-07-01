@@ -62,6 +62,61 @@
 	background: url("/movie/images/sub/tooltip_15.png") no-repeat;
 }
 
+/* 체크박스 디자인 */
+input[type="checkbox"]{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width : 0px;
+	height : 0px;
+	padding : 0;
+	margin : 0;
+	overflow: hidden;
+	clip : rect(0, 0, 0, 0);
+	vertical-align: middle;
+	border : none 0;
+}
+
+input[type="checkbox"] + label{
+	position: relative;
+	display: inline-block;
+	margin : 0;
+	vertical-align: middle;
+}
+
+input[type="checkbox"] + label{
+	display: block;
+	float : left;
+	width : auto;
+	font-family: 'Roboto';
+	font-size : 13px;
+}
+
+input[type='checkbox'] + label:before{
+	content : "";
+	display: inline-block;
+	border: 1px solid #DDD;
+	background-color: #fff;
+	width : 18px;
+	height : 18px;
+	margin-right: 5px;
+	vertical-align: -5px;
+	border-radius: 3px;
+}
+
+input[type='checkbox']:checked + label.ty2:before{
+	background-color: #000;
+	background : #000 url("/movie/images/sub/chk_8_3.png") no-repeat center 6px;
+}
+
+input[type='checkbox'] + label.ty2:before{
+	background-color: #BEBEBE;
+	border-radius: 50%;
+	background: #fff url("/movie/images/sub/chk_8_2.png") no-repeat center 6px;
+	vertical-align: -5px;
+}
+/* //체크박스 디자인 */
+
 /* 예매 정보 */
 .book{
 	background-color : #ffffff;
@@ -183,7 +238,7 @@
 
 
 .group_payment-info{
-	padding : 25px 20px;
+	padding : 25px 20px 0;
 }
 
 .group_payment-info .list_pay_item li{
@@ -191,6 +246,10 @@
 	width : 31.3%;
 	float: left;
 	margin: 0 1% 10px;
+}
+
+.group_payment-info .group_payment-row{
+	height : 160px;
 }
 
 .group_payment-info .cate1{
@@ -214,12 +273,97 @@
 	background-position: center 17px;
 }
 
+.pay_method-info #cates{
+	display : flex;
+	margin-left : 25px;
+	flex-wrap: wrap;
+}
+
+.pay_method-info .cate_btn{
+	background-color: white;
+	margin-right : 10px;
+	margin-bottom : 5px;
+	border : 1px solid #DDD;
+	width : 78px;
+	height : 50px;
+	font-size : 10px;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+}
+
+.bubble{
+	border-color:#000;
+}
+
+.bubble:after
+{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 5px 5px 0;
+	border-color: #000 transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	bottom: -5px;
+	left: 60px;
+}
 /* //결제 수단 */
+
+/* 엘페이 결제 수단 */
+#lpay_wrap{
+	padding : 0 25px;
+}
+
+#lpay_wrap .regiPayMethodBtn{
+	width : 140px;
+	height : 90px;
+	position : relative;
+	background : #fff url("/movie/images/sub/plus_15.png") no-repeat center 26px;
+	border : 1px solid #DDD;
+	font-size: 11px;
+	font-weight: 400;
+	line-height: 120px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+	border-radius: 4px;
+		
+}
+
+#lpay_wrap .lpay_footer{
+	margin-top: 40px;
+}
+
+#lpay_wrap .lpay_footer strong{
+	font-size: 13px;
+}
+
+#lpay_wrap .lpay_footer p{
+	font-size : 11px;
+}
+
+/* //엘페이 결제 수단 */
+
+/* 간편결제 수단 */
+#easyPay_wrap{
+	padding : 0 25px;
+}
+#easyPay_wrap .easyPay_btn{
+background-color: white;
+	margin-right : 10px;
+	margin-bottom : 5px;
+	border : 1px solid #DDD;
+	width : 130px;
+	height : 55px;
+	font-size : 10px;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";	
+}
+/* //간편결제 수단 */
 
 /* 결제하기 */
 .payment{
+	position : relative;
 	width : 415px;
-	height : 815px;	
+	height : 875px;	
 }
 
 .save_point-info{
@@ -262,59 +406,6 @@
 	background: url("/movie/images/sub/close_13.png") no-repeat center center;
 }
 
-
-.save_point-info input[type="checkbox"]{
-	position: absolute;
-	top : 0;
-	left : 0;
-	width : 0px;
-	height : 0px;
-	padding : 0;
-	margin : 0;
-	overflow: hidden;
-	clip : rect(0, 0, 0, 0);
-	vertical-align: middle;
-	border : none 0;
-}
-
-input[type="checkbox"] + label{
-	position: relative;
-	display: inline-block;
-	margin : 0;
-	vertical-align: middle;
-}
-.save_point-info input[type="checkbox"] + label{
-	display: block;
-	float : left;
-	width : auto;
-	font-family: 'Roboto';
-	font-size : 13px;
-}
-
-.save_point-info input[type='checkbox'] + label:before{
-	content : "";
-	display: inline-block;
-	border: 1px solid #DDD;
-	background-color: #fff;
-	width : 18px;
-	height : 18px;
-	margin-right: 5px;
-	vertical-align: -5px;
-	border-radius: 3px;
-}
-
-.save_point-info input[type='checkbox']:checked + label.ty2:before{
-	background-color: #000;
-	background : #000 url("/movie/images/sub/chk_8_3.png") no-repeat center 6px;
-}
-
-.save_point-info input[type='checkbox'] + label.ty2:before{
-	background-color: #BEBEBE;
-	border-radius: 50%;
-	background: #fff url("/movie/images/sub/chk_8_2.png") no-repeat center 6px;
-	vertical-align: -5px;
-}
-
 .save_point-col{
 	display: inline-block;
 }
@@ -327,7 +418,48 @@ input[type="checkbox"] + label{
 	font-family: "Noto Sans KR";
 }
 
+/* 결제대행사 약관동의 */
+.payment_agency_agree{
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	flex-direction : column;
+	height : 225px;
+}
+.payment_agency_agree_all{
+	display : flex;
+	align-items : center;
+	width : 350px;
+	height : 35px;
+}
+.payment_agency_agree_list{
+	display : flex;
+	justify-content : center;
+	flex-direction : column;
+	width : 350px;
+	height : 140px;
+	background-color: #F8F8F8;
+}
+.payment_agency_agree_list .ty2{
+	margin-left : 15px;
+	margin-bottom: 9px;
+}
+.payment_agency_agree_list .ty2 a{
+	position : absolute;
+	right : 0;
+	font-size: 10px;
+	color : #666666;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	border: none;
+	background: transparent;	
+}
+/* //결제대행사 약관동의 */
+
 .price-info{
+	position : absolute;
+	bottom : 0;
+	left : 0;
+	width : 100%;
 	height : 220px;
 	background-color : #414141;
 	color : white;
@@ -366,5 +498,4 @@ input[type="checkbox"] + label{
 	font-weight: bold;
 	font-size: 17px;
 }
-
 /* //결제하기 */

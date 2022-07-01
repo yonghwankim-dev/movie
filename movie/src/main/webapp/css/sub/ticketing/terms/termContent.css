@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.termContent .title, 
+.termContent .sub_tit{
+	font-size: 15px;
+	line-height: 21px;
+	font-weight: 400;
+	font-style: normal;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	color : #000;
+}
+
+.termContent .list,
+.termContent ul{
+	padding-left: 0;
+}
+
+.termContent .txt,
+.termContent li{
+	font-size: 12px;
+	line-height: 17px;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	color : #000;
+}
+
+.termContent .list{
+	list-style: none;
+}

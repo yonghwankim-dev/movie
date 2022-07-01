@@ -10,6 +10,9 @@
 }
 </style>
 
+<!-- 이용약관 모달 -->
+<c:import url="/view/sub/ticket/terms/terms.jsp"/>
+
 <!-- 페이지 내용 -->
 <div class="row bg-white" style="width: 1200px; height : 875px;">
 	<div class="book">
@@ -69,14 +72,158 @@
         		<h6>최종 결제수단</h6>
         		<div class="group_payment-row pay_methods">
         			<ul class="list_pay_item">
-        				<li><button type="button" class="pay-btn cate1">신용카드</button></li>
-        				<li><button type="button" class="pay-btn cate2">엘페이</button></li>
-        				<li><button type="button" class="pay-btn cate3">간편결제</button></li>
-        				<li><button type="button" class="pay-btn cate4">내통장결제</button></li>
-        				<li><button type="button" class="pay-btn cate5">휴대폰</button></li>
+        				<li><button type="button" class="pay-btn cate1" data-cate="cate1">신용카드</button></li>
+        				<li><button type="button" class="pay-btn cate2" data-cate="cate2">엘페이</button></li>
+        				<li><button type="button" class="pay-btn cate3" data-cate="cate3">간편결제</button></li>
+        				<li><button type="button" class="pay-btn cate4" data-cate="cate4">내통장결제</button></li>
+        				<li><button type="button" class="pay-btn cate5" data-cate="cate5">휴대폰</button></li>
         			</ul>
         		</div>
-        	</div>	
+        	</div>
+        	
+        	<!-- 신용카드 카드 정보 -->
+        	<div id="cates_wrap" class="hidden">
+				<div id="cates">
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_lotte.png">
+	        				</span><br>
+	        			<span>롯데카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_kb.png">
+	        			</span><br>
+	        			<span>국민카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_kakao.png">
+	        			</span><br>
+	        			<span>카카오뱅크</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_shinhan.png">
+	        			</span><br>
+	        			<span>신한카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_samsung.png">
+	        			</span><br>
+	        			<span>삼성카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_hyundai.png">
+	        			</span><br>
+	        			<span>현대카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_hana.png">
+	        			</span><br>
+	        			<span>하나카드</span>
+	        		</button>    
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_keb.png">
+	        			</span><br>
+	        			<span>외환카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_woori.png">
+	        			</span><br>
+	        			<span>우리카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_bc.png">
+	        			</span><br>
+	        			<span>BC카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_citi.png">
+	        			</span><br>
+	        			<span>씨티카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_nh.png">
+	        			</span><br>
+	        			<span>NH카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_jb.png">
+	        			</span><br>
+	        			<span>전북카드</span>
+	        		</button>
+	        		<button type="button" class="cate_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/card_logo_kj.png">
+	        			</span><br>
+	        			<span>광주카드</span>
+	        		</button>	        		
+	        	</div>
+        	</div>
+       
+        
+        	<!-- 엘페이 정보 -->
+        	<div id="lpay_wrap" class="hidden">
+        		<div class="lpay_content">
+        			<button type="button" class="regiPayMethodBtn">결제수단 등록</button>
+        		</div>
+        		<div class="lpay_footer">
+        			<strong>간편결제 이용 시 무이자할부 이용이 불가합니다.</strong>
+        			<p>간편결제 이용 시 무이자할부 이용이 불가합니다.</p>
+        		</div>
+        	</div>
+        
+        	<!-- 간편결제 정보 -->
+        	<div id="easyPay_wrap" class="hidden">
+        		<div class="easyPay">
+        			<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_kakao.png">
+	        				</span><br>
+	        			<span>카카오페이</span>
+	        		</button>
+        			<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_payco.png">
+	        				</span><br>
+	        			<span>페이코</span>
+	        		</button>
+	        		<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_npay.png">
+	        				</span><br>
+	        			<span>네이버페이</span>
+	        		</button>
+        			<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_toss.png">
+	        				</span><br>
+	        			<span>토스</span>
+	        		</button>
+        			<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_chai.svg">
+	        				</span><br>
+	        			<span>차이나페이</span>
+	        		</button>
+        			<button type="button" class="easyPay_btn">
+	        			<span class="thm">
+	        				<img src="/movie/images/sub/payment_simple_tbee.png">
+	        				</span><br>
+	        			<span>모바일캐시비/티머니</span>
+	        		</button>
+        		</div>
+        	</div>
         </div>
         
 	</div>
@@ -91,7 +238,7 @@
 	        		<label for="chkSavingPoint" class="ty2">
 	        			L.POINT 적립
 	        		</label>        		
-        		</div>        		
+        		</div>
         		<div class="tooltip_box">
         			<button id="ic_question" class="ic_question" type="button"></button>
         			
@@ -122,12 +269,52 @@
         			<input type="radio" id="cardRadio" name="savRadio"/>
         			<label for="cardRadio">카드적립</label>
         		</span>
-        		
         	</div>
         </div>
-        <div style="width:415px; height:510px;">
+        <div class="payment_agency_agree-wrap hidden">
+	        <div class="payment_agency_agree bottom_bar">
+	        	<div class="payment_agency_agree_all">
+					<input type="checkbox" id="chkAgreePayAgency"/>
+					<label for="chkAgreePayAgency" class="ty2">
+			        	결제대행서비스 약관 동의
+			        </label>        	
+	        	</div>
+		        <div class="payment_agency_agree_list">
+		        	<input type="checkbox" id="chkAgreeElectronicTrade"/>
+					<label for="chkAgreeElectronicTrade" class="ty2">
+			        	전자금융거래 이용약관 동의
+						<a href="#tabs-1" id="btnAgreeElectronicTrade" data-target="tab1">
+			        		약관보기 >
+			        	</a>
+			        </label>
+	
+			        <input type="checkbox" id="chkAgreeUniqueIdentifyInfo"/>
+					<label for="chkAgreeUniqueIdentifyInfo" class="ty2">
+			        	고유식별정보 수집 및 이용안내
+			        	<a href="#tabs-2" id="btnAgreeUniqueIdentifyInfo" data-target="tab2">
+			        		약관보기 >
+			        	</a>
+			        </label>
+					<input type="checkbox" id="chkAgreePersonInfo"/>
+					<label for="chkAgreePersonInfo" class="ty2">
+			        	개인정보 수집 및 이용동의
+			        	<a href="#tabs-3" id="btnAgreePersonInfo" data-target="tab3">
+			        		약관보기 >
+			        	</a>
+			        </label>
+			        <input type="checkbox" id="chkAgreePersonInfoThrid"/>
+					<label for="chkAgreePersonInfoThrid" class="ty2">
+			        	개인정보 제3자 제공/위탁동의
+			        	<a href="#tabs-4" id="btnAgreePersonInfoThrid" data-target="tab4">
+			        		약관보기 >
+			        	</a>
+			        </label>	
+		        </div>
+	       	</div>
         
         </div>
+        
+
         <div class="price-info">
 			<div class="product_price price-info-item">
 				<div class="price_title">
@@ -165,12 +352,95 @@
 
 <script>
 $(function(){
+	// L.POINT 적립 도움말 버튼 클릭
 	$("#ic_question").on("click", function(){
 		$("#ic_question_tooltip").show();
 	});	
+	
+	// L.POINT 적립 도움말 창의 닫기 버튼 클릭
 	$("#ic_question_tooltip .btn_close").on("click", function(){
 		$("#ic_question_tooltip").hide();
-	})
+	});
+	
+	// 신용카드 버튼 클릭
+	$(".cate1").on("click", function(){
+		const cateName = $(this).data("cate");		
+		toggleClassBubble(cateName);
+		$("#cates_wrap").toggleClass("hidden");
+		$("#easyPay_wrap").addClass("hidden");
+		$("#lpay_wrap").addClass("hidden");
+		payment_agency_agreeWrapToggle();				
+	});
+	
+	// 엘페이 버튼 클릭
+	$(".cate2").on("click", function(){
+		const cateName = $(this).data("cate");
+		toggleClassBubble(cateName);
+		$("#cates_wrap").addClass("hidden");
+		$("#easyPay_wrap").addClass("hidden");
+		$("#lpay_wrap").toggleClass("hidden");
+		payment_agency_agreeWrapToggle();
+	});
+	
+	// 간편결제 버튼 클릭
+	$(".cate3").on("click", function(){
+		const cateName = $(this).data("cate");
+		toggleClassBubble(cateName);
+		$("#cates_wrap").addClass("hidden");
+		$("#lpay_wrap").addClass("hidden");
+		$("#easyPay_wrap").toggleClass("hidden");
+		payment_agency_agreeWrapToggle();
+	});
+	
+	// 내통장결제 버튼 클릭
+	$(".cate4").on("click", function(){
+		const cateName = $(this).data("cate");
+		toggleClassBubble(cateName);
+		$("#cates_wrap").addClass("hidden");
+		$("#lpay_wrap").addClass("hidden");
+		$("#easyPay_wrap").addClass("hidden");
+		payment_agency_agreeWrapToggle();
+	});
+	
+	// 휴대폰 버튼 클릭
+	$(".cate5").on("click", function(){
+		const cateName = $(this).data("cate");
+		toggleClassBubble(cateName);
+		$("#cates_wrap").addClass("hidden");
+		$("#lpay_wrap").addClass("hidden");
+		$("#easyPay_wrap").addClass("hidden");
+		payment_agency_agreeWrapToggle();
+	});
+	
+	// 약관보기 버튼 클릭
+	
+	
+	$(".payment_agency_agree_list a").on("click", function(){
+		clickTab($(this).attr("href"));
+		$("#termModal #staticBackdrop").modal();
+	});
 });
+
+// 결제 방법 버튼에 버블 효과를 활성화/비활성화
+function toggleClassBubble(cate){	
+	$(".pay-btn[data-cate != '" + cate + "']").removeClass("bubble"); // 선택한 결제 방법 버튼을 제외한 다른 버블 효과를 비활성화
+	$(".pay-btn[data-cate = '"+ cate +"']").toggleClass("bubble"); // 선택환 결제 방법에 버블을 활성화/비활성화
+}
+
+// 약관동의 창을 활성화/비활성화
+// cateName : cate-1, cate-2, ... cate-N
+function payment_agency_agreeWrapToggle(){
+	
+	if(isContainBubbleClass()){
+		$(".payment_agency_agree-wrap").removeClass("hidden");	
+	}else{
+		$(".payment_agency_agree-wrap").addClass("hidden");
+	}
+}
+	
+// 결제방법버튼들 중에서 선택한 버튼이 있는지 검사
+function isContainBubbleClass(){
+	return $(".pay-btn.bubble").length >= 1 ? true : false; 	
+}
 
 </script>

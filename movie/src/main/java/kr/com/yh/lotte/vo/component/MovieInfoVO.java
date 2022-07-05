@@ -1,11 +1,17 @@
 package kr.com.yh.lotte.vo.component;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
+import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.lotte.vo.TheaterVO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Class Description
@@ -15,48 +21,14 @@ import kr.com.yh.lotte.vo.TheaterVO;
  * @version 1.0.0
  * @date 2022-04-21
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MovieInfoVO {
 	private MovieVO 	movie;
 	private ScreenVO  	screen;
 	private CinemaVO	cinema;
 	private TheaterVO	theater;
-	private Timestamp	end_time;	// 영화 종료 시간
-
-	public MovieInfoVO() {
-		
-	}
-	
-	public MovieInfoVO(MovieVO movie, ScreenVO screen, CinemaVO cinema, TheaterVO theater, Timestamp end_time) {
-		this.movie = movie;
-		this.screen = screen;
-		this.cinema = cinema;
-		this.theater = theater;
-		this.end_time = end_time;
-	}
-
-	public MovieVO getMovie() {
-		return movie;
-	}
-
-	public ScreenVO getScreen() {
-		return screen;
-	}
-
-	public CinemaVO getCinema() {
-		return cinema;
-	}
-
-	public TheaterVO getTheater() {
-		return theater;
-	}
-
-	public Timestamp getEnd_time() {
-		return end_time;
-	}
-
-	@Override
-	public String toString() {
-		return "MovieInfoVO [movie=" + movie + ", screen=" + screen + ", cinema=" + cinema + ", theater=" + theater
-				+ ", end_time=" + end_time + "]";
-	}	
+	private Timestamp	end_time;	// 영화 종료 시간	
 }

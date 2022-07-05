@@ -24,7 +24,7 @@
         </div>
         <div class="inner">
         	
-        	
+        	<form id="payFrm" method="post" action="/movie/ticketing/orderSettlement">
             <div id="PersonSeatCount">
                 <div class="select_num_people_wrap">
                     <div class="movie_infor">
@@ -62,25 +62,25 @@
                             <li>
                                 <strong class="tit">청소년</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus_10">감소</button>
+                                     <button type="button" class="btn_mins" id="Minus_10">감소</button>
                                      <input id="person_10" type="text" class="txt_num" name="person_10" value="0" readonly/>                                   
-                                     <button class="btn_plus" id="Plus_10">증가</button>
+                                     <button type="button" class="btn_plus" id="Plus_10">증가</button>
                                  </span>
                             </li>
                             <li>
                                 <strong class="tit">성인</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus_20">감소</button>
+                                     <button type="button" class="btn_mins" id="Minus_20">감소</button>
                                      <input id="person_20" type="text" class="txt_num" name="person_20" value="0" readonly/>
-                                     <button class="btn_plus" id="Plus_20">증가</button>
+                                     <button type="button" class="btn_plus" id="Plus_20">증가</button>
                                  </span>
                             </li>
                             <li>
                                 <strong class="tit">노약자</strong>
                                  <span class="bx_num">
-                                     <button class="btn_mins" id="Minus_12">감소</button>
+                                     <button type="button" class="btn_mins" id="Minus_12">감소</button>
                                      <input id="person_12" type="text" class="txt_num" name="person_12" value="0" readonly/>
-                                     <button class="btn_plus" id="Plus_12">증가</button>
+                                     <button type="button" class="btn_plus" id="Plus_12">증가</button>
                                  </span>
                             </li>
                         </ul>
@@ -151,32 +151,44 @@
                         <dl class="total_price">
                             <dt>총 합계</dt>
                             <dd>
-                                <strong id="totalPrice">0</strong> 원
+                            	<strong id="totalPrice_label">0</strong>원
                             </dd>
                         </dl>
                         
                     </div>
                     <div class="group_right col-2">
-	                    <form id="payFrm">
+                    		
+                    		<!-- 영화제목 -->
+                    		<input id="movie_name" class="hidden" name="movie_name" value="${screenSch.movie.name}"/>
+                    		<!-- 영화관 이름 -->
+                    		<input id="cinema_name" class="hidden" name="cinema_name" value="${screenSch.cinema.name}"/>
+                    		<!-- 상영관 이름 -->
+                    		<input id="theater_name" class="hidden" name="theater_name" value="${screenSch.theater.name}"/> 
 			        		<!-- 예매일자 -->
 			        		<input id="book_date" class="hidden" name="book_date" value="${screenSch.screenSch.screen_date}"/>
+			        		<!-- 시작 시간 -->
+			        		<input id="start_time" class="hidden" name="start_time" value="${screenSch.screenSch.start_time}"/>
+			        		<!-- 종료 시간 -->
+			        		<input id="end_time" class="hidden" name="end_time" value="${screenSch.screenSch.end_time}"/>
 			        		<!-- 상영관코드 -->
 			        		<input id="theater_code" class="hidden" name="theater_code" value="${screenSch.screenSch.theater_code}"/>
 			        		<!-- 회원코드 -->
 			        		<input id="mem_code" class="hidden" name="mem_code" value="${memCd}"/>
 			        		<!-- 상영코드 -->
 			        		<input id="screen_sch_code" class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
-			        		
 							<!-- 선택한 좌석 -->
 							<input id="selectedSeatNames" class="hidden" name="seat" value=""/>
+							<!-- 총 가격 -->
+							<input id="totalPrice" class="hidden" name="total_price" value=""/>
 								        		
 	                        <button type="button" id="bookSeatBtn" class="bookSeat">결재하기</button>
-	                    </form>
                     </div>
                 </div>
             </div>
+    		</form>
         </div>
     </div>
+	
 </div>
 <script>
 // 10(청소년):10000원, 20(성인):14000원, 12(노약자):7000
@@ -261,7 +273,7 @@ function resetCurSelectedSeat(){
 
 // 좌석 금액 초기화
 function resetTotalPriceSeat(){
-	$("#totalPrice").text(0);
+	$("#totalPrice_label").text(0);
 }
 
 // 좌석 선택 완료
@@ -313,7 +325,8 @@ $(function(){
 		
 		// 좌석 선택 완료 검사
 		if(getCurSelectedPerson() === getTotalPerson()){
-			$("#totalPrice").text(getTotalPrice());
+			$("#totalPrice_label").text(getTotalPrice());
+			$("#totalPrice").val(getTotalPrice());
 			completeSeatSelected();	
 		}else if(isCompletedSeatSelected === true){
 			resetTotalPriceSeat();
@@ -325,37 +338,9 @@ $(function(){
 	});
 	
 	// 결제하기 버튼 클릭 이벤트
-	$('#bookSeatBtn').on('click', function() {
-		const data = {
-			"book_date"         : $("#payFrm #book_date").val(),
-			"theater_code"      : $("#payFrm #theater_code").val(),
-			"mem_code"          : $("#payFrm #mem_code").val(),
-			"screen_sch_code"   : $("#payFrm #screen_sch_code").val(),
-			"person_10"         : $("#person_10").val(),
-			"person_20"         : $("#person_20").val(),
-			"person_12"         : $("#person_12").val(),
-			"totalPrice"        : $("#totalPrice").text(),
-			"selectedSeatNames" : $("#selectedSeatNames").val()
-		};
-		
-		$.ajax({
-				url : "<%=request.getContextPath() %>/bookSeat.do",
-				type : 'post',
-				data : data,
-				success : function(data){
-					if (data.code === 'ok') {
-						alert('예매가 성공했습니다.');	
-					}else if(data.code === 'no'){
-						alert("예매에 실패했습니다.");
-					}
-					location.href = '<%=request.getContextPath() %>/main.do';
-				}
-				,
-				error : function(xhr) {
-					alert(xhr.status);
-				},
-				dataType : 'json'
-		});
+	$('#bookSeatBtn').on('click', function() {		
+		$("#payFrm").submit();				
+		// 페이지를 이동시키고 데이터도 옮기고 싶은 경우
 	});
 });
 

@@ -74,18 +74,27 @@ public class BookController extends HttpServlet {
 		// 예약코드 생성
 		book_code = bookService.getNextBookCode();
 		
-		BookVO book = new BookVO(book_code
-							   , total_price 
-							   , teenager
-							   , adult
-							   , senior
-							   , book_date
-							   , screen_sch_code
-							   , mem_code);
+		BookVO book = BookVO.builder()
+				            .book_code(book_code)
+				            .total_price(total_price)
+				            .teenager(teenager)
+				            .adult(adult)
+				            .senior(senior)
+				            .book_date(book_date)
+				            .screen_sch_code(screen_sch_code)
+				            .mem_code(mem_code)
+				            .build();
 		
 		for(String seat_code : seatCodes) {
-			bookSeatList.add(new BookSeatVO(book_code, seat_code));
-			screenSchSeatList.add(new ScreenSchSeatVO(screen_sch_code, seat_code, "R"));
+			bookSeatList.add(BookSeatVO.builder()
+					                   .book_code(book_code)
+					                   .seat_code(seat_code)
+					                   .build());
+			screenSchSeatList.add(ScreenSchSeatVO.builder()
+					                             .screen_sch_code(screen_sch_code)
+					                             .seat_code(seat_code)
+					                             .seat_status("R")
+					                             .build());
 		}
 		
 		cnt = bookService.bookSeat(book, bookSeatList, screenSchSeatList);

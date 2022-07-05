@@ -67,7 +67,16 @@ public class JoinController extends HttpServlet {
 				    + " "
 				    + req.getParameter("detailAdd");
 		
-		MemberVO mem = new MemberVO("", name, birthday, contact, addr, email, id, pw, gender);
+		MemberVO mem = MemberVO.builder()
+				               .name(name)
+				               .birthday(birthday)
+				               .contact(contact)
+				               .addr(addr)
+				               .email(email)
+				               .id(id)
+				               .pwd(pw)
+				               .gender(gender)
+				               .build();
 		
 		UpdateResult result = new UpdateResult(resp);
 		int cnt = 0;

@@ -38,7 +38,7 @@ public class TicketingController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileNm 		= "ticket/ticketing"; 						// 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm 		= "ticket/ticketing"; 				// 매칭되는 jsp 파일명(확장자 제외)
 		String loc          = req.getParameter("loc");			// 선택한 지역
 		String cinema_name 	= req.getParameter("cinema_name");	// 선택한 영화관 지점
 		String movie_name 	= req.getParameter("movie_name");	// 선택한 영화

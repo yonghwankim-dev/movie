@@ -46,12 +46,13 @@ public class ScreenAddController extends HttpServlet {
 		movie_code = adminService.getMovieCodeByMovieName(movie_name);
 		theater_code = adminService.getTheaterCodeByCinemaNameAndTheaterName(map);
 				
-		ScreenVO screen = new ScreenVO(null
-									 , movie_code
-									 , theater_code
-									 , start_date
-									 , end_date);	
-
+		ScreenVO screen = ScreenVO.builder()
+				                  .movie_code(movie_code)
+				                  .theater_code(theater_code)
+				                  .start_date(start_date)
+				                  .end_date(end_date)
+				                  .build();
+		
 		cnt = adminService.insertScreen(screen);
 		
 		if(cnt>0)

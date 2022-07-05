@@ -28,6 +28,8 @@
 <script src="/movie/js/plugins/jquery-3.6/slick.min.js"></script>
 <!-- jQuery -->
 
+<!-- iamport.payment.js, 외부 결제 API -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
 <!-- bootstrap -->
 <link rel="stylesheet" href="/movie/css/plugins/bootstrap-4.6/bootstrap.min.css">
@@ -40,7 +42,6 @@
 
 <!-- sub/admin 영화 상영 관리 -->
 <link rel="stylesheet" href="/movie/css/sub/admin/screenAdd.css?v=<%=System.currentTimeMillis() %>">
-<script src="/movie/js/admin/screenAdd.js"></script>
 <script src="/movie/js/admin/screenSchAdd.js"></script>
 
 <!-- //sub/admin 영화 상영 관리 -->

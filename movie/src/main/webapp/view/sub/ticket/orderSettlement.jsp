@@ -14,6 +14,7 @@
 <c:import url="/view/sub/ticket/terms/terms.jsp"/>
 
 <!-- 페이지 내용 -->
+<div id="orderSettlement">
 <div class="row bg-white" style="width: 1200px; height : 875px;">
 
 	<!-- 예매 정보 -->
@@ -30,15 +31,25 @@
         		</span>
         		<strong class="movie-info-title">
         			<span class="ic_grade gr_12">12</span>
-        			탑건: 매버릭(2D)
+        			${movie.name}(2D)
         		</strong>
         		<dl>
         			<dt>일시</dt>
-        			<dd>2022-06-24 (금) 22:35 ~ 24:55</dd>
+        			<dd><fmt:formatDate value="${screenSch.screen_date}" pattern="yyyy-MM-dd (E)"/> ${screenSch.start_time} ~ ${screenSch.end_time}</dd>
         			<dt>영화관</dt>
-        			<dd>가산디지털 5관 - 2D</dd>
+        			<dd>${cinema.name} ${theater.name} - 2D</dd>
         			<dt>인원</dt>
-        			<dd>성인1</dd>
+        			<dd>
+        				<c:if test="${book.teenager >= 1}">
+        					성인${book.teenager}&nbsp;
+        				</c:if>
+        				<c:if test="${book.adult >= 1}">
+        					청소년${book.adult}&nbsp;
+        				</c:if>
+        				<c:if test="${book.senior >= 1}">
+        					노약자${book.senior}&nbsp;
+        				</c:if>        				
+        			</dd>
         		</dl>
         		
         	</div>	
@@ -46,7 +57,11 @@
         	<div class="seat-info bottom_bar">
         		<dl>
         			<dt>좌석</dt>
-        			<dd>A23</dd>
+        			<dd>
+        				<c:forEach var="seat" items="${seats}">
+        					${seat.seat_row}${seat.seat_col}&nbsp;
+        				</c:forEach>
+        			</dd>
         		</dl>
         	</div>
         	
@@ -95,106 +110,6 @@
         		</div>
         	</div>
         	
-        	<!-- 신용카드 카드 정보 -->
-        	<div id="cates_wrap" class="hidden">
-				<div id="cates">
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_lotte.png">
-	        				</span><br>
-	        			<span>롯데카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_kb.png">
-	        			</span><br>
-	        			<span>국민카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_kakao.png">
-	        			</span><br>
-	        			<span>카카오뱅크</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_shinhan.png">
-	        			</span><br>
-	        			<span>신한카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_samsung.png">
-	        			</span><br>
-	        			<span>삼성카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_hyundai.png">
-	        			</span><br>
-	        			<span>현대카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_hana.png">
-	        			</span><br>
-	        			<span>하나카드</span>
-	        		</button>    
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_keb.png">
-	        			</span><br>
-	        			<span>외환카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_woori.png">
-	        			</span><br>
-	        			<span>우리카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_bc.png">
-	        			</span><br>
-	        			<span>BC카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_citi.png">
-	        			</span><br>
-	        			<span>씨티카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_nh.png">
-	        			</span><br>
-	        			<span>NH카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_jb.png">
-	        			</span><br>
-	        			<span>전북카드</span>
-	        		</button>
-	        		<button type="button" class="cate_btn">
-	        			<span class="thm">
-	        				<img src="/movie/images/sub/card_logo_kj.png">
-	        			</span><br>
-	        			<span>광주카드</span>
-	        		</button>	        		
-	        	</div>
-        	</div>
-         
-        	<!-- 엘페이 정보 -->
-        	<div id="lpay_wrap" class="hidden">
-        		<div class="lpay_content">
-        			<button type="button" class="regiPayMethodBtn">결제수단 등록</button>
-        		</div>
-        		<div class="lpay_footer">
-        			<strong>간편결제 이용 시 무이자할부 이용이 불가합니다.</strong>
-        			<p>간편결제 이용 시 무이자할부 이용이 불가합니다.</p>
-        		</div>
-        	</div>
         
         	<!-- 간편결제 정보 -->
         	<div id="easyPay_wrap" class="hidden">
@@ -336,7 +251,7 @@
 					<strong>상품금액</strong>
 				</div>
 				<div class="price_content">
-					<strong>12,000 원</strong>
+					<strong>${book.total_price} 원</strong>
 				</div>
 				
 				
@@ -354,15 +269,17 @@
 					<strong>결제금액</strong>
 				</div>
 				<div class="price_content">
-					<strong>총 12,000 원</strong>
+					<strong>총 ${book.total_price} 원</strong>
 				</div>
 			</div>        
 			<div class="pay_btn_wrap price-info-item">
-				<button type="button">결제하기</button>
+				<button type="button" id="pay">결제하기</button>
 			</div>
         </div>
 	</div>	
 </div>
+</div>
+
 <!-- //페이지 내용 -->
 
 <script>
@@ -383,25 +300,21 @@ $(function(){
 		toggleClassBubble(cateName);
 		
 		if(cateName === "cate1"){
-			$("#cates_wrap").toggleClass("hidden");
 			$("#easyPay_wrap").addClass("hidden");
 			$("#lpay_wrap").addClass("hidden");
 		}else if(cateName === "cate2"){
-			$("#cates_wrap").addClass("hidden");
 			$("#lpay_wrap").toggleClass("hidden");
 			$("#easyPay_wrap").addClass("hidden");
 		}else if(cateName === "cate3"){
-			$("#cates_wrap").addClass("hidden");
 			$("#lpay_wrap").addClass("hidden");
 			$("#easyPay_wrap").toggleClass("hidden");
 		}else{
-			$("#cates_wrap").addClass("hidden");
 			$("#lpay_wrap").addClass("hidden");
 			$("#easyPay_wrap").addClass("hidden");	
 		}
 		payment_agency_agreeWrapToggle();
 	});
-	
+		
 	// 약관보기 버튼 클릭
 	$(".payment_agency_agree_list a").on("click", function(){
 		clickTab($(this).attr("href"));
@@ -428,7 +341,21 @@ $(function(){
 			$(".payment_agency_agree-wrap").addClass("hidden");
 		}
 	}
-		
+	
+	
+	
+	// 약관 동의를 4개 전부 체크했는지 검사
+	function isAllCheckTerms(){
+		const chks = $(".payment_agency_agree_list input[type='checkbox']");
+
+		return $(chks).filter(":checked").length == 4 ? true : false;
+	}
+	
+	// 신용카드를 선택했는지 검사
+	function isSelectedCreditCard(){
+		return $(".cate1").hasClass("bubble");		 
+	}
+			
 	// 결제대행서비스 약관 동의 체크박스 클릭
 	$("#chkAgreePayAgency").on("click", function(){
 		const sub_chks = $(".payment_agency_agree_list input[type='checkbox']");
@@ -439,7 +366,76 @@ $(function(){
 			$(sub_chks).prop("checked", false);
 		}
 	});
+	
+	// 결제하기 버튼 클릭
+	$("#pay").on("click", function(){
+		
+		if(isAllCheckTerms() && isSelectedCreditCard()){
+			getMerchant_uid().then(function(data){
+				const merchant_uid = data.book_code;
+				requestPay(merchant_uid);
+			});			
+		}else if(!isAllCheckTerms()){
+			const yn = confirm("결제대행서비스 약관에 동의하셔야 구매가 가능합니다. 동의하시겠습니까?");
+			if(yn){
+				$(".payment_agency_agree_list input[type='checkbox']").prop("checked", true);			
+			}
+		}else{
+			alert("최종 결제 수단을 선택해주세요");
+		};
+		
+	});
+	
+	
 });
+</script>
 
-
+<!-- 외부 결제 API -->
+<script>
+    const IMP = window.IMP;
+	
+	
+	function getMerchant_uid(){
+		return $.when($.ajax({
+			url : '/movie/ticketing/orderSettlement/getNextBookCode',
+			type : 'post',
+			success : function(data) {
+				if (data.code === 'ok') {
+												
+				} else if (data.code === 'no') {
+					alert("예매번호를 가져오는데 실패하였습니다.");
+				}
+			},
+			error : function(xhr) {
+				alert(xhr.status);
+			},
+			dataType : "json"
+		}));		
+	}
+	
+    function requestPay(merchant_uid) {
+        // IMP.request_pay(param, callback) 결제창 호출    
+        IMP.init("imp50795017");
+        
+        IMP.request_pay({ // param
+            pg: "danal_tpay",
+            pay_method: "card",
+            merchant_uid: merchant_uid,
+            name: "영화표",
+            amount: 12000,
+            buyer_email: "yh.kim951107@gmail.com",
+            buyer_name: "김용환",
+            buyer_tel: "010-1234-5678",
+            buyer_addr: "서울특별시 강남구 신사동",
+            buyer_postcode: "01181"
+        }, function (rsp) { // callback
+            if (rsp.success) {
+            	// 결제 성공 시 로직,
+                alert("결제가 성공하였습니다.");
+            } else {
+                // 결제 실패시 로직
+                alert("결제가 실패하였습니다.");
+            }
+        });
+      }
 </script>

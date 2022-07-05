@@ -48,15 +48,17 @@ public class ScreenSchAddController extends HttpServlet {
 		List<String> seat_codes = seatService.getSeatCodesBySeatNumAndTheaterCode(null, theater_code);
 		
 		
-		ScreenSchVO screenSch = new ScreenSchVO(screen_sch_code
-				                              , screen_date
-				                              , start_time
-				                              , end_time
-				                              , screen_num
-				                              , movie_code
-				                              , theater_code
-				                              , screen_code);	
-
+		ScreenSchVO screenSch = ScreenSchVO.builder()
+				                           .screen_sch_code(screen_sch_code)
+				                           .screen_date(screen_date)
+				                           .start_time(start_time)
+				                           .end_time(end_time)
+				                           .screen_num(screen_num)
+				                           .movie_code(movie_code)
+				                           .theater_code(theater_code)
+				                           .screen_code(screen_code)
+				                           .build();
+		
 		// 삽입 결과
 		UpdateResult result = new UpdateResult(resp);
 		int cnt = 0;

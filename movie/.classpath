@@ -51,5 +51,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-mock-mvc/spring-webmvc-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-mock-mvc/tagsoup-1.2.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-mock-mvc/xml-path-3.0.5.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lombok/lombok.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

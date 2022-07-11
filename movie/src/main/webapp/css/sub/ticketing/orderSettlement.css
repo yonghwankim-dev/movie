@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-#orderSettlement .bottom_bar{
+.bottom_bar{
 	border-bottom: 1px solid #DDD;	
 }
-#orderSettlement .right_bar{
+.right_bar{
 	border-right: 1px solid #DDD;	
 }
 

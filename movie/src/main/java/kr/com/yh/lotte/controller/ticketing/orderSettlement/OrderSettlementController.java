@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 
+import kr.com.yh.lotte.service.book.BookServiceImpl;
+import kr.com.yh.lotte.service.book.IBookService;
 import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
 import kr.com.yh.lotte.service.cinema.ICinemaService;
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
@@ -35,6 +37,11 @@ import kr.com.yh.util.UpdateResult;
 public class OrderSettlementController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private IBookService bookService;
+	
+	public OrderSettlementController() {
+		this.bookService = BookServiceImpl.getInstance();
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,17 +49,19 @@ public class OrderSettlementController extends HttpServlet {
 		
 		String fileNm = "ticket/orderSettlement"; // 매칭되는 jsp 파일명(확장자 제외)
 
-		String movie_name   = req.getParameter("movie_name");
-		Date screen_date    = Date.valueOf(req.getParameter("book_date"));
-		String start_time   = req.getParameter("start_time");
-		String end_time     = req.getParameter("end_time");
-		String cinema_name  = req.getParameter("cinema_name");
-		String theater_name = req.getParameter("theater_name");
-		int teenager        = Integer.parseInt(req.getParameter("person_10"));
-		int adult           = Integer.parseInt(req.getParameter("person_20"));
-		int senior          = Integer.parseInt(req.getParameter("person_12"));
-		int total_price     = Integer.parseInt(req.getParameter("total_price"));
-		String[] seat       = req.getParameter("seat").split(" ");
+		String book_code       = bookService.getNextBookCode(); 
+		String movie_name      = req.getParameter("movie_name");
+		Date screen_date       = Date.valueOf(req.getParameter("book_date"));
+		String start_time      = req.getParameter("start_time");
+		String end_time        = req.getParameter("end_time");
+		String cinema_name     = req.getParameter("cinema_name");
+		String theater_name    = req.getParameter("theater_name");
+		String screen_sch_code = req.getParameter("screen_sch_code");
+		int teenager           = Integer.parseInt(req.getParameter("person_10"));
+		int adult              = Integer.parseInt(req.getParameter("person_20"));
+		int senior             = Integer.parseInt(req.getParameter("person_12"));
+		int total_price        = Integer.parseInt(req.getParameter("total_price"));
+		String[] seat          = req.getParameter("seat").split(" ");
 		
 		
 		MovieVO movie = MovieVO.builder()
@@ -60,6 +69,7 @@ public class OrderSettlementController extends HttpServlet {
                                .build();
 		
 		ScreenSchVO screenSch = ScreenSchVO.builder()
+				                           .screen_sch_code(screen_sch_code)
                                            .screen_date(screen_date)
                                            .start_time(start_time)
                                            .end_time(end_time)
@@ -74,6 +84,7 @@ public class OrderSettlementController extends HttpServlet {
 				                     .build();
 		
 		BookVO book = BookVO.builder()
+				            .book_code(book_code)
 				            .teenager(teenager)
 				            .adult(adult)
 				            .senior(senior)
@@ -95,9 +106,6 @@ public class OrderSettlementController extends HttpServlet {
 		req.setAttribute("book",      book);
 		req.setAttribute("seats",     seats);		
 		req.setAttribute("fileNm", fileNm);
-
-		System.out.println(cinema);
-		System.out.println(theater);
 		
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);
 	}

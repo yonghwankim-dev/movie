@@ -47,7 +47,7 @@
 					</li>
 				</ul>
 			</li>
-			<c:if test="${not empty loginId and loginId eq 'admin'}">
+			<c:if test="${not empty mem.id and mem.id eq 'admin'}">
 				<li>
 					<a href="">관리자</a>
 					<ul class="depth2">

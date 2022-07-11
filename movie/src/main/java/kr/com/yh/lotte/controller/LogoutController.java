@@ -18,7 +18,7 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		String fileNm = "logout"; // 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm = "/login/logout"; // 매칭되는 jsp 파일명(확장자 제외)
 
 		if(req.isRequestedSessionIdValid()) {
 			session.invalidate();

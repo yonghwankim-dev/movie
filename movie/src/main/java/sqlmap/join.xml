@@ -55,6 +55,7 @@
 		WHERE ID = #id#
 	</select>
 
+	<!-- 연락처 중복 조회 -->
 	<select id="checkPhone" resultClass="int" parameterClass="string">
 		SELECT COUNT(*)
 		FROM MEM
@@ -80,31 +81,35 @@
 		SELECT COUNT(*)
 		FROM MEM
 		WHERE ID = #id#
-		AND PWD = #pw#
+		AND PWD = #pwd#
 	</select>
 
-	<select id="getName" resultClass="String" parameterClass="map">
-		SELECT NAME
-		FROM MEM
-		WHERE ID = #id#
-		AND PWD = #pw#	
-	</select>
-	
-	<select id="getMemCode" parameterClass="String" resultClass="String">
-		SELECT MEM_CODE
-		FROM   MEM
-		WHERE  ID = #id#
-	</select>
-	
+	<!-- 회원 삭제 -->
 	<delete id="deleteMember" parameterClass="String">
 		DELETE FROM MEM
-		WHERE PWD = #pw#
+		WHERE PWD = #pwd#
 	</delete>
 	
+	<!-- 로그인 아이디 탐색 -->
 	<select id="searchLoginId" resultClass="String" parameterClass="map">
 		SELECT MEM_ID
 		FROM MEM
 		WHERE NAME = #searchName#
 		AND CONTACT = #searchTel#
+	</select>
+	
+	<select id="getMemberInfo" resultClass="memberVo" parameterClass="map">
+		SELECT MEM_CODE
+		     , NAME
+		     , BIRTHDAY
+		     , CONTACT
+		     , ADDR
+		     , EMAIL
+		     , ID
+		     , PWD
+		     , GENDER
+		FROM MEM
+		WHERE ID  = #id#
+		  AND PWD = #pwd#
 	</select>
 </sqlMap>

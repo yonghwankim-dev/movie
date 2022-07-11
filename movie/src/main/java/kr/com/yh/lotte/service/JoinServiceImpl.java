@@ -56,10 +56,7 @@ public class JoinServiceImpl implements IJoinService {
 	public boolean checkLogin(Map<String, Object> map) {
 		return joinDao.checkLogin(map);
 	}
-	public String getName(Map<String, Object> map) {
-		
-		return joinDao.getName(map);
-	}
+	
 
 	@Override
 	public int deleteMember(String pw) {
@@ -74,7 +71,8 @@ public class JoinServiceImpl implements IJoinService {
 	}
 
 	@Override
-	public String getMemCd(String id) {
-		return joinDao.getMemCd(id);
+	public MemberVO getMemberInfo(Map<String, Object> map) {
+		
+		return joinDao.getMemberInfo(map);
 	}
 }

@@ -1,4 +1,4 @@
-package kr.com.yh.lotte.controller.ticketing;
+package kr.com.yh.lotte.controller.ticketing.book;
 
 import java.io.IOException;
 
@@ -33,9 +33,10 @@ import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.ScreenSchSeatVO;
 import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.SeatVO;
 import kr.com.yh.util.UpdateResult;
 
-@WebServlet("/bookSeat.do")
+@WebServlet("/ticketing/book/bookSeat")
 public class BookController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -49,16 +50,17 @@ public class BookController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String book_code	   = null;
+		String book_code	   = req.getParameter("book_code");                     // 예약코드
+		int    total_price     = Integer.parseInt(req.getParameter("total_price"));	// 총가격
+		int    teenager        = Integer.parseInt(req.getParameter("teenager"));	// 청소년 인원수
+		int    adult           = Integer.parseInt(req.getParameter("adult"));	    // 성인 인원수
+		int    senior          = Integer.parseInt(req.getParameter("senior"));	    // 노약자 인원수
 		Date   book_date 	   = Date.valueOf(req.getParameter("book_date"));		// 예약일자
-		int    teenager        = Integer.parseInt(req.getParameter("person_10"));	// 청소년 인원수
-		int    adult           = Integer.parseInt(req.getParameter("person_20"));	// 성인 인원수
-		int    senior          = Integer.parseInt(req.getParameter("person_12"));	// 노약자 인원수
-		int    total_price     = Integer.parseInt(req.getParameter("totalPrice"));	// 예매가격
+		String screen_sch_code = req.getParameter("screen_sch_code");				// 상영일정코드
 		String mem_code 	   = (String) req.getParameter("mem_code");				// 회원코드
-		String screen_sch_code = req.getParameter("screen_sch_code");				// 상영코드
+		
 		String theater_code    = req.getParameter("theater_code");					// 상영관코드
-		String[] seats         = req.getParameter("selectedSeatNames").split(" ");	// 예매 좌석들
+		String[] seats         = req.getParameter("seats").split(" ");	            // 예매 좌석들
 		
 		List<String> seatList = Arrays.asList(seats);
 		List<String> seatCodes = null;
@@ -70,9 +72,7 @@ public class BookController extends HttpServlet {
 		int cnt = 0;
 				
 		// 좌석코드 참조
-		seatCodes = seatService.getSeatCodesBySeatNumAndTheaterCode(seatList, theater_code); 
-		// 예약코드 생성
-		book_code = bookService.getNextBookCode();
+		seatCodes = seatService.getSeatCodesBySeatNumAndTheaterCode(seatList, theater_code);
 		
 		BookVO book = BookVO.builder()
 				            .book_code(book_code)
@@ -98,6 +98,7 @@ public class BookController extends HttpServlet {
 		}
 		
 		cnt = bookService.bookSeat(book, bookSeatList, screenSchSeatList);
+		
 		if(cnt>0)
 		{
 			result.addToResMap("code", "ok");

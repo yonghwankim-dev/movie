@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
+import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.UpdateResult;
 
 
@@ -41,7 +42,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		String id = req.getParameter("loginId");
-		String pw = req.getParameter("loginPwd");
+		String pwd = req.getParameter("loginPwd");
 		String adminLogin = req.getParameter("adminLogin");
 		
 
@@ -49,28 +50,29 @@ public class LoginController extends HttpServlet {
 		
 		
 		// 관리자 로그인
-		if(adminLogin != null && id.equals("admin") && pw.equals("admin")) {
+		if(adminLogin != null && id.equals("admin") && pwd.equals("admin1")) {
 			session.setAttribute("name", "관리자");
 			session.setAttribute("loginId", id);
-			session.setAttribute("loginPw", pw);
+			session.setAttribute("loginPw", pwd);
 			result.addToResMap("code", "ok");
 		} else {
 			// 회원 로그인
 			Map<String, Object> memMap = new HashMap<String, Object>();
 			memMap.put("id", id);
-			memMap.put("pw", pw);
+			memMap.put("pwd", pwd);
 			
 			IJoinService joinService = JoinServiceImpl.getInstance();
 			
 			boolean chk = joinService.checkLogin(memMap);
-			String name = joinService.getName(memMap);
-			String memCd = joinService.getMemCd(id);
+			MemberVO mem = joinService.getMemberInfo(memMap);
 			
 			if (chk) {
-				session.setAttribute("name", name);
-				session.setAttribute("memCd", memCd);
-				session.setAttribute("loginId", id);
-				session.setAttribute("loginPw", pw);
+//				session.setAttribute("name", mem.getName());
+//				session.setAttribute("contact", mem.getContact());
+//				session.setAttribute("memCd", mem.getMem_code());
+//				session.setAttribute("loginId", mem.getId());
+//				session.setAttribute("loginPw", mem.getPwd());
+				session.setAttribute("mem", mem);
 				result.addToResMap("code", "ok");
 			} else {
 				result.addToResMap("code", "no");

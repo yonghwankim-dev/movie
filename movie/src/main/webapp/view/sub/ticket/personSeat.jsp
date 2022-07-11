@@ -157,7 +157,6 @@
                         
                     </div>
                     <div class="group_right col-2">
-                    		
                     		<!-- 영화제목 -->
                     		<input id="movie_name" class="hidden" name="movie_name" value="${screenSch.movie.name}"/>
                     		<!-- 영화관 이름 -->
@@ -173,8 +172,8 @@
 			        		<!-- 상영관코드 -->
 			        		<input id="theater_code" class="hidden" name="theater_code" value="${screenSch.screenSch.theater_code}"/>
 			        		<!-- 회원코드 -->
-			        		<input id="mem_code" class="hidden" name="mem_code" value="${memCd}"/>
-			        		<!-- 상영코드 -->
+			        		<input id="mem_code" class="hidden" name="mem_code" value="${mem.mem_code}"/>
+			        		<!-- 상영 일정 코드 -->
 			        		<input id="screen_sch_code" class="hidden" name="screen_sch_code" value="${screenSch.screenSch.screen_sch_code}"/>
 							<!-- 선택한 좌석 -->
 							<input id="selectedSeatNames" class="hidden" name="seat" value=""/>

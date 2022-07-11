@@ -131,19 +131,6 @@ public class JoinDaoImpl implements IJoinDao {
 	}
 
 	@Override
-	public String getName(Map<String, Object> map) {
-		String name = null;
-
-		try {
-			name = (String) smc.queryForObject("join.getName", map);
-
-		} catch (SQLException e) {
-			throw new RuntimeException("이름 가져오는중 예외 발생");
-		}
-		return name;
-	}
-
-	@Override
 	public int deleteMember(String pw) {
 		int cnt = 0;
 		
@@ -163,21 +150,23 @@ public class JoinDaoImpl implements IJoinDao {
 			loginId = (String) smc.queryForObject("join.searchLoginId", map);
 		} catch (SQLException e) {
 			throw new RuntimeException("아이디 찿기중 예외 발생");
-//			e.printStackTrace();
 		}
 		
 		return loginId;
 	}
 
 	@Override
-	public String getMemCd(String id) {
-		String memCode = null;
+	public MemberVO getMemberInfo(Map<String, Object> map) {
+		MemberVO mem = null;
 		
 		try {
-			memCode = (String) smc.queryForObject("join.getMemCode", id);
+			mem = (MemberVO) smc.queryForObject("join.getMemberInfo", map);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return memCode;
+		
+		return mem;
 	}
+
+	
 }

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <style>
 #container{
@@ -273,6 +274,46 @@
 				</div>
 			</div>        
 			<div class="pay_btn_wrap price-info-item">
+				<form id="payFrm" method="post" action="/movie/ticketing/book/bookSeat">
+					<!-- 영화 이름 -->
+					<input class="hidden" name="movie_name" value="${movie.name}"/>
+					<!-- 구매자 이름 -->
+					<input class="hidden" name="buyer_name" value="${mem.name}"/>
+					<!-- 구매자 연락처 -->
+					<input class="hidden" name="buyer_contact" value="${mem.contact}"/>
+					<!-- 예약 번호 -->
+					<input class="hidden" name="book_code" value="${book.book_code}"/>
+					<!-- 총 가격 -->
+					<input class="hidden" name="total_price" value="${book.total_price}"/>
+					<!-- 청소년 인원수 -->
+					<input class="hidden" name="teenager" value="${book.teenager}"/>
+					<!-- 성인 인원수 -->
+					<input class="hidden" name="adult" value="${book.adult}"/>
+					<!-- 노약자 인원수 -->
+					<input class="hidden" name="senior" value="${book.senior}"/>
+					<!-- 예약 일자 -->
+					<input class="hidden" name="book_date" value="${screenSch.screen_date}"/>
+					<!-- 상영 일정 코드 -->
+					<input class="hidden" name="screen_sch_code" value="${screenSch.screen_sch_code}"/>
+					<!-- 회원 코드 -->
+					<input class="hidden" name="mem_code" value="${mem.mem_code}"/>
+				
+					<!-- 영화관 이름 -->
+					<input class="hidden" name="cinema_name" value="${cinema.name}"/>
+					<!-- 상영관 이름 -->
+					<input class="hidden" name="theater_name" value="${theater.name}"/>
+					<!-- 영화 시작 시간 -->
+					<input class="hidden" name="start_time" value="${screenSch.start_time}"/>
+					<!-- 영화 종료 시간 -->
+					<input class="hidden" name="end_time" value="${screenSch.end_time}"/>
+					
+					<!-- 좌석 정보 -->
+					<c:set var="temp" value=""/>
+					<c:forEach var="s" items="${seats}">
+						<c:set var="temp" value="${temp} ${s.seat_row}${s.seat_col}"/>
+					</c:forEach>
+					<input class="hidden" name="seats" value="${fn:trim(temp)}"/>				
+				</form>				
 				<button type="button" id="pay">결제하기</button>
 			</div>
         </div>
@@ -371,10 +412,15 @@ $(function(){
 	$("#pay").on("click", function(){
 		
 		if(isAllCheckTerms() && isSelectedCreditCard()){
-			getMerchant_uid().then(function(data){
-				const merchant_uid = data.book_code;
-				requestPay(merchant_uid);
-			});			
+			requestPay().then(bookSeat())
+			            .then(function(success){
+			            	alert(success);
+			            }, function(fail){
+			            	alert(fail);
+			            })
+			            .then(function(){
+			            	alert("예매 확인 페이지로 이동");
+			            });
 		}else if(!isAllCheckTerms()){
 			const yn = confirm("결제대행서비스 약관에 동의하셔야 구매가 가능합니다. 동의하시겠습니까?");
 			if(yn){
@@ -393,49 +439,50 @@ $(function(){
 <!-- 외부 결제 API -->
 <script>
     const IMP = window.IMP;
-	
-	
-	function getMerchant_uid(){
-		return $.when($.ajax({
-			url : '/movie/ticketing/orderSettlement/getNextBookCode',
-			type : 'post',
-			success : function(data) {
-				if (data.code === 'ok') {
-												
-				} else if (data.code === 'no') {
-					alert("예매번호를 가져오는데 실패하였습니다.");
-				}
-			},
-			error : function(xhr) {
-				alert(xhr.status);
-			},
-			dataType : "json"
-		}));		
-	}
-	
-    function requestPay(merchant_uid) {
+    
+    function requestPay() {
         // IMP.request_pay(param, callback) 결제창 호출    
         IMP.init("imp50795017");
         
-        IMP.request_pay({ // param
-            pg: "danal_tpay",
-            pay_method: "card",
-            merchant_uid: merchant_uid,
-            name: "영화표",
-            amount: 12000,
-            buyer_email: "yh.kim951107@gmail.com",
-            buyer_name: "김용환",
-            buyer_tel: "010-1234-5678",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181"
-        }, function (rsp) { // callback
-            if (rsp.success) {
-            	// 결제 성공 시 로직,
-                alert("결제가 성공하였습니다.");
-            } else {
-                // 결제 실패시 로직
-                alert("결제가 실패하였습니다.");
-            }
-        });
+        return new Promise(function(resolve, reject) {
+            IMP.request_pay({ // param
+                pg: "danal_tpay",
+                pay_method: "card",
+                merchant_uid: $("input[name='book_code']").val(),
+                name: $("input[name='movie_name']").val(),
+                amount: $("input[name='total_price']").val(),
+                buyer_name: $("input[name='buyer_name']").val(),
+                buyer_tel: $("input[name='buyer_contact']").val()
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                    resolve("결제가 성공하였습니다.");
+                } else {
+                    reject("결제가 실패하였습니다.");
+                }
+            	
+            });        	
+		});
+
       }
+    
+    function bookSeat(){
+    	return new Promise(function(resolve, reject) {
+    		$.ajax({
+    			url : '/movie/ticketing/book/bookSeat',
+    			type : 'post',
+    			data : $('#payFrm').serialize(),
+    			success : function(data) {
+    				if (data.code === 'ok') {
+    					resolve("예매가 완료되었습니다.");
+    				} else if (data.code === 'no') {
+    					reject("예매가 실패하였습니다.");
+    				}				
+    			},
+    			error : function(xhr) {
+    				alert(xhr.status);
+    			},
+    			dataType : 'json'
+    		});
+		});
+    }
 </script>

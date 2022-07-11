@@ -11,8 +11,8 @@
 		</h1>
 		
 		<c:choose>
-			<c:when test="${not empty sessionScope.name}">
-				<p class="loginMsg">${sessionScope.name}님 로그인</p>
+			<c:when test="${not empty sessionScope.mem.name}">
+				<p class="loginMsg">${sessionScope.mem.name}님 로그인</p>
 			</c:when>
 			<c:otherwise>
 				<p class="loginMsg">로그인 후 이용해주세요.</p>	
@@ -23,7 +23,7 @@
 			<ul>
 				<!-- 로그인 시에는 로그인 -> 로그아웃으로 표출 및 회원탈퇴 표출 -->
 				<c:choose>
-					<c:when test="${empty sessionScope.loginId}">
+					<c:when test="${empty sessionScope.mem.id}">
 						<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
 						<li><a href="${pageContext.request.contextPath}/join.do">회원가입</a></li>					
 					</c:when>

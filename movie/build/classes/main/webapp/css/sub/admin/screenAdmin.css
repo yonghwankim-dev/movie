@@ -1,0 +1,52 @@
+.admin_container {
+  display: flex;
+  height:1000px;
+}
+
+.admin_column.admin_menu {
+  width: 10%;
+  border: 1px solid #000;
+}
+.admin_column.admin_menu ul {
+  padding: 10px;
+  margin: 0;
+}
+
+.admin_column.admin_menu ul li {
+  list-style: none;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.admin_column.admin_menu ul li a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.admin_column.admin_content {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #000;
+}
+
+.admin_column.admin_content .content_container {
+  width: 650px;
+}
+
+.admin_column.admin_content .content_container .screen_date_table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin_column.admin_content .content_container .screen_date_table td {
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.admin_column.admin_content .content_container .screen_date_control {
+  display: flex;
+  justify-content: right;
+}

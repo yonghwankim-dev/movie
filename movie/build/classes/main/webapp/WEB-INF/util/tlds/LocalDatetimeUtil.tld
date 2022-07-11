@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+	<description>LocalDatetimeUtil functions library</description>
+	<display-name>LocalDateTIMEUtil functions</display-name>
+    <jsp-version>2.0</jsp-version>
+	<tlib-version>1.1</tlib-version>
+	<short-name>ldtutil</short-name>
+	<uri>/WEB-INF/util/tlds/LocalDatetimeUtil.tld</uri>
+	<function>	        
+		<description>일(day) 참조</description>  
+		<name>getDayOfMonth</name>
+		<function-class>kr.com.yh.util.tlds.LocalDatetimeUtil</function-class>
+		<function-signature>java.lang.Integer getDayOfMonth(java.time.LocalDateTime)</function-signature>
+		<example>${ldtutil:getDayOfMonth(localDateTime)}</example>    
+	</function>
+</taglib>

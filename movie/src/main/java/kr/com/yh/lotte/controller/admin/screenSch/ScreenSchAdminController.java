@@ -1,26 +1,17 @@
 package kr.com.yh.lotte.controller.admin.screenSch;
 
-import java.io.IOException;
-import java.util.List;
+import kr.com.yh.lotte.service.admin.AdminServiceImpl;
+import kr.com.yh.lotte.service.admin.IAdminService;
+import kr.com.yh.lotte.vo.ScreenSchVO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
-import kr.com.yh.lotte.service.admin.AdminServiceImpl;
-import kr.com.yh.lotte.service.admin.IAdminService;
-import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
-import kr.com.yh.lotte.service.cinema.ICinemaService;
-import kr.com.yh.lotte.service.movie.IMovieService;
-import kr.com.yh.lotte.service.movie.MovieServiceImpl;
-import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenSchVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.component.ScreenAdminVO;
-import kr.com.yh.util.UpdateResult;
 
 @WebServlet("/admin/screenSch/admin.do")
 public class ScreenSchAdminController extends HttpServlet {

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+<sqlMap namespace="join">
+	
+	<resultMap class="memberVo" id="joinMap">
+		<result property="mem_code" 	column="MEM_CODE"/>
+		<result property="name" 		column="NAME"/>
+		<result property="birthday" 	column="BIRTHDAY"/>
+		<result property="contact" 		column="CONTACT"/>
+		<result property="addr" 		column="ADDR"/>
+		<result property="email" 		column="EMAIL"/>
+		<result property="id" 			column="ID"/>
+		<result property="pwd" 			column="PWD"/>
+		<result property="gender" 		column="GENDER"/>
+	</resultMap>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterClass="memberVo">
+	
+	<selectKey keyProperty="num" resultClass="int">
+		SELECT MEM_CODE_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO MEM (
+		MEM_CODE,
+		NAME,
+		BIRTHDAY,
+		CONTACT,
+		ADDR,
+		EMAIL,
+		ID,
+		PWD,
+		GENDER
+		)
+		VALUES(
+		'MEM' || mem_code_seq.nextval,
+		#name#,
+		#birthday#,
+		#contact#,
+		#addr#,
+		#email#,
+		#id#,
+		#pwd#,
+		#gender#
+		)
+	</insert>
+
+	<!-- ID 중복조회 -->
+	<select id="checkMember" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE ID = #id#
+	</select>
+
+	<!-- 연락처 중복 조회 -->
+	<select id="checkPhone" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE CONTACT = #phone#
+	</select>
+	
+	<!-- Email 중복조회 -->
+	<select id="checkEmail" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE EMAIL = #email#
+	</select>	
+
+	<!-- 닉네임 중복조회 -->
+	<select id="checkNick" resultClass="int" parameterClass="string">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE ID = #nickName#
+	</select>
+	
+	<!-- 로그인아이디 비밀번호 체크 -->
+	<select id="checkLogin" resultClass="int" parameterClass="map">
+		SELECT COUNT(*)
+		FROM MEM
+		WHERE ID = #id#
+		AND PWD = #pwd#
+	</select>
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember" parameterClass="String">
+		DELETE FROM MEM
+		WHERE PWD = #pwd#
+	</delete>
+	
+	<!-- 로그인 아이디 탐색 -->
+	<select id="searchLoginId" resultClass="String" parameterClass="map">
+		SELECT MEM_ID
+		FROM MEM
+		WHERE NAME = #searchName#
+		AND CONTACT = #searchTel#
+	</select>
+	
+	<select id="getMemberInfo" resultClass="memberVo" parameterClass="map">
+		SELECT MEM_CODE
+		     , NAME
+		     , BIRTHDAY
+		     , CONTACT
+		     , ADDR
+		     , EMAIL
+		     , ID
+		     , PWD
+		     , GENDER
+		FROM MEM
+		WHERE ID  = #id#
+		  AND PWD = #pwd#
+	</select>
+</sqlMap>

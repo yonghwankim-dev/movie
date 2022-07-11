@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+#payment{	
+	width : 100%;
+}
+
+#payment #payment-info{
+	padding : 0 215px;
+}
+
+/* 결제 성공 안내문 */
+#payment .payment-notice{
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	flex-direction : column;
+	height : 130px;
+}
+
+#payment .payment-notice img{
+	width  : 45px;
+	height : 35px;
+	margin-bottom: 15px;
+}
+
+#payment .payment-notice h6{
+	font-size: 12px;
+	font-weight: bold;
+}
+/* //결제 성공 안내문 */
+
+/* 티켓 정보 내용 */
+#payment .payment-ticket{
+	padding : 35px;
+	height : 370px;	
+}
+
+#payment .payment-ticket .row:first-child{
+	padding-bottom: 30px;
+}
+
+#payment .payment-ticket img{
+	width : 100%;
+	height : 100%;
+}
+
+#payment .payment-ticket .ticket-img{
+	text-align: center;
+}
+
+#payment .payment-ticket .ticket-info{
+	font-size: 18px;	
+}
+#payment .payment-ticket .ticket-info label{
+	display : inline-block;
+	width : 90px;
+	height : 30px;
+}
+
+#payment #receiveTicketToPhoneBtn{
+	background-color: #FF243E;
+	color : white;
+	width : 230px;
+	height : 50px;
+	border-radius: 5px;
+	border: none;
+}
+
+#payment .payment-ticket .ticket-price{
+	font-size: 12px;
+}
+/* //티켓 정보 내용 */
+/* 주의사항 안내문 */
+#payment .payment-warning{
+	font-size: 8px;
+		
+}
+/* //주의사항 안내문 */

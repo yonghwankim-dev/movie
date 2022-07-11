@@ -1,23 +1,20 @@
 package sqlmap.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.BookSeatVO;
+import kr.com.yh.lotte.vo.BookVO;
+import kr.com.yh.util.SqlMapClientFactory;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.ibatis.sqlmap.client.SqlMapClient;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import kr.com.yh.lotte.vo.BookSeatVO;
-import kr.com.yh.lotte.vo.BookVO;
-import kr.com.yh.util.SqlMapClientFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookTest {
 

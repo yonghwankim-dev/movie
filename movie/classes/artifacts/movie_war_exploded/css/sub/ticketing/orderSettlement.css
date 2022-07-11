@@ -1,0 +1,484 @@
+@charset "UTF-8";
+
+.bottom_bar{
+	border-bottom: 1px solid #DDD;	
+}
+.right_bar{
+	border-right: 1px solid #DDD;	
+}
+
+#orderSettlement .txt_cnt{
+	position: absolute;
+	right   : 4px;
+	top     : 4px;
+	width   : 15px;
+	height  : 15px;
+	line-height : 15px;
+	border-radius: 15px;
+	font-family: "Roboto";
+	font-size  : 10px;
+	font-weight: bold;
+	color : #fff;
+	text-align: center;
+	background-color: #000;
+}
+
+#orderSettlement .discount-btn{
+	width : 105px;
+	height : 55px;
+	position : relative;
+	background-color: #ffffff;
+	border : 1px solid #DDD;
+	font-size: 11px;
+	font-weight: 400;
+	line-height: 55px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+	border-radius: 4px;
+}
+#orderSettlement .pay-btn{
+	width : 135px;
+	height : 70px;
+	position : relative;
+	background-color: #ffffff;
+	border : 1px solid #DDD;
+	font-size: 11px;
+	font-weight: 400;
+	line-height: 95px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+	border-radius: 4px;
+	background-repeat: no-repeat;	
+}
+
+#orderSettlement .ic_question{
+	display : inline-block;
+	width : 15px;
+	height : 15px;
+	font-size : 0;
+	line-height : 0;
+	border : none;
+	vertical-align : middle;
+	background: url("/movie/images/sub/tooltip_15.png") no-repeat;
+}
+
+/* 체크박스 디자인 */
+#orderSettlement input[type="checkbox"]{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width : 0px;
+	height : 0px;
+	padding : 0;
+	margin : 0;
+	overflow: hidden;
+	clip : rect(0, 0, 0, 0);
+	vertical-align: middle;
+	border : none 0;
+}
+
+#orderSettlement input[type="checkbox"] + label{
+	position: relative;
+	display: inline-block;
+	margin : 0;
+	vertical-align: middle;
+}
+
+#orderSettlement input[type="checkbox"] + label{
+	display: block;
+	float : left;
+	width : auto;
+	font-family: 'Roboto';
+	font-size : 13px;
+}
+
+#orderSettlement input[type='checkbox'] + label:before{
+	content : "";
+	display: inline-block;
+	border: 1px solid #DDD;
+	background-color: #fff;
+	width : 18px;
+	height : 18px;
+	margin-right: 5px;
+	vertical-align: -5px;
+	border-radius: 3px;
+}
+
+#orderSettlement input[type='checkbox']:checked + label.ty2:before{
+	background-color: #000;
+	background : #000 url("/movie/images/sub/chk_8_3.png") no-repeat center 6px;
+}
+
+#orderSettlement input[type='checkbox'] + label.ty2:before{
+	background-color: #BEBEBE;
+	border-radius: 50%;
+	background: #fff url("/movie/images/sub/chk_8_2.png") no-repeat center 6px;
+	vertical-align: -5px;
+}
+/* //체크박스 디자인 */
+
+/* 예매 정보 */
+.book{
+	background-color : #ffffff;
+	height : 875px;
+}
+.book-info{
+	width  : 300px;
+	height : 815px;
+}
+
+.book-info dl{
+	font-size : 11px;
+	font-family: "Noto Sans KR";
+}
+
+.book-info dt{
+	font-weight: 400;
+}
+
+.book-info dd{
+	margin: 0;
+}
+
+.movie-info{
+	height : 385px;
+	padding: 30px;
+}
+
+.movie-info .movie-info-img{
+	display: block;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.movie-info .movie-info-img img{
+	width  : 120px;
+	height : 175px;
+}
+
+.movie-info .movie-info-title{
+	display: block;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+.seat-info{
+	height : 80px;
+	padding: 30px;
+}
+
+.addProduct-info{
+	height : 350px;
+	padding: 30px; 
+}
+
+.addProduct-info h6{
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+}
+
+/* //예매 정보 */
+
+/* 결제 수단 */
+.pay_method{
+	background-color : #F8F8F8;
+	height : 875px;	
+	padding: 0;
+}
+.pay_method-info{
+	width : 485px;
+	height : 815px;
+}
+
+.pay_method-info h6{
+	font-size : 15px;
+	line-height : 17px;
+	font-weight: 400;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+	margin-bottom : 15px;
+}
+
+.discount-row{
+	width : 450px;
+}
+
+.discount-info{
+	height : 375px;
+	padding : 25px 20px;
+}
+
+.discount-info .l_point{
+	height : 45px;
+	margin-bottom: 10px;	
+}
+
+.discount-info .l_point button{
+	border: 1px solid black;
+	padding : 1px 6px;
+	font-size: 14px;
+	font-weight : 400;
+	line-height: 40px;
+	font-style: normal;
+	font-family: "Roboto";
+	background-color: #ffffff;
+}
+.discount-info .l_point button:first-child {
+	border-radius: 4px 0 0 4px;
+	border-right: 1px solid #DDD;
+}
+.discount-info .l_point button:last-child {
+	border-radius: 0 4px 4px 0;
+	border-left : 1px solid #DDD;
+}
+
+
+
+.group_payment-info{
+	padding : 25px 20px 0;
+}
+
+.group_payment-info .list_pay_item li{
+	position : relative;
+	width : 31.3%;
+	float: left;
+	margin: 0 1% 10px;
+}
+
+.group_payment-info .group_payment-row{
+	height : 160px;
+}
+
+.group_payment-info .cate1{
+	background-image: url("/movie/images/sub/method_ic_card.png");
+	background-position: center 17px;
+}
+.group_payment-info .cate2{
+	background-image: url("/movie/images/sub/method_ic_lpay.png");
+	background-position: center 17px;
+}
+.group_payment-info .cate3{
+	background-image: url("/movie/images/sub/method_ic_simple.png");
+	background-position: center 17px;
+}
+.group_payment-info .cate4{
+	background-image: url("/movie/images/sub/method_ic_deposit.svg");
+	background-position: center 17px;
+}
+.group_payment-info .cate5{
+	background-image: url("/movie/images/sub/method_ic_phone.png");
+	background-position: center 17px;
+}
+
+.bubble{
+	border-color:#000 !important;
+}
+
+.bubble:after
+{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 5px 5px 0;
+	border-color: #000 transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	bottom: -5px;
+	left: 60px;
+}
+/* //결제 수단 */
+
+/* 엘페이 결제 수단 */
+#lpay_wrap{
+	padding : 0 25px;
+}
+
+#lpay_wrap .regiPayMethodBtn{
+	width : 140px;
+	height : 90px;
+	position : relative;
+	background : #fff url("/movie/images/sub/plus_15.png") no-repeat center 26px;
+	border : 1px solid #DDD;
+	font-size: 11px;
+	font-weight: 400;
+	line-height: 120px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+	border-radius: 4px;
+		
+}
+
+#lpay_wrap .lpay_footer{
+	margin-top: 40px;
+}
+
+#lpay_wrap .lpay_footer strong{
+	font-size: 13px;
+}
+
+#lpay_wrap .lpay_footer p{
+	font-size : 11px;
+}
+
+/* //엘페이 결제 수단 */
+
+/* 간편결제 수단 */
+#easyPay_wrap{
+	padding : 0 25px;
+}
+#easyPay_wrap .easyPay_btn{
+background-color: white;
+	margin-right : 10px;
+	margin-bottom : 5px;
+	border : 1px solid #DDD;
+	width : 130px;
+	height : 55px;
+	font-size : 10px;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";	
+}
+/* //간편결제 수단 */
+
+/* 결제하기 */
+.payment{
+	position : relative;
+	width : 415px;
+	height : 875px;	
+}
+
+.save_point-info{
+	height : 85px;
+	padding: 30px;
+}
+
+.save_point-info .tooltip_box{
+	display: flex;
+	margin-left : 10px;
+}
+
+.save_point-info .tooltip_box #ic_question_tooltip{
+	position : absolute;
+	left   : 0px;
+	top    : 145px;
+	width  : 415px;
+	height : 290px; 
+	font-size : 12px;
+	line-height: 13px;
+	font-style: normal;
+	font-weight: 400;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	padding : 20px;
+	border : 1px solid black;	
+}
+
+#ic_question_tooltip li{
+	list-style-type: disc;
+}
+#ic_question_tooltip .btn_close{
+	position: absolute;
+	right : 25px;
+	top : 15px;
+	width : 15px;
+	height : 15px;
+	border : none;
+	text-indent: -9999em;
+	line-height : 0;
+	background: url("/movie/images/sub/close_13.png") no-repeat center center;
+}
+
+.save_point-col{
+	display: inline-block;
+}
+
+.save_point-info .radio-box input[type="radio"] + label{
+	font-size: 12px;
+	line-height: 13px;
+	font-weight: 400px;
+	font-style: normal;
+	font-family: "Noto Sans KR";
+}
+
+/* 결제대행사 약관동의 */
+.payment_agency_agree{
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	flex-direction : column;
+	height : 225px;
+}
+.payment_agency_agree_all{
+	display : flex;
+	align-items : center;
+	width : 350px;
+	height : 35px;
+}
+.payment_agency_agree_list{
+	display : flex;
+	justify-content : center;
+	flex-direction : column;
+	width : 350px;
+	height : 140px;
+	background-color: #F8F8F8;
+}
+.payment_agency_agree_list .ty2{
+	margin-left : 15px;
+	margin-bottom: 9px;
+}
+.payment_agency_agree_list .ty2 a{
+	position : absolute;
+	right : 0;
+	font-size: 10px;
+	color : #666666;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+	border: none;
+	background: transparent;	
+}
+/* //결제대행사 약관동의 */
+
+.price-info{
+	position : absolute;
+	bottom : 0;
+	left : 0;
+	width : 100%;
+	height : 220px;
+	background-color : #414141;
+	color : white;
+	font-size : 13px;
+	line-height: 25px;
+	font-weight : 400;
+	font-style: normal;
+	font-family: "Noto Sans KR", Roboto, dotum, "sans-serif";
+}
+
+.price-info .price-info-item{
+	display : flex;
+	justify-content : space-between;
+	align-items : center;	
+	height : 55px;
+	border-bottom: 1px solid #DDD;
+}
+.price-info-item .price_title{
+	margin-left : 30px;
+}
+.price-info-item .price_content{
+	margin-right : 30px;
+}
+
+.price-info .pay_btn_wrap{
+	background-color: red;	
+}
+.price-info .pay_btn_wrap button{
+	color:white;
+	border:none;
+	background-color: transparent;
+	display: block;
+	width : 100%;
+	height : 100%;
+	padding : 0;
+	font-weight: bold;
+	font-size: 17px;
+}
+/* //결제하기 */

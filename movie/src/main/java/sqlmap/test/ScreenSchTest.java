@@ -1,23 +1,18 @@
 package sqlmap.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.SQLException;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
-
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
 import kr.com.yh.lotte.service.screensch.ScreenSchServiceImpl;
-import kr.com.yh.lotte.service.seat.ISeatService;
-import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.service.ticketing.ITicketingService;
 import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
 import kr.com.yh.util.SqlMapClientFactory;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
+import java.util.List;
 
 class ScreenSchTest {
 	private SqlMapClient smc;

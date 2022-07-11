@@ -1,26 +1,15 @@
 package kr.com.yh.lotte.controller.join;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
+import kr.com.yh.lotte.service.IJoinService;
+import kr.com.yh.lotte.service.JoinServiceImpl;
+import kr.com.yh.util.UpdateResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-
-import kr.com.yh.lotte.service.IJoinService;
-import kr.com.yh.lotte.service.JoinServiceImpl;
-import kr.com.yh.lotte.vo.MemberVO;
-import kr.com.yh.util.UpdateResult;
-
-
+import java.io.IOException;
 
 @WebServlet("/checkEmail.do")
 public class CheckEmailController extends HttpServlet {
@@ -32,7 +21,7 @@ public class CheckEmailController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		
 		String email = req.getParameter("email");
-		
+
 		IJoinService joinService = JoinServiceImpl.getInstance();
 		
 		System.out.println("email : " + email);

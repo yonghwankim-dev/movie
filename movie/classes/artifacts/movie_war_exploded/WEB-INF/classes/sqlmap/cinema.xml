@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="cinema">
+	<!-- 지역 맵 -->
+	<resultMap class="cinemalocationVo" id="LocationMap">
+		<result property="cinemaVO.loc" column="loc"/>
+		<result property="cinema_cnt" column="cnt"/>
+	</resultMap>		
+
+	<!-- 지역 리스트 반환 -->
+	<select id="getLocationList" resultMap="LocationMap">
+		SELECT LOC
+			 , COUNT(*) AS CNT
+		FROM   CINEMA
+        GROUP BY LOC
+        ORDER BY LOC
+	</select>
+			
+	<!-- 영화관 리스트 반환 -->
+	<select id="getCinemaList" parameterClass="string" resultClass="cinemaVo">
+		SELECT CINEMA_CODE
+			 , NAME
+			 , LOC
+		FROM   CINEMA
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="AND">
+				LOC = #loc#
+			</isNotNull>
+        </dynamic>
+		ORDER BY LOC, NAME
+	</select>
+</sqlMap>			
+
+
+
+
+

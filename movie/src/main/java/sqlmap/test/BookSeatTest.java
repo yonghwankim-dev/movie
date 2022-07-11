@@ -1,23 +1,16 @@
 package sqlmap.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.BookVO;
+import kr.com.yh.util.SqlMapClientFactory;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import com.ibatis.sqlmap.client.SqlMapClient;
-
-import kr.com.yh.lotte.vo.BookSeatVO;
-import kr.com.yh.lotte.vo.BookVO;
-import kr.com.yh.util.SqlMapClientFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookSeatTest {
 
@@ -31,7 +24,7 @@ class BookSeatTest {
 	@Test
 	void deleteBookSeatTest() {
 		int cnt = 0;
-		List<String> screen_sch_codes = new ArrayList<String>();
+		List<String> screen_sch_codes = new ArrayList<>();
 		screen_sch_codes.add("SS101");
 		screen_sch_codes.add("SS102");
 		

@@ -1,31 +1,17 @@
 package kr.com.yh.lotte.controller.admin.screenSch;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import kr.com.yh.lotte.service.admin.AdminServiceImpl;
+import kr.com.yh.lotte.service.admin.IAdminService;
+import kr.com.yh.util.UpdateResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-
-import kr.com.yh.lotte.service.admin.AdminServiceImpl;
-import kr.com.yh.lotte.service.admin.IAdminService;
-import kr.com.yh.lotte.service.movie.IMovieService;
-import kr.com.yh.lotte.service.movie.MovieServiceImpl;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.util.UpdateResult;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/admin/screenSch/delete.do")
 public class ScreenSchDeleteController extends HttpServlet {

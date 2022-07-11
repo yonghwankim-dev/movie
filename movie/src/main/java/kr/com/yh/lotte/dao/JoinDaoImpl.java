@@ -1,16 +1,15 @@
 package kr.com.yh.lotte.dao;
 
-import java.sql.SQLException;
-import java.util.Map;
-
 import com.ibatis.sqlmap.client.SqlMapClient;
-
 import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
+import java.sql.SQLException;
+import java.util.Map;
+
 public class JoinDaoImpl implements IJoinDao {
 	
-	private SqlMapClient smc;
+	private final SqlMapClient smc;
 	private static IJoinDao joinDao;
 
 	public static IJoinDao getInstance() {
@@ -40,7 +39,7 @@ public class JoinDaoImpl implements IJoinDao {
 	public boolean checkMember(String id) {
 		boolean chk = false;
 
-		int cnt = 0;
+		int cnt;
 
 		try {
 			cnt = (int) smc.queryForObject("join.checkMember", id);
@@ -61,7 +60,7 @@ public class JoinDaoImpl implements IJoinDao {
 	public boolean checkPhone(String phone) {
 		boolean chk = false;
 		
-		int cnt = 0;
+		int cnt;
 		
 		try {
 			cnt = (int) smc.queryForObject("join.checkPhone", phone);
@@ -79,7 +78,7 @@ public class JoinDaoImpl implements IJoinDao {
 	public boolean checkEmail(String email) {
 		boolean chk = false;
 		
-		int cnt = 0;
+		int cnt;
 
 		try {
 			cnt = (int) smc.queryForObject("join.checkEmail", email);
@@ -98,7 +97,7 @@ public class JoinDaoImpl implements IJoinDao {
 	public boolean checkNickName(String nickName) {
 		boolean chk = false;
 
-		int cnt = 0;
+		int cnt;
 
 		try {
 			cnt = (int) smc.queryForObject("join.checkNick", nickName);
@@ -116,7 +115,7 @@ public class JoinDaoImpl implements IJoinDao {
 	public boolean checkLogin(Map<String, Object> map) {
 		boolean chk = false;
 
-		int cnt = 0;
+		int cnt;
 		
 		try {
 			cnt = (int) smc.queryForObject("join.checkLogin", map);
@@ -132,19 +131,19 @@ public class JoinDaoImpl implements IJoinDao {
 
 	@Override
 	public int deleteMember(String pw) {
-		int cnt = 0;
+		int cnt;
 		
 		try {
 			cnt = smc.delete("join.deleteMember", pw);
 		} catch (SQLException e) {
 			throw new RuntimeException("회원탈퇴중 예외 발생");
 		}
-		return 0;
+		return cnt;
 	}
 
 	@Override
 	public String searchLoginId(Map<String, Object> map) {
-		String loginId = null;
+		String loginId;
 		
 		try {
 			loginId = (String) smc.queryForObject("join.searchLoginId", map);

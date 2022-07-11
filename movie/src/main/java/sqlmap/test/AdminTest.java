@@ -1,6 +1,15 @@
 package sqlmap.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.service.seat.ISeatService;
+import kr.com.yh.lotte.service.seat.SeatServiceImpl;
+import kr.com.yh.lotte.vo.ScreenSchVO;
+import kr.com.yh.lotte.vo.ScreenVO;
+import kr.com.yh.lotte.vo.component.ScreenAdminVO;
+import kr.com.yh.util.SqlMapClientFactory;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -9,18 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.ibatis.sqlmap.client.SqlMapClient;
-
-import kr.com.yh.lotte.service.seat.ISeatService;
-import kr.com.yh.lotte.service.seat.SeatServiceImpl;
-import kr.com.yh.lotte.vo.ScreenSchVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.component.ScreenAdminVO;
-import kr.com.yh.util.SqlMapClientFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdminTest {
 

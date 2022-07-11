@@ -1,15 +1,5 @@
 package kr.com.yh.lotte.controller.admin.screenSch;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
@@ -17,8 +7,16 @@ import kr.com.yh.lotte.service.screensch.ScreenSchServiceImpl;
 import kr.com.yh.lotte.service.seat.ISeatService;
 import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.vo.ScreenSchVO;
-import kr.com.yh.lotte.vo.ScreenVO;
 import kr.com.yh.util.UpdateResult;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
 
 @WebServlet("/admin/screenSch/add.do")
 public class ScreenSchAddController extends HttpServlet {

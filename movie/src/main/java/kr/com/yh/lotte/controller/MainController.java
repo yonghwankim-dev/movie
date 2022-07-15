@@ -26,8 +26,6 @@ public class MainController extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<MovieVO> movieList = movieService.getMovieMain();
 
-		System.out.println("hello main.do");
-
 		req.setAttribute("movieList", movieList);
 		req.getRequestDispatcher("/view/main.jsp").forward(req, resp);
 	}

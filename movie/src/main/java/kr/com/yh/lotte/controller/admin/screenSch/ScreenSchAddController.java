@@ -66,7 +66,7 @@ public class ScreenSchAddController extends HttpServlet {
 		result.addToResMap("theater_code", theater_code);
 		result.addToResMap("screen_code", screen_code);
 		
-		if(cnt>0)
+		if(cnt > 0)
 		{
 			result.addToResMap("code", "ok");
 		}

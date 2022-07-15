@@ -1,10 +1,12 @@
 package kr.com.yh.lotte.service.book;
 
-import java.util.List;
-
 import kr.com.yh.lotte.vo.BookSeatVO;
 import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.ScreenSchSeatVO;
+import kr.com.yh.lotte.vo.SeatVO;
+import kr.com.yh.lotte.vo.component.PaymentResultVO;
+
+import java.util.List;
 
 public interface IBookService {
 
@@ -12,7 +14,7 @@ public interface IBookService {
 	 * 다음 예약코드를 참조
 	 * @return 다음 예약코드
 	 */
-	public String getNextBookCode();
+	String getNextBookCode();
 	
 	/**
 	 * 한개의 예약(book)에 대해서 여러 좌석을 예약하고 상태를 변경함
@@ -24,7 +26,20 @@ public interface IBookService {
 	 * @param screenSchSeatList 상영일정에 따른 좌석 정보
 	 * @return 서비스가 완료되면 1 반환
 	 */
-	public int bookSeat(BookVO book
+	int bookSeat(BookVO book
 					  , List<BookSeatVO> bookSeatList
 					  , List<ScreenSchSeatVO> screenSchSeatList);
+
+	/**
+	 * 영화표 결제를 성공하였을때 결제 결과 정보를 가져옵니다.
+	 * @param book_code 예약 코드
+	 */
+    PaymentResultVO getPaymentResultInfo(String book_code);
+
+	/**
+	 * BOOK_CODE에 따른 결제한 좌석 정보들을 가져옵니다.
+	 * @param book_code 예약 코드
+	 * @return 좌석 리스트
+	 */
+	List<SeatVO> getPaymentResultSeatsInfo(String book_code);
 }

@@ -1,9 +1,9 @@
 package kr.com.yh.lotte.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import kr.com.yh.lotte.service.IJoinService;
+import kr.com.yh.lotte.service.JoinServiceImpl;
+import kr.com.yh.lotte.vo.MemberVO;
+import kr.com.yh.util.UpdateResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-
-import kr.com.yh.lotte.service.IJoinService;
-import kr.com.yh.lotte.service.JoinServiceImpl;
-import kr.com.yh.lotte.vo.MemberVO;
-import kr.com.yh.util.UpdateResult;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 @WebServlet("/login.do")
 public class LoginController extends HttpServlet {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -38,40 +36,37 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("application/json; charset=utf-8");
-		
-		HttpSession session = req.getSession();
 
+		HttpSession session = req.getSession();
 		String id = req.getParameter("loginId");
 		String pwd = req.getParameter("loginPwd");
 		String adminLogin = req.getParameter("adminLogin");
 		
 
 		UpdateResult result = new UpdateResult(resp);
-		
+		MemberVO mem;
 		
 		// 관리자 로그인
 		if(adminLogin != null && id.equals("admin") && pwd.equals("admin1")) {
-			session.setAttribute("name", "관리자");
-			session.setAttribute("loginId", id);
-			session.setAttribute("loginPw", pwd);
+
+			mem = MemberVO.builder()
+                          .id(id)
+                          .name("관리자")
+                          .build();
+			session.setAttribute("mem", mem);
 			result.addToResMap("code", "ok");
 		} else {
 			// 회원 로그인
-			Map<String, Object> memMap = new HashMap<String, Object>();
+			Map<String, Object> memMap = new HashMap<>();
 			memMap.put("id", id);
 			memMap.put("pwd", pwd);
 			
 			IJoinService joinService = JoinServiceImpl.getInstance();
 			
 			boolean chk = joinService.checkLogin(memMap);
-			MemberVO mem = joinService.getMemberInfo(memMap);
+			mem = joinService.getMemberInfo(memMap);
 			
 			if (chk) {
-//				session.setAttribute("name", mem.getName());
-//				session.setAttribute("contact", mem.getContact());
-//				session.setAttribute("memCd", mem.getMem_code());
-//				session.setAttribute("loginId", mem.getId());
-//				session.setAttribute("loginPw", mem.getPwd());
 				session.setAttribute("mem", mem);
 				result.addToResMap("code", "ok");
 			} else {

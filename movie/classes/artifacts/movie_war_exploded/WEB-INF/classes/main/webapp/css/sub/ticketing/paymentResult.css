@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-#payment{	
+#payment{
+	background-color : #F8F8F8;
 	width : 100%;
 }
 
@@ -31,17 +32,15 @@
 
 /* 티켓 정보 내용 */
 #payment .payment-ticket{
+	background-color:white;
+	border: 1px solid #eee;
 	padding : 35px;
-	height : 370px;	
-}
-
-#payment .payment-ticket .row:first-child{
-	padding-bottom: 30px;
+	height : 420px;
 }
 
 #payment .payment-ticket img{
 	width : 100%;
-	height : 100%;
+	height : 93%;
 }
 
 #payment .payment-ticket .ticket-img{
@@ -67,12 +66,77 @@
 }
 
 #payment .payment-ticket .ticket-price{
+	margin-top: 20px;
+	padding: 0 35px;
+	font-size: 18px;
+}
+
+#payment .payment-ticket .ticket-price-info{
+	display: flex;
+	justify-content: space-around;
+}
+
+#payment .payment-ticket .ticket-price-info .ic_minus{
+	width: 25px;
+	height: 25px;
+}
+#payment .payment-ticket .ticket-price-info .ic_equal{
+	width: 25px;
+	height: 25px;
+}
+
+#payment .payment-ticket .ticket-price-method .pay_method_badge{
 	font-size: 12px;
+	padding: 5px;
+	margin : 0;
+	border-radius: 5px;
+	color: white;
+	background-color: #AFAFAF;
 }
 /* //티켓 정보 내용 */
 /* 주의사항 안내문 */
 #payment .payment-warning{
+	margin-top: 20px;
+	padding-left: 15px;
 	font-size: 8px;
-		
+}
+#payment .payment-warning li{
+	list-style-type: disc;
 }
 /* //주의사항 안내문 */
+
+/* 페이지 이동 버튼 영역 */
+#payment .payment-pageMoveBtn{
+	display: flex;
+	justify-content: center;
+}
+#payment #payHistoryBtn ,
+#payment #storeBtn,
+#payment #homeBtn{
+	font-size: 12px;
+	font-weight: bold;
+	width: 135px;
+	height: 35px;
+	border: 1px solid #000;
+	border-radius: 3px;
+	padding: 10px;
+}
+
+#payment #payHistoryBtn{
+	color: black;
+	background-color: white;
+}
+
+#payment #storeBtn{
+	color: white;
+	background-color: black;
+	margin-left: 5px;
+}
+
+#payment #homeBtn{
+	color: white;
+	background-color: red;
+	margin-left: 5px;
+}
+
+/* //페이지 이동 버튼 영역 */

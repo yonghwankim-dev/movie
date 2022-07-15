@@ -1,31 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap
-			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
-			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+		PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+		"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="book">
-	<!-- 현재 BOOK CODE의 다음 번호를 참조함 -->
+	<resultMap id="paymentResultMap" class="paymentResultVo">
+		<result property="book.book_code" 	        column="book_code"/>
+		<result property="book.teenager" 	        column="teenager"/>
+		<result property="book.adult" 	            column="adult"/>
+		<result property="book.senior" 	            column="senior"/>
+		<result property="book.total_price"         column="total_price"/>
+		<result property="screenSch.screen_date" 	column="screen_date"/>
+		<result property="screenSch.start_time" 	column="start_time"/>
+		<result property="screenSch.end_time" 	    column="end_time"/>
+		<result property="cinema.loc" 	            column="loc"/>
+		<result property="cinema.name" 	            column="cinema_name"/>
+		<result property="theater.name" 	        column="theater_name"/>
+	</resultMap>
 
-	<select id="getNextBookCode" resultClass="String">		
-		SELECT 'BOOK' || BOOK_CODE_SEQ.NEXTVAL NextBookCode 
+	<!-- 현재 BOOK CODE의 다음 번호를 참조함 -->
+	<select id="getNextBookCode" resultClass="String">
+		SELECT 'BOOK' || BOOK_CODE_SEQ.NEXTVAL NextBookCode
 		FROM DUAL
 	</select>
-	
+
 	<!-- 상영일정코드들에 따른 예약정보를 참조함 -->
 	<select id="selectBookByScreenSchCodes" parameterClass="java.util.List" resultClass="bookVo">
 		SELECT BOOK_CODE,
-			   TOTAL_PRICE,
-			   TEENAGER,
-			   ADULT,
-			   SENIOR,
-			   BOOK_DATE,
-			   SCREEN_SCH_CODE,
-			   MEM_CODE
+		TOTAL_PRICE,
+		TEENAGER,
+		ADULT,
+		SENIOR,
+		BOOK_DATE,
+		SCREEN_SCH_CODE,
+		MEM_CODE
 		FROM BOOK
 		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
-			#[]#
+			[]
 		</iterate>
 	</select>
-	
+
+	<!-- 영화표 결제 정보를 가져옴 -->
+	<select id="getPaymentResultInfo" parameterClass="String" resultMap="paymentResultMap">
+		SELECT B.BOOK_CODE
+			 , SCH.SCREEN_DATE
+			 , SCH.START_TIME
+			 , SCH.END_TIME
+			 , C.LOC
+			 , C.NAME CINEMA_NAME
+			 , TH.NAME THEATER_NAME
+			 , B.TEENAGER
+			 , B.ADULT
+			 , B.SENIOR
+		     , B.TOTAL_PRICE
+		FROM BOOK B INNER JOIN SCREEN_SCH SCH ON B.SCREEN_SCH_CODE = SCH.SCREEN_SCH_CODE
+					INNER JOIN SCREEN SC      ON SCH.SCREEN_CODE = SC.SCREEN_CODE
+					INNER JOIN THEATER TH     ON SC.THEATER_CODE = TH.THEATER_CODE
+					INNER JOIN CINEMA C       ON TH.CINEMA_CODE  = C.CINEMA_CODE
+		WHERE B.BOOK_CODE = #book_code#
+	</select>
+
+	<select id="getPaymentResultSeatsInfo" parameterClass="String" resultClass="seatVo">
+		SELECT S.SEAT_CODE
+			 , S.SEAT_ROW
+			 , S.SEAT_COL
+			 , S.THEATER_CODE
+		FROM BOOK B INNER JOIN BOOK_SEAT BS ON B.BOOK_CODE = BS.BOOK_CODE
+					INNER JOIN SEAT S ON BS.SEAT_CODE = S.SEAT_CODE
+		WHERE B.BOOK_CODE = #book_code#
+	</select>
+
 	<insert id="insertBook" parameterClass="bookVo">
 		INSERT INTO BOOK(
 			BOOK_CODE,
@@ -38,43 +81,43 @@
 			MEM_CODE
 		)
 		VALUES(
-			#book_code#,
-			#total_price#,
-			#teenager#,
-			#adult#,
-			#senior#,
-			#book_date#,
-			#screen_sch_code#,
-			#mem_code#	
-		)
+				  #book_code#,
+				  #total_price#,
+				  #teenager#,
+				  #adult#,
+				  #senior#,
+				  #book_date#,
+				  #screen_sch_code#,
+				  #mem_code#
+			  )
 	</insert>
-	
+
 	<insert id="insertBookSeat" parameterClass="bookseatVo">
 		INSERT INTO BOOK_SEAT(
 			BOOK_CODE,
 			SEAT_CODE
 		)
 		VALUES(
-			#book_code#,
-			#seat_code#
-		)
+				  #book_code#,
+				  #seat_code#
+			  )
 	</insert>
-	
+
 	<update id="updateScreenSchSeatToBook" parameterClass="screenSchSeatVo">
 		UPDATE SCREEN_SCH_SEAT
 		SET SEAT_STATUS = #seat_status#
-		WHERE 
+		WHERE
 			SCREEN_SCH_CODE = #screen_sch_code# AND
 			SEAT_CODE = #seat_code#
 	</update>
-	
+
 	<delete id="deleteBookByScreenSchCodes" parameterClass="java.util.List">
 		DELETE FROM BOOK
 		<iterate prepend="WHERE SCREEN_SCH_CODE IN" open="(" close=")" conjunction=",">
-			#[]#
+			[]
 		</iterate>
 	</delete>
-</sqlMap>			
+</sqlMap>
 
 
 

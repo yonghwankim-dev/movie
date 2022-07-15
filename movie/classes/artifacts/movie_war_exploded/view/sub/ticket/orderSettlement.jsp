@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+		 pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -300,6 +300,8 @@
 				
 					<!-- 영화관 이름 -->
 					<input class="hidden" name="cinema_name" value="${cinema.name}"/>
+					<!-- 상영관 코드 -->
+					<input class="hidden" name="theater_code" value="${theater.theater_code}">
 					<!-- 상영관 이름 -->
 					<input class="hidden" name="theater_name" value="${theater.name}"/>
 					<!-- 영화 시작 시간 -->
@@ -419,7 +421,8 @@ $(function(){
 			            	alert(fail);
 			            })
 			            .then(function(){
-			            	alert("예매 확인 페이지로 이동");
+							const book_code = $("input[name='book_code']").val();
+			            	location.href = "/movie/ticket/book/paymentResult?book_code="+book_code;
 			            });
 		}else if(!isAllCheckTerms()){
 			const yn = confirm("결제대행서비스 약관에 동의하셔야 구매가 가능합니다. 동의하시겠습니까?");

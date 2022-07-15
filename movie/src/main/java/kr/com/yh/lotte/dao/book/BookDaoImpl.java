@@ -1,15 +1,15 @@
 package kr.com.yh.lotte.dao.book;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ibatis.sqlmap.client.SqlMapClient;
-
 import kr.com.yh.lotte.vo.BookSeatVO;
 import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.ScreenSchSeatVO;
+import kr.com.yh.lotte.vo.SeatVO;
+import kr.com.yh.lotte.vo.component.PaymentResultVO;
 import kr.com.yh.util.SqlMapClientFactory;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class BookDaoImpl implements IBookDao{
 
@@ -121,6 +121,30 @@ public class BookDaoImpl implements IBookDao{
 		
 		return cnt;
 	}
-	
-	
+
+	@Override
+	public PaymentResultVO getPaymentResultInfo(String book_code) {
+		PaymentResultVO paymentResult = null;
+
+		try{
+			paymentResult = (PaymentResultVO) smc.queryForObject("book.getPaymentResultInfo", book_code);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return paymentResult;
+	}
+
+	@Override
+	public List<SeatVO> getPaymentResultSeatsInfo(String book_code) {
+		List<SeatVO> seats = null;
+
+		try {
+			seats = smc.queryForList("book.getPaymentResultSeatsInfo", book_code);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return seats;
+	}
 }

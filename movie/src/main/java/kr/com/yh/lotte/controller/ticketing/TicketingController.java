@@ -1,15 +1,5 @@
 package kr.com.yh.lotte.controller.ticketing;
 
-import java.io.IOException;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
 import kr.com.yh.lotte.service.cinema.ICinemaService;
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
@@ -19,8 +9,17 @@ import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.component.CinemaLocationVO;
-import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
 import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @WebServlet("/ticketing/ticketing.do")
 public class TicketingController extends HttpServlet {
@@ -59,10 +58,7 @@ public class TicketingController extends HttpServlet {
 		// 선택한 영화관에 모든 영화 상영일정 리스트 반환
 		List<MovieScreenSchVO> screenSchs = ticketingService.findAllMovieScreenSch(cinema_name, movie_name, screen_date);
 		screenSchs = screenSchService.findBookSeatCnt(screenSchs);
-	
-		
-		System.out.println("screenSchs : " + screenSchs);
-		
+
 		req.setAttribute("locations", locations);
 		req.setAttribute("cinemas", cinemas);
 		req.setAttribute("loc", loc);

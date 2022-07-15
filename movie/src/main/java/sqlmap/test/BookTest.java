@@ -3,6 +3,8 @@ package sqlmap.test;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.com.yh.lotte.vo.BookSeatVO;
 import kr.com.yh.lotte.vo.BookVO;
+import kr.com.yh.lotte.vo.SeatVO;
+import kr.com.yh.lotte.vo.component.PaymentResultVO;
 import kr.com.yh.util.SqlMapClientFactory;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -136,5 +138,27 @@ class BookTest {
 		}
 		
 		assertEquals(2, cnt);
+	}
+
+	@Test
+	void getPaymentResultInfo(){
+		String book_code = "BOOK202";
+		try {
+			PaymentResultVO paymentResult = (PaymentResultVO) smc.queryForObject("book.getPaymentResultInfo", book_code);
+			System.out.println(paymentResult);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Test
+	void getPaymentResultSeatsInfo(){
+		String book_code = "BOOK222";
+		try{
+			List<SeatVO> seats = smc.queryForList("book.getPaymentResultSeatsInfo", book_code);
+			System.out.println(seats);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

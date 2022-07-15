@@ -42,6 +42,7 @@
 	<typeAlias alias="movieInfoVo" 		type="kr.com.yh.lotte.vo.component.MovieInfoVO"/>
 	<typeAlias alias="movieScreenSchVo" type="kr.com.yh.lotte.vo.component.MovieScreenSchVO"/>
 	<typeAlias alias="movieScreenSchSeatVo" type="kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO"/>
+	<typeAlias alias="paymentResultVo"      type="kr.com.yh.lotte.vo.component.PaymentResultVO"/>
 
 	<!--
 		DB와의 연결을 처리하는 부분

@@ -1,37 +1,18 @@
 package kr.com.yh.lotte.controller.ticketing.orderSettlement;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import kr.com.yh.lotte.service.book.BookServiceImpl;
+import kr.com.yh.lotte.service.book.IBookService;
+import kr.com.yh.lotte.vo.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Controller;
-
-import kr.com.yh.lotte.service.book.BookServiceImpl;
-import kr.com.yh.lotte.service.book.IBookService;
-import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
-import kr.com.yh.lotte.service.cinema.ICinemaService;
-import kr.com.yh.lotte.service.screensch.IScreenSchService;
-import kr.com.yh.lotte.service.screensch.ScreenSchServiceImpl;
-import kr.com.yh.lotte.service.ticketing.ITicketingService;
-import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
-import kr.com.yh.lotte.vo.BookVO;
-import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenSchVO;
-import kr.com.yh.lotte.vo.SeatVO;
-import kr.com.yh.lotte.vo.TheaterVO;
-import kr.com.yh.lotte.vo.component.CinemaLocationVO;
-import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
-import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
-import kr.com.yh.util.UpdateResult;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/ticketing/orderSettlement")
 public class OrderSettlementController extends HttpServlet {
@@ -54,6 +35,7 @@ public class OrderSettlementController extends HttpServlet {
 		Date screen_date       = Date.valueOf(req.getParameter("book_date"));
 		String start_time      = req.getParameter("start_time");
 		String end_time        = req.getParameter("end_time");
+		String theater_code    = req.getParameter("theater_code");
 		String cinema_name     = req.getParameter("cinema_name");
 		String theater_name    = req.getParameter("theater_name");
 		String screen_sch_code = req.getParameter("screen_sch_code");
@@ -80,6 +62,7 @@ public class OrderSettlementController extends HttpServlet {
                                   .build();
 		
 		TheaterVO theater = TheaterVO.builder()
+				                     .theater_code(theater_code)
 				                     .name(theater_name)
 				                     .build();
 		
@@ -95,7 +78,7 @@ public class OrderSettlementController extends HttpServlet {
 		for(String s : seat) {
 			seats.add(SeatVO.builder()
 					        .seat_row(String.valueOf(s.charAt(0)))
-					        .seat_col(Integer.parseInt(String.valueOf(s.charAt(1))))
+					        .seat_col(Integer.parseInt(s.substring(1)))
 					        .build()); 
 		}
 		

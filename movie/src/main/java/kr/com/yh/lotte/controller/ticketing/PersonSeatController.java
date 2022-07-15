@@ -1,30 +1,19 @@
 package kr.com.yh.lotte.controller.ticketing;
 
-import java.io.IOException;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.List;
+import kr.com.yh.lotte.service.seat.ISeatService;
+import kr.com.yh.lotte.service.seat.SeatServiceImpl;
+import kr.com.yh.lotte.service.ticketing.ITicketingService;
+import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
+import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
+import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import kr.com.yh.lotte.service.seat.ISeatService;
-import kr.com.yh.lotte.service.seat.SeatServiceImpl;
-import kr.com.yh.lotte.service.ticketing.ITicketingService;
-import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
-import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenSchSeatVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.component.MovieInfoVO;
-import kr.com.yh.lotte.vo.component.MovieScreenSchSeatVO;
-import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
-import kr.com.yh.util.UpdateResult;
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/personSeat.do")
 public class PersonSeatController extends HttpServlet {

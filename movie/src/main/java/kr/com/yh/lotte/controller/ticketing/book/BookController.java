@@ -1,40 +1,24 @@
 package kr.com.yh.lotte.controller.ticketing.book;
 
-import java.io.IOException;
-
-import java.io.PrintWriter;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import kr.com.yh.lotte.service.book.BookServiceImpl;
+import kr.com.yh.lotte.service.book.IBookService;
+import kr.com.yh.lotte.service.seat.ISeatService;
+import kr.com.yh.lotte.service.seat.SeatServiceImpl;
+import kr.com.yh.lotte.vo.BookSeatVO;
+import kr.com.yh.lotte.vo.BookVO;
+import kr.com.yh.lotte.vo.ScreenSchSeatVO;
+import kr.com.yh.util.UpdateResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-
-import kr.com.yh.lotte.service.book.BookServiceImpl;
-import kr.com.yh.lotte.service.book.IBookService;
-import kr.com.yh.lotte.service.seat.ISeatService;
-import kr.com.yh.lotte.service.seat.SeatServiceImpl;
-import kr.com.yh.lotte.service.ticketing.ITicketingService;
-import kr.com.yh.lotte.service.ticketing.TicketingServiceImpl;
-import kr.com.yh.lotte.vo.BookSeatVO;
-import kr.com.yh.lotte.vo.BookVO;
-import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.ScreenSchSeatVO;
-import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.lotte.vo.SeatVO;
-import kr.com.yh.util.UpdateResult;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/ticketing/book/bookSeat")
 public class BookController extends HttpServlet {
@@ -84,7 +68,9 @@ public class BookController extends HttpServlet {
 				            .screen_sch_code(screen_sch_code)
 				            .mem_code(mem_code)
 				            .build();
-		
+
+		System.out.println("seatCodes : " + seatCodes);
+
 		for(String seat_code : seatCodes) {
 			bookSeatList.add(BookSeatVO.builder()
 					                   .book_code(book_code)

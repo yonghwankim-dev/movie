@@ -24,7 +24,7 @@
     		<!-- 결제 성공 안내문 -->
     		<div class="payment-notice">
     			<img alt="카드결제 완료" src="/movie/images/sub/credit-card-regular.svg"/>
-    			<h6>김용환 회원님, 결제가 성공적으로 완료되었습니다.</h6>
+    			<h6>${sessionScope.mem.name} 회원님, 결제가 성공적으로 완료되었습니다.</h6>
     		</div>
     		
     		<!-- 티켓 정보 내용 -->
@@ -38,23 +38,44 @@
 	    					<ul>
 	    						<li>
 	    							<label>예매번호</label>
-	    							<strong>16517983</strong>
+	    							<strong>${paymentResult.book.book_code}</strong>
 	    						</li>
 	    						<li>
 	    							<label>상영일시</label>
-	    							<span>2022-07-10 (일)23:00 ~ 25:09</span>
+	    							<span>
+										<fmt:formatDate value="${paymentResult.screenSch.screen_date}" pattern="yyyy-MM-dd (E)"/>
+										${paymentResult.screenSch.start_time}
+										  ~
+										${paymentResult.screenSch.end_time}
+									</span>
 	    						</li>
 	    						<li>
 	    							<label>상영관</label>
-	    							<span>대전관저2관 씨네컴포트(리클라이너)</span>
+	    							<span>${paymentResult.cinema.loc} ${paymentResult.cinema.name} ${paymentResult.theater.name}</span>
 	    						</li>
 	    						<li>
 	    							<label>관람인원</label>
-	    							<span>성인1</span>
+	    							<span>
+										<c:if test="${paymentResult.book.teenager > 0}">
+											청소년${paymentResult.book.teenager} &nbsp;
+										</c:if>
+
+										<c:if test="${paymentResult.book.adult > 0}">
+											성인${paymentResult.book.adult} &nbsp;
+										</c:if>
+
+										<c:if test="${paymentResult.book.senior > 0}">
+											노약자${paymentResult.book.senior} &nbsp;
+										</c:if>
+									</span>
 	    						</li>
 	    						<li>
 	   								<label>좌석</label>
-	   								<span>E6</span>
+	   								<span>
+										<c:forEach var="seat" items="${paymentResult.seats}">
+											${seat.seat_row}${seat.seat_col} &nbsp;
+										</c:forEach>
+									</span>
 	    						</li>
 	    					</ul>    					
     					</div>
@@ -63,25 +84,39 @@
     					</div>    					
     				</div>
     			</div>
+
     			<div class="flex-column ticket-price">
-    				<div class="row">
-    					<label>주문금액</label>
-    					<span>17,000원</span>
+    				<div class="row ticket-price-info">
+    					<label class="d-flex justify-content-between" style="width: 180px;">
+							주문금액
+							<span>
+								<fmt:formatNumber value="${paymentResult.book.total_price}" pattern="#,###"/>원
+							</span>
+						</label>
+
+						<img class="ic_minus" src="/movie/images/sub/iconmonstr-minus-6-240.png"/>
     					
-    					<span>-</span>
+    					<label class="d-flex justify-content-between" style="width: 180px;">
+							할인금액
+							<span>0원</span>
+						</label>
+
+    					<img class="ic_equal" src="/movie/images/sub/iconmonstr-equal.png"/>
     					
-    					<label>할인금액</label>
-    					<span>0원</span>
-    					
-    					<span>=</span>
-    					
-    					<label>총 결제 금액</label>
-    					<span>17,000원</span>
-    					
+    					<label class="d-flex justify-content-between" style="width: 220px;">
+							총 결제 금액
+							<span>
+								<fmt:formatNumber value="${paymentResult.book.total_price}" pattern="#,###"/>원
+							</span>
+						</label>
     				</div>
-    				<div class="row">
-    					<label>신용카드</label>
-    					<span>토스</span>    					
+    				<div class="row ticket-price-method d-flex justify-content-end">
+						<div class="d-flex justify-content-between align-items-center" style="width: 220px;">
+							<label class="pay_method_badge">
+								신용카드
+							</label>
+							<span style="font-size: 12px;">토스</span>
+						</div>
     				</div>
     			</div>
     		</div>	
@@ -114,3 +149,12 @@
 </div>
 </div>
 <!-- //페이지 내용 -->
+
+<script>
+	$(function(){
+		$("#homeBtn").on("click", function(){
+			location.href = "/movie/main.do";
+		});
+	});
+
+</script>

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@WebServlet("/admin/screen/add.do")
+@WebServlet(name = "ScreenAddController", urlPatterns = "/admin/screen/add")
 public class ScreenAddController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

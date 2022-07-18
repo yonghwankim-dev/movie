@@ -1,5 +1,6 @@
-package kr.com.yh.lotte.controller;
+package kr.com.yh.lotte.controller.home;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.MovieVO;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "MainServlet", urlPatterns = {"/main.do"})
+@WebServlet(name = "MainController", urlPatterns = {UrlPaths.lotte})
 public class MainController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

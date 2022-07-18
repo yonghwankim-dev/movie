@@ -71,7 +71,7 @@
 							<a href="">영화후기 관리</a>
 						</li>
 						<li>
-							<a href="/movie/admin/admin.do">영화 관리</a>		
+							<a href="/movie/admin/main">영화 관리</a>
 						</li>
 					</ul>
 				</li>

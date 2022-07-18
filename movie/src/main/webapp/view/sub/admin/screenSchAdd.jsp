@@ -49,7 +49,7 @@
 <script>
 $('#screenSchAddBtn').on('click', function() {
 	$.ajax({
-			url : '/movie/admin/screenSch/add.do',
+			url : '/movie/admin/screenSch/add',
 			type : 'post',
 			data : $('#screenSchFrm').serialize(),
 			success : function(data){

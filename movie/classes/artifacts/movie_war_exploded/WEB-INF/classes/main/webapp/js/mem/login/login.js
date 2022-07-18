@@ -6,21 +6,21 @@
 
 const login = function(){
 	$.ajax({
-		url : '/movie/login.do',
+		url : '/movie/login',
 		type : 'post',
 		data : $('#loginFrm').serialize(),
 		success : function(data) {
 			if($('#adminLogin').is(':checked')) {
 				if($('#loginId').val() === "admin"){
 					alert('관리자 권한으로 로그인 되었습니다.');
-					location.href = '/movie/main.do';
+					location.href = '/movie/lotte';
 				} else {
 					alert('관리자 권한 로그인에 실패하였습니다.');
 				}
 			} else {			
 				if (data.code === 'ok') {
 					alert('로그인 되었습니다.');
-					location.href = '/movie/main.do';
+					location.href = '/movie/lotte';
 				} else if($('#loginId').val() === "") {
 					alert('아이디를 입력 해주세요.');
 					$('#loginId').focus();
@@ -29,7 +29,7 @@ const login = function(){
 					$('#loginPwd').focus();
 				} else {
 					alert('회원정보가 일치하지 않습니다.');
-					location.href = '/movie/login.do';
+					location.href = '/movie/login';
 				}
 			}
 		},

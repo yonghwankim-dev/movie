@@ -1,4 +1,4 @@
-package kr.com.yh.lotte.controller;
+package kr.com.yh.lotte.controller.signin;
 
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 
-@WebServlet("/login.do")
+@WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
 	@Serial

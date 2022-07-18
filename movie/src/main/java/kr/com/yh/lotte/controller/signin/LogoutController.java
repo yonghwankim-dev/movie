@@ -1,6 +1,4 @@
-package kr.com.yh.lotte.controller;
-
-import java.io.IOException;
+package kr.com.yh.lotte.controller.signin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-import kr.com.yh.util.UpdateResult;
-
-@WebServlet("/logout.do")
+@WebServlet(name = "LogoutController", urlPatterns = {"/logout"})
 public class LogoutController extends HttpServlet {
 
 	@Override

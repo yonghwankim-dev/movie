@@ -155,7 +155,7 @@ $('#locSelect').on('change', changeCinemaByLoc);
 
 $('#screenAddBtn').on('click', function(){
 	$.ajax({
-		url : '/movie/admin/screen/add.do',
+		url : '/movie/admin/screen/add',
 		type : 'post',
 		data : $('#screenFrm').serialize(),
 		success : function(data) {
@@ -164,7 +164,7 @@ $('#screenAddBtn').on('click', function(){
 			} else if (data.code === 'no') {
 				alert("영화 상영 추가가 실패하였습니다.");
 			}
-			location.href = '/movie/admin/admin.do';
+			location.href = '/movie/admin/main';
 		},
 		error : function(xhr) {
 			alert(xhr.status);
@@ -178,7 +178,7 @@ $('#screenAddBtn').on('click', function(){
 <script>
 	$('#screenDeleteBtn').on('click', function() {
 		$.ajax({
-			url : '/movie/admin/screen/delete.do',
+			url : '/movie/admin/screen/delete',
 			type : 'post',
 			data : $('#screenListFrm').serialize(),
 			success : function(data) {
@@ -187,7 +187,7 @@ $('#screenAddBtn').on('click', function(){
 				} else if (data.code === 'no') {
 					alert("상영일정 제거가 실패되었습니다.");
 				}
-				location.href = '/movie/admin/admin.do';
+				location.href = '/movie/admin/main';
 			},
 			error : function(xhr) {
 				alert(xhr.status);

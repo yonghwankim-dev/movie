@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/admin/screen/delete.do")
+@WebServlet("/admin/screen/delete")
 public class ScreenDeleteController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

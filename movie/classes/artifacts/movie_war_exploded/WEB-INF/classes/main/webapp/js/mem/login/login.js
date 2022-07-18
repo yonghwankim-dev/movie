@@ -3,24 +3,25 @@
  * author : 김용환
  * date : 2022-05-24
  */
+import urlPaths from "/movie/js/UrlPaths/urlPaths.js";
 
 const login = function(){
 	$.ajax({
-		url : '/movie/login',
+		url : urlPaths.LOGIN,
 		type : 'post',
 		data : $('#loginFrm').serialize(),
 		success : function(data) {
 			if($('#adminLogin').is(':checked')) {
 				if($('#loginId').val() === "admin"){
 					alert('관리자 권한으로 로그인 되었습니다.');
-					location.href = '/movie/lotte';
+					location.href = urlPaths.LOTTE;
 				} else {
 					alert('관리자 권한 로그인에 실패하였습니다.');
 				}
 			} else {			
 				if (data.code === 'ok') {
 					alert('로그인 되었습니다.');
-					location.href = '/movie/lotte';
+					location.href = urlPaths.LOTTE;
 				} else if($('#loginId').val() === "") {
 					alert('아이디를 입력 해주세요.');
 					$('#loginId').focus();
@@ -29,7 +30,7 @@ const login = function(){
 					$('#loginPwd').focus();
 				} else {
 					alert('회원정보가 일치하지 않습니다.');
-					location.href = '/movie/login';
+					location.href = urlPaths.LOGIN;
 				}
 			}
 		},

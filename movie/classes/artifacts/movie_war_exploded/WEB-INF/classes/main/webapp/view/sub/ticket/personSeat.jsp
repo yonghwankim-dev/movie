@@ -1,16 +1,15 @@
+<%@ page import="kr.com.yh.lotte.UrlPaths" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <style>
-#container{
-	height : 1400px;
-	background-color : #444444;
-}
+    #container{
+        height : 1400px;
+        background-color : #444444;
+    }
 </style>
- 
- 
+
  <!-- 페이지 타이틀 -->
 <h2 class="pageTitle">인원/좌석 선택 </h2>
 <!-- //페이지 타이틀 -->
@@ -23,8 +22,8 @@
             <p class="position-absolute" style="font-size: 13px; top:5px; right:30px; color:white;">인원은 최대 8명까지 선택 가능합니다.</p>
         </div>
         <div class="inner">
-        	
-        	<form id="payFrm" method="post" action="/movie/ticketing/orderSettlement">
+
+        	<form id="payFrm" method="post" action="${pageContext.request.contextPath}${UrlPaths.ORDER_SETTLEMENT}">
             <div id="PersonSeatCount">
                 <div class="select_num_people_wrap">
                     <div class="movie_infor">

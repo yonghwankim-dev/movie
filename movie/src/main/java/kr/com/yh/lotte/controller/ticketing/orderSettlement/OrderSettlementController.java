@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.ticketing.orderSettlement;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.book.BookServiceImpl;
 import kr.com.yh.lotte.service.book.IBookService;
 import kr.com.yh.lotte.vo.*;
@@ -14,7 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/ticketing/orderSettlement")
+@WebServlet(name = "OrderSettlementController", urlPatterns = {UrlPaths.ORDER_SETTLEMENT})
 public class OrderSettlementController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

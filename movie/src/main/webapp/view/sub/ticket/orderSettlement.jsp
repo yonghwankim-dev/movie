@@ -1,3 +1,4 @@
+<%@ page import="kr.com.yh.lotte.UrlPaths" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -422,7 +423,7 @@ $(function(){
 			            })
 			            .then(function(){
 							const book_code = $("input[name='book_code']").val();
-			            	location.href = "/movie/ticket/book/paymentResult?book_code="+book_code;
+			            	location.href = "${pageContext.request.contextPath}${UrlPaths.PAYMENT_RESULT}?book_code="+book_code;
 			            });
 		}else if(!isAllCheckTerms()){
 			const yn = confirm("결제대행서비스 약관에 동의하셔야 구매가 가능합니다. 동의하시겠습니까?");
@@ -471,7 +472,7 @@ $(function(){
     function bookSeat(){
     	return new Promise(function(resolve, reject) {
     		$.ajax({
-    			url : '/movie/ticketing/book/bookSeat',
+    			url : '${pageContext.request.contextPath}${UrlPaths.BOOK}',
     			type : 'post',
     			data : $('#payFrm').serialize(),
     			success : function(data) {

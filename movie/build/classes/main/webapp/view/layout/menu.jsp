@@ -1,5 +1,6 @@
+<%@ page import="kr.com.yh.lotte.UrlPaths" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -12,7 +13,7 @@
 				<ul class="depth2">
 					<li><a href="/movie/searchMovie.do">영화검색</a></li>
 					<li><a href="/movie/location.do">극장 위치 찾기</a></li>
-					<li><a href="/movie/ticketing/ticketing.do">회원 예매</a></li>
+					<li><a href="${pageContext.request.contextPath}${UrlPaths.TICKET}">회원 예매</a></li>
 					<li><a href="/movie/nonMember.do">비회원 예매</a></li>
 					<li><a href="/movie/card.do">카드사 조회</a></li>
 				</ul>
@@ -71,7 +72,9 @@
 							<a href="">영화후기 관리</a>
 						</li>
 						<li>
-							<a href="/movie/admin/main">영화 관리</a>
+
+
+							<a href="${pageContext.request.contextPath}${UrlPaths.SCREEN_HOME}">영화 관리</a>
 						</li>
 					</ul>
 				</li>

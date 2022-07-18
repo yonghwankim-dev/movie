@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.admin.screenSch;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.util.UpdateResult;
@@ -13,7 +14,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/admin/screenSch/delete.do")
+
+@WebServlet(name = "ScreenSchDeleteController", urlPatterns = UrlPaths.SCREEN_SCH_DELETE)
 public class ScreenSchDeleteController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.admin.screenSch;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-@WebServlet("/admin/screenSch/add.do")
+@WebServlet(name = "ScreenSchAddController", urlPatterns = UrlPaths.SCREEN_SCH_ADD)
 public class ScreenSchAddController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

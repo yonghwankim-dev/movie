@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.ticketing.book;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.book.BookServiceImpl;
 import kr.com.yh.lotte.service.book.IBookService;
 import kr.com.yh.lotte.service.seat.ISeatService;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/ticketing/book/bookSeat")
+@WebServlet(name = "BookController", urlPatterns = {UrlPaths.BOOK})
 public class BookController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -68,8 +69,6 @@ public class BookController extends HttpServlet {
 				            .screen_sch_code(screen_sch_code)
 				            .mem_code(mem_code)
 				            .build();
-
-		System.out.println("seatCodes : " + seatCodes);
 
 		for(String seat_code : seatCodes) {
 			bookSeatList.add(BookSeatVO.builder()

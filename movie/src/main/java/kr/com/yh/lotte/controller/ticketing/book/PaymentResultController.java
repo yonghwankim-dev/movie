@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.ticketing.book;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.book.BookServiceImpl;
 import kr.com.yh.lotte.service.book.IBookService;
 import kr.com.yh.lotte.vo.component.PaymentResultVO;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ticket/book/paymentResult")
+
+@WebServlet(name = "PaymentResultController", urlPatterns = {UrlPaths.PAYMENT_RESULT})
 public class PaymentResultController extends HttpServlet{
 	private IBookService bookService;
 

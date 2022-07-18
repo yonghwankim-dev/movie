@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.ticketing;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.seat.ISeatService;
 import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.service.ticketing.ITicketingService;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/personSeat.do")
+@WebServlet(name = "PersonSeatController", urlPatterns = {UrlPaths.PERSON_SEAT})
 public class PersonSeatController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

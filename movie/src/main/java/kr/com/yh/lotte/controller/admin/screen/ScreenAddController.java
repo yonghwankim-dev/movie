@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.admin.screen;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.lotte.vo.ScreenVO;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@WebServlet(name = "ScreenAddController", urlPatterns = "/admin/screen/add")
+@WebServlet(name = "ScreenAddController", urlPatterns = UrlPaths.SCREEN_ADD)
 public class ScreenAddController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

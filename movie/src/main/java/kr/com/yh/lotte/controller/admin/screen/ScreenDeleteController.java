@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.admin.screen;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.util.UpdateResult;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/admin/screen/delete")
+@WebServlet(name = "ScreenDeleteController", urlPatterns = UrlPaths.SCREEN_DELETE)
 public class ScreenDeleteController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,7 +28,9 @@ public class ScreenDeleteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 상영코드
 		List<String> screen_codes = Arrays.asList(req.getParameterValues("screen_code"));
-		
+
+		System.out.println(">>>>>>>>>>" + screen_codes);
+
 		// 삽입 결과
 		UpdateResult result = new UpdateResult(resp);
 				

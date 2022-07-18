@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.ticketing;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
 import kr.com.yh.lotte.service.cinema.ICinemaService;
 import kr.com.yh.lotte.service.screensch.IScreenSchService;
@@ -21,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@WebServlet("/ticketing/ticketing.do")
+@WebServlet(name = "TicketingController", urlPatterns = {UrlPaths.TICKET})
 public class TicketingController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

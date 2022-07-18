@@ -6,7 +6,7 @@
 <header id="header">
 	<div class="container-fluid">
 		<h1 id="logo">
-			<a href="${pageContext.request.contextPath}${UrlPaths.lotte}">
+			<a href="${pageContext.request.contextPath}${UrlPaths.LOTTE}">
 				<img src="${pageContext.request.contextPath}/images/common/logo.png" alt="LOTTE CGV BOX">
 			</a>
 		</h1>
@@ -25,11 +25,11 @@
 				<!-- 로그인 시에는 로그인 -> 로그아웃으로 표출 및 회원탈퇴 표출 -->
 				<c:choose>
 					<c:when test="${empty sessionScope.mem.id}">
-						<li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
-						<li><a href="${pageContext.request.contextPath}/join.do">회원가입</a></li>					
+						<li><a href="${pageContext.request.contextPath}${UrlPaths.LOGIN}">로그인</a></li>
+						<li><a href="${pageContext.request.contextPath}${UrlPaths.SIGNUP}">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath}/logout" id="logout">로그아웃</a></li>
+						<li><a href="${pageContext.request.contextPath}${UrlPaths.LOGOUT}" id="logout">로그아웃</a></li>
 						<li><a href="${pageContext.request.contextPath}/delete.do">회원탈퇴</a></li>
 					</c:otherwise>
 				</c:choose>

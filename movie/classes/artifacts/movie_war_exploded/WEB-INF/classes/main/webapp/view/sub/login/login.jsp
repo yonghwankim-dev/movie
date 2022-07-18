@@ -22,10 +22,10 @@
   </form>
  
   <ul class="list_st1 text-left">
-    <li><a href="/movie/searchLoginId.do">아이디를 잊어버리셨나요?</a></li>
+    <li><a href="#">아이디를 잊어버리셨나요?</a></li>
     <li><a href="#">비밀번호를 잊어버리셨나요?</a></li>
   </ul>
 </div>
 <!-- //여기까지 페이지 내용 -->
 <script src="${pageContext.request.contextPath}/js/regExp/regExp.js?v=<%=System.currentTimeMillis() %>"></script>
-<script src="${pageContext.request.contextPath}/js/mem/login/login.js?v=<%=System.currentTimeMillis() %>"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/mem/login/login.js?v=<%=System.currentTimeMillis()%>"></script>

@@ -1,13 +1,12 @@
 package kr.com.yh.util;
 
+import com.google.gson.Gson;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
 
 public class UpdateResult {
 	public Map<String, Object> resMap;
@@ -16,6 +15,7 @@ public class UpdateResult {
 	public PrintWriter out;
 	
 	public UpdateResult(HttpServletResponse resp) throws IOException {
+		resp.setCharacterEncoding("UTF-8");
 		resMap = new HashMap<String, Object>();
 		gson = new Gson();
 		jsonData = null;

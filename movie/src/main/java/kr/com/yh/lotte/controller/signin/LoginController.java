@@ -1,5 +1,6 @@
 package kr.com.yh.lotte.controller.signin;
 
+import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
 import kr.com.yh.lotte.vo.MemberVO;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 
 
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
+@WebServlet(name = "LoginController", urlPatterns = {UrlPaths.LOGIN})
 public class LoginController extends HttpServlet {
 
 	@Serial
@@ -26,7 +27,7 @@ public class LoginController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileNm = "login/login"; // 매칭되는 jsp 파일명(확장자 제외)
+		String fileNm = "signin/login"; // 매칭되는 jsp 파일명(확장자 제외)
 
 		req.setAttribute("fileNm", fileNm);
 		req.getRequestDispatcher("/view/sub.jsp").forward(req, resp);

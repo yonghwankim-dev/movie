@@ -1,10 +1,7 @@
-<%@page import="java.time.temporal.TemporalUnit"%>
-<%@page import="java.time.DayOfWeek"%>
-<%@page import="java.util.Locale"%>
-<%@page import="java.time.format.TextStyle"%>
+<%@page import="kr.com.yh.lotte.UrlPaths"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="ldt" tagdir="/WEB-INF/tags/localDateTime" %>
@@ -36,7 +33,7 @@
             			<ul class="list-group">
 		                	<c:forEach var="location" items="${locations}" varStatus="status">
 		                		<li class="list-group-item border-0 rounded-0 small text-dark bg-light ${location.cinemaVO.loc eq loc ? 'active' : ''}">
-		                        	<a class="text-dark text-decoration-none" href="/movie/ticketing/ticketing.do?loc=${location.cinemaVO.loc}">${location.cinemaVO.loc}<span>(${location.cinema_cnt})</span><img src="/movie/images/sub/check.png" class="float-right invisible"></a>
+		                        	<a class="text-dark text-decoration-none" href="${pageContext.request.contextPath}${UrlPaths.TICKET}?loc=${location.cinemaVO.loc}">${location.cinemaVO.loc}<span>(${location.cinema_cnt})</span><img src="/movie/images/sub/check.png" class="float-right invisible"></a>
 								</li>
 							</c:forEach>
 	                	</ul>
@@ -47,7 +44,7 @@
 						<ul class="list-group" style="max-height:950px; overflow-y:auto;">
 							<c:forEach var="cinema" items="${cinemas}">
 								<li class="list-group-item border-0 rounded-0 small ${cinema.name eq cinema_name ? 'active' : ''}">
-									<a class="text-dark text-decoration-none" href="/movie/ticketing/ticketing.do?loc=${loc}&cinema_name=${cinema.name}">
+									<a class="text-dark text-decoration-none" href="${pageContext.request.contextPath}${UrlPaths.TICKET}?loc=${loc}&cinema_name=${cinema.name}">
 										${cinema.name}
 										<img src="/movie/images/sub/check.png" class="float-right invisible">
 									</a>
@@ -80,7 +77,7 @@
                 		</c:if>
                 		
                 		<li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent ${movie.name eq movie_name ? 'active' : ''}">    
-	                        <a class="movie d-flex align-items-center text-decoration-none text-dark" href="/movie/ticketing/ticketing.do?loc=${loc}&cinema_name=${cinema_name}&movie_name=${movie.name}">
+	                        <a class="movie d-flex align-items-center text-decoration-none text-dark" href="${pageContext.request.contextPath}${UrlPaths.TICKET}?loc=${loc}&cinema_name=${cinema_name}&movie_name=${movie.name}">
 								<span class="badge badge-pill rounded-circle text-white gr_${movie.audi_rating}">${movie.audi_rating}</span>
 								<span class="ml-1">${movie.name}</span>
 	                        </a>
@@ -99,7 +96,7 @@
             	<!-- 영화 상영 달력 -->
                 <div class="container">
                 	<input class="hidden input_selected_date" name="selected_date" value="${screen_date}"/>
-                	<form id="screenDateFrm" method="get" action="/movie/ticketing/ticketing.do">
+                	<form id="screenDateFrm" method="get" action="${pageContext.request.contextPath}${UrlPaths.TICKET}">
                 		<input class="hidden input_cinema_name" name="cinema_name" value="${cinema_name}"/>
                 		<input class="hidden input_movie_name" name="movie_name" value="${movie_name}"/>
 	
@@ -222,7 +219,7 @@
 			return;
 		}	
 		
-		location.href = "<%=request.getContextPath() %>/personSeat.do?screen_sch_code=" + $(this).data('screen_sch_code');
+		location.href = "${pageContext.request.contextPath}${UrlPaths.PERSON_SEAT}?screen_sch_code=" + $(this).data('screen_sch_code');
 	});
 </script>
 <script>
@@ -253,5 +250,5 @@ function showSlides(start, end) {
   }
 }
 </script>
-<script type="module" src="<%=request.getContextPath() %>/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/ticketing.js?v=<%=System.currentTimeMillis() %>"></script>
 <!-- //여기까지 페이지 내용 -->

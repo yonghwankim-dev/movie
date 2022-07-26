@@ -3,7 +3,7 @@ package kr.com.yh.lotte.controller.admin.screenSch;
 import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +34,7 @@ public class ScreenSchDeleteController extends HttpServlet {
 		String screen_code = req.getParameter("screen_code");
 		
 		// 삽입 결과
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 				
 		// 상영코드 삭제 수행
 		int cnt = adminService.deleteScreenSch(screen_sch_codes);

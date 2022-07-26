@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 페이지 타이틀 -->
-<h2 class="pageTitle">회원가입</h2>
-<!-- //페이지 타이틀 -->
 
 <!-- 여기부터 페이지 내용 -->
 <div class="join-form form-horizontal">

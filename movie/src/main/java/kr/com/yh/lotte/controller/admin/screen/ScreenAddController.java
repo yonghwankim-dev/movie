@@ -4,7 +4,7 @@ import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
 import kr.com.yh.lotte.vo.ScreenVO;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +43,7 @@ public class ScreenAddController extends HttpServlet {
 		map.put("theater_name", theater_name);	
 
 		// 삽입 결과
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 		int cnt = 0;
 		
 		movie_code = adminService.getMovieCodeByMovieName(movie_name);

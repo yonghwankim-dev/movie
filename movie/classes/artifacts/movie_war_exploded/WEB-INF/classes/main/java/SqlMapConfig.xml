@@ -87,6 +87,7 @@
 	<sqlMap resource="sqlmap/admin.xml"/>
 	<sqlMap resource="sqlmap/movie.xml"/>
 	<sqlMap resource="sqlmap/cinema.xml"/>
+	<sqlMap resource="sqlmap/mem.xml"/>
 	<sqlMap resource="sqlmap/book.xml"/>
 	<sqlMap resource="sqlmap/bookSeat.xml"/>
 	<sqlMap resource="sqlmap/seat.xml"/>

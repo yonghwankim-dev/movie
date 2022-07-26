@@ -1,5 +1,6 @@
+<%@ page import="kr.com.yh.lotte.UrlPaths" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -153,7 +154,7 @@
 <script>
 	$(function(){
 		$("#homeBtn").on("click", function(){
-			location.href = "/movie/main.do";
+			location.href = "${pageContext.request.contextPath}${UrlPaths.LOTTE}";
 		});
 	});
 

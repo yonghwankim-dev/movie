@@ -61,7 +61,7 @@
 		</div>
 		<!-- //서브 비주얼 -->
 	
-		<div class="container">
+		<div>
 			<div id="sub">
 				<!-- 페이지뷰 -->
 				<div id="pageView">

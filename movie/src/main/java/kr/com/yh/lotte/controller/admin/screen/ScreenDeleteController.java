@@ -3,7 +3,7 @@ package kr.com.yh.lotte.controller.admin.screen;
 import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.admin.AdminServiceImpl;
 import kr.com.yh.lotte.service.admin.IAdminService;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,10 +29,8 @@ public class ScreenDeleteController extends HttpServlet {
 		// 상영코드
 		List<String> screen_codes = Arrays.asList(req.getParameterValues("screen_code"));
 
-		System.out.println(">>>>>>>>>>" + screen_codes);
-
 		// 삽입 결과
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 				
 		// 상영코드 삭제 수행
 		int cnt = adminService.deleteScreen(screen_codes);

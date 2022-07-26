@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="mem">
+	<select id="findMemberAll" resultClass="memberVo">
+		SELECT MEM_CODE,
+		       NAME,
+		       BIRTHDAY,
+		       CONTACT,
+		       ADDR,
+		       EMAIL,
+		       ID,
+		       GENDER
+         FROM MEM
+	</select>
+
+	<select id="findMemberByMemberCode" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+		       NAME,
+		       BIRTHDAY,
+		       CONTACT,
+		       ADDR,
+		       EMAIL,
+		       ID,
+		       GENDER
+        FROM MEM
+        WHERE MEM_CODE = #mem_code#
+	</select>
+
+	<delete id="deleteMemberByMemberCode" parameterClass="java.util.List">
+		DELETE FROM MEM
+		<iterate prepend="WHERE MEM_CODE IN" open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+	</delete>
+</sqlMap>			
+
+
+
+
+

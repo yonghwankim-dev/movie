@@ -8,7 +8,7 @@ import kr.com.yh.lotte.service.screensch.ScreenSchServiceImpl;
 import kr.com.yh.lotte.service.seat.ISeatService;
 import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.vo.ScreenSchVO;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +59,7 @@ public class ScreenSchAddController extends HttpServlet {
 				                           .build();
 		
 		// 삽입 결과
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 		int cnt = 0;
 		
 		cnt = adminService.insertScreenSchAndSeat(screenSch, seat_codes);

@@ -8,7 +8,7 @@ import kr.com.yh.lotte.service.seat.SeatServiceImpl;
 import kr.com.yh.lotte.vo.BookSeatVO;
 import kr.com.yh.lotte.vo.BookVO;
 import kr.com.yh.lotte.vo.ScreenSchSeatVO;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +53,7 @@ public class BookController extends HttpServlet {
 		List<ScreenSchSeatVO> screenSchSeatList = new ArrayList<ScreenSchSeatVO>();
 		
 		// 실행 결과
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 		int cnt = 0;
 				
 		// 좌석코드 참조

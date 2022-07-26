@@ -4,12 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- 페이지 타이틀 -->
-<h2 class="pageTitle">상영관리</h2>
-<!-- //페이지 타이틀 -->
-
 <!-- 페이지 내용 -->
-<div>
+<div class="d-flex">
 	<jsp:include page="../layout/sideMenu.jsp" />
 	
 	<div class="container">

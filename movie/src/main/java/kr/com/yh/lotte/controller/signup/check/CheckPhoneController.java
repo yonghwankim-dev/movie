@@ -3,7 +3,7 @@ package kr.com.yh.lotte.controller.signup.check;
 import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +30,7 @@ public class CheckPhoneController extends HttpServlet {
 		boolean checkPhone = joinService.checkPhone(phone);
 		
 		
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 		
 		if (checkPhone) {
 			result.addToResMap("code", "no");

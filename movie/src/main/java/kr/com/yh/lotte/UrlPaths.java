@@ -29,6 +29,12 @@ public class UrlPaths {
 
     public static final String ADMIN             = "/admin";
 
+    public static final String MEM_HOME          = ADMIN + "/mem/home";
+
+    public static final String MEM_DELETE        = ADMIN + "/mem/delete";
+
+    public static final String MEM_DETAIL        = ADMIN + "/mem/detail";
+
     public static final String SCREEN_HOME       = ADMIN + "/screen/home";
     public static final String SCREEN_ADD        = ADMIN + "/screen/add";
     public static final String SCREEN_DELETE     = ADMIN + "/screen/delete";

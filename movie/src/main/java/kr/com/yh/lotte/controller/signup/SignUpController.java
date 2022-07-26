@@ -4,7 +4,7 @@ import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.IJoinService;
 import kr.com.yh.lotte.service.JoinServiceImpl;
 import kr.com.yh.lotte.vo.MemberVO;
-import kr.com.yh.util.UpdateResult;
+import kr.com.yh.util.AjaxResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -72,7 +72,7 @@ public class SignUpController extends HttpServlet {
 				               .gender(gender)
 				               .build();
 		
-		UpdateResult result = new UpdateResult(resp);
+		AjaxResponse result = new AjaxResponse(resp);
 		int cnt = 0;
 		
 		if(!joinService.checkEmail(mem.getEmail())){

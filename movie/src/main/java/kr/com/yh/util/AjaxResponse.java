@@ -8,13 +8,13 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateResult {
+public class AjaxResponse {
 	public Map<String, Object> resMap;
 	public Gson gson;
 	public String jsonData;
 	public PrintWriter out;
 	
-	public UpdateResult(HttpServletResponse resp) throws IOException {
+	public AjaxResponse(HttpServletResponse resp) throws IOException {
 		resp.setCharacterEncoding("UTF-8");
 		resMap = new HashMap<String, Object>();
 		gson = new Gson();

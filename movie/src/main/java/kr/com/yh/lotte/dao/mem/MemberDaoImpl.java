@@ -71,4 +71,26 @@ public class MemberDaoImpl implements IMemberDao {
 
         return mem;
     }
+
+    @Override
+    public int modifyMemberByMemberCode(MemberVO mem) {
+        int cnt = 0;
+
+        try {
+            smc.startTransaction();
+            cnt = smc.update("mem.modifyMemberByMemberCode", mem);
+            smc.commitTransaction();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            cnt = 0;
+        }finally {
+            try {
+                smc.endTransaction();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return cnt;
+    }
 }

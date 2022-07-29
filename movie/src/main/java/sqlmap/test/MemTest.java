@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -68,6 +69,41 @@ class MemTest {
 		}
 
 		Assert.assertNotNull(mem);
+	}
+
+	@Test
+	void modifyMemberByMemberCodeTest(){
+		int cnt = 0;
+
+		String mem_code = "MEM61";
+		String name     = "김갑수";
+		Date birthday   = Date.valueOf("1990-01-01");
+		String contact  = "010-1111-6542";
+		String addr     = "서울";
+		String email    = "user61@gmail.com";
+		String id       = "user61";
+		String gender   = "F";
+
+		MemberVO mem = MemberVO.builder()
+				.mem_code(mem_code)
+				.name(name)
+				.birthday(birthday)
+				.contact(contact)
+				.addr(addr)
+				.email(email)
+				.id(id)
+				.gender(gender)
+				.build();
+
+		try {
+			smc.startTransaction();
+			cnt = smc.update("mem.modifyMemberByMemberCode", mem);
+			smc.endTransaction();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		Assert.assertEquals(1, cnt);
 	}
 
 }

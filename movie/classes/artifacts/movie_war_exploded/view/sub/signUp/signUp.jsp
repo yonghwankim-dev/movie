@@ -139,6 +139,6 @@
 	<input type="button" value="회원가입" id="joinBtn" class="btn btn-danger submit-join">
   </form>
 </div>
-<script type="module" src="<%= request.getContextPath()%>/js/signUp/signUp.js?<%= System.currentTimeMillis()%>"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/signUp/signUp.js?<%= System.currentTimeMillis()%>"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- //여기까지 페이지 내용 -->

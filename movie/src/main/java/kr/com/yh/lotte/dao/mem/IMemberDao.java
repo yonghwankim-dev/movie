@@ -25,4 +25,11 @@ public interface IMemberDao {
      * @return 회원
      */
     MemberVO findMemberByMemberCode(String mem_code);
+
+    /**
+     * 회원 코드에 따른 회워정보 갱신
+     * @param mem 회원
+     * @return 갱신한 회원수
+     */
+    int modifyMemberByMemberCode(MemberVO mem);
 }

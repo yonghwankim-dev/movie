@@ -36,4 +36,9 @@ public class MemServiceImpl implements IMemService{
     public MemberVO findMemberByMemberCode(String mem_code) {
         return memberDao.findMemberByMemberCode(mem_code);
     }
+
+    @Override
+    public int modifyMemberByMemberCode(MemberVO mem) {
+        return memberDao.modifyMemberByMemberCode(mem);
+    }
 }

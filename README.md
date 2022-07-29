@@ -57,14 +57,15 @@
 ![Architecture](images/Architecture.png)  
 
 **기술 스택**
-* https://img.shields.io/badge/{Java}-{#F7DF1E}?style=for-the-badge
-* Java + Javascript
-* HTML/CSS + Bootstrap + JQuery
-* Servlet&JSP + Apache Tomcat
-* Oracle
-* Ibatis
-* Junit
-* Log4j
+* ![Java EE](https://img.shields.io/badge/java-15-white)
+* [![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=FFFFFF)](https://en.wikipedia.org/wiki/HTML5)
+* [![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=FFFFFF)](https://en.wikipedia.org/wiki/CSS)
+* [![Javascript Badge](https://img.shields.io/badge/JS-F7DF1E?style=flat&logo=JavaScript&logoColor=FFFFFF)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [![jQuery Badge](https://img.shields.io/badge/jQuery3.3-0769AD?style=flat&logo=jQuery&logoColor=FFFFFF)](https://jquery.com/)
+* [![Bootstrap Badge](https://img.shields.io/badge/Boostrap4.1-7952B3?style=flat&logo=Bootstrap&logoColor=FFFFFF)](https://getbootstrap.com/)
+* ![apache tomcat](https://img.shields.io/badge/apache%20tomcat-9.0.56-white)
+* ![Oracle](https://img.shields.io/badge/oracle-19c-white)
+* ![ibatis](https://img.shields.io/badge/ibatis-2.3.4-white)
   
 [맨 위로 가기](#top)
 </br>

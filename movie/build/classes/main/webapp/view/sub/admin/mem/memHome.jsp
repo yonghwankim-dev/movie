@@ -9,6 +9,17 @@
     <jsp:include page="../layout/sideMenu.jsp" />
 
     <div class="container">
+        <div class="col-4 m-0">
+            <form action="${pageContext.request.contextPath}${UrlPaths.MEM_FIND}" method="post" class="d-flex" role="search">
+                <select name="category">
+                    <option value="name">이름</option>
+                    <option value="id">아이디</option>
+                    <option value="contact">연락처</option>
+                </select>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="content">
+                <button class="btn btn-outline-success" type="submit">검색</button>
+            </form>
+        </div>
         <form id="memListFrm">
         <table id="memTable" class="table table-hover table-striped">
             <thead>

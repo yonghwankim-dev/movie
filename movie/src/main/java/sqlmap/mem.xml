@@ -28,6 +28,45 @@
         WHERE MEM_CODE = #mem_code#
 	</select>
 
+	<select id="findMemberByName" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE NAME LIKE '%' || #name# || '%'
+	</select>
+
+	<select id="findMemberById" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE ID LIKE '%' || #id# || '%'
+	</select>
+
+	<select id="findMemberByContact" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE CONTACT = #contact#
+	</select>
+
 	<update id="modifyMemberByMemberCode" parameterClass="memberVo">
 		UPDATE MEM
 		SET NAME     = #name#,

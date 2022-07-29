@@ -5,6 +5,7 @@ import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDaoImpl implements IMemberDao {
@@ -70,6 +71,45 @@ public class MemberDaoImpl implements IMemberDao {
         }
 
         return mem;
+    }
+
+    @Override
+    public List<MemberVO> findMemberByName(String name) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findMemberByName", name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mems;
+    }
+
+    @Override
+    public List<MemberVO> findMemberById(String id) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findMemberById", id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mems;
+    }
+
+    @Override
+    public List<MemberVO> findMemberByContact(String contact) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findMemberByContact", contact);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mems;
     }
 
     @Override

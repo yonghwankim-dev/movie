@@ -28,6 +28,57 @@
         WHERE MEM_CODE = #mem_code#
 	</select>
 
+	<select id="findMemberByName" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE NAME LIKE '%' || #name# || '%'
+	</select>
+
+	<select id="findMemberById" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE ID LIKE '%' || #id# || '%'
+	</select>
+
+	<select id="findMemberByContact" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE CONTACT = #contact#
+	</select>
+
+	<update id="modifyMemberByMemberCode" parameterClass="memberVo">
+		UPDATE MEM
+		SET NAME     = #name#,
+		    BIRTHDAY = #birthday#,
+		    CONTACT  = #contact#,
+		    ADDR     = #addr#,
+		    EMAIL    = #email#,
+		    ID       = #id#,
+		    GENDER   = #gender#
+        WHERE MEM_CODE = #mem_code#
+	</update>
+
 	<delete id="deleteMemberByMemberCode" parameterClass="java.util.List">
 		DELETE FROM MEM
 		<iterate prepend="WHERE MEM_CODE IN" open="(" close=")" conjunction=",">

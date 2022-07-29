@@ -106,4 +106,46 @@ class MemTest {
 		Assert.assertEquals(1, cnt);
 	}
 
+	@Test
+	void findMemberByNameTest(){
+		List<MemberVO> mems = null;
+		String name = "김";
+
+		try{
+			mems = smc.queryForList("mem.findMemberByName", name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		Assert.assertNotNull(mems);
+	}
+
+
+	@Test
+	void findMemberByIdTest(){
+		List<MemberVO> mems = null;
+		String id = "user";
+
+		try{
+			mems = smc.queryForList("mem.findMemberById", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		Assert.assertNotNull(mems);
+	}
+
+	@Test
+	void findMemberByContactTest(){
+		List<MemberVO> mems = null;
+		String contact = "010-1111-1111";
+
+		try{
+			mems = smc.queryForList("mem.findMemberByContact", contact);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		Assert.assertNotNull(mems);
+	}
 }

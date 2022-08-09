@@ -27,7 +27,7 @@ public class MemFindController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
-        
+
         String fileNm = "admin/mem/memHome";
         String category = req.getParameter("category");
         String content     = req.getParameter("content");

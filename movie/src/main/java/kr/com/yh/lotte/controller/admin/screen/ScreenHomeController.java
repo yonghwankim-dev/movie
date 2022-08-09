@@ -8,6 +8,7 @@ import kr.com.yh.lotte.service.cinema.ICinemaService;
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.CinemaVO;
+import kr.com.yh.lotte.vo.MovieSearch;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.lotte.vo.component.CinemaLocationVO;
 import kr.com.yh.lotte.vo.component.ScreenAdminVO;
@@ -37,10 +38,10 @@ public class ScreenHomeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String fileNm = "admin/screen/screenHome"; // 매칭되는 jsp 파일명(확장자 제외)
-		
+		MovieSearch movieSearch = new MovieSearch();
 		List<ScreenAdminVO> screenAdmin = adminService.getAllScreenAdmin(); 
 		List<CinemaVO> cinemas = cinemaService.getCinemaList(null);
-		List<MovieVO> movies = movieService.getMovie();
+		List<MovieVO> movies = movieService.findAll(movieSearch);
 		List<CinemaLocationVO> locs = cinemaService.getLocationList();
 		
 		req.setAttribute("screenAdmin", screenAdmin);

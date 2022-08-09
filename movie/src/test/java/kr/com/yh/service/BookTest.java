@@ -1,4 +1,4 @@
-package sqlmap.test;
+package test.java.kr.com.yh.service;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.com.yh.lotte.vo.BookSeatVO;

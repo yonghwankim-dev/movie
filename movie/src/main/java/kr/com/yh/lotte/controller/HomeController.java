@@ -1,4 +1,4 @@
-package kr.com.yh.lotte.controller.home;
+package kr.com.yh.lotte.controller;
 
 import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.movie.IMovieService;
@@ -25,7 +25,7 @@ public class HomeController extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<MovieVO> movieList = movieService.getMovieMain();
+		List<MovieVO> movieList = movieService.findAll();
 
 		req.setAttribute("movieList", movieList);
 		req.getRequestDispatcher("/view/main.jsp").forward(req, resp);

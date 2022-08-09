@@ -1,22 +1,18 @@
-package sqlmap.test;
+package test.java.kr.com.yh.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.MovieVO;
+import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
+import kr.com.yh.util.SqlMapClientFactory;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.ibatis.sqlmap.client.SqlMapClient;
-
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.component.MovieScreenSchVO;
-import kr.com.yh.util.SqlMapClientFactory;
 
 class TicketingTest {
 

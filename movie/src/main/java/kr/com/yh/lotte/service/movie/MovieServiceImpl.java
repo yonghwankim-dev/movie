@@ -1,10 +1,11 @@
 package kr.com.yh.lotte.service.movie;
 
-import java.util.List;
-
 import kr.com.yh.lotte.dao.movie.IMovieDao;
 import kr.com.yh.lotte.dao.movie.MovieDaoImpl;
+import kr.com.yh.lotte.vo.MovieSearch;
 import kr.com.yh.lotte.vo.MovieVO;
+
+import java.util.List;
 
 
 public class MovieServiceImpl implements IMovieService {
@@ -23,20 +24,15 @@ public class MovieServiceImpl implements IMovieService {
 		}
 		return movieService;
 	}
-	
+
 	@Override
-	public List<MovieVO> getMovieMain() {
-		return movieDao.getMovieMain();
+	public List<MovieVO> findAll() {
+		return movieDao.findAll();
 	}
 
 	@Override
-	public List<MovieVO> serchMovieList(String movNm) {
-		return movieDao.serchMovieList(movNm);
-	}
-
-	@Override
-	public List<MovieVO> getMovie() {
-		return movieDao.getMovie();
+	public List<MovieVO> findAll(MovieSearch movieSearch) {
+		return movieDao.findAll(movieSearch);
 	}
 	
 	

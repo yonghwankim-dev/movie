@@ -9,18 +9,21 @@
 		<result property="name" column="name"/>
 		<result property="audi_rating" column="audi_rating"/>
 	</resultMap>
-	
-	<select id="getMovieMain" resultMap="MovieMainMap">
-		SELECT MOVIE_CODE
-		    ,  NAME
-		    ,  AUDI_RATING
+
+	<select id="findAll" parameterClass="movieSearch" resultClass="movieVo">
+		SELECT MOVIE_CODE, NAME, AUDI_RATING, RUNTIME
 		FROM   MOVIE
+		<dynamic prepend="WHERE">
+		    <isNotNull property="content">
+				<isEqual prepend="AND"  property="movieSearchCategory" compareValue="NAME">
+					NAME LIKE '%' || #content# || '%'
+				</isEqual>
+				<isEqual prepend="AND"  property="movieSearchCategory" compareValue="AUDI_RATING">
+					AUDI_RATING LIKE '%' || #content# || '%'
+				</isEqual>
+			</isNotNull>
+		</dynamic>
 		ORDER BY LENGTH(MOVIE_CODE), MOVIE_CODE
-	</select>
-	
-	<select id="getMovie" resultClass="movieVo">
-		SELECT MOVIE_CODE, NAME, AUDI_RATING
-		FROM   MOVIE
 	</select>
 </sqlMap>			
 

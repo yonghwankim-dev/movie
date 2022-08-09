@@ -21,4 +21,5 @@ public class MovieVO {
 	private String movie_code;	// 영화코드
 	private String name;		// 영화제목
 	private int    audi_rating;	// 관람등급
+	private int    runtime;     // 상영시간
 }

@@ -35,6 +35,9 @@
 	<typeAlias alias="bookVo" 			type="kr.com.yh.lotte.vo.BookVO"/>
 	<typeAlias alias="screenSchSeatVo" 	type="kr.com.yh.lotte.vo.ScreenSchSeatVO"/>
 	<typeAlias alias="screenschVo" 		type="kr.com.yh.lotte.vo.ScreenSchVO"/>
+
+	<typeAlias alias="movieSearch" 	 	        type="kr.com.yh.lotte.vo.MovieSearch"/>
+	<typeAlias alias="movieSearchCategory" 		type="kr.com.yh.lotte.vo.MovieSearchCategory"/>
 	
 
 	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.component.CinemaLocationVO"/>

@@ -457,5 +457,6 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="ojdbc8" level="project" />
     <orderEntry type="library" name="ibatis-2.3.4.726" level="project" />
+    <orderEntry type="library" name="assertj.core" level="project" />
   </component>
 </module>

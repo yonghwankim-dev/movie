@@ -4,7 +4,6 @@ import kr.com.yh.lotte.UrlPaths;
 import kr.com.yh.lotte.service.mem.IMemService;
 import kr.com.yh.lotte.service.mem.MemServiceImpl;
 import kr.com.yh.lotte.vo.MemberSearch;
-import kr.com.yh.lotte.vo.MemberSearchCategory;
 import kr.com.yh.lotte.vo.MemberVO;
 
 import javax.servlet.ServletException;
@@ -27,14 +26,10 @@ public class MemHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fileNm = "admin/mem/memHome";
-        String content = req.getParameter("content");
         String category = req.getParameter("category");
-        category = category == null ? "NAME" : category;
+        String content = req.getParameter("content");
 
-        MemberSearch memberSearch = MemberSearch.builder()
-                                                .content(content)
-                                                .memberSearchCategory(MemberSearchCategory.valueOf(category))
-                                                .build();
+        MemberSearch memberSearch = MemberSearch.createMemberSearch(content, category);
 
         List<MemberVO> mems = memberService.findAll(memberSearch);
 

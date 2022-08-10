@@ -33,7 +33,6 @@ public class UrlPaths {
     public static final String MEM_DELETE        = ADMIN + "/mem/delete";
     public static final String MEM_DETAIL        = ADMIN + "/mem/detail";
     public static final String MEM_MODIFY        = ADMIN + "/mem/modify";
-    public static final String MEM_FIND          = ADMIN + "/mem/find";
 
     public static final String MOVIE_HOME        = ADMIN + "/movie/home";
     public static final String MOVIE_ADD         = ADMIN + "/movie/add";

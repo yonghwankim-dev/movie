@@ -2,7 +2,6 @@ package test.java.kr.com.yh.service;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.com.yh.lotte.vo.MemberSearch;
-import kr.com.yh.lotte.vo.MemberSearchCategory;
 import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.SqlMapClientFactory;
 import org.junit.Assert;
@@ -33,10 +32,7 @@ class MemberServiceTest {
 		String content = null;
 		String category = "NAME";
 
-		MemberSearch memberSearch = MemberSearch.builder()
-												.content(content)
-												.memberSearchCategory(MemberSearchCategory.valueOf(category))
-												.build();
+		MemberSearch memberSearch = MemberSearch.createMemberSearch(content, category);
 
 		//when
 		members = smc.queryForList("mem.findAll", memberSearch);
@@ -49,10 +45,7 @@ class MemberServiceTest {
 	void 회원전체검색_이름() throws Exception{
 		//given
 		List<MemberVO> members;
-		MemberSearch memberSearch = MemberSearch.builder()
-												.content("홍길")
-												.memberSearchCategory(MemberSearchCategory.NAME)
-												.build();
+		MemberSearch memberSearch = MemberSearch.createMemberSearch();
 
 		//when
 		members = smc.queryForList("mem.findAll", memberSearch);
@@ -65,10 +58,7 @@ class MemberServiceTest {
 	void 회원전체검색_아이디() throws Exception{
 		//given
 		List<MemberVO> members;
-		MemberSearch memberSearch = MemberSearch.builder()
-												.content("user")
-												.memberSearchCategory(MemberSearchCategory.ID)
-												.build();
+		MemberSearch memberSearch = MemberSearch.createMemberSearch();
 
 		//when
 		members = smc.queryForList("mem.findAll", memberSearch);
@@ -82,10 +72,7 @@ class MemberServiceTest {
 	void 회원전체검색_연락처(){
 		//given
 		List<MemberVO> members;
-		MemberSearch memberSearch = MemberSearch.builder()
-												.content("010-1111-2222")
-												.memberSearchCategory(MemberSearchCategory.CONTACT)
-												.build();
+		MemberSearch memberSearch = MemberSearch.createMemberSearch("010-1111-2222", "contact");
 
 		//when
 		try{

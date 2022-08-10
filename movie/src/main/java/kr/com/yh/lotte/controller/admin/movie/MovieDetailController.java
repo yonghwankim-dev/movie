@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "MovieHomeController", urlPatterns = UrlPaths.MOVIE_HOME)
+@WebServlet(name = "MovieDetailController", urlPatterns = UrlPaths.MOVIE_DETAIL)
 public class MovieDetailController extends HttpServlet {
 
     private IMovieService movieService;

@@ -4,7 +4,6 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.com.yh.lotte.service.movie.IMovieService;
 import kr.com.yh.lotte.service.movie.MovieServiceImpl;
 import kr.com.yh.lotte.vo.MovieSearch;
-import kr.com.yh.lotte.vo.MovieSearchCategory;
 import kr.com.yh.lotte.vo.MovieVO;
 import kr.com.yh.util.SqlMapClientFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,10 +42,7 @@ class MovieServiceTest {
 	void findAllByNameTest() {
 		//given
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		MovieSearch movieSearch = MovieSearch.builder()
-											 .content("더 배트맨")
-											 .movieSearchCategory(MovieSearchCategory.NAME)
-											 .build();
+		MovieSearch movieSearch = MovieSearch.createMovieSearch("더 배트맨", "NAME");
 
 		//when
 		list = movieService.findAll(movieSearch);

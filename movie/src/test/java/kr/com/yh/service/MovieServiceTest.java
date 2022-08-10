@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +27,7 @@ class MovieServiceTest {
 	}
 
 	@Test
-	void findAllTest() {
+	void 영화전체검색() {
 		//given
 		List<MovieVO> list = new ArrayList<MovieVO>();
 
@@ -39,7 +40,7 @@ class MovieServiceTest {
 	}
 
 	@Test
-	void findAllByNameTest() {
+	void 영화전체검색_이름() {
 		//given
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		MovieSearch movieSearch = MovieSearch.createMovieSearch("더 배트맨", "NAME");
@@ -50,6 +51,18 @@ class MovieServiceTest {
 		//then
 		assertThat(list).isNotNull();
 		assertThat(list.get(0).getName()).isEqualTo("더 배트맨");
+	}
+
+	@Test
+	public void 영화단일검색() throws Exception{
+	    //given
+	    String movie_code = "MOVIE1";
+
+	    //when
+		MovieVO movie = movieService.findOne(movie_code);
+
+	    //then
+		assertThat(movie.getName()).isEqualTo("더 배트맨");
 	}
 
 	@Test
@@ -64,6 +77,20 @@ class MovieServiceTest {
 	    //when
 		smc.startTransaction();
 	    int cnt = smc.update("movie.save", movie);
+		smc.endTransaction();
+
+	    //then
+		assertThat(cnt).isEqualTo(1);
+	}
+
+	@Test
+	public void 영화제거() throws Exception{
+	    //given
+	    List<String> movie_codes = new ArrayList<>(Arrays.asList("MOVIE7"));
+
+	    //when
+		smc.startTransaction();
+		int cnt = smc.delete("movie.deleteAll", movie_codes);
 		smc.endTransaction();
 
 	    //then

@@ -11,5 +11,9 @@ public interface IMovieDao {
 
 	List<MovieVO> findAll(MovieSearch movieSearch);
 
+	MovieVO findOne(String movie_code);
+
 	int save(MovieVO movie);
+
+	int deleteAll(List<String> movie_codes);
 }

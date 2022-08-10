@@ -36,7 +36,17 @@ public class MovieServiceImpl implements IMovieService {
 	}
 
 	@Override
+	public MovieVO findOne(String movie_code) {
+		return movieDao.findOne(movie_code);
+	}
+
+	@Override
 	public int save(MovieVO movie) {
 		return movieDao.save(movie);
+	}
+
+	@Override
+	public int deleteAll(List<String> movie_codes) {
+		return movieDao.deleteAll(movie_codes);
 	}
 }

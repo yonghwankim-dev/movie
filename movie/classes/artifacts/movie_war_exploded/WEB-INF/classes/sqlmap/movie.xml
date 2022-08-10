@@ -25,6 +25,40 @@
 		</dynamic>
 		ORDER BY LENGTH(MOVIE_CODE), MOVIE_CODE
 	</select>
+
+	<select id="findOne" parameterClass="String" resultClass="movieVo">
+		SELECT MOVIE_CODE, NAME, AUDI_RATING, RUNTIME
+		FROM   MOVIE
+		WHERE  MOVIE_CODE = #movie_code#
+	</select>
+
+	<insert id="save" parameterClass="movieVo">
+
+		<selectKey keyProperty="num" resultClass="int">
+			SELECT MOVIE_CODE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MOVIE(MOVIE_CODE,
+		                  NAME,
+		                  AUDI_RATING,
+		                  RUNTIME)
+		VALUES(
+			'MOVIE' || movie_code_seq.nextval,
+			#name#,
+		    #audi_rating#,
+		    #runtime#
+		)
+	</insert>
+
+	<delete id="deleteAll" parameterClass="java.util.List">
+		DELETE FROM MOVIE
+		<iterate prepend="WHERE MOVIE_CODE IN" open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+	</delete>
+
+	<delete id="deleteOne" parameterClass="String">
+		DELETE FROM MOVIE WHERE MOVIE_CODE = #movie_code#
+	</delete>
 </sqlMap>			
 
 

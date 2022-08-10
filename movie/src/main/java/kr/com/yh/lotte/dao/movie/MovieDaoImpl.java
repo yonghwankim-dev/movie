@@ -38,10 +38,23 @@ public class MovieDaoImpl implements IMovieDao {
 		try {
 			list = smc.queryForList("movie.findAll", movieSearch);
 		} catch (SQLException e) {
-			System.out.println("findAll 수행중 오류" + e);
+			throw new RuntimeException(e);
 		}
 		
 		return list;
+	}
+
+	@Override
+	public MovieVO findOne(String movie_code) {
+		MovieVO movie = null;
+
+		try {
+			movie = (MovieVO) smc.queryForObject("movie.findOne", movie_code);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return movie;
 	}
 
 	@Override
@@ -60,6 +73,27 @@ public class MovieDaoImpl implements IMovieDao {
 				throw new RuntimeException(e);
 			}
 		}
+		return cnt;
+	}
+
+	@Override
+	public int deleteAll(List<String> movie_codes) {
+		int cnt = 0;
+
+		try {
+			smc.startTransaction();
+			cnt = smc.delete("movie.deleteAll", movie_codes);
+			smc.commitTransaction();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return cnt;
 	}
 }

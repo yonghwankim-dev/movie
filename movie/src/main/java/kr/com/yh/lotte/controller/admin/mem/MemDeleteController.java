@@ -28,7 +28,7 @@ public class MemDeleteController extends HttpServlet {
         List<String> mem_codes = Arrays.asList(req.getParameterValues("mem_code"));
         AjaxResponse ajaxResponse = new AjaxResponse(resp);
 
-        int cnt = memberService.delete(mem_codes);
+        int cnt = memberService.deleteAll(mem_codes);
 
         if(cnt > 0){
             ajaxResponse.addToResMap("code", "ok");

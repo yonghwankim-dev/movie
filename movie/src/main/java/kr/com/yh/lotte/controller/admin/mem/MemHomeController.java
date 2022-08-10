@@ -36,7 +36,7 @@ public class MemHomeController extends HttpServlet {
                                                 .memberSearchCategory(MemberSearchCategory.valueOf(category))
                                                 .build();
 
-        List<MemberVO> mems = memberService.findMemberAll(memberSearch);
+        List<MemberVO> mems = memberService.findAll(memberSearch);
 
         req.setAttribute("mems", mems);
         req.setAttribute("fileNm", fileNm);

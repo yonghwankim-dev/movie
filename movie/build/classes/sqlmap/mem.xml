@@ -3,7 +3,7 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="mem">
-	<select id="findMemberAll" parameterClass="MemberSearch" resultClass="memberVo">
+	<select id="findAll" parameterClass="MemberSearch" resultClass="memberVo">
 		SELECT MEM_CODE,
 		       NAME,
 		       BIRTHDAY,
@@ -29,6 +29,46 @@
 		ORDER BY LENGTH(MEM_CODE), MEM_CODE
 	</select>
 
+
+	<select id="findAllByName" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE NAME LIKE '%' || #name# || '%'
+	</select>
+
+	<select id="findAllById" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE ID LIKE '%' || #id# || '%'
+	</select>
+
+	<select id="findAllByContact" parameterClass="String" resultClass="memberVo">
+		SELECT MEM_CODE,
+			   NAME,
+			   BIRTHDAY,
+			   CONTACT,
+			   ADDR,
+			   EMAIL,
+			   ID,
+			   GENDER
+		FROM MEM
+		WHERE CONTACT = #contact#
+	</select>
+
 	<select id="findOne" parameterClass="String" resultClass="memberVo">
 		SELECT MEM_CODE,
 		       NAME,
@@ -42,7 +82,7 @@
         WHERE MEM_CODE = #mem_code#
 	</select>
 
-	<select id="findMemberByName" parameterClass="String" resultClass="memberVo">
+	<select id="findOneById" parameterClass="String" resultClass="memberVo">
 		SELECT MEM_CODE,
 			   NAME,
 			   BIRTHDAY,
@@ -52,23 +92,10 @@
 			   ID,
 			   GENDER
 		FROM MEM
-		WHERE NAME LIKE '%' || #name# || '%'
+		WHERE ID = #id#
 	</select>
 
-	<select id="findMemberById" parameterClass="String" resultClass="memberVo">
-		SELECT MEM_CODE,
-			   NAME,
-			   BIRTHDAY,
-			   CONTACT,
-			   ADDR,
-			   EMAIL,
-			   ID,
-			   GENDER
-		FROM MEM
-		WHERE ID LIKE '%' || #id# || '%'
-	</select>
-
-	<select id="findMemberByContact" parameterClass="String" resultClass="memberVo">
+	<select id="findOneByContact" parameterClass="String" resultClass="memberVo">
 		SELECT MEM_CODE,
 			   NAME,
 			   BIRTHDAY,
@@ -81,7 +108,7 @@
 		WHERE CONTACT = #contact#
 	</select>
 
-	<update id="modifyMemberByMemberCode" parameterClass="memberVo">
+	<update id="modifyOne" parameterClass="memberVo">
 		UPDATE MEM
 		SET NAME     = #name#,
 		    BIRTHDAY = #birthday#,
@@ -93,11 +120,15 @@
         WHERE MEM_CODE = #mem_code#
 	</update>
 
-	<delete id="deleteMemberByMemberCode" parameterClass="java.util.List">
+	<delete id="deleteAll" parameterClass="java.util.List">
 		DELETE FROM MEM
 		<iterate prepend="WHERE MEM_CODE IN" open="(" close=")" conjunction=",">
 			#[]#
 		</iterate>
+	</delete>
+
+	<delete id="deleteOne" parameterClass="String">
+		DELETE FROM MEM WHERE MEM_CODE = #mem_code#
 	</delete>
 </sqlMap>			
 

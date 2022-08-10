@@ -24,13 +24,23 @@ public class MemServiceImpl implements IMemService{
     }
 
     @Override
-    public List<MemberVO> findMemberAll(MemberSearch memberSearch) {
-        return memberDao.findMemberAll(memberSearch);
+    public List<MemberVO> findAll(MemberSearch memberSearch) {
+        return memberDao.findAll(memberSearch);
     }
 
     @Override
-    public int delete(List<String> mem_codes) {
-        return memberDao.delete(mem_codes);
+    public List<MemberVO> findAllByName(String name) {
+        return memberDao.findAllByName(name);
+    }
+
+    @Override
+    public List<MemberVO> findAllById(String id) {
+        return memberDao.findAllById(id);
+    }
+
+    @Override
+    public List<MemberVO> findAllByContact(String contact) {
+        return memberDao.findAllByContact(contact);
     }
 
     @Override
@@ -38,25 +48,20 @@ public class MemServiceImpl implements IMemService{
         return memberDao.findOne(mem_code);
     }
 
+    @Override
+    public MemberVO findOneById(String id) { return memberDao.findOneById(id);}
 
     @Override
-    public List<MemberVO> findMemberByName(String name) {
-        return memberDao.findMemberByName(name);
+    public MemberVO findOneByContact(String contact) {return memberDao.findOneByContact(contact);}
+
+    @Override
+    public int modifyOne(MemberVO mem) {
+        return memberDao.modifyOne(mem);
     }
 
     @Override
-    public List<MemberVO> findMemberById(String id) {
-        return memberDao.findMemberById(id);
-    }
-
-    @Override
-    public List<MemberVO> findMemberByContact(String contact) {
-        return memberDao.findMemberByContact(contact);
-    }
-
-    @Override
-    public int modifyMemberByMemberCode(MemberVO mem) {
-        return memberDao.modifyMemberByMemberCode(mem);
+    public int deleteAll(List<String> mem_codes) {
+        return memberDao.deleteAll(mem_codes);
     }
 
 }

@@ -26,13 +26,52 @@ public class MemberDaoImpl implements IMemberDao {
     }
 
     @Override
-    public List<MemberVO> findMemberAll(MemberSearch memberSearch) {
+    public List<MemberVO> findAll(MemberSearch memberSearch) {
         List<MemberVO> mems;
 
         try{
-            mems = smc.queryForList("mem.findMemberAll", memberSearch);
+            mems = smc.queryForList("mem.findAll", memberSearch);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        return mems;
+    }
+
+    @Override
+    public List<MemberVO> findAllByName(String name) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findAllByName", name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mems;
+    }
+
+    @Override
+    public List<MemberVO> findAllById(String id) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findAllById", id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mems;
+    }
+
+    @Override
+    public List<MemberVO> findAllByContact(String contact) {
+        List<MemberVO> mems = new ArrayList<>();
+
+        try {
+            mems = smc.queryForList("mem.findAllByContact", contact);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return mems;
@@ -52,51 +91,38 @@ public class MemberDaoImpl implements IMemberDao {
     }
 
     @Override
-    public List<MemberVO> findMemberByName(String name) {
-        List<MemberVO> mems = new ArrayList<>();
+    public MemberVO findOneById(String id) {
+        MemberVO member;
 
-        try {
-            mems = smc.queryForList("mem.findMemberByName", name);
+        try{
+            member = (MemberVO) smc.queryForObject("mem.findOneById", id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw  new RuntimeException(e);
         }
 
-        return mems;
+        return member;
     }
 
     @Override
-    public List<MemberVO> findMemberById(String id) {
-        List<MemberVO> mems = new ArrayList<>();
+    public MemberVO findOneByContact(String contact) {
+        MemberVO member;
 
-        try {
-            mems = smc.queryForList("mem.findMemberById", id);
+        try{
+            member = (MemberVO) smc.queryForObject("mem.findOneByContact", contact);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw  new RuntimeException(e);
         }
 
-        return mems;
+        return member;
     }
 
     @Override
-    public List<MemberVO> findMemberByContact(String contact) {
-        List<MemberVO> mems = new ArrayList<>();
-
-        try {
-            mems = smc.queryForList("mem.findMemberByContact", contact);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return mems;
-    }
-
-    @Override
-    public int modifyMemberByMemberCode(MemberVO mem) {
+    public int modifyOne(MemberVO mem) {
         int cnt = 0;
 
         try {
             smc.startTransaction();
-            cnt = smc.update("mem.modifyMemberByMemberCode", mem);
+            cnt = smc.update("mem.modifyOne", mem);
             smc.commitTransaction();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,12 +139,12 @@ public class MemberDaoImpl implements IMemberDao {
     }
 
     @Override
-    public int delete(List<String> mem_codes) {
+    public int deleteAll(List<String> mem_codes) {
         int cnt = 0;
 
         try {
             smc.startTransaction();
-            cnt = smc.delete("mem.deleteMemberByMemberCode", mem_codes);
+            cnt = smc.delete("mem.deleteAll", mem_codes);
             smc.commitTransaction();
         } catch (SQLException e) {
             e.printStackTrace();

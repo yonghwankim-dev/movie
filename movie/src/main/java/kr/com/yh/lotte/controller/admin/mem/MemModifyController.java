@@ -70,7 +70,7 @@ public class MemModifyController extends HttpServlet {
                                .gender(gender)
                                .build();
 
-        int cnt = memberService.modifyMemberByMemberCode(mem);
+        int cnt = memberService.modifyOne(mem);
 
 
         if(cnt > 0){

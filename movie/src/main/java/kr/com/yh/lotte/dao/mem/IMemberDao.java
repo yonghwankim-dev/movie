@@ -8,50 +8,47 @@ import java.util.List;
 public interface IMemberDao {
 
     /**
-     * 모든 회원 조회
-     * @return 회원 리스트
+     * 회원전체검색
      */
-    List<MemberVO> findMemberAll(MemberSearch memberSearch);
+    List<MemberVO> findAll(MemberSearch memberSearch);
 
     /**
-     * 회원 코드에 해당하는 회원 삭제
-     * @param mem_codes 회원코드 리스트
-     * @return 삭제된 회원 수
+     * 회원전체검색_이름
      */
-    int delete(List<String> mem_codes);
+    List<MemberVO> findAllByName(String name);
 
     /**
-     * 회원 코드에 따른 회원 조회
-     * @param mem_code 회원 코드
-     * @return 회원
+     * 회원전체검색_아이디
+     */
+    List<MemberVO> findAllById(String id);
+
+    /**
+     * 회원전체검색_연락처
+     */
+    List<MemberVO> findAllByContact(String contact);
+
+    /**
+     * 회원단일검색
      */
     MemberVO findOne(String mem_code);
 
     /**
-     * 이름이 포함된 회원들 검색
-     * @param name 이름
-     * @return 회원 리스트
+     * 회원단일검색_아이디
      */
-    List<MemberVO> findMemberByName(String name);
+    MemberVO findOneById(String id);
 
     /**
-     * id가 포함된 회원들 검색
-     * @param id 아이디
-     * @return 회원 리스트
+     * 회원단일검색_연락처
      */
-    List<MemberVO> findMemberById(String id);
+    MemberVO findOneByContact(String contact);
 
     /**
-     * 연락처에 따른 회원 검색
-     * @param contact 연락처
-     * @return 회원 리스트
+     * 회원단일수정
      */
-    List<MemberVO> findMemberByContact(String contact);
+    int modifyOne(MemberVO mem);
 
     /**
-     * 회원 코드에 따른 회워정보 갱신
-     * @param mem 회원
-     * @return 갱신한 회원수
+     * 회원전체삭제
      */
-    int modifyMemberByMemberCode(MemberVO mem);
+    int deleteAll(List<String> mem_codes);
 }

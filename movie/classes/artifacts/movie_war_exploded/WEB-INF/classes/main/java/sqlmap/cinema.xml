@@ -7,7 +7,33 @@
 	<resultMap class="cinemalocationVo" id="LocationMap">
 		<result property="cinemaVO.loc" column="loc"/>
 		<result property="cinema_cnt" column="cnt"/>
-	</resultMap>		
+	</resultMap>
+
+	<select id="findAll" parameterClass="cinemaSearch" resultClass="cinemaVo">
+		SELECT CINEMA_CODE,
+		       NAME,
+		       LOC
+		FROM   CINEMA
+		<dynamic prepend="WHERE">
+			<isNotNull property="content">
+				<isEqual prepend="AND"  property="cinemaSearchCategory" compareValue="NAME">
+					NAME LIKE '%' || #content# || '%'
+				</isEqual>
+				<isEqual prepend="AND"  property="cinemaSearchCategory" compareValue="LOC">
+					LOC LIKE '%' || #content# || '%'
+				</isEqual>
+			</isNotNull>
+		</dynamic>
+		ORDER BY LENGTH(CINEMA_CODE), CINEMA_CODE
+	</select>
+
+	<select id="findAllLocation" resultClass="String">
+		SELECT LOC
+		FROM CINEMA
+		GROUP BY LOC
+		ORDER BY LOC
+	</select>
+
 
 	<!-- 지역 리스트 반환 -->
 	<select id="getLocationList" resultMap="LocationMap">

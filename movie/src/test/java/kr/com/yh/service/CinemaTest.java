@@ -1,62 +1,82 @@
 package test.java.kr.com.yh.service;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.service.cinema.CinemaServiceImpl;
+import kr.com.yh.lotte.service.cinema.ICinemaService;
+import kr.com.yh.lotte.vo.CinemaSearch;
 import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.component.CinemaLocationVO;
 import kr.com.yh.util.SqlMapClientFactory;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CinemaTest {
 
+	private ICinemaService cinemaService;
 	private SqlMapClient smc;
 	
 	@BeforeEach
 	public void setup() {
+		cinemaService = CinemaServiceImpl.getInstance();
 		smc = SqlMapClientFactory.getInstance();
 	}
-	
+
 	@Test
-	void getLocationListTest() {
-		List<CinemaLocationVO> list = new ArrayList<CinemaLocationVO>();
-		
-		try {
-			list = smc.queryForList("cinema.getLocationList");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		Assert.assertNotNull(list);
+	public void 영화관전체검색() throws Exception{
+	    //given
+		List<CinemaVO> cinemas = null;
+
+	    //when
+		cinemas = cinemaService.findAll();
+
+	    //then
+		assertThat(cinemas).isNotNull();
 	}
 	
 	@Test
-	void getCinemaListTest() {
-		List<CinemaVO> list = new ArrayList<CinemaVO>();
-		
-		try {
-			list = smc.queryForList("cinema.getCinemaList");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		Assert.assertNotNull(list);
+	public void 영화관전체검색_이름() throws Exception{
+	    //given
+	    String category = "NAME";
+		String content  = "당진";
+		String loc      = "";
+		CinemaSearch cinemaSearch = CinemaSearch.createCinemaSearch(content, category, loc);
+		List<CinemaVO> cinemas = null;
+
+	    //when
+	    cinemas = cinemaService.findAll(cinemaSearch);
+
+	    //then
+		assertThat(cinemas).isNotNull();
 	}
 	
 	@Test
-	void getCinemaListByLocTest() {
-		List<CinemaVO> list = new ArrayList<CinemaVO>();
-		String loc = "제주";
-		try {
-			list = smc.queryForList("cinema.getCinemaList", loc);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.out.println(list);
-		Assert.assertNotNull(list);
+	public void 영화관전체검색_지역() throws Exception{
+		//given
+		String category = "loc";
+		String content  = "";
+		String loc      = "광주/전라";
+		CinemaSearch cinemaSearch = CinemaSearch.createCinemaSearch(content, category, loc);
+		List<CinemaVO> cinemas = null;
+
+		//when
+		cinemas = cinemaService.findAll(cinemaSearch);
+
+		//then
+		assertThat(cinemas).isNotNull();
+	}
+	
+	@Test
+	public void 영화관지역전체검색() throws Exception{
+	    //given
+		List<String> locations = null;
+
+	    //when
+		locations = cinemaService.findAllLocation();
+
+	    //then
+		assertThat(locations).isNotNull();
 	}
 }

@@ -15,5 +15,7 @@ public interface IMovieDao {
 
 	int save(MovieVO movie);
 
+	int modifyOne(MovieVO movie);
+
 	int deleteAll(List<String> movie_codes);
 }

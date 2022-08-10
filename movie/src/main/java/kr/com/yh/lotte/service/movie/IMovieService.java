@@ -28,6 +28,11 @@ public interface IMovieService {
 	int save(MovieVO movie);
 
 	/**
+	 * 영화수정
+	 */
+	int modifyOne(MovieVO movie);
+
+	/**
 	 * 영화제거
 	 */
 	int deleteAll(List<String> movie_codes);

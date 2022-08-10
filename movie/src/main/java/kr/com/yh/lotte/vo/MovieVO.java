@@ -1,9 +1,6 @@
 package kr.com.yh.lotte.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Class Description
@@ -13,7 +10,7 @@ import lombok.NoArgsConstructor;
  * @version 1.0.0
  * @date 2022-05-05
  */
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

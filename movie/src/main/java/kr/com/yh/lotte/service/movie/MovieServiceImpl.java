@@ -46,6 +46,11 @@ public class MovieServiceImpl implements IMovieService {
 	}
 
 	@Override
+	public int modifyOne(MovieVO movie) {
+		return movieDao.modifyOne(movie);
+	}
+
+	@Override
 	public int deleteAll(List<String> movie_codes) {
 		return movieDao.deleteAll(movie_codes);
 	}

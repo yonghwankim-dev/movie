@@ -77,6 +77,27 @@ public class MovieDaoImpl implements IMovieDao {
 	}
 
 	@Override
+	public int modifyOne(MovieVO movie) {
+		int cnt = 0;
+
+		try {
+			smc.startTransaction();
+			cnt = smc.update("movie.modifyOne", movie);
+			smc.commitTransaction();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+		return cnt;
+	}
+
+	@Override
 	public int deleteAll(List<String> movie_codes) {
 		int cnt = 0;
 

@@ -84,6 +84,25 @@ class MovieServiceTest {
 	}
 
 	@Test
+	public void 영화수정() throws Exception{
+	    //given
+	    MovieVO movie = MovieVO.builder()
+				               .movie_code("MOVIE1")
+				               .name("더 배트맨")
+				               .audi_rating(12)
+				               .runtime(100)
+				               .build();
+
+	    //when
+		smc.startTransaction();
+		int cnt = smc.update("movie.modifyOne", movie);
+		smc.endTransaction();
+
+	    //then
+		assertThat(cnt).isEqualTo(1);
+	}
+
+	@Test
 	public void 영화제거() throws Exception{
 	    //given
 	    List<String> movie_codes = new ArrayList<>(Arrays.asList("MOVIE7"));

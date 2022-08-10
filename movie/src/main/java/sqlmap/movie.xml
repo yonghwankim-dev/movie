@@ -49,6 +49,14 @@
 		)
 	</insert>
 
+	<update id="modifyOne" parameterClass="movieVo">
+		UPDATE MOVIE
+		SET NAME         = #name#,
+			AUDI_RATING  = #audi_rating#,
+			RUNTIME      = #runtime#
+		WHERE MOVIE_CODE = #movie_code#
+	</update>
+
 	<delete id="deleteAll" parameterClass="java.util.List">
 		DELETE FROM MOVIE
 		<iterate prepend="WHERE MOVIE_CODE IN" open="(" close=")" conjunction=",">

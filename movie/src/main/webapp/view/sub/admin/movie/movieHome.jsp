@@ -46,7 +46,7 @@
             </tbody>
         </table>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_form">추가</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">추가</button>
         <button type="button" id="deleteBtn" class="btn btn-danger">제거</button>
         </form>
     </div>

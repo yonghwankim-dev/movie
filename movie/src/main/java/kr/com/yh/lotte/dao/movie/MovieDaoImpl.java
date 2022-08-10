@@ -43,6 +43,23 @@ public class MovieDaoImpl implements IMovieDao {
 		
 		return list;
 	}
-	
-	
+
+	@Override
+	public int save(MovieVO movie) {
+		int cnt = 0;
+		try {
+			smc.startTransaction();
+			cnt = smc.update("movie.save", movie);
+			smc.commitTransaction();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			try {
+				smc.endTransaction();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return cnt;
+	}
 }

@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="col-4 m-0">
-            <form action="${pageContext.request.contextPath}${UrlPaths.MEM_FIND}" method="post" class="d-flex" role="search">
+            <form action="${pageContext.request.contextPath}${UrlPaths.MEM_HOME}" class="d-flex" role="search">
                 <select name="category">
                     <option value="name">이름</option>
                     <option value="id">아이디</option>

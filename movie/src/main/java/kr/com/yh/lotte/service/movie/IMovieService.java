@@ -14,4 +14,6 @@ public interface IMovieService {
 	 * @return 영화 리스트
 	 */
 	List<MovieVO> findAll(MovieSearch movieSearch);
+
+	int save(MovieVO movie);
 }

@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="col-4 m-0">
-            <form action="${pageContext.request.contextPath}${UrlPaths.MOVIE_FIND}" method="post" class="d-flex" role="search">
+            <form action="${pageContext.request.contextPath}${UrlPaths.MOVIE_HOME}" class="d-flex" role="search">
                 <select name="category">
                     <option value="name">이름</option>
                     <option value="audi_rating">관람등급</option>
@@ -46,7 +46,7 @@
             </tbody>
         </table>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_form">추가</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">추가</button>
         <button type="button" id="deleteBtn" class="btn btn-danger">제거</button>
         </form>
     </div>

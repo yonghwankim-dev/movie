@@ -25,6 +25,23 @@
 		</dynamic>
 		ORDER BY LENGTH(MOVIE_CODE), MOVIE_CODE
 	</select>
+
+	<insert id="save" parameterClass="movieVo">
+
+		<selectKey keyProperty="num" resultClass="int">
+			SELECT MOVIE_CODE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MOVIE(MOVIE_CODE,
+		                  NAME,
+		                  AUDI_RATING,
+		                  RUNTIME)
+		VALUES(
+			'MOVIE' || movie_code_seq.nextval,
+			#name#,
+		    #audi_rating#,
+		    #runtime#
+		)
+	</insert>
 </sqlMap>			
 
 

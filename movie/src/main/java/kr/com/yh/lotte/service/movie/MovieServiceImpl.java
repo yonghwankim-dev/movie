@@ -34,6 +34,9 @@ public class MovieServiceImpl implements IMovieService {
 	public List<MovieVO> findAll(MovieSearch movieSearch) {
 		return movieDao.findAll(movieSearch);
 	}
-	
-	
+
+	@Override
+	public int save(MovieVO movie) {
+		return movieDao.save(movie);
+	}
 }

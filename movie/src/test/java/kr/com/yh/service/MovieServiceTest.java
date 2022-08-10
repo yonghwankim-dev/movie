@@ -52,5 +52,23 @@ class MovieServiceTest {
 		assertThat(list.get(0).getName()).isEqualTo("더 배트맨");
 	}
 
+	@Test
+	public void 영화추가() throws Exception{
+	    //given
+	    MovieVO movie = MovieVO.builder()
+				               .name("토르4")
+				               .audi_rating(12)
+				               .runtime(150)
+				               .build();
+
+	    //when
+		smc.startTransaction();
+	    int cnt = smc.update("movie.save", movie);
+		smc.endTransaction();
+
+	    //then
+		assertThat(cnt).isEqualTo(1);
+	}
+
 
 }

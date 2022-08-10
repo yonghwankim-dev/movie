@@ -40,7 +40,8 @@
 	<typeAlias alias="memberSearchCategory" 	type="kr.com.yh.lotte.vo.MemberSearchCategory"/>
 	<typeAlias alias="movieSearch" 	 	        type="kr.com.yh.lotte.vo.MovieSearch"/>
 	<typeAlias alias="movieSearchCategory" 		type="kr.com.yh.lotte.vo.MovieSearchCategory"/>
-	
+	<typeAlias alias="cinemaSearch" 	 	    type="kr.com.yh.lotte.vo.CinemaSearch"/>
+	<typeAlias alias="cinemaSearchCategory" 	type="kr.com.yh.lotte.vo.CinemaSearchCategory"/>
 
 	<typeAlias alias="cinemalocationVo" type="kr.com.yh.lotte.vo.component.CinemaLocationVO"/>
 	<typeAlias alias="screenAdminVo" 	type="kr.com.yh.lotte.vo.component.ScreenAdminVO"/>

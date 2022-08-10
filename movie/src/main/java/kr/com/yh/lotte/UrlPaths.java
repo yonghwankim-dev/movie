@@ -39,34 +39,34 @@ public class UrlPaths {
     public static final String MOVIE_DELETE      = ADMIN + "/movie/delete";
     public static final String MOVIE_DETAIL      = ADMIN + "/movie/detail";
     public static final String MOVIE_MODIFY      = ADMIN + "/movie/modify";
-    public static final String MOVIE_FIND        = ADMIN + "/movie/find";
+
+    public static final String CINEMA_HOME        = ADMIN + "/cinema/home";
+    public static final String CINEMA_ADD         = ADMIN + "/cinema/add";
+    public static final String CINEMA_DELETE      = ADMIN + "/cinema/delete";
+    public static final String CINEMA_DETAIL      = ADMIN + "/cinema/detail";
+    public static final String CINEMA_MODIFY      = ADMIN + "/cinema/modify";
 
     public static final String THEATER_HOME      = ADMIN + "/theater/home";
     public static final String THEATER_ADD       = ADMIN + "/theater/add";
     public static final String THEATER_DELETE    = ADMIN + "/theater/delete";
     public static final String THEATER_DETAIL    = ADMIN + "/theater/detail";
     public static final String THEATER_MODIFY    = ADMIN + "/theater/modify";
-    public static final String THEATER_FIND      = ADMIN + "/theater/find";
-
 
     public static final String SCREEN_HOME       = ADMIN + "/screen/home";
     public static final String SCREEN_ADD        = ADMIN + "/screen/add";
     public static final String SCREEN_DELETE     = ADMIN + "/screen/delete";
     public static final String SCREEN_DETAIL     = ADMIN + "/screen/detail";
     public static final String SCREEN_MODIFY     = ADMIN + "/screen/modify";
-    public static final String SCREEN_FIND       = ADMIN + "/screen/find";
 
     public static final String SCREEN_SCH_HOME   = ADMIN + "/screenSch/home";
     public static final String SCREEN_SCH_ADD    = ADMIN + "/screenSch/add";
     public static final String SCREEN_SCH_DELETE = ADMIN + "/screenSch/delete";
     public static final String SCREEN_SCH_DETAIL = ADMIN + "/screenSch/detail";
     public static final String SCREEN_SCH_MODIFY = ADMIN + "/screenSch/modify";
-    public static final String SCREEN_SCH_FIND   = ADMIN + "/screenSch/find";
 
     public static final String BOOK_HOME       = ADMIN + "/book/home";
     public static final String BOOK_ADD        = ADMIN + "/book/add";
     public static final String BOOK_DELETE     = ADMIN + "/book/delete";
     public static final String BOOK_DETAIL     = ADMIN + "/book/detail";
     public static final String BOOK_MODIFY     = ADMIN + "/book/modify";
-    public static final String BOOK_FIND       = ADMIN + "/book/find";
 }

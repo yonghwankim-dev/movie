@@ -1,20 +1,14 @@
 package kr.com.yh.lotte.dao.cinema;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.CinemaSearch;
+import kr.com.yh.lotte.vo.CinemaVO;
+import kr.com.yh.lotte.vo.component.CinemaLocationVO;
+import kr.com.yh.util.SqlMapClientFactory;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ibatis.sqlmap.client.SqlMapClient;
-
-import kr.com.yh.lotte.dao.movie.IMovieDao;
-import kr.com.yh.lotte.dao.movie.MovieDaoImpl;
-import kr.com.yh.lotte.dao.ticketing.ITicketingDao;
-import kr.com.yh.lotte.dao.ticketing.TicketingDaoImpl;
-import kr.com.yh.lotte.vo.CinemaVO;
-import kr.com.yh.lotte.vo.MovieVO;
-import kr.com.yh.lotte.vo.component.CinemaLocationVO;
-import kr.com.yh.lotte.vo.component.CinemaTheaterVO;
-import kr.com.yh.util.SqlMapClientFactory;
 
 
 public class CinemaDaoImpl implements ICinemaDao {
@@ -33,7 +27,37 @@ public class CinemaDaoImpl implements ICinemaDao {
 		}
 		return cinemaDao;
 	}
-	
+
+	@Override
+	public List<CinemaVO> findAll() {
+		return findAll(null);
+	}
+
+	@Override
+	public List<CinemaVO> findAll(CinemaSearch cinemaSearch) {
+		List<CinemaVO> cinemas = null;
+
+		try {
+			cinemas = smc.queryForList("cinema.findAll", cinemaSearch);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return cinemas;
+	}
+
+	@Override
+	public List<String> findAllLocation() {
+		List<String> locations = null;
+
+		try {
+			locations = smc.queryForList("cinema.findAllLocation");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return locations;
+	}
+
 	@Override
 	public List<CinemaLocationVO> getLocationList() {
 		List<CinemaLocationVO> list = new ArrayList<CinemaLocationVO>();

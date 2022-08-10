@@ -23,10 +23,10 @@ public class MemDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String mem_code = req.getParameter("mem_code");
         String fileNm = "admin/mem/memDetail";
+        String mem_code = req.getParameter("mem_code");
 
-        MemberVO mem = memberService.findMemberByMemberCode(mem_code);
+        MemberVO mem = memberService.findOne(mem_code);
 
         req.setAttribute("mem", mem);
         req.setAttribute("fileNm", fileNm);

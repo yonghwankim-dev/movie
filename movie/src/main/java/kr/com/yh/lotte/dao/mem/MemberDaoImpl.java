@@ -1,6 +1,7 @@
 package kr.com.yh.lotte.dao.mem;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.MemberSearch;
 import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.SqlMapClientFactory;
 
@@ -25,11 +26,11 @@ public class MemberDaoImpl implements IMemberDao {
     }
 
     @Override
-    public List<MemberVO> findMemberAll() {
+    public List<MemberVO> findMemberAll(MemberSearch memberSearch) {
         List<MemberVO> mems;
 
         try{
-            mems = smc.queryForList("mem.findMemberAll");
+            mems = smc.queryForList("mem.findMemberAll", memberSearch);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -38,39 +39,16 @@ public class MemberDaoImpl implements IMemberDao {
     }
 
     @Override
-    public int deleteMemberByMemberCode(List<String> mem_codes) {
-        int cnt = 0;
-
-        try {
-            smc.startTransaction();
-            cnt = smc.delete("mem.deleteMemberByMemberCode", mem_codes);
-            smc.commitTransaction();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            cnt = 0;
-        }finally {
-            try {
-                smc.endTransaction();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return cnt;
-    }
-
-    @Override
-    public MemberVO findMemberByMemberCode(String mem_code) {
-        MemberVO mem;
+    public MemberVO findOne(String mem_code) {
+        MemberVO member;
 
         try{
-            mem = (MemberVO) smc.queryForObject("mem.findMemberByMemberCode", mem_code);
+            member = (MemberVO) smc.queryForObject("mem.findOne", mem_code);
         } catch (SQLException e) {
-            e.printStackTrace();
-            mem = null;
+            throw  new RuntimeException(e);
         }
 
-        return mem;
+        return member;
     }
 
     @Override
@@ -128,6 +106,28 @@ public class MemberDaoImpl implements IMemberDao {
                 smc.endTransaction();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            }
+        }
+
+        return cnt;
+    }
+
+    @Override
+    public int delete(List<String> mem_codes) {
+        int cnt = 0;
+
+        try {
+            smc.startTransaction();
+            cnt = smc.delete("mem.deleteMemberByMemberCode", mem_codes);
+            smc.commitTransaction();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            cnt = 0;
+        }finally {
+            try {
+                smc.endTransaction();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 

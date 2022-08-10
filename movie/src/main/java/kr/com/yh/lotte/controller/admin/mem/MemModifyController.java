@@ -29,7 +29,7 @@ public class MemModifyController extends HttpServlet {
         String mem_code = req.getParameter("mem_code");
         String fileNm = "admin/mem/memModify";
 
-        MemberVO mem = memberService.findMemberByMemberCode(mem_code);
+        MemberVO mem = memberService.findOne(mem_code);
 
         req.setAttribute("mem", mem);
         req.setAttribute("fileNm", fileNm);
@@ -38,6 +38,7 @@ public class MemModifyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AjaxResponse result = new AjaxResponse(resp);
         String mem_code = req.getParameter("mem_code");
         String name     = req.getParameter("name");
         Date birthday   = Date.valueOf(req.getParameter("year")
@@ -70,7 +71,8 @@ public class MemModifyController extends HttpServlet {
                                .build();
 
         int cnt = memberService.modifyMemberByMemberCode(mem);
-        AjaxResponse result = new AjaxResponse(resp);
+
+
         if(cnt > 0){
             result.addToResMap("code","ok");
         }else{

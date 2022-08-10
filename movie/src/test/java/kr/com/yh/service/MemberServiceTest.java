@@ -1,6 +1,8 @@
 package test.java.kr.com.yh.service;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import kr.com.yh.lotte.vo.MemberSearch;
+import kr.com.yh.lotte.vo.MemberSearchCategory;
 import kr.com.yh.lotte.vo.MemberVO;
 import kr.com.yh.util.SqlMapClientFactory;
 import org.junit.Assert;
@@ -12,7 +14,9 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-class MemTest {
+import static org.assertj.core.api.Assertions.assertThat;
+
+class MemberServiceTest {
 
 	private SqlMapClient smc;
 	
@@ -22,16 +26,77 @@ class MemTest {
 	}
 
 	@Test
-	void findMemberAllTest(){
-		List<MemberVO> mems;
+	void findMemberAllTest() throws Exception{
+		//given
+		List<MemberVO> members;
 
+		String content = null;
+		String category = "NAME";
+
+		MemberSearch memberSearch = MemberSearch.builder()
+												.content(content)
+												.memberSearchCategory(MemberSearchCategory.valueOf(category))
+												.build();
+
+		//when
+		members = smc.queryForList("mem.findMemberAll", memberSearch);
+
+		//then
+		assertThat(members).isNotNull();
+	}
+
+	@Test
+	void findMemberAllByNameTest() throws Exception{
+		//given
+		List<MemberVO> members;
+		MemberSearch memberSearch = MemberSearch.builder()
+												.content("홍길")
+												.memberSearchCategory(MemberSearchCategory.NAME)
+												.build();
+
+		//when
+		members = smc.queryForList("mem.findMemberAll", memberSearch);
+
+		//then
+		assertThat(members).isNotNull();
+	}
+
+	@Test
+	void findMemberAllByIdTest() throws Exception{
+		//given
+		List<MemberVO> members;
+		MemberSearch memberSearch = MemberSearch.builder()
+				.content("user")
+				.memberSearchCategory(MemberSearchCategory.ID)
+				.build();
+
+		//when
+		members = smc.queryForList("mem.findMemberAll", memberSearch);
+
+
+		//then
+		assertThat(members).isNotNull();
+	}
+
+	@Test
+	void findMemberAllByContactTest(){
+		//given
+		List<MemberVO> members;
+		MemberSearch memberSearch = MemberSearch.builder()
+												.content("010-1111-1111")
+												.memberSearchCategory(MemberSearchCategory.CONTACT)
+												.build();
+
+		//when
 		try{
-			mems = smc.queryForList("mem.findMemberAll");
+			members = smc.queryForList("mem.findMemberAll", memberSearch);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
-		Assert.assertNotNull(mems);
+		//then
+		assertThat(members).isNotNull();
+		assertThat(members.get(0).getContact()).isEqualTo("010-1111-1111");
 	}
 
 	@Test

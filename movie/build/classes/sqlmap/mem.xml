@@ -3,7 +3,7 @@
 			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="mem">
-	<select id="findMemberAll" resultClass="memberVo">
+	<select id="findMemberAll" parameterClass="MemberSearch" resultClass="memberVo">
 		SELECT MEM_CODE,
 		       NAME,
 		       BIRTHDAY,
@@ -13,9 +13,23 @@
 		       ID,
 		       GENDER
          FROM MEM
+		<dynamic prepend="WHERE">
+			<isNotNull property="content">
+				<isEqual prepend="AND"  property="memberSearchCategory" compareValue="NAME">
+					NAME LIKE '%' || #content# || '%'
+				</isEqual>
+				<isEqual prepend="AND"  property="memberSearchCategory" compareValue="ID">
+					ID LIKE '%' || #content# || '%'
+				</isEqual>
+				<isEqual prepend="AND"  property="memberSearchCategory" compareValue="CONTACT">
+					CONTACT LIKE '%' || #content# || '%'
+				</isEqual>
+			</isNotNull>
+		</dynamic>
+		ORDER BY LENGTH(MEM_CODE), MEM_CODE
 	</select>
 
-	<select id="findMemberByMemberCode" parameterClass="String" resultClass="memberVo">
+	<select id="findOne" parameterClass="String" resultClass="memberVo">
 		SELECT MEM_CODE,
 		       NAME,
 		       BIRTHDAY,

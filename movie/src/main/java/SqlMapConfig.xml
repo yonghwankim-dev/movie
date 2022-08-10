@@ -36,6 +36,8 @@
 	<typeAlias alias="screenSchSeatVo" 	type="kr.com.yh.lotte.vo.ScreenSchSeatVO"/>
 	<typeAlias alias="screenschVo" 		type="kr.com.yh.lotte.vo.ScreenSchVO"/>
 
+	<typeAlias alias="memberSearch" 	 	    type="kr.com.yh.lotte.vo.MemberSearch"/>
+	<typeAlias alias="memberSearchCategory" 	type="kr.com.yh.lotte.vo.MemberSearchCategory"/>
 	<typeAlias alias="movieSearch" 	 	        type="kr.com.yh.lotte.vo.MovieSearch"/>
 	<typeAlias alias="movieSearchCategory" 		type="kr.com.yh.lotte.vo.MovieSearchCategory"/>
 	
@@ -74,9 +76,7 @@
 			<property name="JDBC.Username" 		value="${username}" />
 			<property name="JDBC.Password" 		value="${password}" />
 			
-			<!-- 
-				커넥션 개수를 1개로 설정함. 
-			-->
+			<!-- 커넥션 개수를 1개로 설정함. -->
 			<property name="Pool.MaximumActiveConnections" value="1"/>
 			<property name="Pool.MaximumIdleConnections" value="1"/>
 		</dataSource>

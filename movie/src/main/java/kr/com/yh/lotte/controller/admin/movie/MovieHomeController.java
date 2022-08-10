@@ -28,6 +28,8 @@ public class MovieHomeController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String category = req.getParameter("category");
         String content  = req.getParameter("content");
+        category = category == null ? "NAME" : category;
+
         MovieSearch movieSearch = MovieSearch.builder()
                                              .movieSearchCategory(MovieSearchCategory.valueOf(category))
                                              .content(content)
